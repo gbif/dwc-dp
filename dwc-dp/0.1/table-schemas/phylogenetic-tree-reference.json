@@ -1,13 +1,13 @@
 {
-  "name": "phylogenetic-tree-protocol",
-  "identifier": "http://rs.tdwg.org/dwc/dwc-dp/phylogenetic-tree-protocol",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/phylogenetic-tree-protocol.json",
-  "title": "PhylogeneticTreeProtocol",
-  "description": "A link establishing a Protocol used in the determination of a PhylogeneticTree.",
+  "name": "phylogenetic-tree-reference",
+  "identifier": "http://rs.tdwg.org/dwc/dwc-dp/phylogenetic-tree-reference",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/phylogenetic-tree-reference.json",
+  "title": "PhylogeneticTreeReference",
+  "description": "A bibliographic reference in which a PhylogeneticTree is mentioned.",
   "fields": [
     {
-      "name": "protocolID",
-      "description": "An identifier for a Protocol.",
+      "name": "referenceID",
+      "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -16,7 +16,7 @@
       "iri": "",
       "constraints": {
         "required": true,
-        "unique": false
+        "unique": true
       }
     },
     {
@@ -34,14 +34,8 @@
       }
     }
   ],
+  "primaryKey": "referenceID",
   "foreignKeys": [
-    {
-      "fields": "protocolID",
-      "reference": {
-        "resource": "protocol",
-        "fields": "protocolID"
-      }
-    },
     {
       "fields": "phylogeneticTreeID",
       "reference": {

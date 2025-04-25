@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 #
+# $python data-packages-validation-checks.py
+#
 # Adapted from https://github.com/gbif/rs.gbif.org/blob/master/data-packages-validation-checks.py
 #
 # Data packages validation checks (executed in Jenkins).
