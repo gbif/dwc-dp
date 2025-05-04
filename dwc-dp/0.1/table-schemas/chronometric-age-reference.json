@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "referenceID",
+      "title": "Reference ID",
       "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,7 +22,8 @@
     },
     {
       "name": "chronometricAgeID",
-      "description": "An identifier a chrono:ChronometricAge.",
+      "title": "Chronometric Age ID",
+      "description": "An identifier for a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a globally unique identifier.",

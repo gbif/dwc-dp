@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "referenceID",
+      "title": "Reference ID",
       "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
@@ -21,6 +22,7 @@
     },
     {
       "name": "phylogeneticTreeID",
+      "title": "Phylogenetic Tree ID",
       "description": "An identifier for a PhylogeneticTree.",
       "type": "string",
       "format": "default",

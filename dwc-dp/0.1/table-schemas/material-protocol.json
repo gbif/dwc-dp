@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "protocolID",
+      "title": "Protocol ID",
       "description": "An identifier for a Protocol.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,6 +22,7 @@
     },
     {
       "name": "materialEntityID",
+      "title": "Material Entity ID",
       "description": "An identifier for a dwc:MaterialEntity.",
       "type": "string",
       "format": "default",

@@ -3,10 +3,11 @@
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/event",
   "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/event.json",
   "title": "Event",
-  "description": "Something that occurs at some location during some time.",
+  "description": "An action, process, or set of circumstances occurring at a dcterms:Location during a period of time.",
   "fields": [
     {
       "name": "eventID",
+      "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -21,16 +22,18 @@
     },
     {
       "name": "parentEventID",
+      "title": "Parent Event ID",
       "description": "An identifier for a broader dwc:Event that groups this and potentially other dwc:Events.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/parentEventID"
     },
     {
       "name": "preferredEventName",
+      "title": "Preferred Event Name",
       "description": "The name of a dwc:Event preferred in searches and results.",
       "type": "string",
       "format": "default",
@@ -41,7 +44,8 @@
     },
     {
       "name": "eventCategory",
-      "description": "The broad category that best matches the nature of a dwc:Event.",
+      "title": "Event Category",
+      "description": "A broad category that best matches the nature of a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a limited, tightly controlled vocabulary.",
@@ -51,7 +55,8 @@
     },
     {
       "name": "eventType",
-      "description": "The category that best matches the nature of a dwc:Event.",
+      "title": "Event Type",
+      "description": "A narrow category that best matches the nature of a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -61,7 +66,8 @@
     },
     {
       "name": "datasetName",
-      "description": "A name for a dataset from which data originated.",
+      "title": "Dataset Name",
+      "description": "A name of a dataset from which data originated.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -71,6 +77,7 @@
     },
     {
       "name": "datasetID",
+      "title": "Dataset ID",
       "description": "An identifier for a dataset from which data originated.",
       "type": "string",
       "format": "default",
@@ -81,6 +88,7 @@
     },
     {
       "name": "fieldNumber",
+      "title": "Field Number",
       "description": "An identifier given to a dwc:Event in the field.",
       "type": "string",
       "format": "default",
@@ -91,16 +99,18 @@
     },
     {
       "name": "eventConductedBy",
-      "description": "A list (concatenated and separated) of names of people, groups, or organizations responsible for conducting or recording a dwc:Event.",
+      "title": "Event Conducted By",
+      "description": "A list (concatenated and separated) of names of Agents responsible for conducting or recording a dwc:Event.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to separate the values in a list with space vertical bar space ( | ).",
       "examples": "`José E. Crespo`; `Oliver P. Pearson | Anita K. Pearson`; `FMNH`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/recordedBy"
     },
     {
       "name": "eventConductedByID",
+      "title": "Event Conducted By ID",
       "description": "An identifier for the Agent responsible for conducting or recording a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -111,7 +121,8 @@
     },
     {
       "name": "eventDate",
-      "description": "The date or time interval during which a dwc:Event occurred.",
+      "title": "Event Date",
+      "description": "A date or time interval during which a dwc:Event occurred.",
       "type": "string",
       "format": "default",
       "comments": "For gathering dwc:Events, this is the date-time when the gathering took place.",
@@ -121,7 +132,8 @@
     },
     {
       "name": "eventTime",
-      "description": "The time or interval during which a dwc:Event occurred.",
+      "title": "Event Time",
+      "description": "A time interval during which a dwc:Event occurred.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a time of day that conforms to ISO 8601-1:2019.",
@@ -131,6 +143,7 @@
     },
     {
       "name": "startDayOfYear",
+      "title": "Start Day Of Year",
       "description": "The earliest integer day of the year on which a dwc:Event occurred (1 for January 1, 365 for December 31, except in a leap year, in which case it is 366).",
       "type": "integer",
       "format": "default",
@@ -146,6 +159,7 @@
     },
     {
       "name": "endDayOfYear",
+      "title": "End Day Of Year",
       "description": "The latest integer day of the year on which a dwc:Event occurred (1 for January 1, 365 for December 31, except in a leap year, in which case it is 366).",
       "type": "integer",
       "format": "default",
@@ -161,7 +175,8 @@
     },
     {
       "name": "year",
-      "description": "The four-digit year in which a dwc:Event occurred, according to the Common Era Calendar.",
+      "title": "Year",
+      "description": "A four-digit year in which a dwc:Event occurred, according to the Common Era Calendar.",
       "type": "integer",
       "format": "default",
       "comments": "",
@@ -171,7 +186,8 @@
     },
     {
       "name": "month",
-      "description": "The integer month in which a dwc:Event occurred.",
+      "title": "Month",
+      "description": "An integer month in which a dwc:Event occurred.",
       "type": "integer",
       "format": "default",
       "comments": "",
@@ -186,7 +202,8 @@
     },
     {
       "name": "day",
-      "description": "The integer day of the month on which a dwc:Event occurred.",
+      "title": "Day",
+      "description": "An integer day of the month on which a dwc:Event occurred.",
       "type": "integer",
       "format": "default",
       "comments": "",
@@ -201,7 +218,8 @@
     },
     {
       "name": "verbatimEventDate",
-      "description": "The verbatim original representation of the date and time information for a dwc:Event.",
+      "title": "Verbatim Event Date",
+      "description": "A verbatim original representation of the date and time information for a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -211,7 +229,8 @@
     },
     {
       "name": "verbatimLocality",
-      "description": "The original textual description of a dcterms:Location of a dwc:Event.",
+      "title": "Verbatim Locality",
+      "description": "An original textual description of a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -221,7 +240,8 @@
     },
     {
       "name": "verbatimElevation",
-      "description": "The original description of the elevation (altitude, usually above sea level) of a dcterms:Location.",
+      "title": "Verbatim Elevation",
+      "description": "An original description of the elevation (altitude, usually above sea level) of a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -231,7 +251,8 @@
     },
     {
       "name": "verbatimDepth",
-      "description": "The original description of the depth below a local surface.",
+      "title": "Verbatim Depth",
+      "description": "An original description of the depth below a local surface.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -241,7 +262,8 @@
     },
     {
       "name": "verbatimCoordinates",
-      "description": "The verbatim original spatial coordinates of a dcterms:Location.",
+      "title": "Verbatim Coordinates",
+      "description": "Verbatim original spatial coordinates of a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in verbatimSRS and the coordinate system should be stored in verbatimCoordinateSystem.",
@@ -251,7 +273,8 @@
     },
     {
       "name": "verbatimLatitude",
-      "description": "The verbatim original latitude of a dcterms:Location.",
+      "title": "Verbatim Latitude",
+      "description": "A verbatim original latitude of a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in verbatimSRS and the coordinate system should be stored in verbatimCoordinateSystem.",
@@ -261,7 +284,8 @@
     },
     {
       "name": "verbatimLongitude",
-      "description": "The verbatim original longitude of a dcterms:Location.",
+      "title": "Verbatim Longitude",
+      "description": "A verbatim original longitude of a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in verbatimSRS and the coordinate system should be stored in verbatimCoordinateSystem.",
@@ -271,7 +295,8 @@
     },
     {
       "name": "verbatimCoordinateSystem",
-      "description": "The coordinate format for dwc:verbatimLatitude and dwc:verbatimLongitude or dwc:verbatimCoordinates.",
+      "title": "Verbatim Coordinate System",
+      "description": "A coordinate format for dwc:verbatimLatitude and dwc:verbatimLongitude or dwc:verbatimCoordinates.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -281,7 +306,8 @@
     },
     {
       "name": "verbatimSRS",
-      "description": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which coordinates given in dwc:verbatimLatitude and dwc:verbatimLongitude, or dwc:verbatimCoordinates are based.",
+      "title": "Verbatim SRS",
+      "description": "An ellipsoid, geodetic datum, or spatial reference system (SRS) upon which coordinates given in dwc:verbatimLatitude and dwc:verbatimLongitude, or dwc:verbatimCoordinates are based.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `unknown`.",
@@ -291,7 +317,8 @@
     },
     {
       "name": "georeferenceVerificationStatus",
-      "description": "A categorical description of the extent to which the georeference has been verified to represent the best possible spatial description for the dcterms:Location of a dwc:Occurrence.",
+      "title": "Georeference Verification Status",
+      "description": "A categorical description of the extent to which a georeference has been verified to represent the best possible spatial description for a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -301,6 +328,7 @@
     },
     {
       "name": "habitat",
+      "title": "Habitat",
       "description": "A category or description of the habitat in which a dwc:Event occurred.",
       "type": "string",
       "format": "default",
@@ -311,7 +339,8 @@
     },
     {
       "name": "eventEffort",
-      "description": "The amount of effort expended during a dwc:Event.",
+      "title": "Event Effort",
+      "description": "An amount of effort expended during a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -321,6 +350,7 @@
     },
     {
       "name": "fieldNotes",
+      "title": "Field Notes",
       "description": "One of a) an indicator of the existence of, b) a reference to (publication, URI), or c) the text of notes taken in the field about a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -331,6 +361,7 @@
     },
     {
       "name": "eventReferences",
+      "title": "Event References",
       "description": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -341,6 +372,7 @@
     },
     {
       "name": "eventRemarks",
+      "title": "Event Remarks",
       "description": "Comments or notes about a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -351,6 +383,7 @@
     },
     {
       "name": "locationID",
+      "title": "Location ID",
       "description": "An identifier a dcterms:Location.",
       "type": "string",
       "format": "default",
@@ -361,7 +394,8 @@
     },
     {
       "name": "higherGeographyID",
-      "description": "An identifier for the geographic region within which the dcterms:Location occurred.",
+      "title": "Higher Geography ID",
+      "description": "An identifier for a geographic region within which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a globally unique identifier.",
@@ -371,6 +405,7 @@
     },
     {
       "name": "higherGeography",
+      "title": "Higher Geography",
       "description": "A list (concatenated and separated) of geographic names less specific than the information captured in dwc:locality.",
       "type": "string",
       "format": "default",
@@ -381,7 +416,8 @@
     },
     {
       "name": "continent",
-      "description": "The name of the continent in which the dcterms:Location occurs.",
+      "title": "Continent",
+      "description": "A name of a continent in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names. Recommended best practice is to leave this field blank if the dcterms:Location spans multiple entities at this administrative level or if the dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term dwc:higherGeography or in the term dwc:locality, or both.",
@@ -391,7 +427,8 @@
     },
     {
       "name": "waterBody",
-      "description": "The name of the water body in which a dcterms:Location occurs.",
+      "title": "Water Body",
+      "description": "A name of a water body in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names.",
@@ -401,7 +438,8 @@
     },
     {
       "name": "islandGroup",
-      "description": "The name of the island group in which a dcterms:Location occurs.",
+      "title": "Island Group",
+      "description": "A name of an island group in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names.",
@@ -411,7 +449,8 @@
     },
     {
       "name": "island",
-      "description": "The name of the island on or near which a dcterms:Location occurs.",
+      "title": "Island",
+      "description": "A name of an island on or near which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names.",
@@ -421,7 +460,8 @@
     },
     {
       "name": "country",
-      "description": "The name of the country or major administrative unit in which the dcterms:Location occurs.",
+      "title": "Country",
+      "description": "A name of a country or major administrative unit in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names. Recommended best practice is to leave this field blank if the dcterms:Location spans multiple entities at this administrative level or if the dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term dwc:higherGeography or in the term dwc:locality, or both.",
@@ -431,7 +471,8 @@
     },
     {
       "name": "countryCode",
-      "description": "The standard code for the country in which the dcterms:Location occurs.",
+      "title": "Country Code",
+      "description": "A standard code for a country in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an ISO 3166-1-alpha-2 country code. Recommended best practice is to leave this field blank if the dcterms:Location spans multiple entities at this administrative level or if the dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term dwc:higherGeography or in the term dwc:locality, or both.",
@@ -441,7 +482,8 @@
     },
     {
       "name": "stateProvince",
-      "description": "The name of the next smaller administrative region than country (state, province, canton, department, region, etc.) in which a dcterms:Location occurs.",
+      "title": "State Province",
+      "description": "A name of a next smaller administrative region than country (state, province, canton, department, region, etc.) in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names. Recommended best practice is to leave this field blank if a dcterms:Location spans multiple entities at this administrative level or if a dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term dwc:higherGeography or in the term dwc:locality, or both.",
@@ -451,7 +493,8 @@
     },
     {
       "name": "county",
-      "description": "The full, unabbreviated name of the next smaller administrative region than dwc:stateProvince (county, shire, department, etc.) in which the dcterms:Location occurs.",
+      "title": "County",
+      "description": "A full, unabbreviated name of a next smaller administrative region than dwc:stateProvince (county, shire, department, etc.) in which a dcterms:Location occurs.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names. Recommended best practice is to leave this field blank if the dcterms:Location spans multiple entities at this administrative level or if the dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term dwc:higherGeography or in the term dwc:locality, or both.",
@@ -461,7 +504,8 @@
     },
     {
       "name": "municipality",
-      "description": "The full, unabbreviated name of the next smaller administrative region than county (city, municipality, etc.) in which a dcterms:Location occurs. Do not use this term for a nearby named place that does not contain the actual location.",
+      "title": "Municipality",
+      "description": "A full, unabbreviated name of a next smaller administrative region than county (city, municipality, etc.) in which a dcterms:Location occurs. Do not use this term for a nearby named place that does not contain the actual location.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary such as the Getty Thesaurus of Geographic Names. Recommended best practice is to leave this field blank if a dcterms:Location spans multiple entities at this administrative level or if a dcterms:Location might be in one or another of multiple possible entities at this level. Multiplicity and uncertainty of the geographic entity can be captured either in the term `higherGeography` or in the term `locality`, or both.",
@@ -471,7 +515,8 @@
     },
     {
       "name": "locality",
-      "description": "The specific description of the place.",
+      "title": "Locality",
+      "description": "A specific description of the location of a place.",
       "type": "string",
       "format": "default",
       "comments": "Less specific geographic information can be provided in other geographic terms (higherGeography, continent, country, stateProvince, county, municipality, waterBody, island, islandGroup). This term may contain information modified from the original to correct perceived errors or standardize the description.",
@@ -481,7 +526,8 @@
     },
     {
       "name": "minimumElevationInMeters",
-      "description": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.",
+      "title": "Minimum Elevation In Meters",
+      "description": "A lower limit of a range of elevation (altitude, usually above sea level), in meters.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -496,7 +542,8 @@
     },
     {
       "name": "maximumElevationInMeters",
-      "description": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.",
+      "title": "Maximum Elevation In Meters",
+      "description": "An upper limit of a range of elevation (altitude, usually above sea level), in meters.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -511,7 +558,8 @@
     },
     {
       "name": "verticalDatum",
-      "description": "The vertical datum used as the reference upon which the values in the elevation terms are based.",
+      "title": "Vertical Datum",
+      "description": "A vertical datum used as a reference upon which the values in the elevation terms are based.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -521,7 +569,8 @@
     },
     {
       "name": "minimumDepthInMeters",
-      "description": "The lesser depth of a range of depth below the local surface, in meters.",
+      "title": "Minimum Depth In Meters",
+      "description": "A lesser depth of a range of depth below the local surface, in meters.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -536,7 +585,8 @@
     },
     {
       "name": "maximumDepthInMeters",
-      "description": "The greater depth of a range of depth below the local surface, in meters.",
+      "title": "Maximum Depth In Meters",
+      "description": "A greater depth of a range of depth below the local surface, in meters.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -551,7 +601,8 @@
     },
     {
       "name": "minimumDistanceAboveSurfaceInMeters",
-      "description": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
+      "title": "Minimum Distance Above Surface In Meters",
+      "description": "A lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -561,7 +612,8 @@
     },
     {
       "name": "maximumDistanceAboveSurfaceInMeters",
-      "description": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
+      "title": "Maximum Distance Above Surface In Meters",
+      "description": "A greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
       "type": "number",
       "format": "default",
       "comments": "",
@@ -571,6 +623,7 @@
     },
     {
       "name": "locationRemarks",
+      "title": "Location Remarks",
       "description": "Comments or notes about a dcterms:Location.",
       "type": "string",
       "format": "default",
@@ -581,7 +634,8 @@
     },
     {
       "name": "decimalLatitude",
-      "description": "The geographic latitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location.",
+      "title": "Decimal Latitude",
+      "description": "A geographic latitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location.",
       "type": "number",
       "format": "default",
       "comments": "Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 90, inclusive.",
@@ -596,7 +650,8 @@
     },
     {
       "name": "decimalLongitude",
-      "description": "The geographic longitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location.",
+      "title": "Decimal Longitude",
+      "description": "A geographic longitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location.",
       "type": "number",
       "format": "default",
       "comments": "Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between -180 and 180, inclusive.",
@@ -611,7 +666,8 @@
     },
     {
       "name": "geodeticDatum",
-      "description": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given in dwc:decimalLatitude and dwc:decimalLongitude as based.",
+      "title": "Geodetic Datum",
+      "description": "An ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given in dwc:decimalLatitude and dwc:decimalLongitude as based.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `unknown`.",
@@ -621,7 +677,8 @@
     },
     {
       "name": "coordinateUncertaintyInMeters",
-      "description": "The horizontal distance (in meters) from the given dwc:decimalLatitude and dwc:decimalLongitude describing the smallest circle containing the whole of the dcterms:Location.",
+      "title": "Coordinate Uncertainty In Meters",
+      "description": "A horizontal distance (in meters) from a given dwc:decimalLatitude and dwc:decimalLongitude describing the smallest circle containing the whole of the dcterms:Location.",
       "type": "integer",
       "format": "default",
       "comments": "Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.",
@@ -636,6 +693,7 @@
     },
     {
       "name": "coordinatePrecision",
+      "title": "Coordinate Precision",
       "description": "A decimal representation of the precision of the coordinates given in a dwc:decimalLatitude and dwc:decimalLongitude.",
       "type": "number",
       "format": "default",
@@ -646,7 +704,8 @@
     },
     {
       "name": "pointRadiusSpatialFit",
-      "description": "The ratio of the area of the point-radius (dwc:decimalLatitude, dwc:decimalLongitude, dwc:coordinateUncertaintyInMeters) to the area of the true (original, or most specific) spatial representation of a dcterms:Location.",
+      "title": "Point Radius Spatial Fit",
+      "description": "A ratio of the area of a point-radius (dwc:decimalLatitude, dwc:decimalLongitude, dwc:coordinateUncertaintyInMeters) to the area of a true (original, or most specific) spatial representation of a dcterms:Location.",
       "type": "number",
       "format": "default",
       "comments": "Legal values are 0, greater than or equal to 1, or undefined. A value of 1 is an exact match or 100% overlap. A value of 0 should be used if the given point-radius does not completely contain the original representation. The pointRadiusSpatialFit is undefined (and should be left empty) if the original representation is any geometry without area (e.g., a point or polyline) and without uncertainty and the given georeference is not that same geometry (without uncertainty). If both the original and the given georeference are the same point, the pointRadiusSpatialFit is 1. Detailed explanations with graphical examples can be found in the Georeferencing Best Practices, Chapman and Wieczorek, 2020 (https://doi.org/10.15468/doc-gg7h-s853).",
@@ -660,6 +719,7 @@
     },
     {
       "name": "footprintWKT",
+      "title": "Footprint WKT",
       "description": "A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines a dcterms:Location.",
       "type": "string",
       "format": "default",
@@ -670,7 +730,8 @@
     },
     {
       "name": "footprintSRS",
-      "description": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geometry given in dwc:footprintWKT is based.",
+      "title": "Footprint SRS",
+      "description": "An ellipsoid, geodetic datum, or spatial reference system (SRS) upon which a geometry given in dwc:footprintWKT is based.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `unknown`. It is also permitted to provide the SRS in Well-Known-Text, especially if no EPSG code provides the necessary values for the attributes of the SRS. Do not use this term to describe the SRS of a dwc:decimalLatitude and dwc:decimalLongitude, nor of any verbatim coordinates - use dwc:geodeticDatum and dwc:verbatimSRS instead.",
@@ -680,17 +741,19 @@
     },
     {
       "name": "footprintSpatialFit",
-      "description": "The ratio of the area of the footprint (footprintWKT) to the area of the true (original, or most specific) spatial representation of a dcterms:Location.",
+      "title": "Footprint Spatial Fit",
+      "description": "A ratio of the area of a footprint (dwc:footprintWKT) to the area of a true (original, or most specific) spatial representation of a dcterms:Location.",
       "type": "number",
       "format": "default",
-      "comments": "Legal values are 0, greater than or equal to 1, or undefined. A value of 1 is an exact match or 100% overlap. A value of 0 should be used if the given footprint does not completely contain the original representation. The dwc:footprintSpatialFit is undefined (and should be left empty) if the original representation is any geometry without area (e.g., a point or polyline) and without uncertainty and the given georeference is not that same geometry (without uncertainty). If both the original and the given georeference are the same point, a dwc:footprintSpatialFit is 1.",
+      "comments": "Legal values are 0, greater than or equal to 1, or undefined. A value of 1 is an exact match or 100% overlap. A value of 0 should be used if the given footprint does not completely contain the original representation. A dwc:footprintSpatialFit is undefined (and should be left empty) if the original representation is any geometry without area (e.g., a point or polyline) and without uncertainty and the given georeference is not that same geometry (without uncertainty). If both the original and the given georeference are the same point, a dwc:footprintSpatialFit is 1.",
       "examples": "`0`; `1`; `1.5708`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/footprintSpatialFit"
     },
     {
       "name": "georeferencedBy",
-      "description": "A list (concatenated and separated) of names of people, groups, or organizations who determined a georeference (spatial representation) for a dcterms:Location.",
+      "title": "Georeferenced By",
+      "description": "A list (concatenated and separated) of names of Agents responsible for determining a georeference (spatial representation) for a dcterms:Location.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -700,7 +763,8 @@
     },
     {
       "name": "georeferencedByID",
-      "description": "An identifier for the Agent who georeferenced a dwc:Event.",
+      "title": "Georeferenced By ID",
+      "description": "An identifier for the Agent responsible for determining a georeference for a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a globally unique identifier.",
@@ -710,7 +774,8 @@
     },
     {
       "name": "georeferencedDate",
-      "description": "The date on which a dcterms:Location was georeferenced.",
+      "title": "Georeferenced Date",
+      "description": "A date on which a dcterms:Location was georeferenced.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
@@ -720,7 +785,8 @@
     },
     {
       "name": "georeferenceProtocol",
-      "description": "A description or reference to the methods used to determine the spatial footprint, coordinates, and uncertainties.",
+      "title": "Georeference Protocol",
+      "description": "A description or reference to a Protocol used to determine the spatial footprint, coordinates, and uncertainties.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -730,16 +796,18 @@
     },
     {
       "name": "georeferenceProtocolID",
+      "title": "Georeference Protocol ID",
       "description": "An identifier for a Protocol used to georeference a dwc:Event.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwciri",
       "iri": "http://rs.tdwg.org/dwc/iri/georeferenceProtocol"
     },
     {
       "name": "georeferenceSources",
+      "title": "Georeference Sources",
       "description": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference a dcterms:Location, described specifically enough to allow anyone in the future to use the same resources.",
       "type": "string",
       "format": "default",
@@ -750,6 +818,7 @@
     },
     {
       "name": "georeferenceRemarks",
+      "title": "Georeference Remarks",
       "description": "Comments or notes about a spatial description determination, explaining assumptions made in addition or opposition to the those formalized in the method referred to in dwc:georeferenceProtocol.",
       "type": "string",
       "format": "default",
@@ -760,6 +829,7 @@
     },
     {
       "name": "informationWithheld",
+      "title": "Information Withheld",
       "description": "Additional information that exists, but that has not been shared in the given record.",
       "type": "string",
       "format": "default",
@@ -770,6 +840,7 @@
     },
     {
       "name": "dataGeneralizations",
+      "title": "Data Generalizations",
       "description": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request.",
       "type": "string",
       "format": "default",
@@ -780,6 +851,7 @@
     },
     {
       "name": "preferredSpatialRepresentation",
+      "title": "Preferred Spatial Representation",
       "description": "An indication of which spatial representation best represents the dcterms:Location.",
       "type": "string",
       "format": "default",

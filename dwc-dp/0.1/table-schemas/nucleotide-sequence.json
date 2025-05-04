@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "nucleotideSequenceID",
+      "title": "Nucleotide Sequence ID",
       "description": "An identifier for a NucleotideSequence.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,6 +22,7 @@
     },
     {
       "name": "nucleotideSequence",
+      "title": "Nucleotide Sequence",
       "description": "A string representing nucleotide base pairs.",
       "type": "string",
       "format": "default",
@@ -31,6 +33,7 @@
     },
     {
       "name": "nucleotideSequenceRemarks",
+      "title": "Nucleotide Sequence Remarks",
       "description": "Comments or notes about a NucleotideSequence.",
       "type": "string",
       "format": "default",

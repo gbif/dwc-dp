@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "phylogeneticTreeTipID",
+      "title": "Phylogenetic Tree Tip ID",
       "description": "An identifier for a PhylogeneticTreeTip.",
       "type": "string",
       "format": "default",
@@ -21,6 +22,7 @@
     },
     {
       "name": "phylogeneticTreeID",
+      "title": "Phylogenetic Tree ID",
       "description": "An identifier for a PhylogeneticTree.",
       "type": "string",
       "format": "default",
@@ -35,6 +37,7 @@
     },
     {
       "name": "phylogeneticTreeTipLabel",
+      "title": "Phylogenetic Tree Tip Label",
       "description": "A label applied to a PhylogeneticTreeTip.",
       "type": "string",
       "format": "default",
@@ -45,6 +48,7 @@
     },
     {
       "name": "taxonID",
+      "title": "Taxon ID",
       "description": "An identifier for a dwc:Taxon.",
       "type": "string",
       "format": "default",
@@ -55,7 +59,8 @@
     },
     {
       "name": "scientificName",
-      "description": "The full scientific name, with authorship and date information if known.",
+      "title": "Scientific Name",
+      "description": "A full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in dwc:verbatimIdentification.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -65,6 +70,7 @@
     },
     {
       "name": "materialEntityID",
+      "title": "Material Entity ID",
       "description": "An identifier for a dwc:MaterialEntity.",
       "type": "string",
       "format": "default",
@@ -79,10 +85,11 @@
     },
     {
       "name": "nucleotideSequenceID",
+      "title": "Nucleotide Sequence ID",
       "description": "An identifier for a NucleotideSequence.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",

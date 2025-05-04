@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "collectionID",
+      "title": "Collection ID",
       "description": "An identifier for a Collection.",
       "type": "string",
       "format": "default",
@@ -21,7 +22,8 @@
     },
     {
       "name": "collectionType",
-      "description": "The category that best matches the nature of a Collection.",
+      "title": "Collection Type",
+      "description": "A category that best matches the nature of a Collection.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -31,7 +33,8 @@
     },
     {
       "name": "collectionName",
-      "description": "The name of a Collection.",
+      "title": "Collection Name",
+      "description": "A name of a Collection.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -41,7 +44,8 @@
     },
     {
       "name": "collectionCode",
-      "description": "The name, acronym, coden, or initialism identifying a Collection.",
+      "title": "Collection Code",
+      "description": "A name, acronym, coden, or initialism identifying a Collection.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -51,7 +55,8 @@
     },
     {
       "name": "institutionID",
-      "description": "The identifier for an institution.",
+      "title": "Institution ID",
+      "description": "An identifier for an institution.",
       "type": "string",
       "format": "default",
       "comments": "For physical specimens, the recommended best practice is to use a globally unique and resolvable identifier from a collections registry such as the Research Organization Registry (ROR) or the GBIF Registry of Scientific Collections (https://www.gbif.org/grscicoll).",
@@ -61,7 +66,8 @@
     },
     {
       "name": "institutionName",
-      "description": "The name of an institution or organization.",
+      "title": "Institution Name",
+      "description": "A name of an institution or organization.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -71,7 +77,8 @@
     },
     {
       "name": "institutionCode",
-      "description": "The name (or acronym) in use by an institution.",
+      "title": "Institution Code",
+      "description": "A name (or acronym) in use by an institution.",
       "type": "string",
       "format": "default",
       "comments": "",

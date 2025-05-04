@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "referenceID",
+      "title": "Reference ID",
       "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,6 +22,7 @@
     },
     {
       "name": "occurrenceID",
+      "title": "Occurrence ID",
       "description": "An identifier for a dwc:Occurrence.",
       "type": "string",
       "format": "default",

@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "referenceID",
+      "title": "Reference ID",
       "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "`doi:10.15156/BIO/3301231`",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,26 +22,29 @@
     },
     {
       "name": "parentReferenceID",
+      "title": "Parent Reference ID",
       "description": "An identifier for a Reference that includes this Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "referenceType",
-      "description": "The category that best matches the nature of a Reference.",
+      "title": "Reference Type",
+      "description": "A category that best matches the nature of a Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
-      "examples": "book, thesis, report, field notes, standard, chapter, journal article, unpublished manuscript, conference paper, website, blog post, section, figure, table, page, dataset, map, audiovisual material, software, legal document, nucleotide sequence library",
+      "comments": "Recommended best practice is to use a controlled vocabulary.",
+      "examples": "`book`; `thesis`; `report`; `field notes`; `standard`; `chapter`; `journal article`; `unpublished manuscript`; `conference paper`; `website`; `blog post`; `section`; `figure`; `table`; `page`; `dataset`; `map`; `audiovisual material`; `software`; `legal document`; `nucleotide sequence library`",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "bibliographicCitation",
+      "title": "Bibliographic Citation",
       "description": "A bibliographic reference for the resource.",
       "type": "string",
       "format": "default",
@@ -51,6 +55,7 @@
     },
     {
       "name": "title",
+      "title": "Title",
       "description": "A name given to the resource.",
       "type": "string",
       "format": "default",
@@ -61,6 +66,7 @@
     },
     {
       "name": "issued",
+      "title": "Issued",
       "description": "Date of formal issuance of the resource.",
       "type": "string",
       "format": "default",
@@ -71,7 +77,8 @@
     },
     {
       "name": "identifier",
-      "description": "An unambiguous reference to the resource within a given context.",
+      "title": "Identifier",
+      "description": "An unambiguous reference to a resource within a given context.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to identify the resource by means of a string conforming to an identification system. Examples include International Standard Book Number (ISBN), Digital Object Identifier (DOI), and Uniform Resource Name (URN). Persistent identifiers should be provided as HTTP URIs.",
@@ -81,6 +88,7 @@
     },
     {
       "name": "creator",
+      "title": "Creator",
       "description": "An entity primarily responsible for making the resource.",
       "type": "string",
       "format": "default",
@@ -91,6 +99,7 @@
     },
     {
       "name": "creatorID",
+      "title": "Creator ID",
       "description": "An entity primarily responsible for making the resource.",
       "type": "string",
       "format": "default",
@@ -101,6 +110,7 @@
     },
     {
       "name": "publisher",
+      "title": "Publisher",
       "description": "An entity responsible for making the resource available.",
       "type": "string",
       "format": "default",
@@ -111,6 +121,7 @@
     },
     {
       "name": "publisherID",
+      "title": "Publisher ID",
       "description": "An entity responsible for making the resource available.",
       "type": "string",
       "format": "default",
@@ -121,6 +132,7 @@
     },
     {
       "name": "pagination",
+      "title": "Pagination",
       "description": "Any description of pages that is not separated into pageStart and pageEnd.",
       "type": "string",
       "format": "default",
@@ -131,6 +143,7 @@
     },
     {
       "name": "isPeerReviewed",
+      "title": "Is Peer Reviewed",
       "description": "An indication of whether a Reference was peer reviewed.",
       "type": "boolean",
       "format": "default",
@@ -141,6 +154,7 @@
     },
     {
       "name": "referenceRemarks",
+      "title": "Reference Remarks",
       "description": "Comments or notes about a Reference.",
       "type": "string",
       "format": "default",

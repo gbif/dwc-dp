@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "chronometricAgeID",
+      "title": "Chronometric Age ID",
       "description": "An identifier for a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
@@ -21,6 +22,7 @@
     },
     {
       "name": "eventID",
+      "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -35,7 +37,8 @@
     },
     {
       "name": "verbatimChronometricAge",
-      "description": "The verbatim age for a dwc:Event, whether reported by a dating assay, associated references, or legacy information.",
+      "title": "Verbatim Chronometric Age",
+      "description": "A verbatim age for a dwc:Event, whether reported by a dating assay, associated references, or legacy information.",
       "type": "string",
       "format": "default",
       "comments": "For example, this could be the radiocarbon age as given in an AMS dating report. This could also be simply what is reported as the age of a specimen in legacy collections data.",
@@ -45,7 +48,8 @@
     },
     {
       "name": "chronometricAgeProtocol",
-      "description": "A description of or reference to the methods used to determine a chrono:ChronometricAge.",
+      "title": "Chronometric Age Protocol",
+      "description": "A description of or reference to a Protocol used to determine a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -55,17 +59,19 @@
     },
     {
       "name": "chronometricAgeProtocolID",
-      "description": "An identifier for the Protocol used to determine a ChronometricAge.",
+      "title": "Chronometric Age Protocol ID",
+      "description": "An identifier for a Protocol used to determine a ChronometricAge.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "uncalibratedChronometricAge",
-      "description": "The output of a dating assay before it is calibrated into an age using a specific conversion protocol.",
+      "title": "Uncalibrated Chronometric Age",
+      "description": "An output of a dating assay before it is calibrated into an age using a specific conversion protocol.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -75,7 +81,8 @@
     },
     {
       "name": "chronometricAgeConversionProtocol",
-      "description": "The method used for converting the chrono:uncalibratedChronometricAge into a chronometric age in years, as captured in the chrono:earliestChronometricAge, chrono:earliestChronometricAgeReferenceSystem, chrono:latestChronometricAge, and chrono:latestChronometricAgeReferenceSystem fields.",
+      "title": "Chronometric Age Conversion Protocol",
+      "description": "A description of or reference to a Protocol used to convert a chrono:uncalibratedChronometricAge into a chronometric age in years, as captured in the chrono:earliestChronometricAge, chrono:earliestChronometricAgeReferenceSystem, chrono:latestChronometricAge, and chrono:latestChronometricAgeReferenceSystem fields.",
       "type": "string",
       "format": "default",
       "comments": "For example, calibration of conventional radiocarbon age or the currently accepted age range of a cultural or geological period.",
@@ -85,17 +92,19 @@
     },
     {
       "name": "chronometricAgeConversionProtocolID",
-      "description": "An identifier for the Protocol used to convert a chrono:uncalibratedChronometricAge into a chronometric age in years, as captured in the chrono:earliestChronometricAge, chrono:earliestChronometricAgeReferenceSystem, chrono:latestChronometricAge, and chrono:latestChronometricAgeReferenceSystem fields.",
+      "title": "Chronometric Age Conversion Protocol ID",
+      "description": "An identifier for a Protocol used to convert a chrono:uncalibratedChronometricAge into a chronometric age in years, as captured in the chrono:earliestChronometricAge, chrono:earliestChronometricAgeReferenceSystem, chrono:latestChronometricAge, and chrono:latestChronometricAgeReferenceSystem fields.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "earliestChronometricAge",
-      "description": "The maximum/earliest/oldest possible age of a specimen as determined by a dating method.",
+      "title": "Earliest Chronometric Age",
+      "description": "A maximum/earliest/oldest possible age of a dwc:MaterialEntity as determined by a dating method.",
       "type": "string",
       "format": "default",
       "comments": "The expected unit for this field is years. This field, if populated, must have an associated chrono:earliestChronometricAgeReferenceSystem.",
@@ -105,7 +114,8 @@
     },
     {
       "name": "earliestChronometricAgeReferenceSystem",
-      "description": "The reference system associated with the chrono:earliestChronometricAge.",
+      "title": "Earliest Chronometric Age Reference System",
+      "description": "A reference system associated with a chrono:earliestChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -115,7 +125,8 @@
     },
     {
       "name": "latestChronometricAge",
-      "description": "The minimum/latest/youngest possible age of a specimen as determined by a dating method.",
+      "title": "Latest Chronometric Age",
+      "description": "A minimum/latest/youngest possible age of a dwc:MaterialEntity as determined by a dating method.",
       "type": "string",
       "format": "default",
       "comments": "The expected unit for this field is years. This field, if populated, must have an associated latestChronometricAgeReferenceSystem.",
@@ -125,7 +136,8 @@
     },
     {
       "name": "latestChronometricAgeReferenceSystem",
-      "description": "The reference system associated with the chrono:latestChronometricAge.",
+      "title": "Latest Chronometric Age Reference System",
+      "description": "A reference system associated with a chrono:latestChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -135,7 +147,8 @@
     },
     {
       "name": "chronometricAgeUncertaintyInYears",
-      "description": "The temporal uncertainty of the chrono:earliestChronometricAge and chrono:latestChronometicAge in years.",
+      "title": "Chronometric Age Uncertainty In Years",
+      "description": "A temporal uncertainty of a chrono:earliestChronometricAge and chrono:latestChronometicAge in years.",
       "type": "integer",
       "format": "default",
       "comments": "The expected unit for this field is years. The value in this field is number of years before and after the values given in the earliest and latest chronometric age fields within which the actual values are estimated to be.",
@@ -145,7 +158,8 @@
     },
     {
       "name": "chronometricAgeUncertaintyMethod",
-      "description": "The method used to generate the value of chrono:ChronometricAgeUncertaintyInYears.",
+      "title": "Chronometric Age Uncertainty Method",
+      "description": "A method used to generate a value of chrono:ChronometricAgeUncertaintyInYears.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -155,37 +169,41 @@
     },
     {
       "name": "materialDated",
-      "description": "A description of the material on which the chrono:ChronometricAgeProtocol was actually performed, if known.",
+      "title": "Material Dated",
+      "description": "A description of a dwc:MaterialEntity on which a chrono:ChronometricAgeProtocol was actually performed, if known.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "`Double Tuff`; `Charcoal found in Stratum V`; `charred wood`; `tooth`",
       "namespace": "chrono",
       "iri": "http://rs.tdwg.org/chrono/terms/materialDated"
     },
     {
       "name": "materialDatedID",
-      "description": "An identifier for the MaterialEntity on which the chrono:ChronometricAgeProtocol was performed, if applicable.",
+      "title": "Material Dated ID",
+      "description": "An identifier for a dwc:MaterialEntity on which a chrono:ChronometricAgeProtocol was performed, if applicable.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "`https://www.ebi.ac.uk/metagenomics/samples/SRS1930158`",
       "namespace": "chrono",
       "iri": "http://rs.tdwg.org/chrono/terms/materialDatedID"
     },
     {
       "name": "materialDatedRelationship",
-      "description": "The relationship of the chrono:materialDated to a dwc:MaterialEntity, from which the chrono:ChronometricAge of the related dwc:MaterialEntity and any related dwc:Occurrence is inferred.",
+      "title": "Material Dated Relationship",
+      "description": "A relationship of a chrono:materialDated to a dwc:MaterialEntity, from which a chrono:ChronometricAge of the related dwc:MaterialEntity and any related dwc:Occurrence is inferred.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "examples": "`sameAs` (cases where the subject material was completely destructively subsampled to get the chrono:ChronometricAge); `subsampleOf` (cases where part of the original MaterialEntity was extracted as the material used to determine the chrono:ChronometricAge); `inContextWith` (cases where the chrono:ChronometricAge is inferred from materialDated, such as sediments or cultural objects, in related temporal context); `stratigraphicallyCorrelatedWith` (cases where the chrono:ChronometricAge is inferred from materialDated in a stratigraphically correlated context)",
+      "examples": "`sameAs` (cases where the subject material was completely destructively subsampled to get the chrono:ChronometricAge); `subsampleOf` (cases where part of the original dwc:MaterialEntity was extracted as the material used to determine the chrono:ChronometricAge); `inContextWith` (cases where the chrono:ChronometricAge is inferred from materialDated, such as sediments or cultural objects, in related temporal context); `stratigraphicallyCorrelatedWith` (cases where the chrono:ChronometricAge is inferred from materialDated in a stratigraphically correlated context)",
       "namespace": "chrono",
       "iri": "http://rs.tdwg.org/chrono/terms/materialDatedRelationship"
     },
     {
       "name": "chronometricAgeDeterminedBy",
-      "description": "A list (concatenated and separated) of names of people, groups, or organizations who determined the chrono:ChronometricAge.",
+      "title": "Chronometric Age Determined By",
+      "description": "A list (concatenated and separated) of names of Agents responsible for determining the chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space ( | ).",
@@ -195,7 +213,8 @@
     },
     {
       "name": "chronometricAgeDeterminedByID",
-      "description": "The identifier for the Agent who determined the chrono:ChronometricAge.",
+      "title": "Chronometric Age Determined By ID",
+      "description": "An identifier for an Agent responsible for determining a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the acting agent. If a list is used, the order of the agents on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -205,7 +224,8 @@
     },
     {
       "name": "chronometricAgeDeterminedDate",
-      "description": "The date on which the chrono:ChronometricAge was determined.",
+      "title": "Chronometric Age Determined Date",
+      "description": "A date on which a chrono:ChronometricAge was determined.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
@@ -215,6 +235,7 @@
     },
     {
       "name": "chronometricAgeReferences",
+      "title": "Chronometric Age References",
       "description": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
@@ -225,6 +246,7 @@
     },
     {
       "name": "chronometricAgeRemarks",
+      "title": "Chronometric Age Remarks",
       "description": "Comments or notes about a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",

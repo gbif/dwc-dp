@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "relationshipID",
+      "title": "Relationship ID",
       "description": "An identifier for a Relationship.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
@@ -21,10 +22,11 @@
     },
     {
       "name": "subjectResourceID",
+      "title": "Subject Resource ID",
       "description": "An identifier for the resource that is the subject of a Relationship.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/resourceID",
@@ -35,7 +37,8 @@
     },
     {
       "name": "subjectResourceType",
-      "description": "The category that best matches the nature of a subject resource.",
+      "title": "Subject Resource Type",
+      "description": "A category that best matches the nature of a subject resource.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary consisting of the classes of resources that can be related to each other.",
@@ -45,7 +48,8 @@
     },
     {
       "name": "subjectResourceTypeIRI",
-      "description": "The IRI of the controlled vocabulary value for the type of subject resource.",
+      "title": "Subject Resource Type IRI",
+      "description": "An IRI of a controlled vocabulary value for the type of a subject resource.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -55,7 +59,8 @@
     },
     {
       "name": "subjectResourceTypeVocabulary",
-      "description": "The reference to the controlled vocabulary where the definition of the value for subjectResourceType is given.",
+      "title": "Subject Resource Type Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in subjectResourceType is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -65,17 +70,19 @@
     },
     {
       "name": "relationshipType",
-      "description": "The relationship of the subject resource (identified by subjectresourceID) to the related resource (identified by relatedResourceID).",
+      "title": "Relationship Type",
+      "description": "A relationship of a subject resource (identified by subjectResourceID) to a related resource (identified by relatedResourceID).",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
     },
     {
       "name": "relationshipTypeIRI",
-      "description": "The IRI of the controlled vocabulary value for the type of Relationship.",
+      "title": "Relationship Type IRI",
+      "description": "An IRI of a controlled vocabulary value for the type of a Relationship.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -85,7 +92,8 @@
     },
     {
       "name": "relationshipTypeVocabulary",
-      "description": "The reference to the controlled vocabulary where the definition of the value for relationshipType is given.",
+      "title": "Relationship Type Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in relationshipType is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -95,10 +103,11 @@
     },
     {
       "name": "relatedResourceID",
+      "title": "Related Resource ID",
       "description": "An identifier for the related resource (the object) of a Relationship.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/relatedResourceID",
@@ -109,7 +118,8 @@
     },
     {
       "name": "relatedResourceType",
-      "description": "The category that best matches the nature of a related resource.",
+      "title": "Related Resource Type",
+      "description": "A category that best matches the nature of a related resource.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary consisting of the classes of resources that can be related to each other.",
@@ -119,7 +129,8 @@
     },
     {
       "name": "relatedResourceTypeIRI",
-      "description": "The IRI of the controlled vocabulary value for the type of related resource.",
+      "title": "Related Resource Type IRI",
+      "description": "An IRI of a controlled vocabulary value for a type of related resource.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -129,7 +140,8 @@
     },
     {
       "name": "relatedResourceTypeVocabulary",
-      "description": "The reference to the controlled vocabulary where the definition of the value for relatedResourceType is given.",
+      "title": "Related Resource Type Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in relatedResourceType is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -139,7 +151,8 @@
     },
     {
       "name": "relationshipOrder",
-      "description": "The numerical position of a Relationship in a set of Relationships that have the same combination of subjectResourceID, relatedResourceID, relationshipType, relationshipType, and relationshipTypeVocabulary.",
+      "title": "Relationship Order",
+      "description": "A numerical position of a Relationship in a set of Relationships that have the same combination of subjectResourceID, relatedResourceID, relationshipType, relationshipType, and relationshipTypeVocabulary.",
       "type": "integer",
       "format": "default",
       "comments": "One could use relationshipOrder to create an ordered list of authors for a Reference, for example. The first would have relationshipOrder=1, the second would have relationshipOrder=2.",
@@ -153,7 +166,8 @@
     },
     {
       "name": "relationshipAccordingTo",
-      "description": "The name of an Agent responsible for asserting a Relationship.",
+      "title": "Relationship According To",
+      "description": "A name of an Agent responsible for asserting a Relationship.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -163,6 +177,7 @@
     },
     {
       "name": "relationshipAccordingToID",
+      "title": "Relationship According To ID",
       "description": "An identifier for an Agent responsible for asserting a Relationship.",
       "type": "string",
       "format": "default",
@@ -173,7 +188,8 @@
     },
     {
       "name": "relationshipEffectiveDate",
-      "description": "The date on which a Relationship was established.",
+      "title": "Relationship Effective Date",
+      "description": "A date on which a Relationship was established.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
@@ -183,6 +199,7 @@
     },
     {
       "name": "relationshipRemarks",
+      "title": "Relationship Remarks",
       "description": "Comments or notes about a Relationship.",
       "type": "string",
       "format": "default",

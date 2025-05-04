@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "phylogeneticTreeID",
+      "title": "Phylogenetic Tree ID",
       "description": "An identifier for a PhylogeneticTree.",
       "type": "string",
       "format": "default",
@@ -21,7 +22,8 @@
     },
     {
       "name": "phylogeneticTreeProtocol",
-      "description": "The names of, references to, or descriptions of the methods or protocols used in making a PhylogeneticTree.",
+      "title": "Phylogenetic Tree Protocol",
+      "description": "A description of or reference to the Protocol used to make a PhylogeneticTree.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -31,16 +33,18 @@
     },
     {
       "name": "phylogeneticTreeProtocolID",
-      "description": "An identifier for the Protocol used to make an PhylogeneticTree.",
+      "title": "Phylogenetic Tree Protocol ID",
+      "description": "An identifier for a Protocol used to make a PhylogeneticTree.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "http://rs.tdwg.org/dwc/iri/measurementMethod"
     },
     {
       "name": "phylogeneticTreeReference",
+      "title": "Phylogenetic Tree Reference",
       "description": "A bibliographic reference in which a PhylogeneticTree is mentioned.",
       "type": "string",
       "format": "default",
@@ -51,6 +55,7 @@
     },
     {
       "name": "phylogeneticTreeRemarks",
+      "title": "Phylogenetic Tree Remarks",
       "description": "Comments or notes about a PhylogeneticTree.",
       "type": "string",
       "format": "default",

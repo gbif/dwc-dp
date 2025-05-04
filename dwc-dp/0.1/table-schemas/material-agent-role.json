@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "agentID",
+      "title": "Agent ID",
       "description": "An identifier for an Agent.",
       "type": "string",
       "format": "default",
@@ -21,6 +22,7 @@
     },
     {
       "name": "materialEntityID",
+      "title": "Material Entity ID",
       "description": "An identifier for a dwc:MaterialEntity.",
       "type": "string",
       "format": "default",
@@ -35,7 +37,8 @@
     },
     {
       "name": "agentRole",
-      "description": "The category that best matches the nature of a role of an Agent.",
+      "title": "Agent Role",
+      "description": "A category that best matches the nature of a role of an Agent.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary for the roles appropriate to the class of resource an AgentRole is related to.",
@@ -45,7 +48,8 @@
     },
     {
       "name": "agentRoleIRI",
-      "description": "The IRI of the controlled vocabulary value for the role of an Agent.",
+      "title": "Agent Role IRI",
+      "description": "An IRI of the controlled vocabulary value for a role of an Agent.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -55,7 +59,8 @@
     },
     {
       "name": "agentRoleVocabulary",
-      "description": "The reference to the controlled vocabulary where the definition of the value for agentRole is given.",
+      "title": "Agent Role Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in agentRole is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -65,7 +70,8 @@
     },
     {
       "name": "agentRoleOrder",
-      "description": "The numerical position of an AgentRole in a set of AgentRoles that have the same combination of agentRole, agentRoleIRI, agentRoleVocabulary and related target.",
+      "title": "Agent Role Order",
+      "description": "A numerical position of an AgentRole in a set of AgentRoles that have the same combination of agentRole, agentRoleIRI, agentRoleVocabulary and related target.",
       "type": "integer",
       "format": "default",
       "comments": "One could use agentRoleOrder to create an ordered list of collectors (agentRole = 'collector') for a dwc:MaterialEntity, for example. The first would have agentRoleOrder=1, the second would have agentRoleOrder=2.",
@@ -79,7 +85,8 @@
     },
     {
       "name": "agentRoleDate",
-      "description": "The interval during which an AgentRole was in effect.",
+      "title": "Agent Role Date",
+      "description": "An interval during which an AgentRole was in effect.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",

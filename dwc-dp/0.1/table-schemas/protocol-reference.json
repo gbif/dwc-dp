@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "referenceID",
+      "title": "Reference ID",
       "description": "An identifier for a Reference.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,10 +22,11 @@
     },
     {
       "name": "protocolID",
+      "title": "Protocol ID",
       "description": "An identifier for a Protocol.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",

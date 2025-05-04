@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "organismInteractionID",
+      "title": "Organism Interaction ID",
       "description": "An identifier for an OrganismInteraction.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,6 +22,7 @@
     },
     {
       "name": "eventID",
+      "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -35,6 +37,7 @@
     },
     {
       "name": "organismInteractionDescription",
+      "title": "Organism Interaction Description",
       "description": "A verbatim description of an OrganismInteraction.",
       "type": "string",
       "format": "default",
@@ -45,10 +48,11 @@
     },
     {
       "name": "subjectOccurrenceID",
-      "description": "A unique identifier for a subject dwc:Occurrence in an OrganismInteraction.",
+      "title": "Subject Occurrence ID",
+      "description": "An identifier for a subject dwc:Occurrence in an OrganismInteraction.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "http://rs.tdwg.org/dwc/terms/resourceID",
@@ -59,30 +63,33 @@
     },
     {
       "name": "subjectOrganismPart",
+      "title": "Subject Organism Part",
       "description": "A part of a subject dwc:Organism involved in an OrganismInteraction.",
       "type": "string",
       "format": "default",
       "comments": "",
-      "examples": "stomach",
+      "examples": "`stomach`",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "organismInteractionType",
-      "description": "The category that best matches the nature of an OrganismInteraction.",
+      "title": "Organism Interaction Type",
+      "description": "A category that best matches the nature of an OrganismInteraction.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "examples": "`visited flower of`; `pollinated by`; `parasitoid of`; `mated with`; was attached to",
+      "examples": "`visited flower of`; `pollinated by`; `parasitoid of`; `mated with`; `was attached to`",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "relatedOccurrenceID",
-      "description": "A unique identifier for an related dwc:Occurrence in an OrganismInteraction.",
+      "title": "Related Occurrence ID",
+      "description": "An identifier for a related dwc:Occurrence in an OrganismInteraction.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "http://rs.tdwg.org/dwc/terms/relatedResourceID",
@@ -93,11 +100,12 @@
     },
     {
       "name": "relatedOrganismPart",
+      "title": "Related Organism Part",
       "description": "A part of a object dwc:Organism involved in an OrganismInteraction.",
       "type": "string",
       "format": "default",
       "comments": "",
-      "examples": "flower",
+      "examples": "`flower`",
       "namespace": "dwcdp",
       "iri": ""
     }

@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "agentID",
+      "title": "Agent ID",
       "description": "An identifier for an Agent.",
       "type": "string",
       "format": "default",
@@ -21,7 +22,8 @@
     },
     {
       "name": "agentType",
-      "description": "The category that best matches the type of an Agent.",
+      "title": "Agent Type",
+      "description": "A category that best matches the nature of an Agent.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -31,7 +33,8 @@
     },
     {
       "name": "agentTypeIRI",
-      "description": "The IRI of the controlled vocabulary value for the type of Agent.",
+      "title": "Agent Type IRI",
+      "description": "An IRI of a controlled vocabulary value for a type of Agent.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -41,7 +44,8 @@
     },
     {
       "name": "agentTypeVocabulary",
-      "description": "The reference to the controlled vocabulary in which the definition of the value in agentType is given.",
+      "title": "Agent Type Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in agentType is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -51,7 +55,8 @@
     },
     {
       "name": "preferredAgentName",
-      "description": "The name of an Agent preferred in searches and results.",
+      "title": "Preferred Agent Name",
+      "description": "A name of an Agent preferred in searches and results.",
       "type": "string",
       "format": "default",
       "comments": "",

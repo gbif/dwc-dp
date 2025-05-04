@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "surveyID",
+      "title": "Survey ID",
       "description": "An identifier for a Survey.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,6 +22,7 @@
     },
     {
       "name": "eventID",
+      "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -35,6 +37,7 @@
     },
     {
       "name": "siteCount",
+      "title": "Site Count",
       "description": "Total number of individual sites surveyed during a dwc:Event.",
       "type": "integer",
       "format": "default",
@@ -49,6 +52,7 @@
     },
     {
       "name": "siteNestingDescription",
+      "title": "Site Nesting Description",
       "description": "Textual description of a hierarchical sampling design.",
       "type": "string",
       "format": "default",
@@ -59,6 +63,7 @@
     },
     {
       "name": "verbatimSiteDescriptions",
+      "title": "Verbatim Site Descriptions",
       "description": "Original textual description of site(s).",
       "type": "string",
       "format": "default",
@@ -69,6 +74,7 @@
     },
     {
       "name": "verbatimSiteNames",
+      "title": "Verbatim Site Names",
       "description": "A list (concatenated and separated) of original site names.",
       "type": "string",
       "format": "default",
@@ -79,6 +85,7 @@
     },
     {
       "name": "geospatialScopeAreaValue",
+      "title": "Geospatial Scope Area Value",
       "description": "The numeric value for the total area of a geospatial scope of a dwc:Event.",
       "type": "number",
       "format": "default",
@@ -93,7 +100,8 @@
     },
     {
       "name": "geospatialScopeAreaUnit",
-      "description": "The units associated with eco:geospatialScopeAreaValue",
+      "title": "Geospatial Scope Area Unit",
+      "description": "Units associated with a value in eco:geospatialScopeAreaValue.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary. For units containing exponents, use characters from the Unicode Latin-1 Supplement character set (hex 00B2 for squared and 00B3 for cubed). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -103,6 +111,7 @@
     },
     {
       "name": "totalAreaSampledValue",
+      "title": "Total Area Sampled Value",
       "description": "The numeric value for the total area surveyed during a dwc:Event.",
       "type": "number",
       "format": "default",
@@ -117,7 +126,8 @@
     },
     {
       "name": "totalAreaSampledUnit",
-      "description": "The units associated with eco:totalAreaSampledValue",
+      "title": "Total Area Sampled Unit",
+      "description": "Units associated with a value in eco:totalAreaSampledValue.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary. For units containing exponents, use characters from the Unicode Latin-1 Supplement character set (hex 00B2 for squared and 00B3 for cubed). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -127,16 +137,18 @@
     },
     {
       "name": "reportedWeather",
+      "title": "Reported Weather",
       "description": "A list of weather or climatic conditions present during a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a key:value encoding schema for a data interchange format such as JSON.",
-      "examples": "{\"minimumTemperatureInDegreesFahrenheit\": 18, \"maximumTemperatureInDegreesFahrenheit\": 32}",
+      "examples": "`{\"minimumTemperatureInDegreesFahrenheit\": 18, \"maximumTemperatureInDegreesFahrenheit\": 32}`",
       "namespace": "eco",
       "iri": "http://rs.tdwg.org/eco/terms/reportedWeather"
     },
     {
       "name": "reportedExtremeConditions",
+      "title": "Reported Extreme Conditions",
       "description": "A description of any extreme weather or environmental conditions that may have affected a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -147,6 +159,7 @@
     },
     {
       "name": "eventDurationValue",
+      "title": "Event Duration Value",
       "description": "The numeric value for the duration of a dwc:Event.",
       "type": "number",
       "format": "default",
@@ -161,7 +174,8 @@
     },
     {
       "name": "eventDurationUnit",
-      "description": "The units associated with the eco:eventDurationValue.",
+      "title": "Event Duration Unit",
+      "description": "Units associated with a value in eco:eventDurationValue.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -171,6 +185,7 @@
     },
     {
       "name": "taxonCompletenessReported",
+      "title": "Taxon Completeness Reported",
       "description": "Statement about whether the taxonomic completeness of a dwc:Event was assessed.",
       "type": "string",
       "format": "default",
@@ -184,7 +199,8 @@
     },
     {
       "name": "taxonCompletenessProtocols",
-      "description": "A description of or reference (publication, URL) to the methods used to determine eco:taxonCompletenessReported.",
+      "title": "Taxon Completeness Protocols",
+      "description": "A description of or reference to the Protocols used to determine eco:taxonCompletenessReported.",
       "type": "string",
       "format": "default",
       "comments": "This term allows users to determine how comprehensively an area has been sampled. Recommended best practice is to separate multiple values in a list with space vertical bar space ( | ). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -194,6 +210,7 @@
     },
     {
       "name": "isAbsenceReported",
+      "title": "Is Absence Reported",
       "description": "Taxonomic absences were reported.",
       "type": "boolean",
       "format": "default",
@@ -204,6 +221,7 @@
     },
     {
       "name": "absentTaxa",
+      "title": "Absent Taxa",
       "description": "A list (concatenated and separated) of taxa reported absent during a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -214,6 +232,7 @@
     },
     {
       "name": "hasNonTargetTaxa",
+      "title": "Has Non Target Taxa",
       "description": "One or more dwc:Organisms of taxa outside the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) were detected and reported for this dwc:Event.",
       "type": "boolean",
       "format": "default",
@@ -224,6 +243,7 @@
     },
     {
       "name": "nonTargetTaxa",
+      "title": "Non Target Taxa",
       "description": "A list (concatenated and separated) of taxa reported during a dwc:Event that are outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope).",
       "type": "string",
       "format": "default",
@@ -234,6 +254,7 @@
     },
     {
       "name": "areNonTargetTaxaFullyReported",
+      "title": "Are Non Target Taxa Fully Reported",
       "description": "Every dwc:Organism that was outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) and detected during a dwc:Event, and that was detectable using the given protocol (given in eco:protocolDescriptions and dwc:samplingProtocol), was reported.",
       "type": "boolean",
       "format": "default",
@@ -244,6 +265,7 @@
     },
     {
       "name": "hasNonTargetOrganisms",
+      "title": "Has Non Target Organisms",
       "description": "One or more dwc:Organisms outside the target organismal scopes (eco:targetDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:targetLifeStageScope) were detected and reported for this dwc:Event.",
       "type": "boolean",
       "format": "default",
@@ -254,7 +276,8 @@
     },
     {
       "name": "verbatimTargetScope",
-      "description": "The verbatim original description of a dwc:Event scope.",
+      "title": "Verbatim Target Scope",
+      "description": "A verbatim original description of a dwc:Event scope.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is first to populate explicit scope terms to the fullest extent possible (e.g., eco:targetTaxonomicScope). It is not recommended to use this term in assessing absence or completeness.",
@@ -264,7 +287,8 @@
     },
     {
       "name": "identifiedBy",
-      "description": "A list (concatenated and separated) of names of people, groups, or organizations who made a taxonomic determination of a dwc:Organism.",
+      "title": "Identified By",
+      "description": "A list (concatenated and separated) of names of Agents responsible for making a taxonomic determination of a dwc:Organism.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -274,7 +298,8 @@
     },
     {
       "name": "identifiedByID",
-      "description": "The identifier for the Agent who made a taxonomic determination of a dwc:Organism.",
+      "title": "Identified By ID",
+      "description": "An identifier for an Agent responsible for making a taxonomic determination of a dwc:Organism.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the identifying agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -284,7 +309,8 @@
     },
     {
       "name": "identificationReferences",
-      "description": "A list (concatenated and separated) of references (publication, global unique identifier, URI) used in a dwc:Identification.",
+      "title": "Identification References",
+      "description": "A list (concatenated and separated) of identifiers for References (publication, bibliographic reference, global unique identifier, URI, metabarcoding reference database) used in a dwc:Identification.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -294,6 +320,7 @@
     },
     {
       "name": "compilationTypes",
+      "title": "Compilation Types",
       "description": "A statement specifying whether data reported are derived from sampling events, ancillary data compiled from other sources, or a combination of both.",
       "type": "string",
       "format": "default",
@@ -304,6 +331,7 @@
     },
     {
       "name": "compilationSourceTypes",
+      "title": "Compilation Source Types",
       "description": "The types of data sources contributing to the compilation reported.",
       "type": "string",
       "format": "default",
@@ -314,6 +342,7 @@
     },
     {
       "name": "inventoryTypes",
+      "title": "Inventory Types",
       "description": "The types of search processes used to conduct the inventory.",
       "type": "string",
       "format": "default",
@@ -324,7 +353,8 @@
     },
     {
       "name": "protocolNames",
-      "description": "Categorical descriptive names for the methods used during a dwc:Event.",
+      "title": "Protocol Names",
+      "description": "Categorical descriptive names for the Protocols used during a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary and separate multiple values in a list with space vertical bar space ( | ). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -334,7 +364,8 @@
     },
     {
       "name": "protocolDescriptions",
-      "description": "A detailed description of the methods used during a dwc:Event.",
+      "title": "Protocol Descriptions",
+      "description": "A detailed description of the Protocols used during a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "This description should be associated with protocols provided in eco:protocolNames. The description may include deviations from a protocol referred to in eco:protocolReferences. Recommended good practice is to provide information about instruments used, calibration, etc. Recommended best practice is to separate multiple values in a list with space vertical bar space ( | ).",
@@ -344,7 +375,8 @@
     },
     {
       "name": "protocolReferences",
-      "description": "The references to the methods used during a dwc:Event.",
+      "title": "Protocol References",
+      "description": "A list (concatenated and separated) of identifiers for References (publication, bibliographic reference, global unique identifier, URI, metabarcoding reference database) used during a dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to separate multiple values in a list with space vertical bar space ( | ).",
@@ -354,6 +386,7 @@
     },
     {
       "name": "isAbundanceReported",
+      "title": "Is Abundance Reported",
       "description": "The number of dwc:Organisms collected or observed was reported.",
       "type": "boolean",
       "format": "default",
@@ -364,6 +397,7 @@
     },
     {
       "name": "isAbundanceCapReported",
+      "title": "Is Abundance Cap Reported",
       "description": "A maximum number of dwc:Organisms was reported, as specified or restricted by the protocol used.",
       "type": "boolean",
       "format": "default",
@@ -374,6 +408,7 @@
     },
     {
       "name": "abundanceCap",
+      "title": "Abundance Cap",
       "description": "The reported maximum number of dwc:Organisms.",
       "type": "integer",
       "format": "default",
@@ -388,6 +423,7 @@
     },
     {
       "name": "isVegetationCoverReported",
+      "title": "Is Vegetation Cover Reported",
       "description": "A vegetation cover metric was reported.",
       "type": "boolean",
       "format": "default",
@@ -398,6 +434,7 @@
     },
     {
       "name": "isLeastSpecificTargetCategoryQuantityInclusive",
+      "title": "Is Least Specific Target Category Quantity Inclusive",
       "description": "The total detected quantity for a dwc:Taxon (including subcategories thereof) in a dwc:Event is given explicitly in a single record (dwc:organismQuantity value) for that dwc:Taxon.",
       "type": "boolean",
       "format": "default",
@@ -408,6 +445,7 @@
     },
     {
       "name": "hasVouchers",
+      "title": "Has Vouchers",
       "description": "Specimen vouchers were collected during a dwc:Event.",
       "type": "boolean",
       "format": "default",
@@ -418,6 +456,7 @@
     },
     {
       "name": "voucherInstitutions",
+      "title": "Voucher Institutions",
       "description": "A list (concatenated and separated) of the names or acronyms of the institutions where vouchers collected during a dwc:Event were deposited.",
       "type": "string",
       "format": "default",
@@ -428,6 +467,7 @@
     },
     {
       "name": "hasMaterialSamples",
+      "title": "Has Material Samples",
       "description": "Material samples were collected during a dwc:Event.",
       "type": "boolean",
       "format": "default",
@@ -438,6 +478,7 @@
     },
     {
       "name": "materialSampleTypes",
+      "title": "Material Sample Types",
       "description": "A list (concatenated and separated) of material sample types collected during a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -448,6 +489,7 @@
     },
     {
       "name": "sampleSizeValue",
+      "title": "Sample Size Value",
       "description": "A numeric value for a measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
       "type": "string",
       "format": "default",
@@ -458,7 +500,8 @@
     },
     {
       "name": "sampleSizeUnit",
-      "description": "The unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
+      "title": "Sample Size Unit",
+      "description": "A unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
       "type": "string",
       "format": "default",
       "comments": "A dwc:sampleSizeUnit must have a corresponding dwc:sampleSizeValue, e.g., `5` for dwc:sampleSizeValue with `metre` for dwc:sampleSizeUnit.",
@@ -468,7 +511,8 @@
     },
     {
       "name": "samplingPerformedBy",
-      "description": "A person, group, or organization that performed the sampling.",
+      "title": "Sampling Performed By",
+      "description": "An Agent responsible for sampling.",
       "type": "string",
       "format": "default",
       "comments": "The sampling dwc:Event could be at any level of hierarchy. In the case of a higher level (parent) dwc:Event, include all the organizations or people involved in the child dwc:Events that contributed to the parent dwc:Event. Recommended best practice is to separate multiple values in a list with space vertical bar space ( | ). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -478,7 +522,8 @@
     },
     {
       "name": "samplingPerformedByID",
-      "description": "The identifier for the Agent who performed the sampling.",
+      "title": "Sampling Performed By ID",
+      "description": "An identifier for an Agent responsible for sampling.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the sampling agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
@@ -488,6 +533,7 @@
     },
     {
       "name": "isSamplingEffortReported",
+      "title": "Is Sampling Effort Reported",
       "description": "The sampling effort associated with a dwc:Event was reported.",
       "type": "boolean",
       "format": "default",
@@ -498,7 +544,8 @@
     },
     {
       "name": "samplingEffortProtocol",
-      "description": "A description of or reference (publication or URL) to the methods used to determine the sampling effort.",
+      "title": "Sampling Effort Protocol",
+      "description": "A description of or reference to a Protocol used to determine a eco:samplingEffortValue.",
       "type": "string",
       "format": "default",
       "comments": "This description should be associated with the values reported in eco:samplingEffortValue and eco:samplingEffortUnit. This is a specialization of eco:protocolDescriptions focused on effort, distinct from the survey method. The effort relates to the intensity of sampling and therefore can assist in interpreting estimates of completeness. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -508,16 +555,18 @@
     },
     {
       "name": "samplingEffortProtocolID",
-      "description": "An identifier for a Protocol used to determine sampling effort.",
+      "title": "Sampling Effort Protocol ID",
+      "description": "An identifier for a Protocol used to determine a eco:samplingEffortValue.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "ecoiri",
       "iri": "http://rs.tdwg.org/eco/iri/samplingEffortProtocol"
     },
     {
       "name": "samplingEffortValue",
+      "title": "Sampling Effort Value",
       "description": "The numeric value for the sampling effort expended during a dwc:Event.",
       "type": "number",
       "format": "default",
@@ -532,7 +581,8 @@
     },
     {
       "name": "samplingEffortUnit",
-      "description": "The units associated with the eco:samplingEffortValue.",
+      "title": "Sampling Effort Unit",
+      "description": "Units associated with a value in eco:samplingEffortValue.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
@@ -542,6 +592,7 @@
     },
     {
       "name": "informationWithheld",
+      "title": "Information Withheld",
       "description": "Additional information that exists, but that has not been shared in the given record.",
       "type": "string",
       "format": "default",
@@ -552,6 +603,7 @@
     },
     {
       "name": "dataGeneralizations",
+      "title": "Data Generalizations",
       "description": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request.",
       "type": "string",
       "format": "default",

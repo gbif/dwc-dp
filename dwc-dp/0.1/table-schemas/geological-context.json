@@ -3,14 +3,15 @@
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/geological-context",
   "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/geological-context.json",
   "title": "GeologicalContext",
-  "description": "Geological information, such as stratigraphy, that qualifies a region or place.",
+  "description": "A set of geological designations, such as stratigraphy, that qualifies a dwc:Event.",
   "fields": [
     {
       "name": "geologicalContextID",
+      "title": "Geological Context ID",
       "description": "An identifier for a dwc:GeologicalContext.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "`https://opencontext.org/subjects/e54377f7-4452-4315-b676-40679b10c4d9`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
@@ -21,6 +22,7 @@
     },
     {
       "name": "eventID",
+      "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "type": "string",
       "format": "default",
@@ -31,7 +33,8 @@
     },
     {
       "name": "earliestEonOrLowestEonothem",
-      "description": "The full name of the earliest possible geochronologic eon or lowest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Earliest Eon Or Lowest Eonothem",
+      "description": "A full name of a earliest possible geochronologic eon or lowest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -41,7 +44,8 @@
     },
     {
       "name": "latestEonOrHighestEonothem",
-      "description": "The full name of the latest possible geochronologic eon or highest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Latest Eon Or Highest Eonothem",
+      "description": "A full name of a latest possible geochronologic eon or highest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -51,7 +55,8 @@
     },
     {
       "name": "earliestEraOrLowestErathem",
-      "description": "The full name of the earliest possible geochronologic era or lowest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Earliest Era Or Lowest Erathem",
+      "description": "A full name of a earliest possible geochronologic era or lowest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -61,7 +66,8 @@
     },
     {
       "name": "latestEraOrHighestErathem",
-      "description": "The full name of the latest possible geochronologic era or highest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Latest Era Or Highest Erathem",
+      "description": "A full name of a latest possible geochronologic era or highest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -71,7 +77,8 @@
     },
     {
       "name": "earliestPeriodOrLowestSystem",
-      "description": "The full name of the earliest possible geochronologic period or lowest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Earliest Period Or Lowest System",
+      "description": "A full name of a earliest possible geochronologic period or lowest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -81,7 +88,8 @@
     },
     {
       "name": "latestPeriodOrHighestSystem",
-      "description": "The full name of the latest possible geochronologic period or highest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Latest Period Or Highest System",
+      "description": "A full name of a latest possible geochronologic period or highest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -91,7 +99,8 @@
     },
     {
       "name": "earliestEpochOrLowestSeries",
-      "description": "The full name of the earliest possible geochronologic epoch or lowest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Earliest Epoch Or Lowest Series",
+      "description": "A full name of a earliest possible geochronologic epoch or lowest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -101,7 +110,8 @@
     },
     {
       "name": "latestEpochOrHighestSeries",
-      "description": "The full name of the latest possible geochronologic epoch or highest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Latest Epoch Or Highest Series",
+      "description": "A full name of a latest possible geochronologic epoch or highest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -111,7 +121,8 @@
     },
     {
       "name": "earliestAgeOrLowestStage",
-      "description": "The full name of the earliest possible geochronologic age or lowest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Earliest Age Or Lowest Stage",
+      "description": "A full name of a earliest possible geochronologic age or lowest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -121,7 +132,8 @@
     },
     {
       "name": "latestAgeOrHighestStage",
-      "description": "The full name of the latest possible geochronologic age or highest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Latest Age Or Highest Stage",
+      "description": "A full name of a latest possible geochronologic age or highest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -131,7 +143,8 @@
     },
     {
       "name": "lowestBiostratigraphicZone",
-      "description": "The full name of the lowest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Lowest Biostratigraphic Zone",
+      "description": "A full name of a lowest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -141,7 +154,8 @@
     },
     {
       "name": "highestBiostratigraphicZone",
-      "description": "The full name of the highest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "title": "Highest Biostratigraphic Zone",
+      "description": "A full name of a highest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -151,7 +165,8 @@
     },
     {
       "name": "lithostratigraphicTerms",
-      "description": "The combination of all litho-stratigraphic names for the rock from which a dwc:MaterialEntity was collected.",
+      "title": "Lithostratigraphic Terms",
+      "description": "A combination of all litho-stratigraphic names for a rock from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -161,7 +176,8 @@
     },
     {
       "name": "group",
-      "description": "The full name of the lithostratigraphic group from which a dwc:MaterialEntity was collected.",
+      "title": "Group",
+      "description": "A full name of a lithostratigraphic group from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -171,7 +187,8 @@
     },
     {
       "name": "formation",
-      "description": "The full name of the lithostratigraphic formation from which a dwc:MaterialEntity was collected.",
+      "title": "Formation",
+      "description": "A full name of a lithostratigraphic formation from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -181,7 +198,8 @@
     },
     {
       "name": "member",
-      "description": "The full name of the lithostratigraphic member from which a dwc:MaterialEntity was collected.",
+      "title": "Member",
+      "description": "A full name of a lithostratigraphic member from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -191,7 +209,8 @@
     },
     {
       "name": "bed",
-      "description": "The full name of the lithostratigraphic bed from which a dwc:MaterialEntity was collected.",
+      "title": "Bed",
+      "description": "A full name of a lithostratigraphic bed from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",

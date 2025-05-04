@@ -7,6 +7,7 @@
   "fields": [
     {
       "name": "identifier",
+      "title": "Identifier",
       "description": "An unambiguous reference to a resource within a given context.",
       "type": "string",
       "format": "default",
@@ -21,10 +22,11 @@
     },
     {
       "name": "mediaID",
+      "title": "Media ID",
       "description": "An identifier for a Media instance.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -35,17 +37,19 @@
     },
     {
       "name": "identifierType",
-      "description": "The category or system that best matches the nature of an Identifier.",
+      "title": "Identifier Type",
+      "description": "A category or system that best matches the nature of an Identifier.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": ""
     },
     {
       "name": "identifierTypeIRI",
-      "description": "The IRI of the controlled vocabulary value for the type of Identifier.",
+      "title": "Identifier Type IRI",
+      "description": "An IRI of a controlled vocabulary value for a type of Identifier.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
@@ -55,7 +59,8 @@
     },
     {
       "name": "identifierTypeVocabulary",
-      "description": "The reference to the controlled vocabulary in which the definition of the value in identifierType is given.",
+      "title": "Identifier Type Vocabulary",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in identifierType is given.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -65,6 +70,7 @@
     },
     {
       "name": "identifierLanguage",
+      "title": "Identifier Language",
       "description": "A language in which an Identifier is presented.",
       "type": "string",
       "format": "default",

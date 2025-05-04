@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "mediaID",
+      "title": "Media ID",
       "description": "An identifier for a Media instance.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,7 +22,8 @@
     },
     {
       "name": "chronometricAgeID",
-      "description": "An identifier a chrono:ChronometricAge.",
+      "title": "Chronometric Age ID",
+      "description": "An identifier for a chrono:ChronometricAge.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a globally unique identifier.",
@@ -35,6 +37,7 @@
     },
     {
       "name": "mediaSubjectCategory",
+      "title": "Media Subject Category",
       "description": "A term to describe the content of the image by a value from a controlled vocabulary.",
       "type": "string",
       "format": "default",
@@ -45,7 +48,8 @@
     },
     {
       "name": "mediaSubjectCategoryIRI",
-      "description": "The IRI of the controlled vocabulary value for the subject category of the Media instance.",
+      "title": "Media Subject Category IRI",
+      "description": "An IRI of a controlled vocabulary value for the subject category of a Media instance.",
       "type": "string",
       "format": "default",
       "comments": "",
@@ -55,6 +59,7 @@
     },
     {
       "name": "mediaSubjectCategoryVocabulary",
+      "title": "Media Subject Category Vocabulary",
       "description": "Any vocabulary or formal classification from which terms in the Subject Category have been drawn.",
       "type": "string",
       "format": "default",

@@ -7,10 +7,11 @@
   "fields": [
     {
       "name": "surveyTargetID",
+      "title": "Survey Target ID",
       "description": "An identifier for a SurveyTarget.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -21,10 +22,11 @@
     },
     {
       "name": "surveyID",
-      "description": "An identifier for a dwc:Event that is an biotic survey.",
+      "title": "Survey ID",
+      "description": "An identifier for a Survey.",
       "type": "string",
       "format": "default",
-      "comments": "",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "namespace": "dwcdp",
       "iri": "",
@@ -35,7 +37,8 @@
     },
     {
       "name": "surveyTargetType",
-      "description": "The type of scope a SurveyTarget describes.",
+      "title": "Survey Target Type",
+      "description": "A scope a SurveyTarget describes.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -45,7 +48,8 @@
     },
     {
       "name": "surveyTargetValue",
-      "description": "The value of a characteristic sought for the surveyTarget for a given surveyTargetType.",
+      "title": "Survey Target Value",
+      "description": "A value of a characteristic sought for the SurveyTarget for a given surveyTargetType.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -55,7 +59,8 @@
     },
     {
       "name": "surveyTargetUnit",
-      "description": "The units associated with the surveyTargetValue.",
+      "title": "Survey Target Unit",
+      "description": "Units associated with a value in surveyTargetValue.",
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
@@ -65,6 +70,7 @@
     },
     {
       "name": "includeOrExclude",
+      "title": "Include Or Exclude",
       "description": "A term to declare whether an instance of the SurveyTarget is an included scope or an excluded scope. Combinations of SurveyTarget records of inclusions and exclusions can define complex scopes such as all flying adult Aves except Passeriformes.",
       "type": "string",
       "format": "default",
@@ -80,6 +86,7 @@
     },
     {
       "name": "isSurveyTargetFullyReported",
+      "title": "Is Survey Target Fully Reported",
       "description": "A declaration of whether the counts for an instance of the SurveyTarget report everything that matches the declared SurveyTarget. If they do, this enables inference of absence of detection for everything in that SurveyTarget that is included but that does not appear in the count.",
       "type": "boolean",
       "format": "default",
