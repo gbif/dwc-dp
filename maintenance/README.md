@@ -13,7 +13,7 @@ Scripts in this folder are meant to be used to check various aspects of the data
 **data-packages-validation-checks-local.py** - Script to validate the data package locally to the extent possible - no calls to non-local resources.
 
 ## Releases
-When the local content of the data package schemas is release, the schemas for DwC-DP should be copied to the [schema repository](https://rs.gbif.org/sandbox/experimental/data-packages/) for use by tools, such as the GBIF Integrated Publishing Toolkit (IPT).
+When the local content of the data package schemas is released, the schemas for DwC-DP should be copied to the [schema repository](https://rs.gbif.org/sandbox/experimental/data-packages/) for use by tools, such as the GBIF Integrated Publishing Toolkit (IPT).
 
 - 1. Prepare data package schemas.
 - 2. Check data package locally (see [Checks](#checks)).
@@ -24,7 +24,7 @@ When the local content of the data package schemas is release, the schemas for D
 - 6. Make a release branch in the local copy of rs.gbif.org (e.g., `git checkout -b dwcdp-r1.0`). 
 - 7. Copy sandbox-ready version of data package from this local repository to the new branch in the local copy of the rs.gbif.org repository.
 - 8. Validate the data package in the local copy of the rs.gbif.org repository using the script **data-packages-validation-checks.py** in that repository.
-- 9. Make any necessary amendments in this repository and repeat steps **iv.** through **viii.** until the rs.gbif.org version of the data package validates.
+- 9. Make any necessary amendments in this repository and repeat steps **iv** through **viii** until the rs.gbif.org version of the data package validates.
 - 10. Commit, push and make a pull request for the changes in the new branch in the rs.gbif.org repository.
 - 11. Commit and push the changes in this repository to GitHub.
 
