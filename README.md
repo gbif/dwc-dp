@@ -38,8 +38,8 @@ There is a separate GitHub repository ([gbif/dwc-dp-examples](https://github.com
 Including the Darwin Core Data Package as a vocabulary enhancement to the Darwin Core standard implies several changes in the standard, including adding terms, modifying existing terms, and providing new documentation accordingly. Two new normative documents will be needed. The first will be a document describing in detail the Darwin Core Semantic Layer, including the [Darwin Core Conceptual Model](#darwin-core-conceptual-model), of which the DwC-DP is an implementation. The second document will be a "Darwin Core Data Package Guide". Much like the [Darwin Core Text Guide](https://dwc.tdwg.org/text/), this second document will describe the requirements for the structure of Darwin Core as a Data Package.
 
 ## New Classes and Properties
-To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore the all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](qrg/dwc-dp-qrg.html).
- 
+To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore the all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](https://github.com/gbif/dwc-dp/blob/master/qrg/dwc_dp_qrg.html).
+
 ### New Classes
 **Agent** - A person, group, organization or other entity that can act.
 
@@ -78,7 +78,9 @@ One of the most fundamental advances of the Semantic Layer, reflected in the DwC
 # Participating and Getting Help
 In anticipation of a formal public review, scheduled to begin 2025-09-01, we would like to invite people to gain familiarity with and test the DwC-DP by attempting to map original datasets to it. We are just beginning to work on the "Darwin Core Data Package Guide", which is intended to contain various "recipes" for publishing different types of datasets. Until that document contains useful content, the best way forward is to look at an already-mapped example dataset that is similar to the one you want to test ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)). This community testing phase will remain open until 2025-08-01.
 
-- **Getting started** - If you need help getting started with mapping a dataset to DwC-DP, feel free to contact [John Wieczorek](mailto:gtuco.btuco@gmail.com).
+- **Getting started** - The easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](https://github.com/gbif/dwc-dp/blob/master/qrg/dwc_dp_qrg.html).
+
+- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, feel free to contact [John Wieczorek](mailto:gtuco.btuco@gmail.com).
 
 - **Discussion** - For open discussion on the Darwin Core Data Package, see the GBIF [Darwin Core Data Package (DwC-DP) discourse forum topic](https://discourse.gbif.org/t/darwin-core-data-package-dwc-dp/5937).
 
