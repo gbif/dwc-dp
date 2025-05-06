@@ -1,5 +1,7 @@
 # Darwin Core Data Package (DwC-DP)
 
+[Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/dwc_dp_qrg.html)
+
 This repository contains material to support a proposal for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) to the [Darwin Core](https://dwc.tdwg.org/) standard. The proposal for the enhancement is scheduled for full **public review beginning 2025-09-01**. The public review will include a [Darwin Core Conceptual Model](#darwin-core-conceptual-model) as a component of a long-awaited Semantic Layer for Darwin Core and a [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model) that supports sharing deeper and richer data than is possible with a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide). The Semantic Layer will define the explicit relationships between the classes that are seen in DwC-DP and will be based on the understanding of biodiversity-related concepts accumulated in the analysis of myriad use cases during the theoretical Unified Model phase of the project [Diversifying the GBIF Data Model](https://www.gbif.org/new-data-model).
 
 Previous to the public review, we welcome those who are interested to explore the [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model). This is an opportunity to **test the data publishing model with your real data**. To understand how you can do this, see the [Participating and Getting Help](#participating-and-getting-help) section, below. **This community testing phase will remain open until 2025-08-01**.
@@ -38,7 +40,7 @@ There is a separate GitHub repository ([gbif/dwc-dp-examples](https://github.com
 Including the Darwin Core Data Package as a vocabulary enhancement to the Darwin Core standard implies several changes in the standard, including adding terms, modifying existing terms, and providing new documentation accordingly. Two new normative documents will be needed. The first will be a document describing in detail the Darwin Core Semantic Layer, including the [Darwin Core Conceptual Model](#darwin-core-conceptual-model), of which the DwC-DP is an implementation. The second document will be a "Darwin Core Data Package Guide". Much like the [Darwin Core Text Guide](https://dwc.tdwg.org/text/), this second document will describe the requirements for the structure of Darwin Core as a Data Package.
 
 ## New Classes and Properties
-To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore the all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/dwc_dp_qrg.html).
+To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/dwc_dp_qrg.html).
 
 ### New Classes
 **Agent** - A person, group, organization or other entity that can act.
