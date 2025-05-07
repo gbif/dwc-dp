@@ -4,4 +4,4 @@
 
 # sh local_to_sandbox.sh
 
-python data-package-migration.py -u "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1" -U "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1"
+python data-package-migration.py -u "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1" -U "https://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1"

@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 
 # Paths to scan
-directories_to_scan = ['.']
+directories_to_scan = ['../dwc-dp']
 
 error_found = False
 
