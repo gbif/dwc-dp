@@ -20,8 +20,8 @@ Previous to the public review, we welcome those who are interested to explore th
 
 [Participating and Getting Help](#participating-and-getting-help)
 
-# Darwin Core Conceptual Model
-![Here should be the image of latest Darwin Core Conceptual Model](images/conceptual_model_2025-05-03.png "Darwin Core Conceptual Model")
+# Darwin Core Conceptual Model (since 2025-05-07)
+![Here should be the image of latest Darwin Core Conceptual Model](images/conceptual_model_2025-05-07.png "Darwin Core Conceptual Model")
 Figure 1. Conceptual Model behind the Darwin Core Data Package (DwC-DP) Publishing Model showing the primary relationships between key biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise.
 
 # Darwin Core Data Package (DwC-DP) Publishing Model

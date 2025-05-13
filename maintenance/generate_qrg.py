@@ -124,7 +124,7 @@ TEMPLATE = '''<!DOCTYPE html>
         {content}
         <h1 id="model">Darwin Core Conceptual Model</h1>
         <div class="intro">
-            <img src="../images/conceptual_model_2025-05-03.png" alt="Darwin Core Data Package Conceptual Model">
+            <img src="../images/conceptual_model_2025-05-07.png" alt="Darwin Core Data Package Conceptual Model">
             <div class="figure-caption">Figure 1. Conceptual model of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
         </div>
         <footer>
@@ -146,9 +146,9 @@ def build_term_section(field):
     rows = []
     if not isinstance(field, dict):
         return ''
-    order = ["title", "namespace", "iri", "description", "comments", "examples", "type", "constraints", "format"]
+    order = ["title", "namespace", "iri", "description", "comments", "examples", "type", "default", "constraints", "format"]
     labels = {"title": "Title (Label)", "namespace": "Namespace", "iri": "IRI", "description": "Description",
-              "comments": "Comments", "examples": "Examples", "type": "Type", "constraints": "Constraints", "format": "Format"}
+              "comments": "Comments", "examples": "Examples", "type": "Type", "default": "Default", "constraints": "Constraints", "format": "Format"}
 
     for key in order:
         value = field.get(key)

@@ -7,6 +7,7 @@ import json
 import os
 import sys
 from pathlib import Path
+from frictionless import Schema
 
 # Paths to scan
 directories_to_scan = ['../dwc-dp']
@@ -117,6 +118,80 @@ def check_foreign_keys(package_file, package_data):
             print(f"Error: Problem reading {table_schema_file}")
             error_found = True
 
+def check_valid_frictionless(index_file_str):
+    table_schema_files = find_package_table_schemas(index_file_str)
+
+    for file in table_schema_files:
+        try:
+            Schema.from_descriptor(file)
+            # print(f"{file}: Valid frictionless")
+        except Exception as e:
+            print(f"{file}: Error - {str(e)}")
+
+def check_foreign_keys(package_file, package_data):
+    global error_found
+
+    # print(f"Checking foreign keys for {package_file}")
+
+    if package_file == 'sandbox/data-packages/index.json' or package_file == 'data-packages/index.json':
+        # print("Skipping foreign keys check")
+        return
+
+    if "tableSchemas" in package_data:
+        for schema in package_data['tableSchemas']:
+            table_schema_name = schema['name']
+            table_schema_file = package_file.replace("index.json", "table-schemas/" + schema['name'] + ".json")
+            # print(f"Checking table schema {table_schema_name}")
+
+            try:
+                with open(table_schema_file, 'r') as f:
+                    table_schema_json = json.load(f)
+
+                if "foreignKeys" in table_schema_json:
+                    for foreign_key in table_schema_json['foreignKeys']:
+                        fk_field = foreign_key['fields']
+                        fk_reference_resource = foreign_key['reference']['resource']
+                        fk_reference_field = foreign_key['reference']['fields']
+
+                        # print(f"Foreign key: {fk_field} references "
+                        #       f"to {fk_reference_resource}/{fk_reference_field}")
+
+                        is_field_present = any(field['name'] == fk_field for field in table_schema_json['fields'])
+
+                        if not is_field_present:
+                            print(f"Error: There is no field {fk_field} in the table schema file {table_schema_file}")
+                            error_found = True
+
+                        reference_table_schema_file = (
+                            package_file.replace("index.json", "table-schemas/" + fk_reference_resource + ".json"))
+
+                        reference_table_schema_file_path = Path(reference_table_schema_file)
+
+                        if reference_table_schema_file_path.exists():
+                            with open(reference_table_schema_file, 'r') as f:
+                                reference_table_schema_json = json.load(f)
+
+                            is_fk_reference_field_present = (any(field['name'] == fk_reference_field for field in reference_table_schema_json['fields']))
+
+                            if not is_fk_reference_field_present:
+                                print(f"Error: Foreign key {table_schema_name}/{fk_field} references non existing "
+                                      f"field {fk_reference_resource}/{fk_reference_field}")
+                                error_found = True
+                        else:
+                            print(f"Error: Foreign key {table_schema_name}/{fk_field} references non existing "
+                                  f"table schema {fk_reference_resource}")
+                            error_found = True
+            except (json.JSONDecodeError, FileNotFoundError) as e:
+                print(f"Error: {type(e).__name__} occurred. Missing or invalid file: {table_schema_file}")
+                error_found = True
+
+def find_package_table_schemas(index_file_str):
+    index_path_parent = Path(index_file_str).parent
+    table_schemas_dir = index_path_parent / 'table-schemas'
+    table_schemas = [tsf for tsf in table_schemas_dir.rglob('*.json') if tsf.is_file()]
+
+    return table_schemas
+
 def find_package_files(directories):
     package_files = []
     for base_dir in directories:
@@ -128,14 +203,16 @@ def find_package_files(directories):
 # Run validation
 package_files = find_package_files(directories_to_scan)
 
-for pkg_file in package_files:
-    if not check_valid_json(pkg_file):
+for package_file in package_files:
+    if not check_valid_json(package_file):
         continue
-    with open(pkg_file, 'r') as f:
-        pkg_data = json.load(f)
+    with open(package_file, 'r') as f:
+        package_data = json.load(f)
 
-    check_table_schemas(pkg_file, pkg_data)
-    check_foreign_keys(pkg_file, pkg_data)
+    check_table_schemas(package_file, package_data)
+    check_valid_frictionless(package_file)
+    check_foreign_keys(package_file, package_data)
+    check_foreign_keys(package_file, package_data)
 
 if error_found:
     print("Validation failed.")
