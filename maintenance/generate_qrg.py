@@ -30,7 +30,7 @@ ordered_groups = [
 
 INDEX_JSON_PATH = '../dwc-dp/0.1/index.json'
 TABLE_SCHEMAS_DIR = '../dwc-dp/0.1/table-schemas'
-OUTPUT_PATH = '../qrg/dwc_dp_qrg.html'
+OUTPUT_PATH = '../qrg/index.html'
 
 # Full HTML template (no placeholders, uses .format)
 TEMPLATE = '''<!DOCTYPE html>
