@@ -24,7 +24,7 @@ Previous to the public review, we welcome those who are interested to explore th
 # Darwin Core Conceptual Model (since 2025-05-07)
 The Darwin Core Conceptual Model is based on a distillation of the [GBIF Unified Model](https://www.gbif.org/new-data-model) with an emphasis on practicality for implementations.
 
-![Here should be the image of latest Darwin Core Conceptual Model](images/conceptual_model_2025-05-07.png "Darwin Core Conceptual Model")
+![Here should be the image of latest Darwin Core Conceptual Model](images/overview_model_2025-05-07.png "Darwin Core Conceptual Model")
 Figure 1. Overview of the classes in the Darwin Core Conceptual Model showing the primary relationships between key biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise.
 
 # Darwin Core Data Package (DwC-DP) Publishing Model
@@ -42,7 +42,7 @@ Figure 3. Schematic overview of the structure and content of a Darwin Core Data 
 
 The biggest difference between a Darwin Core Archive and a Darwin Core Data Package is in the extent to which the data within distinct classes can be stored and shared in distinct text files, and how these files relate to each other. The list of fields and all of their details (including names, labels, definitions, usage comments, examples, and constraints) are defined in the JSON [table schema](dwc-dp/0.1/table-schemas) files. The details of the relationships between files are also in the table schemas, expressed as primary keys (unique identifiers within a table) and foreign keys (fields that contain the identifiers equal to the value of a primary key in another file).
 
-The beauty of DwC-DP is that it is complicated only for those who want or need it to be, because there is no other way to faithfully capture the complexity of their data. Just as with Darwin Core Archives, a [test version](https://dwcdp-ipt.gbif-test.org/) of the GBIF Integrated Publishing Toolkit (IPT) in development can facilitate data structure mapping and produce Darwin Core Data Packages. If you would like to test structuring your data as a Darwin Core Data Package with this test IPT, please contact the DwC-DP helpdesk at [dwcdp@gbif.org](mailto:dwcdp@gbif.org)
+The beauty of DwC-DP is that it is complicated only for those who want or need it to be, because there is no other way to faithfully capture the complexity of their data. Just as with Darwin Core Archives, a [test version](https://dwcdp-ipt.gbif-test.org/) of the GBIF Integrated Publishing Toolkit (IPT) in development can facilitate data structure mapping and produce Darwin Core Data Packages. If you would like to test structuring your data as a Darwin Core Data Package with this test IPT (not for production use), please contact the DwC-DP helpdesk at [dwcdp@gbif.org](mailto:dwcdp@gbif.org)
 
 ## Example Datasets
 There is a separate GitHub repository ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)) in which we have been accumulating examples of real datasets mapped to DwC-DP. That repository contains a representation of the DwC-DP as a [database schema](https://github.com/gbif/dwc-dp-examples/blob/master/gbif/dwc_dp_schema.sql) that can be populated with data mapped to DwC-DP and checked for data integrity.
@@ -94,7 +94,7 @@ In anticipation of a formal public review, scheduled to begin 2025-09-01, we wou
 
 - **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](https://gbif.github.io/dwc-dp-examples/data-mapping-guide.html). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
 
-- **Testing with the IPT** - If you are interested in using the [test instance](https://dwcdp-ipt.gbif-test.org/) of the Integrated Publishing Toolkit to produce a Darwin Core Data Package, please contact the DwC-DP helpdesk to set up an account.
+- **Testing with IPT** - If you are interested in using the [test instance](https://dwcdp-ipt.gbif-test.org/) of the Integrated Publishing Toolkit  (not for production use) to produce a Darwin Core Data Package, please contact the DwC-DP helpdesk to set up an account. 
 
 - **Submitting Issues** - For feedback about the structure or documentation of DwC-DP, feel free to register an [Issue](https://github.com/gbif/dwc-dp/issues).
 
