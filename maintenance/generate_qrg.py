@@ -119,13 +119,13 @@ TEMPLATE = '''<!DOCTYPE html>
     <main>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <div class="intro">
-            <p>This Quick Reference Guide provides an organized overview of terms defined in the Darwin Core Data Package (DwC-DP). Terms are grouped by class and include details such as descriptions, IRIs, constraints, and examples where available.</p>
+            <p>This Quick Reference Guide provides an exploratory overview of tables and fields defined in the Darwin Core Data Package (DwC-DP). The guide at the right provides quick access to table definitions, under each of which are listed the possible fields in the table and their definitions.</p>
         </div>
         {content}
-        <h1 id="model">Darwin Core Conceptual Model</h1>
+        <h1 id="model">Darwin Core Overview Model</h1>
         <div class="intro">
-            <img src="../images/conceptual_model_2025-05-07.png" alt="Darwin Core Data Package Conceptual Model">
-            <div class="figure-caption">Figure 1. Conceptual model of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
+            <img src="../images/overview_model_2025-05-07.png" alt="Darwin Core Data Package Overview Model">
+            <div class="figure-caption">Figure 1. Overview model of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
         </div>
         <footer>
             <p>This guide is part of the Darwin Core Data Package project and is provided to assist users in applying the standard consistently. For authoritative definitions and updates, visit the <a href="https://dwc.tdwg.org/">Darwin Core website</a>.</p>
@@ -133,8 +133,8 @@ TEMPLATE = '''<!DOCTYPE html>
     </main>
     <aside class="nav-menu">
         <a class="top-link" href="#top">&uarr; Back to Top</a>
-        <a class="top-link" href="#model">&darr; Conceptual Model</a>
-        <h3>Classes</h3>
+        <a class="top-link" href="#model">&darr; Overview Model</a>
+        <h3>Tables</h3>
         <nav class="class-index">
             {class_links}
         </nav>
@@ -142,23 +142,28 @@ TEMPLATE = '''<!DOCTYPE html>
 </body>
 </html>'''
 
-def build_term_section(field):
+def build_term_section(field, class_name):
     rows = []
     if not isinstance(field, dict):
         return ''
-    order = ["title", "namespace", "iri", "description", "comments", "examples", "type", "default", "constraints", "format"]
-    labels = {"title": "Title (Label)", "namespace": "Namespace", "iri": "IRI", "description": "Description",
+    order = ["title", "namespace", "class", "iri", "description", "comments", "examples", "type", "default", "constraints", "format"]
+    labels = {"title": "Title (Label)", "class": "Table:", "namespace": "Namespace", "iri": "IRI", "description": "Description",
               "comments": "Comments", "examples": "Examples", "type": "Type", "default": "Default", "constraints": "Constraints", "format": "Format"}
 
     for key in order:
         value = field.get(key)
         if value is None:
-            continue
+            if key == 'class':
+                value = class_name
+            else:
+                continue
         value = str(value).strip()
         if not value:
             continue
         if key == 'iri':
             value = f'<a href="{value}">{value}</a>'
+        if key == 'class':
+            value = f'<a href="#{value}">{value}</a>'
         elif key == 'examples':
             examples = [ex.strip() for ex in value.split(';') if ex.strip()]
             value = ''
@@ -205,7 +210,7 @@ def generate_qrg_with_separators():
             if field_links:
                 content += f'<nav class="field-index"><strong>Fields:</strong><br>{field_links}</nav>'
             for field in fields:
-                term_html = build_term_section(field)
+                term_html = build_term_section(field, class_name)
                 if term_html:
                     content += term_html
 
