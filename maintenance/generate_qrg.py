@@ -122,10 +122,10 @@ TEMPLATE = '''<!DOCTYPE html>
             <p>This Quick Reference Guide provides an exploratory overview of tables and fields defined in the Darwin Core Data Package (DwC-DP). The guide at the right provides quick access to table definitions, under each of which are listed the possible fields in the table and their definitions.</p>
         </div>
         {content}
-        <h1 id="model">Darwin Core Overview Model</h1>
+        <h1 id="model">Table Relationships</h1>
         <div class="intro">
-            <img src="../images/overview_model_2025-05-07.png" alt="Darwin Core Data Package Overview Model">
-            <div class="figure-caption">Figure 1. Overview model of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
+            <img src="../images/overview_model_2025-05-07.png" alt="How tables relate to each other.">
+            <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
         </div>
         <footer>
             <p>This guide is part of the Darwin Core Data Package project and is provided to assist users in applying the standard consistently. For authoritative definitions and updates, visit the <a href="https://dwc.tdwg.org/">Darwin Core website</a>.</p>
@@ -133,7 +133,7 @@ TEMPLATE = '''<!DOCTYPE html>
     </main>
     <aside class="nav-menu">
         <a class="top-link" href="#top">&uarr; Back to Top</a>
-        <a class="top-link" href="#model">&darr; Overview Model</a>
+        <a class="top-link" href="#model">&darr; Table Relationships</a>
         <h3>Tables</h3>
         <nav class="class-index">
             {class_links}
