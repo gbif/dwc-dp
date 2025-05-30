@@ -119,7 +119,7 @@ TEMPLATE = '''<!DOCTYPE html>
     <main>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <div class="intro">
-            <p>This Quick Reference Guide provides an exploratory overview of tables and fields defined in the Darwin Core Data Package (DwC-DP). The guide at the right provides quick access to table definitions, under each of which are listed the possible fields in the table and their definitions.</p>
+            <p>This Quick Reference Guide provides an exploratory overview of tables and fields defined in the <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The guide at the right provides quick access to table definitions, under each of which are listed the possible fields in the table and their definitions.</p>
         </div>
         {content}
         <h1 id="model">Table Relationships</h1>
