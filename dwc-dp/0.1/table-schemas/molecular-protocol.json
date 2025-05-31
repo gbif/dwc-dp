@@ -1374,5 +1374,14 @@
       "iri": "http://rs.gbif.org/terms/miqe/pcr_primer_loq"
     }
   ],
-  "primaryKey": "molecularProtocolID"
+  "primaryKey": "molecularProtocolID",
+  "foreignKeys": [
+    {
+      "fields": "source_mat_id",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntityID"
+      }
+    }
+  ]
 }

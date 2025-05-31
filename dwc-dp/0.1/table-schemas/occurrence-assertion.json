@@ -255,6 +255,13 @@
       }
     },
     {
+      "fields": "assertionByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
       "fields": "assertionProtocolID",
       "reference": {
         "resource": "protocol",

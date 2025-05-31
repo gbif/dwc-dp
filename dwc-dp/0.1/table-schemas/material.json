@@ -564,10 +564,59 @@
       }
     },
     {
+      "fields": "institutionID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "ownerInstitutionID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "collectedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "evidenceForOccurrenceID",
+      "reference": {
+        "resource": "occurrence",
+        "fields": "occurrenceID"
+      }
+    },
+    {
+      "fields": "derivedFromMaterialEntityID",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntityID"
+      }
+    },
+    {
+      "fields": "derivationEventID",
+      "reference": {
+        "resource": "event",
+        "fields": "eventID"
+      }
+    },
+    {
       "fields": "isPartOfMaterialEntityID",
       "reference": {
         "resource": "material",
         "fields": "materialEntityID"
+      }
+    },
+    {
+      "fields": "identifiedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
       }
     }
   ]

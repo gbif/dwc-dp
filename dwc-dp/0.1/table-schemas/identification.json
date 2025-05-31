@@ -322,6 +322,13 @@
         "resource": "media",
         "fields": "mediaID"
       }
+    },
+    {
+      "fields": "identifiedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
     }
   ]
 }

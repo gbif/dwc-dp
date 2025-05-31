@@ -614,6 +614,27 @@
   "primaryKey": "surveyID",
   "foreignKeys": [
     {
+      "fields": "eventID",
+      "reference": {
+        "resource": "event",
+        "fields": "eventID"
+      }
+    },
+    {
+      "fields": "identifiedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "samplingPerformedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
       "fields": "samplingEffortProtocolID",
       "reference": {
         "resource": "protocol",

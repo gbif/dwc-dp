@@ -1098,5 +1098,83 @@
     }
   ],
   "primaryKey": "mediaID",
-  "foreignKeys": []
+  "foreignKeys": [
+    {
+      "fields": "commenter",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "reviewer",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "sourceIRI",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "creatorIRI",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "provider",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "metadataCreator",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "metadataProvider",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "identifiedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "providerID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "associatedSpecimenReference",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntityID"
+      }
+    },
+    {
+      "fields": "associatedObservationReference",
+      "reference": {
+        "resource": "occurrence",
+        "fields": "occurrenceID"
+      }
+    }
+  ]
 }

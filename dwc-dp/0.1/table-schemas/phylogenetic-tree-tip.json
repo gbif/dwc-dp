@@ -107,6 +107,20 @@
         "resource": "phylogenetic-tree",
         "fields": "phylogeneticTreeID"
       }
+    },
+    {
+      "fields": "materialEntityID",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntityID"
+      }
+    },
+    {
+      "fields": "nucleotideSequenceID",
+      "reference": {
+        "resource": "nucleotide-sequence",
+        "fields": "nucleotideSequenceID"
+      }
     }
   ]
 }

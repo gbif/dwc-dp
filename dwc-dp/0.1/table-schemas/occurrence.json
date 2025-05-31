@@ -446,5 +446,34 @@
     }
   ],
   "primaryKey": "occurrenceID",
-  "foreignKeys": []
+  "foreignKeys": [
+    {
+      "fields": "eventID",
+      "reference": {
+        "resource": "event",
+        "fields": "eventID"
+      }
+    },
+    {
+      "fields": "surveyTargetID",
+      "reference": {
+        "resource": "survey-target",
+        "fields": "surveyTargetID"
+      }
+    },
+    {
+      "fields": "recordedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "identifiedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    }
+  ]
 }

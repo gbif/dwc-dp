@@ -884,7 +884,7 @@
     },
     {
       "name": "fundingAttribution",
-      "title": "Funding Atribution",
+      "title": "Funding Attribution",
       "description": "A list (concatenated and separated) of names of the funding organizations or agencies that provided funding for the project.",
       "type": "string",
       "format": "default",
@@ -895,7 +895,7 @@
     },
     {
       "name": "fundingAttributionID",
-      "title": "Funding Atribution ID",
+      "title": "Funding Attribution ID",
       "description": "A list (concatenated and separated) of the globally unique identifiers for the funding organizations or agencies that supported the project.",
       "type": "string",
       "format": "default",
@@ -926,10 +926,31 @@
       }
     },
     {
+      "fields": "eventConductedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "georeferencedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
       "fields": "georeferenceProtocolID",
       "reference": {
         "resource": "protocol",
         "fields": "protocolID"
+      }
+    },
+    {
+      "fields": "fundingAttributionID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
       }
     }
   ]
