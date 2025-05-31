@@ -75,34 +75,6 @@
       "description": "A link establishing a Protocol used in the determination of a chrono:ChronometricAge."
     },
     {
-      "identifier": "http://rs.tdwg.org/dwc/dwc-dp/collection",
-      "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/collection.json",
-      "name": "collection",
-      "title": "Collection",
-      "description": "A persistent formal repository in which dwc:MaterialEntities and/or Media are preserved."
-    },
-    {
-      "identifier": "http://rs.tdwg.org/dwc/dwc-dp/collection-agent-role",
-      "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/collection-agent-role.json",
-      "name": "collection-agent-role",
-      "title": "CollectionAgentRole",
-      "description": "A role filled by an Agent with respect to a Collection."
-    },
-    {
-      "identifier": "http://rs.tdwg.org/dwc/dwc-dp/collection-assertion",
-      "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/collection-assertion.json",
-      "name": "collection-assertion",
-      "title": "CollectionAssertion",
-      "description": "An Assertion made by an Agent about a Collection."
-    },
-    {
-      "identifier": "http://rs.tdwg.org/dwc/dwc-dp/collection-media",
-      "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/collection-media.json",
-      "name": "collection-media",
-      "title": "CollectionMedia",
-      "description": "A link establishing a Collection as content of a Media entity."
-    },
-    {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/event",
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/event.json",
       "name": "event",

@@ -166,7 +166,7 @@
     {
       "name": "lithostratigraphicTerms",
       "title": "Lithostratigraphic Terms",
-      "description": "A combination of all litho-stratigraphic names for a rock from which a dwc:MaterialEntity was collected.",
+      "description": "A combination of all lithostratigraphic names for a rock from which a dwc:MaterialEntity was collected.",
       "type": "string",
       "format": "default",
       "comments": "",
