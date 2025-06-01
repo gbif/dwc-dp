@@ -311,7 +311,7 @@
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `not recorded`.",
-      "examples": "`not recorded`; `epsg:4326`; `WGS84`; `NAD27`; `Campo Inchauspe`; `European 1950`; `Clarke 1866`",
+      "examples": "`not recorded`; `EPSG:4326`; `WGS84`; `NAD27`; `Campo Inchauspe`; `European 1950`; `Clarke 1866`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/verbatimSRS"
     },
@@ -563,7 +563,7 @@
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "examples": "`EGM84`; `EGM96`; `EGM2008`; `PGM2000A`; `PGM2004`; `PGM2006`; `PGM2007`; `epsg:7030`; `not recorded`",
+      "examples": "`EGM84`; `EGM96`; `EGM2008`; `PGM2000A`; `PGM2004`; `PGM2006`; `PGM2007`; `EPSG:7030`; `not recorded`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/verticalDatum"
     },
@@ -671,7 +671,7 @@
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `not recorded`.",
-      "examples": "`epsg:4326`; `WGS84`; `NAD27`; `Campo Inchauspe`; `European 1950`; `Clarke 1866`; `not recorded`",
+      "examples": "`EPSG:4326`; `WGS84`; `NAD27`; `Campo Inchauspe`; `European 1950`; `Clarke 1866`; `not recorded`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/geodeticDatum"
     },
@@ -735,7 +735,7 @@
       "type": "string",
       "format": "default",
       "comments": "Recommended best practice is to use the EPSG code of the SRS, if known. Otherwise use a controlled vocabulary for the name or code of the geodetic datum, if known. Otherwise use a controlled vocabulary for the name or code of the ellipsoid, if known. If none of these is known, use the value `not recorded`. It is also permitted to provide the SRS in Well-Known-Text, especially if no EPSG code provides the necessary values for the attributes of the SRS. Do not use this term to describe the SRS of a dwc:decimalLatitude and dwc:decimalLongitude, nor of any verbatim coordinates - use dwc:geodeticDatum and dwc:verbatimSRS instead.",
-      "examples": "`epsg:4326`; `GEOGCS['GCS_WGS_1984', DATUM['D_WGS_1984', SPHEROID['WGS_1984',6378137,298.257223563]], PRIMEM['Greenwich',0], UNIT['Degree',0.0174532925199433]]` (WKT for the standard WGS84 Spatial Reference System epsg:4326)",
+      "examples": "`EPSG:4326`; `GEOGCS['GCS_WGS_1984', DATUM['D_WGS_1984', SPHEROID['WGS_1984',6378137,298.257223563]], PRIMEM['Greenwich',0], UNIT['Degree',0.0174532925199433]]` (WKT for the standard WGS84 Spatial Reference System EPSG:4326)",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/footprintSRS"
     },
