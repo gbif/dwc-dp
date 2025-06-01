@@ -9,28 +9,44 @@
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent.json",
       "name": "agent",
       "title": "Agent",
-      "description": "A person, group, organization or other entity that can act."
+      "description": "A person, group, organization or other entity that can act.",
+      "comments": "",
+      "examples": "",
+      "namespace": "dwcp",
+      "iri": ""
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/agent-agent-role",
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent-agent-role.json",
       "name": "agent-agent-role",
       "title": "AgentAgentRole",
-      "description": "A role filled by an Agent with respect to another Agent."
+      "description": "A role filled by an Agent with respect to another Agent.",
+      "comments": "test",
+      "examples": "`an instance of an Agent that is a person is the director of another instance of an Agent that is an organization`; `an instance of an Agent that is a person is a member of another instance of an Agent that is a group`; `an instance of an Agent that is a person is the author of another instance of an Agent that is software`",
+      "namespace": "dwcp",
+      "iri": ""
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/agent-identifier",
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent-identifier.json",
       "name": "agent-identifier",
       "title": "AgentIdentifier",
-      "description": "An identifier for an Agent."
+      "description": "An identifier for an Agent.",
+      "comments": "",
+      "examples": "`an ORCID`; `a Wikidata Q-number`; `an Index Herbariorum Institution Code`; `an International Standard Name Identifier`",
+      "namespace": "dwcp",
+      "iri": ""
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/agent-media",
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent-media.json",
       "name": "agent-media",
       "title": "AgentMedia",
-      "description": "A link establishing an Agent as content in a Media entity."
+      "description": "A link establishing an Agent as content in a Media entity.",
+      "comments": "",
+      "examples": "`a person shown in a photograph`; `a group of people in a video`",
+      "namespace": "dwcp",
+      "iri": ""
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/chronometric-age",

@@ -205,7 +205,21 @@ def generate_qrg_with_separators():
                 schema = json.load(f)
             fields = schema.get('fields', [])
             content += f'<div class="class-header-wrapper"><h2 id="{class_name}" class="class-header">{class_name}</h2></div>'
+            if "identifier" in table and table["identifier"]:
+                content += f'<p><strong>Identifier:</strong> {table.get("identifier")}</p>'
             content += f'<p><strong>Description:</strong> {table.get("description", "No description.")}</p>'
+            if "comments" in table and table["comments"]:
+                content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
+            if "examples" in table and table["examples"]:
+                content += f'<p><strong>Examples:</strong></p>'
+                examples = [ex.strip() for ex in table["examples"].split(';') if ex.strip()]
+                value = ''
+                for i, ex in enumerate(examples):
+                    if i > 0:
+                        print(f'ex: {ex}')
+                        value += '<div class="examples-separator"></div>'
+                    value += f'<div class="examples-content">{ex}</div>'
+                content += value
             field_links = ''.join([f'<a class="field-box" href="#{field.get("name", "").strip()}">{field.get("name", "").strip()}</a>' for field in fields if isinstance(field, dict) and field.get("name")])
             if field_links:
                 content += f'<nav class="field-index"><strong>Fields:</strong><br>{field_links}</nav>'
