@@ -124,7 +124,7 @@ TEMPLATE = '''<!DOCTYPE html>
         {content}
         <h1 id="model">Table Relationships</h1>
         <div class="intro">
-            <img src="../images/overview_model_2025-05-07.png" alt="How tables relate to each other.">
+            <img src="../images/overview_model_2025-06-02.png" alt="How tables relate to each other.">
             <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
         </div>
         <footer>
