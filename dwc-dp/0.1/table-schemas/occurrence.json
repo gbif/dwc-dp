@@ -190,6 +190,17 @@
       "iri": "http://rs.tdwg.org/dwc/terms/pathway"
     },
     {
+      "name": "substrate",
+      "title": "Substrate",
+      "description": "A biotic or abiotic material to which an dwc:Organism is attached when a dwc:Event occurs.",
+      "type": "string",
+      "format": "default",
+      "comments": "This may or may not imply that the organism influenced/took resources from the substrate (such as during parasitization or decomposition). Declaration of a host-parasite relationship is better expressed as an organism interaction.",
+      "examples": "`stone`; `wall`; `decaying wood`; `wooden board fence`; `animal bones`",
+      "namespace": "dwc",
+      "iri": "http://rs.tdwg.org/dwc/terms/substrate"
+    },
+    {
       "name": "occurrenceStatus",
       "title": "Occurrence Status",
       "description": "A statement about the detection or non-detection of a dwc:Organism.",
