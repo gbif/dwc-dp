@@ -54,8 +54,8 @@
       "name": "chronometric-age",
       "title": "ChronometricAge",
       "description": "An approximation of temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported by evidence.",
-      "comments": "",
-      "examples": "",
+      "comments": "The age of a specimen and how this age is known, whether by a dating assay, a relative association with dated material, or legacy collections information.",
+      "examples": "`an age range associated with a specimen derived from an AMS dating assay applied to an oyster shell in the same stratum`; `an age range associated with a specimen derived from a ceramics analysis based on other materials found in the same stratum`; `a maximum age associated with a specimen derived from K-Ar dating applied to a proximal volcanic tuff found stratigraphically below the specimen`; `an age range of a specimen based on its biostratigraphic context`; `an age of a specimen based on what is reported in legacy collections data`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -714,9 +714,9 @@
       "name": "survey",
       "title": "Survey",
       "description": "A biotic survey.",
-      "comments": "",
+      "comments": "This class consists of the information you might find in the Humboldt Extension to Darwin Core, except for the target scope terms, which are here accommodated in SurveyTarget.",
       "examples": "",
-      "namespace": "dwcp",
+      "namespace": "dwcdp",
       "iri": ""
     },
     {
