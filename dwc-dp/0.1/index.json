@@ -9,9 +9,9 @@
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent.json",
       "name": "agent",
       "title": "Agent",
-      "description": "A person, group, organization or other entity that can act.",
+      "description": "A person, group, organization, machine, software or other entity that can act.",
       "comments": "",
-      "examples": "",
+      "examples": "`Carl Linnaeus`; `The Terra Nova Expedition`; `The National Science Foundation`; `The El Yunque National Forest ARBIMON System`; `ChatGPT`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -198,9 +198,9 @@
       "title": "GeologicalContext",
       "description": "A set of geological designations, such as stratigraphy, that qualifies a region or place.",
       "comments": "",
-      "examples": "a particular lithostratigraphic layer",
-      "namespace": "dwcp",
-      "iri": ""
+      "examples": "`a particular lithostratigraphic layer`; `a specific chronostratigraphic unit`",
+      "namespace": "dwc",
+      "iri": "http://rs.tdwg.org/dwc/terms/GeologicalContext"
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/geological-context-media",
@@ -329,8 +329,8 @@
       "name": "media",
       "title": "Media",
       "description": "A dcmi:MediaType (dcmi:Sounds, dcmi:StillImages, dcmi:MovingImages or dcmi:Text) with other entities as content.",
-      "comments": "",
-      "examples": "",
+      "comments": "An instance of digital textual media may be better represented as a Reference.",
+      "examples": "`a digital image`; `a camera trap image series`; `a video`; `a clip from a sound recording`; `a digital 3D mesh representing a specimen`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -374,7 +374,7 @@
       "title": "MolecularProtocol",
       "description": "A protocol used to derive and identify a nucleotide sequence from a dwc:MaterialEntity.",
       "comments": "",
-      "examples": "",
+      "examples": "`a standard DNA barcoding workflow using Sanger sequencing`; `a shotgun metagenomics pipeline for microbial community profiling`; `a high-throughput amplicon sequencing protocol targeting 16S rRNA`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -671,7 +671,7 @@
       "title": "Protocol",
       "description": "A method used during an action.",
       "comments": "",
-      "examples": "",
+      "examples": "`a pitfall trap method for sampling ground-dwelling arthropods`; `a point-radius georeferencing method`; `a linear regression model to estimate body mass from skeletal measurements`; `a Bayesian phylogenetic inference method`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -693,7 +693,7 @@
       "title": "Reference",
       "description": "A bibliographic reference in which an entity is mentioned.",
       "comments": "",
-      "examples": "",
+      "examples": "`a peer-reviewed journal article describing a taxonomic revision`; `a page in a field notebook containing an original drawing of a fossil in context`; `a nucleotide sequence database entry for a barcoded specimen`; `an online dataset documenting organism occurrences in a region`",
       "namespace": "dwcp",
       "iri": ""
     },
@@ -715,7 +715,7 @@
       "title": "Survey",
       "description": "A biotic survey.",
       "comments": "This class consists of the information you might find in the Humboldt Extension to Darwin Core, except for the target scope terms, which are here accommodated in SurveyTarget.",
-      "examples": "",
+      "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
       "namespace": "dwcdp",
       "iri": ""
     },
