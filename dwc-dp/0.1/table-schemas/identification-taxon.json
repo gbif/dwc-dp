@@ -32,8 +32,8 @@
       "iri": "http://rs.tdwg.org/dwc/terms/taxonID"
     },
     {
-      "name": "taxonOrder",
-      "title": "Taxon Order",
+      "name": "taxonSortOrder",
+      "title": "Taxon Sort Order",
       "description": "A numerical position of a dwc:Taxon in a taxonFormula.",
       "type": "integer",
       "format": "default",
