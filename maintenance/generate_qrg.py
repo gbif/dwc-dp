@@ -92,6 +92,15 @@ TEMPLATE = '''<!DOCTYPE html>
             font-size: 1.1em;
             color: #003c71;
         }}
+        .foreign-key-summary h4 {{
+            margin-top: 20px;
+            font-size: 1.1em;
+            color: #003c71;
+        }}
+        .foreign-key-summary table td.label {{
+            font-weight: bold;
+            color: #003c71;
+        }}
         .field-header-wrapper {{
             width: 100vw;
             position: relative;
@@ -176,6 +185,43 @@ def build_term_section(field, class_name):
         return ''
     return f'<section class="term" id="{field.get("name", "").strip()}">\n<div class="field-header-wrapper"><h3 id="{field.get("name", "").strip()}">{field.get("name", "(no name)")}</h3></div>\n<table class="term-table">' + ''.join(rows) + '</table>\n</section>'
 
+def build_foreign_key_summary(table_schema):
+    fks = table_schema.get("foreignKeys", [])
+    if not fks:
+        return ""
+
+    fk_rows = []
+    for fk in fks:
+        src_fields = fk.get("fields")
+        ref = fk.get("reference", {})
+        tgt_table = ref.get("resource", "")
+        tgt_fields = ref.get("fields")
+
+        # Normalize to lists
+        src_fields = [src_fields] if isinstance(src_fields, str) else src_fields
+        tgt_fields = [tgt_fields] if isinstance(tgt_fields, str) else tgt_fields
+
+        for src, tgt in zip(src_fields, tgt_fields):
+            fk_rows.append((src, tgt_table, tgt))
+
+    # Optional: check requiredness from fields
+    field_required_map = {
+        f["name"]: f.get("constraints", {}).get("required", False)
+        for f in table_schema.get("fields", [])
+    }
+
+    table_html = ['<div class="foreign-key-summary">']
+    table_html.append('<h4>Relationships to Other Tables</h4>')
+    table_html.append('<table class="term-table">')
+    table_html.append('<tr><td class="label">Field</td><td>Target Table</td><td>Target Field</td><td>Required</td></tr>')
+
+    for src, tgt_table, tgt_field in fk_rows:
+        required = "Yes" if field_required_map.get(src, False) else "No"
+        table_html.append(f'<tr><td class="label">{src}</td><td>{tgt_table}</td><td>{tgt_field}</td><td>{required}</td></tr>')
+
+    table_html.append('</table></div>')
+    return '\n'.join(table_html)
+
 def generate_qrg_with_separators():
     print(f"Loading index from {INDEX_JSON_PATH}...")
     with open(INDEX_JSON_PATH, 'r', encoding='utf-8') as f:
@@ -220,6 +266,14 @@ def generate_qrg_with_separators():
                         value += '<div class="examples-separator"></div>'
                     value += f'<div class="examples-content">{ex}</div>'
                 content += value
+
+            # Add FK summary block for the current class (only if table schema is available)
+            table_schema_path = os.path.join(TABLE_SCHEMAS_DIR, f'{table_name}.json')
+            if os.path.isfile(table_schema_path):
+                with open(table_schema_path, 'r', encoding='utf-8') as tf:
+                    table_schema = json.load(tf)
+                content += build_foreign_key_summary(table_schema)
+
             field_links = ''.join([f'<a class="field-box" href="#{field.get("name", "").strip()}">{field.get("name", "").strip()}</a>' for field in fields if isinstance(field, dict) and field.get("name")])
             if field_links:
                 content += f'<nav class="field-index"><strong>Fields:</strong><br>{field_links}</nav>'
