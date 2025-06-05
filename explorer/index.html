@@ -1,0 +1,298 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<link href="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.css" rel="stylesheet"/>
+<meta charset="utf-8"/>
+<title>Darwin Core Data Package Browser</title>
+<script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.js"></script>
+<script src="https://unpkg.com/cytoscape-qtip@2.7.0/cytoscape-qtip.js"></script>
+<script src="indexJson.js"></script>
+<style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        #cy {
+            flex: 1;
+            height: 100vh;
+            border-right: 1px solid #ccc;
+        }
+        #sidebar {
+            width: 260px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 1px solid #ccc;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            font-size: 1.2em;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+        }
+        .table-link {
+            display: block;
+            margin: 6px 0;
+            color: #0645AD;
+            text-decoration: none;
+        }
+        .table-link:hover {
+            text-decoration: underline;
+        }
+        .category-filters {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div id="cy"></div>
+<div id="sidebar">
+<h2>Focal Tables</h2>
+<a class="table-link" data-target="agent" href="#">Agent</a><a class="table-link" data-target="event" href="#">Event</a><a class="table-link" data-target="identification" href="#">Identification</a><a class="table-link" data-target="material" href="#">Material</a><a class="table-link" data-target="media" href="#">Media</a><a class="table-link" data-target="nucleotide-analysis" href="#">NucleotideAnalysis</a><a class="table-link" data-target="occurrence" href="#">Occurrence</a><a class="table-link" data-target="organism-interaction" href="#">OrganismInteraction</a><a class="table-link" data-target="survey" href="#">Survey</a>
+<div class="category-filters">
+<h2>Filter Categories</h2>
+<div><label><input checked="" class="category-filter" type="checkbox" value="Agent"/> Agent</label></div><div><label><input checked="" class="category-filter" type="checkbox" value="Assertion"/> Assertion</label></div><div><label><input checked="" class="category-filter" type="checkbox" value="Identifier"/> Identifier</label></div><div><label><input checked="" class="category-filter" type="checkbox" value="Media"/> Media</label></div><div><label><input checked="" class="category-filter" type="checkbox" value="Protocol"/> Protocol</label></div><div><label><input checked="" class="category-filter" type="checkbox" value="Reference"/> Reference</label></div>
+</div>
+</div>
+<script>
+        const fullData = {"nodes": [{"data": {"id": "agent"}}, {"data": {"id": "agent-agent-role"}}, {"data": {"id": "agent-identifier"}}, {"data": {"id": "agent-media"}}, {"data": {"id": "chronometric-age"}}, {"data": {"id": "chronometric-age-agent-role"}}, {"data": {"id": "chronometric-age-assertion"}}, {"data": {"id": "chronometric-age-media"}}, {"data": {"id": "chronometric-age-protocol"}}, {"data": {"id": "chronometric-age-reference"}}, {"data": {"id": "event"}}, {"data": {"id": "event-agent-role"}}, {"data": {"id": "event-assertion"}}, {"data": {"id": "event-identifier"}}, {"data": {"id": "event-media"}}, {"data": {"id": "event-protocol"}}, {"data": {"id": "event-reference"}}, {"data": {"id": "geological-context"}}, {"data": {"id": "geological-context-media"}}, {"data": {"id": "identification"}}, {"data": {"id": "identification-agent-role"}}, {"data": {"id": "identification-taxon"}}, {"data": {"id": "material"}}, {"data": {"id": "material-agent-role"}}, {"data": {"id": "material-assertion"}}, {"data": {"id": "material-identifier"}}, {"data": {"id": "material-media"}}, {"data": {"id": "material-protocol"}}, {"data": {"id": "material-reference"}}, {"data": {"id": "media"}}, {"data": {"id": "media-agent-role"}}, {"data": {"id": "media-assertion"}}, {"data": {"id": "media-identifier"}}, {"data": {"id": "molecular-protocol"}}, {"data": {"id": "molecular-protocol-agent-role"}}, {"data": {"id": "molecular-protocol-assertion"}}, {"data": {"id": "molecular-protocol-reference"}}, {"data": {"id": "nucleotide-analysis"}}, {"data": {"id": "nucleotide-analysis-assertion"}}, {"data": {"id": "nucleotide-sequence"}}, {"data": {"id": "occurrence"}}, {"data": {"id": "occurrence-agent-role"}}, {"data": {"id": "occurrence-assertion"}}, {"data": {"id": "occurrence-identifier"}}, {"data": {"id": "occurrence-media"}}, {"data": {"id": "occurrence-protocol"}}, {"data": {"id": "occurrence-reference"}}, {"data": {"id": "organism-interaction"}}, {"data": {"id": "organism-interaction-agent-role"}}, {"data": {"id": "organism-interaction-assertion"}}, {"data": {"id": "organism-interaction-media"}}, {"data": {"id": "organism-interaction-reference"}}, {"data": {"id": "phylogenetic-tree"}}, {"data": {"id": "phylogenetic-tree-assertion"}}, {"data": {"id": "phylogenetic-tree-identifier"}}, {"data": {"id": "phylogenetic-tree-media"}}, {"data": {"id": "phylogenetic-tree-protocol"}}, {"data": {"id": "phylogenetic-tree-reference"}}, {"data": {"id": "phylogenetic-tree-tip"}}, {"data": {"id": "phylogenetic-tree-tip-assertion"}}, {"data": {"id": "protocol"}}, {"data": {"id": "protocol-reference"}}, {"data": {"id": "reference"}}, {"data": {"id": "survey"}}, {"data": {"id": "survey-agent-role"}}, {"data": {"id": "survey-assertion"}}, {"data": {"id": "survey-identifier"}}, {"data": {"id": "survey-protocol"}}, {"data": {"id": "survey-reference"}}, {"data": {"id": "survey-target"}}], "edges": [{"data": {"id": "agent-agent-role_agent", "source": "agent-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "agent-agent-role_agent", "source": "agent-agent-role", "target": "agent", "label": "relatedAgentID \u2192 agentID"}}, {"data": {"id": "agent-identifier_agent", "source": "agent-identifier", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "agent-media_media", "source": "agent-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "agent-media_agent", "source": "agent-media", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "chronometric-age_event", "source": "chronometric-age", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "chronometric-age_protocol", "source": "chronometric-age", "target": "protocol", "label": "chronometricAgeProtocolID \u2192 protocolID"}}, {"data": {"id": "chronometric-age_protocol", "source": "chronometric-age", "target": "protocol", "label": "chronometricAgeConversionProtocolID \u2192 protocolID"}}, {"data": {"id": "chronometric-age_material", "source": "chronometric-age", "target": "material", "label": "materialDatedID \u2192 materialEntityID"}}, {"data": {"id": "chronometric-age_agent", "source": "chronometric-age", "target": "agent", "label": "chronometricAgeDeterminedByID \u2192 agentID"}}, {"data": {"id": "chronometric-age-agent-role_agent", "source": "chronometric-age-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "chronometric-age-agent-role_chronometric-age", "source": "chronometric-age-agent-role", "target": "chronometric-age", "label": "chronometricAgeID \u2192 chronometricAgeID"}}, {"data": {"id": "chronometric-age-assertion_chronometric-age", "source": "chronometric-age-assertion", "target": "chronometric-age", "label": "chronometricAgeID \u2192 chronometricAgeID"}}, {"data": {"id": "chronometric-age-assertion_agent", "source": "chronometric-age-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "chronometric-age-assertion_protocol", "source": "chronometric-age-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "chronometric-age-media_media", "source": "chronometric-age-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "chronometric-age-media_chronometric-age", "source": "chronometric-age-media", "target": "chronometric-age", "label": "chronometricAgeID \u2192 chronometricAgeID"}}, {"data": {"id": "chronometric-age-protocol_protocol", "source": "chronometric-age-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "chronometric-age-protocol_chronometric-age", "source": "chronometric-age-protocol", "target": "chronometric-age", "label": "chronometricAgeID \u2192 chronometricAgeID"}}, {"data": {"id": "chronometric-age-reference_reference", "source": "chronometric-age-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "chronometric-age-reference_chronometric-age", "source": "chronometric-age-reference", "target": "chronometric-age", "label": "chronometricAgeID \u2192 chronometricAgeID"}}, {"data": {"id": "event_event", "source": "event", "target": "event", "label": "parentEventID \u2192 eventID"}}, {"data": {"id": "event_agent", "source": "event", "target": "agent", "label": "eventConductedByID \u2192 agentID"}}, {"data": {"id": "event_agent", "source": "event", "target": "agent", "label": "georeferencedByID \u2192 agentID"}}, {"data": {"id": "event_protocol", "source": "event", "target": "protocol", "label": "georeferenceProtocolID \u2192 protocolID"}}, {"data": {"id": "event_agent", "source": "event", "target": "agent", "label": "fundingAttributionID \u2192 agentID"}}, {"data": {"id": "event-agent-role_agent", "source": "event-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "event-agent-role_event", "source": "event-agent-role", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "event-assertion_event", "source": "event-assertion", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "event-assertion_agent", "source": "event-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "event-assertion_protocol", "source": "event-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "event-identifier_event", "source": "event-identifier", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "event-media_media", "source": "event-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "event-media_event", "source": "event-media", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "event-protocol_protocol", "source": "event-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "event-protocol_event", "source": "event-protocol", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "event-reference_reference", "source": "event-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "event-reference_event", "source": "event-reference", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "geological-context_event", "source": "geological-context", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "geological-context-media_media", "source": "geological-context-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "geological-context-media_geological-context", "source": "geological-context-media", "target": "geological-context", "label": "geologicalContextID \u2192 geologicalContextID"}}, {"data": {"id": "identification_occurrence", "source": "identification", "target": "occurrence", "label": "basedOnOccurrenceID \u2192 occurrenceID"}}, {"data": {"id": "identification_material", "source": "identification", "target": "material", "label": "basedOnMaterialEntityID \u2192 materialEntityID"}}, {"data": {"id": "identification_nucleotide-sequence", "source": "identification", "target": "nucleotide-sequence", "label": "basedOnNucleotideSequenceID \u2192 nucleotideSequenceID"}}, {"data": {"id": "identification_nucleotide-analysis", "source": "identification", "target": "nucleotide-analysis", "label": "basedOnNucleotideAnalysisID \u2192 nucleotideAnalysisID"}}, {"data": {"id": "identification_media", "source": "identification", "target": "media", "label": "basedOnMediaID \u2192 mediaID"}}, {"data": {"id": "identification_agent", "source": "identification", "target": "agent", "label": "identifiedByID \u2192 agentID"}}, {"data": {"id": "identification-agent-role_agent", "source": "identification-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "identification-agent-role_identification", "source": "identification-agent-role", "target": "identification", "label": "identificationID \u2192 identificationID"}}, {"data": {"id": "identification-taxon_identification", "source": "identification-taxon", "target": "identification", "label": "identificationID \u2192 identificationID"}}, {"data": {"id": "material_event", "source": "material", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "material_agent", "source": "material", "target": "agent", "label": "institutionID \u2192 agentID"}}, {"data": {"id": "material_agent", "source": "material", "target": "agent", "label": "ownerInstitutionID \u2192 agentID"}}, {"data": {"id": "material_agent", "source": "material", "target": "agent", "label": "collectedByID \u2192 agentID"}}, {"data": {"id": "material_occurrence", "source": "material", "target": "occurrence", "label": "evidenceForOccurrenceID \u2192 occurrenceID"}}, {"data": {"id": "material_material", "source": "material", "target": "material", "label": "derivedFromMaterialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material_event", "source": "material", "target": "event", "label": "derivationEventID \u2192 eventID"}}, {"data": {"id": "material_material", "source": "material", "target": "material", "label": "isPartOfMaterialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material_agent", "source": "material", "target": "agent", "label": "identifiedByID \u2192 agentID"}}, {"data": {"id": "material-agent-role_agent", "source": "material-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "material-agent-role_material", "source": "material-agent-role", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material-assertion_material", "source": "material-assertion", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material-assertion_agent", "source": "material-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "material-assertion_protocol", "source": "material-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "material-identifier_material", "source": "material-identifier", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material-media_media", "source": "material-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "material-media_material", "source": "material-media", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material-protocol_protocol", "source": "material-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "material-protocol_material", "source": "material-protocol", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "material-reference_reference", "source": "material-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "material-reference_material", "source": "material-reference", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "commenter \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "reviewer \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "sourceIRI \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "creatorIRI \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "provider \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "metadataCreator \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "metadataProvider \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "identifiedByID \u2192 agentID"}}, {"data": {"id": "media_agent", "source": "media", "target": "agent", "label": "providerID \u2192 agentID"}}, {"data": {"id": "media_material", "source": "media", "target": "material", "label": "associatedSpecimenReference \u2192 materialEntityID"}}, {"data": {"id": "media_occurrence", "source": "media", "target": "occurrence", "label": "associatedObservationReference \u2192 occurrenceID"}}, {"data": {"id": "media-agent-role_agent", "source": "media-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "media-agent-role_media", "source": "media-agent-role", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "media-assertion_media", "source": "media-assertion", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "media-assertion_agent", "source": "media-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "media-assertion_protocol", "source": "media-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "media-identifier_media", "source": "media-identifier", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "molecular-protocol_material", "source": "molecular-protocol", "target": "material", "label": "source_mat_id \u2192 materialEntityID"}}, {"data": {"id": "molecular-protocol-agent-role_agent", "source": "molecular-protocol-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "molecular-protocol-agent-role_molecular-protocol", "source": "molecular-protocol-agent-role", "target": "molecular-protocol", "label": "molecularProtocolID \u2192 molecularProtocolID"}}, {"data": {"id": "molecular-protocol-assertion_molecular-protocol", "source": "molecular-protocol-assertion", "target": "molecular-protocol", "label": "molecularProtocolID \u2192 molecularProtocolID"}}, {"data": {"id": "molecular-protocol-assertion_agent", "source": "molecular-protocol-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "molecular-protocol-assertion_protocol", "source": "molecular-protocol-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "molecular-protocol-reference_reference", "source": "molecular-protocol-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "molecular-protocol-reference_molecular-protocol", "source": "molecular-protocol-reference", "target": "molecular-protocol", "label": "molecularProtocolID \u2192 molecularProtocolID"}}, {"data": {"id": "nucleotide-analysis_event", "source": "nucleotide-analysis", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "nucleotide-analysis_molecular-protocol", "source": "nucleotide-analysis", "target": "molecular-protocol", "label": "molecularProtocolID \u2192 molecularProtocolID"}}, {"data": {"id": "nucleotide-analysis_nucleotide-sequence", "source": "nucleotide-analysis", "target": "nucleotide-sequence", "label": "nucleotideSequenceID \u2192 nucleotideSequenceID"}}, {"data": {"id": "nucleotide-analysis_material", "source": "nucleotide-analysis", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "nucleotide-analysis-assertion_nucleotide-analysis", "source": "nucleotide-analysis-assertion", "target": "nucleotide-analysis", "label": "nucleotideAnalysisID \u2192 nucleotideAnalysisID"}}, {"data": {"id": "nucleotide-analysis-assertion_agent", "source": "nucleotide-analysis-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "nucleotide-analysis-assertion_protocol", "source": "nucleotide-analysis-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "occurrence_event", "source": "occurrence", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "occurrence_survey-target", "source": "occurrence", "target": "survey-target", "label": "surveyTargetID \u2192 surveyTargetID"}}, {"data": {"id": "occurrence_agent", "source": "occurrence", "target": "agent", "label": "recordedByID \u2192 agentID"}}, {"data": {"id": "occurrence_agent", "source": "occurrence", "target": "agent", "label": "identifiedByID \u2192 agentID"}}, {"data": {"id": "occurrence-agent-role_agent", "source": "occurrence-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "occurrence-agent-role_occurrence", "source": "occurrence-agent-role", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "occurrence-assertion_occurrence", "source": "occurrence-assertion", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "occurrence-assertion_agent", "source": "occurrence-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "occurrence-assertion_protocol", "source": "occurrence-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "occurrence-identifier_occurrence", "source": "occurrence-identifier", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "occurrence-media_media", "source": "occurrence-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "occurrence-media_occurrence", "source": "occurrence-media", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "occurrence-protocol_protocol", "source": "occurrence-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "occurrence-protocol_occurrence", "source": "occurrence-protocol", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "occurrence-reference_reference", "source": "occurrence-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "occurrence-reference_occurrence", "source": "occurrence-reference", "target": "occurrence", "label": "occurrenceID \u2192 occurrenceID"}}, {"data": {"id": "organism-interaction_event", "source": "organism-interaction", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "organism-interaction_occurrence", "source": "organism-interaction", "target": "occurrence", "label": "subjectOccurrenceID \u2192 occurrenceID"}}, {"data": {"id": "organism-interaction_occurrence", "source": "organism-interaction", "target": "occurrence", "label": "relatedOccurrenceID \u2192 occurrenceID"}}, {"data": {"id": "organism-interaction-agent-role_agent", "source": "organism-interaction-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "organism-interaction-agent-role_organism-interaction", "source": "organism-interaction-agent-role", "target": "organism-interaction", "label": "organismInteractionID \u2192 organismInteractionID"}}, {"data": {"id": "organism-interaction-assertion_organism-interaction", "source": "organism-interaction-assertion", "target": "organism-interaction", "label": "organismInteractionID \u2192 organismInteractionID"}}, {"data": {"id": "organism-interaction-assertion_agent", "source": "organism-interaction-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "organism-interaction-assertion_protocol", "source": "organism-interaction-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "organism-interaction-media_media", "source": "organism-interaction-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "organism-interaction-media_organism-interaction", "source": "organism-interaction-media", "target": "organism-interaction", "label": "organismInteractionID \u2192 organismInteractionID"}}, {"data": {"id": "organism-interaction-reference_reference", "source": "organism-interaction-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "organism-interaction-reference_organism-interaction", "source": "organism-interaction-reference", "target": "organism-interaction", "label": "organismInteractionID \u2192 organismInteractionID"}}, {"data": {"id": "phylogenetic-tree_protocol", "source": "phylogenetic-tree", "target": "protocol", "label": "phylogeneticTreeProtocolID \u2192 protocolID"}}, {"data": {"id": "phylogenetic-tree-assertion_phylogenetic-tree", "source": "phylogenetic-tree-assertion", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-assertion_agent", "source": "phylogenetic-tree-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "phylogenetic-tree-assertion_protocol", "source": "phylogenetic-tree-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "phylogenetic-tree-identifier_phylogenetic-tree", "source": "phylogenetic-tree-identifier", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-media_media", "source": "phylogenetic-tree-media", "target": "media", "label": "mediaID \u2192 mediaID"}}, {"data": {"id": "phylogenetic-tree-media_phylogenetic-tree", "source": "phylogenetic-tree-media", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-protocol_protocol", "source": "phylogenetic-tree-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "phylogenetic-tree-protocol_phylogenetic-tree", "source": "phylogenetic-tree-protocol", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-reference_reference", "source": "phylogenetic-tree-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "phylogenetic-tree-reference_phylogenetic-tree", "source": "phylogenetic-tree-reference", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-tip_phylogenetic-tree", "source": "phylogenetic-tree-tip", "target": "phylogenetic-tree", "label": "phylogeneticTreeID \u2192 phylogeneticTreeID"}}, {"data": {"id": "phylogenetic-tree-tip_material", "source": "phylogenetic-tree-tip", "target": "material", "label": "materialEntityID \u2192 materialEntityID"}}, {"data": {"id": "phylogenetic-tree-tip_nucleotide-sequence", "source": "phylogenetic-tree-tip", "target": "nucleotide-sequence", "label": "nucleotideSequenceID \u2192 nucleotideSequenceID"}}, {"data": {"id": "phylogenetic-tree-tip-assertion_phylogenetic-tree-tip", "source": "phylogenetic-tree-tip-assertion", "target": "phylogenetic-tree-tip", "label": "phylogeneticTreeTipID \u2192 phylogeneticTreeTipID"}}, {"data": {"id": "phylogenetic-tree-tip-assertion_agent", "source": "phylogenetic-tree-tip-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "phylogenetic-tree-tip-assertion_protocol", "source": "phylogenetic-tree-tip-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "protocol-reference_reference", "source": "protocol-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "protocol-reference_protocol", "source": "protocol-reference", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "reference_reference", "source": "reference", "target": "reference", "label": "parentReferenceID \u2192 referenceID"}}, {"data": {"id": "reference_agent", "source": "reference", "target": "agent", "label": "creatorID \u2192 agentID"}}, {"data": {"id": "reference_agent", "source": "reference", "target": "agent", "label": "publisherID \u2192 agentID"}}, {"data": {"id": "survey_event", "source": "survey", "target": "event", "label": "eventID \u2192 eventID"}}, {"data": {"id": "survey_agent", "source": "survey", "target": "agent", "label": "identifiedByID \u2192 agentID"}}, {"data": {"id": "survey_agent", "source": "survey", "target": "agent", "label": "samplingPerformedByID \u2192 agentID"}}, {"data": {"id": "survey_protocol", "source": "survey", "target": "protocol", "label": "samplingEffortProtocolID \u2192 protocolID"}}, {"data": {"id": "survey-agent-role_agent", "source": "survey-agent-role", "target": "agent", "label": "agentID \u2192 agentID"}}, {"data": {"id": "survey-agent-role_survey", "source": "survey-agent-role", "target": "survey", "label": "surveyID \u2192 surveyID"}}, {"data": {"id": "survey-assertion_survey", "source": "survey-assertion", "target": "survey", "label": "surveyID \u2192 surveyID"}}, {"data": {"id": "survey-assertion_agent", "source": "survey-assertion", "target": "agent", "label": "assertionByID \u2192 agentID"}}, {"data": {"id": "survey-assertion_protocol", "source": "survey-assertion", "target": "protocol", "label": "assertionProtocolID \u2192 protocolID"}}, {"data": {"id": "survey-identifier_survey", "source": "survey-identifier", "target": "survey", "label": "surveyID \u2192 surveyID"}}, {"data": {"id": "survey-protocol_protocol", "source": "survey-protocol", "target": "protocol", "label": "protocolID \u2192 protocolID"}}, {"data": {"id": "survey-protocol_survey", "source": "survey-protocol", "target": "survey", "label": "surveyID \u2192 surveyID"}}, {"data": {"id": "survey-reference_reference", "source": "survey-reference", "target": "reference", "label": "referenceID \u2192 referenceID"}}, {"data": {"id": "survey-reference_survey", "source": "survey-reference", "target": "survey", "label": "surveyID \u2192 surveyID"}}, {"data": {"id": "survey-target_survey", "source": "survey-target", "target": "survey", "label": "surveyID \u2192 surveyID"}}]};
+        const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
+        const categoryColorMap = {"Agent": "#8B0000", "Assertion": "#2E8B57", "Identifier": "#8B4513", "Media": "#4682B4", "Protocol": "#DAA520", "Reference": "#800080"};
+        let disabledCategories = new Set();
+
+        const params = new URLSearchParams(window.location.search);
+        const focal = params.get("focal") || "event";
+        const hiddenCats = (params.get("hide") || "").toLowerCase().split(",").filter(x => x);
+        hiddenCats.forEach(cat => disabledCategories.add(cat));
+
+        function categoriesOf(tableName) {
+            const name = tableName.toLowerCase();
+            return allCategories.filter(cat => name.includes(cat));
+        }
+
+function renderGraph() {
+    const focalCategories = categoriesOf(focal);
+    const focalVisible = focalCategories.length === 0 || !focalCategories.some(cat => disabledCategories.has(cat));
+    if (!focalVisible) {
+        cytoscape({
+            container: document.getElementById('cy'),
+            elements: [],
+            layout: { name: 'circle' }
+        });
+        return;
+    }
+
+            const connectedEdges = fullData.edges.filter(e =>
+                (e.data.source === focal || e.data.target === focal)
+            );
+
+setTimeout(() => {
+  console.log('Created Cytoscape instance');
+  console.log('About to log node IDs...');
+  console.log('Node count:', cy.nodes().length);
+  cy.nodes().forEach(function (ele) {
+    console.log('Node ID:', ele.data("id"));
+  });
+
+// Add tooltip for each node
+cy.nodes().forEach(function(node) {
+  const id = node.id();  // e.g., 'event', 'occurrence'
+
+  // Find the matching metadata entry from indexJson
+  const meta = indexJson.tableSchemas.find(entry => entry.name === id);
+
+  // Fallback values if metadata is not found
+  const title = meta?.title || id.charAt(0).toUpperCase() + id.slice(1);
+  const description = meta?.description || "No description available.";
+  const comments = meta?.comments || "No comments available.";
+  const examples = meta?.examples || "No examples available.";
+  const qrgUrl = meta?.url || `https://gbif.github.io/dwc-dp/qrg/index.html#${title}`;
+
+  node.qtip({
+    content: {
+      title: title,
+      text: `
+        <strong>Description:</strong> ${description}<br>
+        <strong>Comments:</strong> ${comments}<br>
+        <strong>Examples:</strong> ${examples}<br>
+        <strong>QRG:</strong> <a href="${qrgUrl}" target="_blank">Quick Reference Guide</a>
+      `
+    },
+    position: {
+      my: 'top center',
+      at: 'bottom center'
+    },
+    style: {
+      classes: 'qtip-bootstrap',
+      tip: {
+        width: 16,
+        height: 8
+      }
+    }
+  });
+});
+
+}, 0);
+
+            const connectedNodeIds = new Set([focal]);
+            connectedEdges.forEach(e => {
+                connectedNodeIds.add(e.data.source);
+                connectedNodeIds.add(e.data.target);
+            });
+
+            const connectedNodes = fullData.nodes
+                .filter(n => connectedNodeIds.has(n.data.id))
+                .map(n => {
+                    const categories = categoriesOf(n.data.id);
+                    return {
+                        data: {
+                            id: n.data.id,
+                            categories: categories,
+                            category: categories.length === 1 ? categories[0] : null
+                        }
+                    };
+                })
+                .filter(n => {
+                    if (n.data.id === focal) return true;
+                    const categories = n.data.categories;
+                    return categories.length === 0 || !categories.some(cat => disabledCategories.has(cat));
+                }
+                );
+
+            const visibleNodeIds = new Set(connectedNodes.map(n => n.data.id));
+            const visibleEdges = connectedEdges.filter(e =>
+                visibleNodeIds.has(e.data.source) && visibleNodeIds.has(e.data.target)
+            );
+
+            const cy = cytoscape({
+                container: document.getElementById('cy'),
+                elements: connectedNodes.concat(visibleEdges),
+                layout: { name: 'circle' },
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'label': 'data(id)',
+                            'text-valign': 'center',
+                            'color': '#fff',
+                            'text-outline-width': 2
+                        }
+                    },
+                    {
+        selector: 'node[category = "agent"]',
+        style: {
+            'background-color': '#8B0000',
+            'text-outline-color': '#8B0000'
+        }
+    },
+{
+        selector: 'node[category = "assertion"]',
+        style: {
+            'background-color': '#2E8B57',
+            'text-outline-color': '#2E8B57'
+        }
+    },
+{
+        selector: 'node[category = "identifier"]',
+        style: {
+            'background-color': '#8B4513',
+            'text-outline-color': '#8B4513'
+        }
+    },
+{
+        selector: 'node[category = "media"]',
+        style: {
+            'background-color': '#4682B4',
+            'text-outline-color': '#4682B4'
+        }
+    },
+{
+        selector: 'node[category = "protocol"]',
+        style: {
+            'background-color': '#DAA520',
+            'text-outline-color': '#DAA520'
+        }
+    },
+{
+        selector: 'node[category = "reference"]',
+        style: {
+            'background-color': '#800080',
+            'text-outline-color': '#800080'
+        }
+    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'label': 'data(label)',
+                            'curve-style': 'bezier',
+                            'target-arrow-shape': 'triangle',
+                            'arrow-scale': 1.5,
+                            'width': 2,
+                            'edge-text-rotation': 'autorotate',
+                            'text-margin-y': -10
+                        }
+                    }
+                ]
+            });
+
+            cy.on('tap', 'node', function(evt) {
+                const target = evt.target.id();
+                if (target !== focal) {
+                    const catParam = Array.from(disabledCategories).join(",");
+                    window.location.href = '?focal=' + target + '&hide=' + encodeURIComponent(catParam);
+                }
+            });
+        }
+
+        document.querySelectorAll('.category-filter').forEach(input => {
+            input.checked = !disabledCategories.has(input.value.toLowerCase());
+            input.addEventListener('change', () => {
+                disabledCategories = new Set(
+                    Array.from(document.querySelectorAll('.category-filter'))
+                        .filter(cb => !cb.checked)
+                        .map(cb => cb.value.toLowerCase())
+                );
+                updateLinks();
+            });
+        });
+
+        function updateLinks() {
+            const hide = Array.from(disabledCategories).join(",");
+            document.querySelectorAll('.table-link').forEach(link => {
+                const target = link.getAttribute("data-target");
+                link.href = '?focal=' + target + '&hide=' + encodeURIComponent(hide);
+            });
+        }
+
+        updateLinks();
+    </script>
+
+<script>
+const tooltipMap = {
+  "event": `
+<strong>EventTest</strong><br>
+EventDescription<br>
+<em>EventComments</em><br><br>
+<strong>Examples:</strong><ul><li>EventExamples</li></ul><br>
+<a href='https://gbif.github.io/dwc-dp/qrg/index.html#Event' target='_blank'>Quick Reference Guide</a>
+`
+};
+</script>
+</body>
+</html>
+<script>
+    console.log("Running renderGraph after full page load");
+    renderGraph();
+</script>
+<script>
+  const oldRender = renderGraph;
+  renderGraph = () => {
+    setTimeout(() => {
+      oldRender();
+    }, 200);  // Delay slightly to allow full DOM readiness
+  };
+</script>
