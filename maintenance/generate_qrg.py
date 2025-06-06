@@ -183,7 +183,16 @@ def build_term_section(field, class_name):
         rows.append(f'<tr><td class="label">{labels[key]}</td><td>{value}</td></tr>')
     if not rows:
         return ''
-    return f'<section class="term" id="{field.get("name", "").strip()}">\n<div class="field-header-wrapper"><h3 id="{field.get("name", "").strip()}">{field.get("name", "(no name)")}</h3></div>\n<table class="term-table">' + ''.join(rows) + '</table>\n</section>'
+    field_name = field.get("name", "").strip()
+    full_id = f"{class_name}__{field_name}"
+    return f'<section class="term" id="{full_id}">\n<div class="field-header-wrapper"><h3 id="{full_id}">{field.get("name", "(no name)")}</h3></div>\n<table class="term-table">' + ''.join(rows) + '</table>\n</section>'
+
+def generate_field_links(fields, class_name):
+    return ''.join([
+        f'<a class="field-box" href="#{class_name}__{field.get("name", "").strip()}">{field.get("name", "").strip()}</a>'
+
+        for field in fields if isinstance(field, dict) and field.get("name")
+    ])
 
 def build_foreign_key_summary(table_schema):
     fks = table_schema.get("foreignKeys", [])
@@ -262,7 +271,6 @@ def generate_qrg_with_separators():
                 value = ''
                 for i, ex in enumerate(examples):
                     if i > 0:
-                        print(f'ex: {ex}')
                         value += '<div class="examples-separator"></div>'
                     value += f'<div class="examples-content">{ex}</div>'
                 content += value
@@ -274,7 +282,7 @@ def generate_qrg_with_separators():
                     table_schema = json.load(tf)
                 content += build_foreign_key_summary(table_schema)
 
-            field_links = ''.join([f'<a class="field-box" href="#{field.get("name", "").strip()}">{field.get("name", "").strip()}</a>' for field in fields if isinstance(field, dict) and field.get("name")])
+            field_links = generate_field_links(fields, class_name)
             if field_links:
                 content += f'<nav class="field-index"><strong>Fields:</strong><br>{field_links}</nav>'
             for field in fields:
