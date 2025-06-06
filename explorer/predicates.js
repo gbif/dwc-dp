@@ -142,7 +142,7 @@ const predicates = [
   {"subject_table": "phylogenetic-tree-reference", "subject_field": "referenceID", "predicate": "mentioned in", "related_table": "reference", "related_field": "referenceID"},
   {"subject_table": "phylogenetic-tree-reference", "subject_field": "phylogeneticTreeID", "predicate": "mentions", "related_table": "phylogenetic-tree", "related_field": "phylogeneticTreeID"},
   {"subject_table": "phylogenetic-tree-tip", "subject_field": "phylogeneticTreeID", "predicate": "on", "related_table": "phylogenetic-tree", "related_field": "phylogeneticTreeID"},
-  {"subject_table": "phylogenetic-tree-tip", "subject_field": "materialEntityID", "predicate": "source", "related_table": "material", "related_field": "materialEntityID"},
+  {"subject_table": "phylogenetic-tree-tip", "subject_field": "materialEntityID", "predicate": "has source", "related_table": "material", "related_field": "materialEntityID"},
   {"subject_table": "phylogenetic-tree-tip", "subject_field": "nucleotideSequenceID", "predicate": "has", "related_table": "nucleotide-sequence", "related_field": "nucleotideSequenceID"},
   {"subject_table": "phylogenetic-tree-tip-assertion", "subject_field": "phylogeneticTreeTipID", "predicate": "about", "related_table": "phylogenetic-tree-tip", "related_field": "phylogeneticTreeTipID"},
   {"subject_table": "phylogenetic-tree-tip-assertion", "subject_field": "assertionByID", "predicate": "asserted by", "related_table": "agent", "related_field": "agentID"},
