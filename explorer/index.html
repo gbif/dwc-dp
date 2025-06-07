@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.css" rel="stylesheet"/>
-  <meta charset="utf-8"/>
+  <meta charset="utf-8" />
   <title>Darwin Core Data Package Explorer</title>
+  <link href="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.css" rel="stylesheet" />
   <script src="https://unpkg.com/cytoscape@3.24.0/dist/cytoscape.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/qtip2@3.0.3/dist/jquery.qtip.min.js"></script>
@@ -12,13 +12,24 @@
   <script src="predicates.js"></script>
   <style>
     body {
-      display: flex;
       margin: 0;
       font-family: sans-serif;
     }
+    #titlebar {
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      font-weight: bold;
+      padding: 12px;
+      background-color: #f0f0f0;
+      border-bottom: 1px solid #ccc;
+    }
+    #main-content {
+      display: flex;
+      height: calc(100vh - 54px); /* Subtract height of title bar */
+    }
     #cy {
       flex: 1;
-      height: 100vh;
       border-right: 1px solid #ccc;
     }
     #sidebar {
@@ -47,34 +58,47 @@
     }
   </style>
 </head>
-
 <body>
-  <div id="cy"></div>
-  <div id="sidebar">
-    <h2>Focal Tables</h2>
-    <a class="table-link" data-target="agent" href="#">Agent</a><a class="table-link" data-target="event" href="#">Event</a><a class="table-link" data-target="identification" href="#">Identification</a><a class="table-link" data-target="material" href="#">Material</a><a class="table-link" data-target="media" href="#">Media</a><a class="table-link" data-target="nucleotide-analysis" href="#">NucleotideAnalysis</a><a class="table-link" data-target="occurrence" href="#">Occurrence</a><a class="table-link" data-target="organism-interaction" href="#">OrganismInteraction</a><a class="table-link" data-target="survey" href="#">Survey</a>
-    <div class="category-filters">
-      <h2>Filter Categories</h2>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Agent"/> Agent</label></div>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Assertion"/> Assertion</label></div>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Identifier"/> Identifier</label></div>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Media"/> Media</label></div>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Protocol"/> Protocol</label></div>
-      <div><label><input checked="" class="category-filter" type="checkbox" value="Reference"/> Reference</label></div>
-    </div>
-    <div style="margin-top: 20px;">
-      <label>
-        <input type="checkbox" id="toggle-edge-labels" checked>
-        Show Relationships
-      </label>
+  <div id="titlebar">Darwin Core Data Package Relationship Explorer</div>
+
+  <div id="main-content">
+    <div id="cy"></div>
+
+    <div id="sidebar">
+      <h2>Focal Tables</h2>
+      <a class="table-link" data-target="agent" href="#">Agent</a>
+      <a class="table-link" data-target="event" href="#">Event</a>
+      <a class="table-link" data-target="identification" href="#">Identification</a>
+      <a class="table-link" data-target="material" href="#">Material</a>
+      <a class="table-link" data-target="media" href="#">Media</a>
+      <a class="table-link" data-target="nucleotide-analysis" href="#">NucleotideAnalysis</a>
+      <a class="table-link" data-target="occurrence" href="#">Occurrence</a>
+      <a class="table-link" data-target="organism-interaction" href="#">OrganismInteraction</a>
+      <a class="table-link" data-target="survey" href="#">Survey</a>
+
+      <div class="category-filters">
+        <h2>Filter Categories</h2>
+        <div><label><input checked class="category-filter" type="checkbox" value="Agent" /> Agent</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Assertion" /> Assertion</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Identifier" /> Identifier</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Media" /> Media</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Protocol" /> Protocol</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Reference" /> Reference</label></div>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <label>
+          <input type="checkbox" id="toggle-edge-labels" checked />
+          Show Relationships
+        </label>
+      </div>
     </div>
   </div>
+
   <script>
-    // Create nodes from indexJson
     const nodes = indexJson.tableSchemas.map(schema => ({
       data: { id: schema.name }
     }));
-    // Create edges from predicates
     const edges = predicates.map((pred, index) => ({
       data: {
         id: `${pred.subject_table}_${pred.subject_field}_${pred.related_table}_${pred.related_field}_${index}`,
@@ -86,7 +110,6 @@
     const fullData = { nodes, edges };
 
     const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
-    
     const predicateMap = {};
     predicates.forEach(p => {
       const key = `${p.subject_table}__${p.subject_field}__${p.related_table}__${p.related_field}`;
@@ -113,59 +136,12 @@
         cytoscape({
           container: document.getElementById('cy'),
           elements: [],
-          layout: { name: 'cose', animate: true, fit: true, avoidOverlap: true }
-        }); // end cytoscape
+          layout: { name: 'circle' }
+        });
         return;
-      } // end if
+      }
 
-      const connectedEdges = fullData.edges.filter(e => (e.data.source === focal || e.data.target === focal));
-
-      setTimeout(() => {
-//        console.log('Created Cytoscape instance');
-//        console.log('About to log node IDs...');
-//        console.log('Node count:', cy.nodes().length);
-//        cy.nodes().forEach(function (ele) {
-//          console.log('Node ID:', ele.data("id"));
-//        });
-
-        // Add tooltip for each node
-        cy.nodes().forEach(function(node) {
-          const id = node.id();  // e.g., 'event', 'occurrence'
-
-          // Find the matching metadata entry from indexJson
-          const meta = indexJson.tableSchemas.find(entry => entry.name === id);
-
-          // Fallback values if metadata is not found
-          const title = meta?.title || id.charAt(0).toUpperCase() + id.slice(1);
-          const description = meta?.description || "No description available.";
-          const comments = meta?.comments || "No comments available.";
-          const examples = meta?.examples || "No examples available.";
-          const qrgUrl = meta?.url || `https://gbif.github.io/dwc-dp/qrg/index.html#${title}`;
-
-          node.qtip({
-            content: {
-              title: title,
-              text: `
-                <strong>Description:</strong> ${description}<br>
-                <strong>Comments:</strong> ${comments}<br>
-                <strong>Examples:</strong> ${examples}<br>
-                <strong>QRG:</strong> <a href="${qrgUrl}" target="_blank">Quick Reference Guide</a>
-              `
-            },
-            position: {
-              my: 'top center',
-              at: 'bottom center'
-            },
-            style: {
-              classes: 'qtip-bootstrap',
-              tip: {
-                width: 16,
-                height: 8
-              }
-            }
-          }); // end node.qtip
-        }); // end cy.nodes
-      }, 0); // end setTimeout
+      const connectedEdges = fullData.edges.filter(e => e.data.source === focal || e.data.target === focal);
 
       const connectedNodeIds = new Set([focal]);
       connectedEdges.forEach(e => {
@@ -178,7 +154,7 @@
         return {
           data: {
             id: n.data.id,
-            categories: categories,
+            categories,
             category: categories.length === 1 ? categories[0] : null
           }
         };
@@ -186,26 +162,19 @@
         if (n.data.id === focal) return true;
         const categories = n.data.categories;
         return categories.length === 0 || !categories.some(cat => disabledCategories.has(cat));
-      }); // end const connectedNodes
+      });
 
       const visibleNodeIds = new Set(connectedNodes.map(n => n.data.id));
       const visibleEdges = connectedEdges.filter(e => visibleNodeIds.has(e.data.source) && visibleNodeIds.has(e.data.target)).map(edge => {
         const parts = edge.data.label.split("→").map(s => s.trim());
-        const subjectField = parts[0];
-        const relatedField = parts[1];
-        const subjectTable = edge.data.source;
-        const relatedTable = edge.data.target;
-
-        const predicateKey = `${subjectTable}__${subjectField}__${relatedTable}__${relatedField}`;
-        const predicateLabel = predicateMap[predicateKey];
-
+        const predicateKey = `${edge.data.source}__${parts[0]}__${edge.data.target}__${parts[1]}`;
         return {
           data: {
             ...edge.data,
-            label: predicateLabel || edge.data.label  // fallback to original if no match
+            label: predicateMap[predicateKey] || edge.data.label
           }
-        }; // end return
-      }); // end const visibleEdges
+        };
+      });
 
       cy = cytoscape({
         container: document.getElementById('cy'),
@@ -276,41 +245,50 @@
             }
           }
         ]
-      }); // end const cy
+      });
+
+      // Tooltips
+      setTimeout(() => {
+        cy.nodes().forEach(node => {
+          const id = node.id();
+          const meta = indexJson.tableSchemas.find(entry => entry.name === id);
+          const title = meta?.title || id;
+          const description = meta?.description || "No description.";
+          const comments = meta?.comments || "No comments.";
+          const examples = meta?.examples || "No examples.";
+          const qrgUrl = meta?.url || `https://gbif.github.io/dwc-dp/qrg/index.html#${title}`;
+          node.qtip({
+            content: {
+              title: title,
+              text: `<strong>Description:</strong> ${description}<br><strong>Comments:</strong> ${comments}<br><strong>Examples:</strong> ${examples}<br><strong>QRG:</strong> <a href="${qrgUrl}" target="_blank">Quick Reference Guide</a>`
+            },
+            position: {
+              my: 'top center',
+              at: 'bottom center'
+            },
+            style: {
+              classes: 'qtip-bootstrap'
+            }
+          });
+        });
+      }, 0);
 
       cy.on('tap', 'node', function(evt) {
         const target = evt.target.id();
         if (target !== focal) {
-          const catParam = Array.from(disabledCategories).join(",");
-          window.location.href = '?focal=' + target + '&hide=' + encodeURIComponent(catParam);
+          const hide = Array.from(disabledCategories).join(",");
+          window.location.search = '?focal=' + encodeURIComponent(target) + '&hide=' + encodeURIComponent(hide);
         }
-      }); // end cy.on
+      });
+
       const container = cy.container();
       const centerX = container.clientWidth / 2;
       const centerY = container.clientHeight / 2;
-
       const focalNode = cy.getElementById(focal);
       if (focalNode && focalNode.length > 0) {
         focalNode.position({ x: centerX, y: centerY });
       }
-    } // end renderGraph
-
-    document.getElementById('toggle-edge-labels').addEventListener('change', function() {
-      showEdgeLabels = this.checked;
-      renderGraph();
-    });
-
-    document.querySelectorAll('.category-filter').forEach(input => {
-      input.checked = !disabledCategories.has(input.value.toLowerCase());
-      input.addEventListener('change', () => {
-        disabledCategories = new Set(Array.from(document.querySelectorAll('.category-filter'))
-          .filter(cb => !cb.checked)
-          .map(cb => cb.value.toLowerCase())
-        );
-        renderGraph();
-        updateLinks();
-      }); // end input.addEventListener
-    }); // end document.querySelectorAll
+    }
 
     function updateLinks() {
       const hide = Array.from(disabledCategories).join(",");
@@ -320,47 +298,36 @@
       });
     }
 
-    updateLinks();
+    document.getElementById('toggle-edge-labels').addEventListener('change', function () {
+      showEdgeLabels = this.checked;
+      renderGraph();
+    });
 
-    function centerFocalNode(focal) {
-      if (!cy) return;
+    document.querySelectorAll('.category-filter').forEach(input => {
+      input.checked = !disabledCategories.has(input.value.toLowerCase());
+      input.addEventListener('change', () => {
+        disabledCategories = new Set(Array.from(document.querySelectorAll('.category-filter'))
+          .filter(cb => !cb.checked)
+          .map(cb => cb.value.toLowerCase()));
+        renderGraph();
+        updateLinks();
+      });
+    });
 
-      const focalNode = cy.getElementById(focal);
-      if (focalNode && focalNode.length > 0) {
-        const container = cy.container();
-        const centerX = container.clientWidth / 2;
-        const topY = 40; // Adjust for top padding
-        focalNode.position({ x: centerX, y: topY });
-      }
-    }
-
-    // Attach dynamic click behavior to focal links
     document.querySelectorAll('.table-link').forEach(link => {
-      link.addEventListener('click', function(e) {
+      link.addEventListener('click', function (e) {
         e.preventDefault();
-
         const target = this.getAttribute('data-target');
         const hide = Array.from(disabledCategories).join(",");
-
-        // Update URL and trigger reload with new focal param
         window.location.search = '?focal=' + encodeURIComponent(target) + '&hide=' + encodeURIComponent(hide);
       });
     });
 
+    updateLinks();
+
+    window.onload = () => {
+      setTimeout(() => renderGraph(), 100);
+    };
   </script>
 </body>
 </html>
-
-<script>
-    console.log("Running renderGraph after full page load");
-    renderGraph();
-</script>
-
-<script>
-  const oldRender = renderGraph;
-  renderGraph = () => {
-    setTimeout(() => {
-      oldRender();
-    }, 200);  // Delay slightly to allow full DOM readiness
-  };
-</script>

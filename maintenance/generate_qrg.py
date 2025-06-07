@@ -128,20 +128,21 @@ TEMPLATE = '''<!DOCTYPE html>
     <main>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <div class="intro">
-            <p>This Quick Reference Guide provides an exploratory overview of tables and fields defined in the <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The guide at the right provides quick access to table definitions, under each of which are listed the possible fields in the table and their definitions.</p>
+            <p>This Quick Reference Guide provides an navigable overview of tables and available fields for a <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The sidebar at the right provides quick access to table definitions. Within the table definitions, the possible fields in the table and their definitions are listed.</p>
         </div>
         {content}
         <h1 id="model">Table Relationships</h1>
         <div class="intro">
             <img src="../images/overview_model_2025-06-02.png" alt="How tables relate to each other.">
             <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
+            <p>To explore the relationships between tables, see the <a href="file:///Users/johnwieczorek/Projects/dwc-dp/explorer/index.html">Darwin Core Data Package Relationship Explorer</a>.</p>
         </div>
         <footer>
             <p>This guide is part of the Darwin Core Data Package project and is provided to assist users in applying the standard consistently. For authoritative definitions and updates, visit the <a href="https://dwc.tdwg.org/">Darwin Core website</a>.</p>
         </footer>
     </main>
     <aside class="nav-menu">
-        <a class="top-link" href="#top">&uarr; Back to Top</a>
+        <a class="top-link" href="#top">&uarr; Top</a>
         <a class="top-link" href="#model">&darr; Table Relationships</a>
         <h3>Tables</h3>
         <nav class="class-index">
