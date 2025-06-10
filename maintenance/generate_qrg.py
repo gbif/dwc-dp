@@ -135,7 +135,7 @@ TEMPLATE = '''<!DOCTYPE html>
         <div class="intro">
             <img src="../images/overview_model_2025-06-02.png" alt="How tables relate to each other.">
             <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
-            <p>To explore the relationships between tables, see the <a href="file:///Users/johnwieczorek/Projects/dwc-dp/explorer/index.html">Darwin Core Data Package Relationship Explorer</a>.</p>
+            <p>To explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</p>
         </div>
         <footer>
             <p>This guide is part of the Darwin Core Data Package project and is provided to assist users in applying the standard consistently. For authoritative definitions and updates, visit the <a href="https://dwc.tdwg.org/">Darwin Core website</a>.</p>
