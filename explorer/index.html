@@ -128,6 +128,7 @@
     }));
     let fullData = { nodes, edges };
     let showFullModel = false;
+
     const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
     const predicateMap = {};
     predicates.forEach(p => {
@@ -449,12 +450,6 @@
           updateLinks();
         }
       });
-    });
-
-    // hook up file upload handler
-    initializeUploadHandler(indexJson, predicates, (newFocal) => {
-      const hide = Array.from(disabledCategories).join(",");
-      window.location.search = '?focal=' + encodeURIComponent(newFocal) + '&hide=' + encodeURIComponent(hide);
     });
 
     updateLinks();
