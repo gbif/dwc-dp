@@ -56,6 +56,12 @@
     .category-filters {
       margin-top: 20px;
     }
+    .qtip-wide {
+      max-width: none !important;
+      width: auto !important;
+      white-space: nowrap;
+    }
+
   </style>
 </head>
 <body>
@@ -104,7 +110,9 @@
         id: `${pred.subject_table}_${pred.subject_field}_${pred.related_table}_${pred.related_field}_${index}`,
         source: pred.subject_table,
         target: pred.related_table,
-        label: pred.predicate
+        label: pred.predicate,
+        source_field: `${pred.subject_table}.${pred.subject_field}`,
+        target_field: `${pred.related_table}.${pred.related_field}`
       }
     }));
     const fullData = { nodes, edges };
@@ -269,9 +277,97 @@
             style: {
               classes: 'qtip-bootstrap'
             }
-          });
-        });
-      }, 0);
+          }); // end node.qtip
+        }); // end cy.nodes
+        // Add tooltip for each edge
+        cy.on('tap', 'edge', function(evt) {
+          const edge = evt.target;
+          const label = edge.data('label') || 'No label';
+          const source = edge.data('source');
+          const target = edge.data('target');
+          const sourceField = edge.data('source_field');
+          const targetField = edge.data('target_field');
+          const edgeId = edge.id();
+          const edgeDescription = `${source} ${label} ${target}`;
+          const keyDescription = `${sourceField} -> ${targetField}`;
+
+          const text = `
+              <strong>Description:</strong> ${edgeDescription}<br>
+              <strong>Fields:</strong> ${keyDescription}
+          `;
+          
+          // Get rendered click position
+          const pos = evt.renderedPosition;
+/*
+          // Disable panning and box selection during tooltip display
+          cy.userPanningEnabled(false);
+          cy.boxSelectionEnabled(false);
+
+          // Ensure invisible style
+          cy.style()
+            .selector('.invisible-tooltip-node')
+            .style({
+              'background-opacity': 0,
+              'border-opacity': 0,
+              'label': '',
+              'width': 1,
+              'height': 1,
+              'events': 'no'
+            })
+            .update();
+*/
+// Create an invisible DOM element at that position
+  const tooltipDiv = document.createElement('div');
+  tooltipDiv.style.position = 'absolute';
+  tooltipDiv.style.left = `${pos.x}px`;
+  tooltipDiv.style.top = `${pos.y}px`;
+  tooltipDiv.style.width = '1px';
+  tooltipDiv.style.height = '1px';
+  tooltipDiv.style.pointerEvents = 'none';
+  document.body.appendChild(tooltipDiv);
+
+  // Display tooltip
+  $(tooltipDiv).qtip({
+    content: {
+      title: 'Relationship',
+      text: text
+    },
+    position: {
+      my: 'top center',
+      at: 'bottom center',
+      target: tooltipDiv
+    },
+    show: {
+      ready: true
+    },
+    hide: {
+      event: 'unfocus click blur',
+      delay: 200,
+      effect: false
+    },
+    style: {
+      classes: 'qtip-bootstrap qtip-wide'
+    },
+    events: {
+      hide: function () {
+        $(tooltipDiv).qtip('destroy');
+        tooltipDiv.remove();
+      }
+    } // end events:
+  }); // end $(tooltipDiv).qtip
+
+/*  
+          // Also remove the node and restore settings on any other tap
+          cy.once('tap', function cleanup() {
+            if (cy.getElementById(tempId).nonempty()) {
+              cy.getElementById(tempId).remove();
+            }
+            cy.userPanningEnabled(true);
+            cy.boxSelectionEnabled(true);
+          }); // end cy.once
+*/
+        }); // end cy.on
+      }, 0); // end setTimeout
 
       cy.on('tap', 'node', function(evt) {
         const target = evt.target.id();
