@@ -33,6 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Filter indexJson.tableSchemas in-place
         indexJson.tableSchemas = indexJson.tableSchemas.filter(t => tableNames.has(t.name));
 
+        const presentTableNames = new Set(indexJson.tableSchemas.map(t => t.name));
+
         // Filter predicates without modifying the global constant
         filteredPredicates = predicates.filter(p =>
           tableNames.has(p.subject_table) && tableNames.has(p.related_table)
@@ -42,6 +44,33 @@ document.addEventListener('DOMContentLoaded', () => {
         focal = indexJson.tableSchemas[0]?.name || "event";
         fullData = buildGraphData();
         renderGraph();
+
+        document.querySelectorAll('.table-link').forEach(link => {
+          const tableName = link.getAttribute('data-target');
+          const isPresent = presentTableNames.has(tableName);
+          link.style.color = isPresent ? '#0645AD' : '#999';
+          link.style.pointerEvents = isPresent ? 'auto' : 'none';
+        });
+
+        // Disable category checkboxes if no matching tables are present
+        const presentCategories = new Set();
+        indexJson.tableSchemas.forEach(t => {
+          const name = t.name.toLowerCase();
+          if (name.includes('agent')) presentCategories.add('agent');
+          if (name.includes('assertion')) presentCategories.add('assertion');
+          if (name.includes('identifier')) presentCategories.add('identifier');
+          if (name.includes('media')) presentCategories.add('media');
+          if (name.includes('protocol')) presentCategories.add('protocol');
+          if (name.includes('reference')) presentCategories.add('reference');
+        });
+
+        document.querySelectorAll('.category-filter').forEach(input => {
+          const category = input.value.toLowerCase();
+          const enabled = presentCategories.has(category);
+          input.disabled = !enabled;
+          input.parentElement.style.color = enabled ? 'inherit' : '#999';
+        });
+
 
       } catch (err) {
         console.error("Failed to parse datapackage.json:", err.message, err.stack);
