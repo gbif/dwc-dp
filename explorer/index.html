@@ -107,20 +107,25 @@
   </div>
 
   <script>
-    const nodes = indexJson.tableSchemas.map(schema => ({
-      data: { id: schema.name }
-    }));
-    const edges = predicates.map((pred, index) => ({
-      data: {
-        id: `${pred.subject_table}_${pred.subject_field}_${pred.related_table}_${pred.related_field}_${index}`,
-        source: pred.subject_table,
-        target: pred.related_table,
-        label: pred.predicate,
-        source_field: `${pred.subject_table}.${pred.subject_field}`,
-        target_field: `${pred.related_table}.${pred.related_field}`
-      }
-    }));
-    const fullData = { nodes, edges };
+    function buildGraphData() {
+  const nodes = indexJson.tableSchemas.map(schema => ({
+    data: { id: schema.name }
+  }));
+  const edges = predicates.map((pred, index) => ({
+    data: {
+      id: `${pred.subject_table}_${pred.subject_field}_${pred.related_table}_${pred.related_field}_${index}`,
+      source: pred.subject_table,
+      target: pred.related_table,
+      label: pred.predicate,
+      source_field: `${pred.subject_table}.${pred.subject_field}`,
+      target_field: `${pred.related_table}.${pred.related_field}`
+    }
+  }));
+  return { nodes, edges };
+}
+
+let fullData = buildGraphData();
+
 
     const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
     const predicateMap = {};
@@ -143,6 +148,7 @@
     }
 
     function renderGraph() {
+      fullData = buildGraphData();
       const focalCategories = categoriesOf(focal);
       const focalVisible = focalCategories.length === 0 || !focalCategories.some(cat => disabledCategories.has(cat));
       if (!focalVisible) {
