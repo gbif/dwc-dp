@@ -128,7 +128,6 @@
     }));
     let fullData = { nodes, edges };
     let showFullModel = false;
-
     const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
     const predicateMap = {};
     predicates.forEach(p => {
@@ -150,6 +149,7 @@
     }
 
     function renderGraph() {
+      fullData = buildGraphData();
       const focalCategories = categoriesOf(focal);
       const focalVisible = focalCategories.length === 0 || !focalCategories.some(cat => disabledCategories.has(cat));
       if (!focalVisible) {
@@ -449,6 +449,12 @@
           updateLinks();
         }
       });
+    });
+
+    // hook up file upload handler
+    initializeUploadHandler(indexJson, predicates, (newFocal) => {
+      const hide = Array.from(disabledCategories).join(",");
+      window.location.search = '?focal=' + encodeURIComponent(newFocal) + '&hide=' + encodeURIComponent(hide);
     });
 
     updateLinks();
