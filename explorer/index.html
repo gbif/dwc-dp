@@ -10,6 +10,7 @@
   <script src="https://unpkg.com/cytoscape-qtip@2.7.0/cytoscape-qtip.js"></script>
   <script src="indexJson.js"></script>
   <script src="predicates.js"></script>
+  <script src="uploadHandler.js"></script>
   <style>
     body {
       margin: 0;
@@ -97,6 +98,10 @@
           <input type="checkbox" id="toggle-edge-labels" checked />
           Show Relationships
         </label>
+      </div>
+      <div style="margin-top: 20px;">
+        <label for="upload-datapackage">Upload <code>datapackage.json</code>:</label>
+        <input type="file" id="upload-datapackage" accept=".json" />
       </div>
     </div>
   </div>
@@ -417,6 +422,12 @@
         const hide = Array.from(disabledCategories).join(",");
         window.location.search = '?focal=' + encodeURIComponent(target) + '&hide=' + encodeURIComponent(hide);
       });
+    });
+
+    // hook up file upload handler
+    initializeUploadHandler(indexJson, predicates, (newFocal) => {
+      const hide = Array.from(disabledCategories).join(",");
+      window.location.search = '?focal=' + encodeURIComponent(newFocal) + '&hide=' + encodeURIComponent(hide);
     });
 
     updateLinks();
