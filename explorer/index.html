@@ -10,6 +10,7 @@
   <script src="https://unpkg.com/cytoscape-qtip@2.7.0/cytoscape-qtip.js"></script>
   <script src="indexJson.js"></script>
   <script src="predicates.js"></script>
+  <script src="simpleUploadFilter.js"></script>
   <style>
     body {
       margin: 0;
@@ -72,6 +73,12 @@
 
     <div id="sidebar">
       <h2>Focal Tables</h2>
+      <div style="margin-top: 10px;">
+        <label>
+          <input type="checkbox" id="toggle-full-model" />
+          Show entire model (No Focal)
+        </label>
+      </div>
       <a class="table-link" data-target="agent" href="#">Agent</a>
       <a class="table-link" data-target="event" href="#">Event</a>
       <a class="table-link" data-target="identification" href="#">Identification</a>
@@ -98,6 +105,10 @@
           Show Relationships
         </label>
       </div>
+      <div style="margin-top: 20px;">
+        <label for="upload-datapackage">Upload <code>datapackage.json</code>:</label>
+        <input type="file" id="upload-datapackage" accept=".json" />
+      </div>
     </div>
   </div>
 
@@ -115,7 +126,8 @@
         target_field: `${pred.related_table}.${pred.related_field}`
       }
     }));
-    const fullData = { nodes, edges };
+    let fullData = { nodes, edges };
+    let showFullModel = false;
 
     const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
     const predicateMap = {};
@@ -128,7 +140,7 @@
     let disabledCategories = new Set();
 
     const params = new URLSearchParams(window.location.search);
-    const focal = params.get("focal") || "event";
+    let focal = params.get("focal") || "event";
     const hiddenCats = (params.get("hide") || "").toLowerCase().split(",").filter(x => x);
     hiddenCats.forEach(cat => disabledCategories.add(cat));
 
@@ -149,13 +161,23 @@
         return;
       }
 
-      const connectedEdges = fullData.edges.filter(e => e.data.source === focal || e.data.target === focal);
+      const connectedEdges = showFullModel
+        ? fullData.edges
+        : fullData.edges.filter(e =>
+            e.data.source === focal || e.data.target === focal
+          );
 
-      const connectedNodeIds = new Set([focal]);
-      connectedEdges.forEach(e => {
-        connectedNodeIds.add(e.data.source);
-        connectedNodeIds.add(e.data.target);
-      });
+      const connectedNodeIds = showFullModel
+        ? new Set(fullData.nodes.map(n => n.data.id))
+        : new Set([focal]);
+
+      if (!showFullModel) {
+        connectedEdges.forEach(e => {
+          connectedNodeIds.add(e.data.source);
+          connectedNodeIds.add(e.data.target);
+        });
+      }
+
 
       const connectedNodes = fullData.nodes.filter(n => connectedNodeIds.has(n.data.id)).map(n => {
         const categories = categoriesOf(n.data.id);
@@ -254,6 +276,15 @@
           }
         ]
       });
+
+       cy.on('tap', 'node', function(evt) {
+        const target = evt.target.id();
+        if (target !== focal) {
+          focal = target;
+          renderGraph();
+          updateLinks(); // optional: keep sidebar links in sync
+        }
+    });
 
       // Tooltips
       setTimeout(() => {
@@ -369,14 +400,6 @@
         }); // end cy.on
       }, 0); // end setTimeout
 
-      cy.on('tap', 'node', function(evt) {
-        const target = evt.target.id();
-        if (target !== focal) {
-          const hide = Array.from(disabledCategories).join(",");
-          window.location.search = '?focal=' + encodeURIComponent(target) + '&hide=' + encodeURIComponent(hide);
-        }
-      });
-
       const container = cy.container();
       const centerX = container.clientWidth / 2;
       const centerY = container.clientHeight / 2;
@@ -399,6 +422,11 @@
       renderGraph();
     });
 
+    document.getElementById('toggle-full-model').addEventListener('change', function () {
+      showFullModel = this.checked;
+      renderGraph();
+    });
+
     document.querySelectorAll('.category-filter').forEach(input => {
       input.checked = !disabledCategories.has(input.value.toLowerCase());
       input.addEventListener('change', () => {
@@ -414,8 +442,12 @@
       link.addEventListener('click', function (e) {
         e.preventDefault();
         const target = this.getAttribute('data-target');
-        const hide = Array.from(disabledCategories).join(",");
-        window.location.search = '?focal=' + encodeURIComponent(target) + '&hide=' + encodeURIComponent(hide);
+        if (target !== focal) {
+          console.log("Sidebar link clicked:", target);
+          focal = target;
+          renderGraph();
+          updateLinks();
+        }
       });
     });
 

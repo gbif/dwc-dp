@@ -1,4 +1,4 @@
-const predicates = [
+let predicates = [
   {"subject_table": "agent-agent-role", "subject_field": "agentID", "predicate": "role holder", "related_table": "agent", "related_field": "agentID"},
   {"subject_table": "agent-agent-role", "subject_field": "relatedAgentID", "predicate": "role for", "related_table": "agent", "related_field": "agentID"},
   {"subject_table": "agent-identifier", "subject_field": "agentID", "predicate": "for", "related_table": "agent", "related_field": "agentID"},
