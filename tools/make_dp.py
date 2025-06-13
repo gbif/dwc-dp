@@ -1,18 +1,20 @@
-# Python script to generate datapackage.json for a folder full of DwC-DP table schema CSV 
-# files.
-# Usage: python generate_qrg.py
+# Python script to generate datapackage.json for a folder full of DwC-DP table schema 
+# CSV/TSV/TXT files.
+#
+# Usage: python make_dp.py -p path_to_table_files -t title -n name
 
 import os
 import csv
 import json
+import argparse
+import re
 import urllib.request
-import sys
 
 SCHEMA_BASE_URL = "https://raw.githubusercontent.com/gbif/rs.gbif.org/master/sandbox/experimental/data-packages/dwc-dp/0.1/table-schemas"
 
 def fetch_model_schema(table_name):
     url = f"{SCHEMA_BASE_URL}/{table_name}.json"
-    print(f"Fetching schema for {table_name} from {url}...")
+    print(f"\nFetching schema for {table_name} from {url}...")
     try:
         with urllib.request.urlopen(url) as response:
             return json.load(response)
@@ -23,105 +25,102 @@ def fetch_model_schema(table_name):
 def normalize_fieldname(field):
     return field.lower().replace("-", "").replace("_", "")
 
-def map_csv_fields_to_schema_fields(csv_fields, schema_fields):
-    schema_lookup = {normalize_fieldname(f['name']): f['name'] for f in schema_fields}
-    mapped_fields = []
-    for field in csv_fields:
-        normalized = normalize_fieldname(field)
-        if normalized in schema_lookup:
-            mapped_fields.append(schema_lookup[normalized])
-    return mapped_fields
+def normalize_package_name(name):
+    return re.sub(r"[^a-z0-9._/]+", "-", name.lower())
 
-def get_populated_fields(file_path, delimiter):
-    print(f"Inspecting populated fields in {file_path}...")
-    with open(file_path, newline='', encoding='utf-8') as f:
-        reader = csv.DictReader(f, delimiter=delimiter)
-        if not reader.fieldnames:
-            print("  No headers found.")
-            return []
-        print(f"  Headers found: {reader.fieldnames}")
-        fields = {field: False for field in reader.fieldnames}
-        for row in reader:
-            for field in fields:
-                if row.get(field) and row.get(field).strip():
-                    fields[field] = True
-            if all(fields.values()):
-                break
-        populated = [field for field, used in fields.items() if used]
-        print(f"  Populated fields: {populated}")
-        return populated
-
-def generate_resource_descriptor(table_name, data_filename, model_schema, populated_fields):
-    schema_fields = model_schema['fields']
-    mapped_fieldnames = map_csv_fields_to_schema_fields(populated_fields, schema_fields)
-    filtered_fields = [f for f in schema_fields if f['name'] in mapped_fieldnames]
-    print(f"  Generating resource for {table_name}, using {len(filtered_fields)} populated fields.")
-    resource = {
-        "name": table_name,
-        "path": data_filename,
-        "schema": {
-            "fields": filtered_fields
-        }
+def get_dialect(delimiter):
+    return {
+        "delimiter": delimiter,
+        "quoteChar": '"',
+        "lineTerminator": "\n",
+        "header": True,
+        "doubleQuote": True,
+        "skipInitialSpace": False,
+        "commentChar": "#",
+        "caseSensitiveHeader": False
     }
-    if 'primaryKey' in model_schema:
-        resource['primaryKey'] = model_schema['primaryKey']
-    if 'foreignKeys' in model_schema:
-        filtered_fks = []
-        for fk in model_schema['foreignKeys']:
-            fk_fields = fk['fields']
-            if isinstance(fk_fields, list):
-                if all(f in mapped_fieldnames for f in fk_fields):
-                    filtered_fks.append(fk)
-            elif fk_fields in mapped_fieldnames:
-                filtered_fks.append(fk)
-        if filtered_fks:
-            resource['foreignKeys'] = filtered_fks
-    return resource
 
-def create_datapackage(folder_path, package_name):
+def build_datapackage(path, title, name):
     resources = []
-    for filename in os.listdir(folder_path):
-        if not (filename.endswith(".csv") or filename.endswith(".tsv")):
-            continue
+    name = normalize_package_name(name)
 
-        delimiter = '\t' if filename.endswith(".tsv") else ','
-        table_name = os.path.splitext(filename)[0]
-        file_path = os.path.join(folder_path, filename)
+    present_tables = set(
+        os.path.splitext(f)[0]
+        for f in os.listdir(path)
+        if os.path.isfile(os.path.join(path, f)) and f.lower().endswith(('.csv', '.tsv', '.txt'))
+    )
 
-        print(f"Processing {filename}...")
-        populated_fields = get_populated_fields(file_path, delimiter)
-        if not populated_fields:
-            print(f"  Skipping {filename} (no populated fields).")
-            continue
-        model_schema = fetch_model_schema(table_name)
-        if not model_schema:
-            print(f"  Skipping {filename} (no schema found).")
-            continue
-        resource = generate_resource_descriptor(table_name, filename, model_schema, populated_fields)
-        resources.append(resource)
+    print(f"Detected tables: {sorted(present_tables)}\n")
+
+    for filename in os.listdir(path):
+        if filename.lower().endswith(('.csv', '.tsv', '.txt')):
+            table_name = os.path.splitext(filename)[0]
+            delimiter = "," if filename.endswith(".csv") else "\t"
+            schema = fetch_model_schema(table_name)
+
+            if not schema:
+                print(f"Skipping {filename}, no schema found.")
+                continue
+
+            # Save original fields before filtering
+            original_fields_lookup = {f['name']: f for f in schema.get('fields', [])}
+
+            full_path = os.path.join(path, filename)
+            with open(full_path, newline='\n', encoding='utf-8') as f:
+                reader = csv.DictReader(f, delimiter=delimiter)
+                headers = reader.fieldnames
+
+            # Filter fields based on actual file columns
+            schema['fields'] = [
+                field for field in schema.get('fields', [])
+                if normalize_fieldname(field['name']) in [normalize_fieldname(h) for h in headers]
+            ]
+
+            # Remove nullable foreign keys to missing tables, with debug output
+            if 'foreignKeys' in schema:
+                filtered_fks = []
+                for fk in schema['foreignKeys']:
+                    ref_table = fk['reference']['resource']
+                    field_name = fk['fields'] if isinstance(fk['fields'], str) else fk['fields'][0]
+                    field_def = original_fields_lookup.get(field_name)
+                    is_required = field_def.get('required', False) if field_def else False
+                    if ref_table in present_tables or is_required:
+                        print(f"Table: {table_name} Keeping foreign key to '{ref_table}' via field '{field_name}'")
+                        filtered_fks.append(fk)
+                    else:
+                        print(f"Table: {table_name} Removing foreign key to '{ref_table}' via field '{field_name}' (missing table and nullable field)")
+
+                schema['foreignKeys'] = filtered_fks
+
+            resource = {
+                "profile": "tabular-data-resource",
+                "name": table_name,
+                "path": filename,
+                "format": "csv" if delimiter == "," else "tsv",
+                "mediatype": "text/csv" if delimiter == "," else "text/tab-separated-values",
+                "schema": schema,
+                "dialect": get_dialect(delimiter)
+            }
+
+            resources.append(resource)
 
     datapackage = {
         "profile": "tabular-data-package",
-        "name": package_name,
+        "name": name,
+        "title": title,
         "resources": resources
     }
 
-    with open(os.path.join(folder_path, "datapackage.json"), "w", encoding="utf-8") as f:
-        json.dump(datapackage, f, indent=2, ensure_ascii=False)
-
-    print(f"Darwin Core Data Package created at: {os.path.join(folder_path, 'datapackage.json')}")
-    print(f"Included {len(resources)} resources.")
-
-def main():
-    if len(sys.argv) != 3:
-        print("Usage: python script.py /path/to/folder package_name")
-        sys.exit(1)
-    folder_path = sys.argv[1]
-    package_name = sys.argv[2]
-    if not os.path.isdir(folder_path):
-        print(f"Error: {folder_path} is not a directory.")
-        sys.exit(1)
-    create_datapackage(folder_path, package_name)
+    output_path = os.path.join(path, "datapackage.json")
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(datapackage, f, indent=2)
+    print(f"Data package written to {output_path}")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Generate a Frictionless Data Package from DwC-DP tables")
+    parser.add_argument("-p", "--path", required=True, help="Path to folder containing CSV/TSV files")
+    parser.add_argument("-t", "--title", required=True, help="Title for the data package")
+    parser.add_argument("-n", "--name", required=True, help="Name for the data package (URL-safe id)")
+
+    args = parser.parse_args()
+    build_datapackage(args.path, args.title, args.name)
