@@ -25,11 +25,11 @@ Previous to the public review, we welcome those who are interested to explore th
 
 [Participating and Getting Help](#participating-and-getting-help)
 
-# Darwin Core Conceptual Model (since 2025-06-02)
+# Darwin Core Conceptual Model
 The Darwin Core Conceptual Model is based on a distillation of the [GBIF Unified Model](https://www.gbif.org/new-data-model) with an emphasis on practicality for implementations.
 
 ![Here should be the image of latest Darwin Core Conceptual Model](images/overview_model_2025-06-02.png "Darwin Core Conceptual Model")
-Figure 1. Overview of the classes in the Darwin Core Conceptual Model showing the primary relationships between key biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise.
+Figure 1. Overview of the classes in the Darwin Core Conceptual Model (since 2025-06-02) showing the primary relationships between key biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise.
 
 # Darwin Core Data Package (DwC-DP) Publishing Model
 ## Purpose
@@ -58,8 +58,6 @@ Including the Darwin Core Data Package as a vocabulary enhancement to the Darwin
 To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/).
 
 **Agent** - A person, group, organization or other entity that can act.
-
-**Collection** - A persistent formal repository in which dwc:MaterialEntities and/or Media are preserved.
 
 **IdentificationTaxon** - A construct of components and positions of dwc:scientificNames in a dwc:Identification.
 
