@@ -407,7 +407,7 @@
       "type": "string",
       "format": "default",
       "comments": "In DwC-DP, the taxonID is always an external link to a taxon record. As such, if present, it should be a resolvable globally unique identifier. See the Identifiers section of https://github.com/CatalogueOfLife/coldp/blob/master/README.md.",
-      "examples": "`col:6W3C4`; `worms:212808`; `ipni:320035-2`",
+      "examples": "`https://www.checklistbank.org/dataset/COL2023/taxon/DGP6 `; `worms:212808`; `ipni:320035-2`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/taxonID"
     },
