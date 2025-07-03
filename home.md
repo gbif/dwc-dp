@@ -1,4 +1,5 @@
 ---
+layout: home
 title: DwC-DP
 description: Darwin Core Data Package
 toc: true
