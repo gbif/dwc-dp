@@ -1,0 +1,13 @@
+# Links listed below will be included in your site's navbar (navigation at the top)
+
+- text: Home
+  href: /
+- text: Resources
+  menu:
+  - text: Quick Reference Guide
+    href: /qrg/index.html
+  - text: Relationship explorer
+    href: /explorer/index.html
+  - text: "---"
+  - text: Webinar introducing DwC-DP
+    href: https://www.gbif.org/event/7oJVaWQZ2wlknRfM7w4OXE/introducing-the-darwin-core-data-package
