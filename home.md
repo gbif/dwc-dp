@@ -1,4 +1,9 @@
-# Darwin Core Data Package (DwC-DP)
+---
+title: DwC-DP
+description: Darwin Core Data Package
+toc: true
+permalink: /
+---
 
 [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/index.html)
 
