@@ -10,22 +10,6 @@ This website contains material to support a proposal for a [Vocabulary Enhanceme
 
 Previous to the public review, we welcome those who are interested to explore the [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model). This is an opportunity to **test the data publishing model with your real data**. To understand how you can do this, see the [Participating and Getting Help](#participating-and-getting-help) section, below. **This community testing phase will remain open until 2025-08-01**.
 
-### Table of Contents
-
-[Darwin Core Conceptual Model](#darwin-core-conceptual-model)
-
-[Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model)
-- [Purpose](#purpose)
-- [Structure](#structure)
-- [Example Datasets](#example-datasets)
-
-[Implications for Darwin Core](#implications-for-darwin-core)
-- [New Classes and Properties](#new-classes-and-properties)
-- [Changes to Existing Classes and Properties](#changes-to-existing-classes-and-properties)
-  - [Occurrence](#occurrence)
-
-[Participating and Getting Help](#participating-and-getting-help)
-
 ## Darwin Core Conceptual Model
 
 The Darwin Core Conceptual Model is based on a distillation of the [GBIF Unified Model](https://www.gbif.org/new-data-model) with an emphasis on practicality for implementations.
