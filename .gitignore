@@ -1,5 +1,13 @@
 .idea
-.DS_STORE
 sandbox/
 hold/
 test/
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Mac OS X
+.DS_Store
