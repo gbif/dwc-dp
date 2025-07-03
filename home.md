@@ -51,21 +51,21 @@ To enable the Darwin Core Data Package, new terms will have to be added. These i
 
 **Agent** - A person, group, organization or other entity that can act.
 
-**IdentificationTaxon** - A construct of components and positions of dwc:scientificNames in a dwc:Identification.
+**IdentificationTaxon** - A construct of components and positions of `dwc:scientificNames` in a `dwc:Identification`.
 
-**Media** - A dcmi:MediaType (dcmi:Sounds, dcmi:StillImages, dcmi:MovingImages or dcmi:Text) with other entities as content. This class accommodates metadata about media from the [Audiovisual Core](https://ac.tdwg.org/) standard.
+**Media** - A `dcmi:MediaType` (`dcmi:Sounds`, `dcmi:StillImages`, `dcmi:MovingImages` or `dcmi:Text`) with other entities as content. This class accommodates metadata about media from the [Audiovisual Core](https://ac.tdwg.org/) standard.
 
-**MolecularProtocol** - A protocol used to derive and identify a nucleotide sequence from a dwc:MaterialEntity. This class accommodates the [DNA derived data](https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml) Extension.
+**MolecularProtocol** - A protocol used to derive and identify a nucleotide sequence from a `dwc:MaterialEntity`. This class accommodates the [DNA derived data](https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml) Extension.
 
-**NucleotideAnalysis** - A link between a NucleotideSequence and a dwc:Event and a dwc:MaterialEntity from which it was derived, using a specified Protocol.
+**NucleotideAnalysis** - A link between a NucleotideSequence and a `dwc:Event` and a `dwc:MaterialEntity` from which it was derived, using a specified Protocol.
 
 **NucleotideSequence** - A digital representation of a nucleotide sequence.
 
-**OrganismInteraction** - An interaction between two dwc:Organisms during a dwc:Event.
+**OrganismInteraction** - An interaction between two `dwc:Organisms` during a `dwc:Event`.
 
-**PhylogeneticTree** - A branching diagram that shows the evolutionary relationships between dwc:Organisms.
+**PhylogeneticTree** - A branching diagram that shows the evolutionary relationships between `dwc:Organisms`.
 
-**PhylogeneticTreeTip** - A group of Taxa at the end of a branch of a PhylogeneticTree as determined from relationships between dwc:Organisms.
+**PhylogeneticTreeTip** - A group of Taxa at the end of a branch of a PhylogeneticTree as determined from relationships between `dwc:Organisms`.
 
 **Protocol** - A method used during an action.
 
@@ -73,7 +73,7 @@ To enable the Darwin Core Data Package, new terms will have to be added. These i
 
 **Survey** - A biotic survey. This class accommodates the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
 
-**SurveyTarget** - A specification of a characteristic of a dwc:Occurrence that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
+**SurveyTarget** - A specification of a characteristic of a `dwc:Occurrence` that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
 
 ### Changes to Existing Classes and Properties
 
@@ -81,7 +81,7 @@ The Darwin Core Data Package, backed by the semantics embodied in the [Darwin Co
 
 #### Occurrence
 
-One of the most fundamental advances of the Semantic Layer, reflected in the DwC-DP publishing model, is the disambiguation of the dwc:Occurrence class. Previously, in practice, a dwc:Occurrence was a catch-all for information in support of the existence of a dwc:Organism at a place and time. Under DwC-DP, a dwc:Occurrence is "A state of a dwc:Organism in a dwc:Event." Thus, the material evidence, though it can support the validity of a dwc:Occurrence, is not a property of the Occurrence. Instead, all of the ephemeral characteristics of the state of an Organism are properties of a dwc:Occurrence. In short, the dwc:Occurrence now clearly consists of the things about a dwc:Organism at a given place and time that were observed or inferred.
+One of the most fundamental advances of the Semantic Layer, reflected in the DwC-DP publishing model, is the disambiguation of the `dwc:Occurrence` class. Previously, in practice, a `dwc:Occurrence` was a catch-all for information in support of the existence of a `dwc:Organism` at a place and time. Under DwC-DP, a `dwc:Occurrence` is "A state of a `dwc:Organism` in a `dwc:Event`." Thus, the material evidence, though it can support the validity of a `dwc:Occurrence`, is not a property of the Occurrence. Instead, all of the ephemeral characteristics of the state of an Organism are properties of a `dwc:Occurrence`. In short, the `dwc:Occurrence` now clearly consists of the things about a `dwc:Organism` at a given place and time that were observed or inferred.
 
 ## Participating and Getting Help
 
