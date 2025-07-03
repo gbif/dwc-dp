@@ -2,8 +2,8 @@
 layout: home
 title: DwC-DP
 description: Darwin Core Data Package
-toc: true
 permalink: /
+toc: true
 ---
 
 This website contains material to support a proposal for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) to the [Darwin Core](https://dwc.tdwg.org/) standard. The proposal for the enhancement is scheduled for full **public review beginning 2025-09-01**. The public review will include a [Darwin Core Conceptual Model](#darwin-core-conceptual-model) as a component of a long-awaited Semantic Layer for Darwin Core and a [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model) that implements the conceptual model and supports sharing deeper and richer data than is possible with a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide). The Semantic Layer will define the explicit relationships between the classes that are seen in DwC-DP and will be based on the understanding of biodiversity-related concepts accumulated in the analysis of myriad use cases during the theoretical Unified Model phase of the project [Diversifying the GBIF Data Model](https://www.gbif.org/new-data-model).
