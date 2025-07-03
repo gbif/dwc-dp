@@ -35,7 +35,7 @@ Figure 3. Schematic overview of the structure and content of a Darwin Core Data 
 
 The biggest difference between a Darwin Core Archive and a Darwin Core Data Package is in the extent to which the data within distinct classes can be stored and shared in distinct text files, and how these files relate to each other. The list of fields and all of their details (including names, labels, definitions, usage comments, examples, and constraints) are defined in the JSON [table schema](https://github.com/gbif/dwc-dp/tree/master/dwc-dp/0.1/table-schemas) files. The details of the relationships between files are also in the table schemas, expressed as primary keys (unique identifiers within a table) and foreign keys (fields that contain the identifiers equal to the value of a primary key in another file).
 
-The beauty of DwC-DP is that it is complicated only for those who want or need it to be, because there is no other way to faithfully capture the complexity of their data. Just as with Darwin Core Archives, a [test version](https://dwcdp-ipt.gbif-test.org/) of the GBIF Integrated Publishing Toolkit (IPT) in development can facilitate data structure mapping and produce Darwin Core Data Packages. If you would like to test structuring your data as a Darwin Core Data Package with this test IPT (not for production use), please contact the DwC-DP helpdesk at [dwcdp@gbif.org](mailto:dwcdp@gbif.org)
+The beauty of DwC-DP is that it is complicated only for those who want or need it to be, because there is no other way to faithfully capture the complexity of their data. Just as with Darwin Core Archives, a [test version](https://dwcdp-ipt.gbif-test.org/) of the GBIF Integrated Publishing Toolkit (IPT) in development can facilitate data structure mapping and produce Darwin Core Data Packages. If you would like to test structuring your data as a Darwin Core Data Package with this test IPT (not for production use), please contact the DwC-DP helpdesk at <dwcdp@gbif.org>.
 
 ### Example Datasets
 
@@ -97,4 +97,4 @@ In anticipation of a formal public review, scheduled to begin 2025-09-01, we wou
 
 - **Discussion** - For open discussion on the Darwin Core Data Package, see the GBIF [Darwin Core Data Package (DwC-DP) discourse forum topic](https://discourse.gbif.org/t/darwin-core-data-package-dwc-dp/5937).
 
-- **Help!** - For help with any issue, feel free to contact the DwC-DP helpdesk [dwcdp@gbif.org](dwcdp@gbif.org).
+- **Help!** - For help with any issue, feel free to contact the DwC-DP helpdesk <dwcdp@gbif.org>.

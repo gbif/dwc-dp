@@ -7,6 +7,7 @@ baseurl: "/dwc-dp"
 # SOCIAL PROFILES
 social:
   github: gbif/dwc-dp
+  email: dwcdp@gbif.org
 
 # THEME SETTINGS (ALL OPTIONAL)
 theme: minima
