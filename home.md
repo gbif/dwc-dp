@@ -47,7 +47,7 @@ Including the Darwin Core Data Package as a vocabulary enhancement to the Darwin
 
 ### New Classes and Properties
 
-To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/).
+To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/).
 
 **Agent** - A person, group, organization or other entity that can act.
 
@@ -87,11 +87,11 @@ One of the most fundamental advances of the Semantic Layer, reflected in the DwC
 
 In anticipation of a formal public review, scheduled to begin 2025-09-01, we would like to invite people to gain familiarity with and test the DwC-DP by attempting to map original datasets to it. We are just beginning to work on the "Darwin Core Data Package Guide", which is intended to contain various "recipes" for publishing different types of datasets. Until that document contains useful content, the best way forward is to look at an already-mapped example dataset that is similar to the one you want to test ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)). This community testing phase will remain open until 2025-08-01.
 
-- **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/index.html).
+- **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/index.html).
 
-- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](https://gbif.github.io/dwc-dp-examples/data-mapping-guide.html). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
+- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](/dwc-dp-examples/data-mapping-guide.html). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
 
-- **Testing with IPT** - If you are interested in using the [test instance](https://dwcdp-ipt.gbif-test.org/) of the Integrated Publishing Toolkit  (not for production use) to produce a Darwin Core Data Package, please contact the DwC-DP helpdesk to set up an account. 
+- **Testing with IPT** - If you are interested in using the [test instance](https://dwcdp-ipt.gbif-test.org/) of the Integrated Publishing Toolkit (not for production use) to produce a Darwin Core Data Package, please contact the DwC-DP helpdesk to set up an account. 
 
 - **Submitting Issues** - For feedback about the structure or documentation of DwC-DP, feel free to register an [Issue](https://github.com/gbif/dwc-dp/issues).
 
