@@ -44,7 +44,7 @@ In DwC-DP tables represent concepts that are semantically separate from each oth
 
 The use of record identifiers for concepts in DwC-DP is ubiquitous, and required whenever you have data that correspond to a given concept. When creating tables in DwC-DP, use resolvable global unique identifiers for the `ID` fields if you have them. If you don't, use non-resolvable global unique identifiers if you have them. If you don't, generate UUIDS as identifiers in place of the identifiers that are unique only within the scope of your database. In cases where your database does not have identifiers for records that can be inferred for DwC-DP, generate UUIDs for these identifiers. For every identifier you have to create in the place of a local one in your database, you CAN also create an `Identifier` record that translates between your local identifier and the one you created for sharing via DwC-DP. If you do this, set the `identifierType` to `local`. As an example, here is the statement from [dwc_dp_schema.sql](./gbif/dwc_dp_schema.sql) that creates the structure of the `MaterialIdentifier` table. 
 
-```
+```sql
 -- MaterialIdentifier
 --    An identifier for a dwc:MaterialEntity.
 
@@ -64,7 +64,7 @@ The `Identifier` and other "common model" tables are described in [GBIF Common M
 
 Some fields whose values are strictly controlled have TYPE ENUMS defined in the [database schema](./gbif/dwc_dp_schema.sql). For example, the term occurrence.occurrenceStatus MUST be populated with either 'detected', 'present', 'not detected', or 'absent'.
 
-```
+```sql
 CREATE TYPE OCCURRENCE_STATUS AS ENUM (
   'detected',
   'present',
@@ -79,7 +79,7 @@ Some `Agent` roles are explicit in DwC-DP. Most of these are simply fields for t
 
 Several fields in DwC-DP MUST use values from a specific controlled vocabulary. In the database creation script these can be found as ENUMs. Following is an example for the strictly controlled vocabulary for the `taxon_completeness_reported` field in the `survey` table (no other values are valid):
 
-```
+```sql
 CREATE TYPE TAXON_COMPLETENESS_REPORTED AS ENUM (
   'not reported',
   'reported complete',
