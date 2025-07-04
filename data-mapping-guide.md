@@ -4,17 +4,19 @@ permalink: /data-mapping-guide/
 toc: true
 ---
 
+[dwc_dp_schema]: https://github.com/gbif/dwc-dp-examples/blob/master/gbif/dwc_dp_schema.sql
 
 ## Introduction
 
 The Darwin Core Data Package ("DwC-DP" hereafter) is highly normalized and it may seem overwhelming at first. That is understandable. Remember that the DwC-DP is meant to be a comprehensive representation that accommodates all use cases. It may not seem the simplest way to represent the data you'll be mapping, but that is because it has to cover other perspectives as well. 
 
-This guide is targeted at preparing CSV files that comply with the structure of the table schemas of DwC-DP. The resulting table can be used to map in a DwC-D-enabled instance of the Integrated Publishing toolkit (e.g., https://dwcdp-ipt.gbif-test.org/) or to populate a postgresql database using the DwC-DP structure we have provided in the creation script [dwc_dp_schema.sql](./gbif/dwc_dp_schema.sql), using data from your database as a source. This will require "mapping" between your structure and that of DwC-DP. 
+This guide is targeted at preparing CSV files that comply with the structure of the table schemas of DwC-DP. The resulting table can be used to map in a DwC-D-enabled instance of the Integrated Publishing toolkit (e.g., <https://dwcdp-ipt.gbif-test.org>) or to populate a postgresql database using the DwC-DP structure we have provided in the creation script [dwc_dp_schema.sql][dwc_dp_schema], using data from your database as a source. This will require "mapping" between your structure and that of DwC-DP. 
 
 ## Participating and Getting Help
-In anticipation of a formal public review, scheduled to begin 2025-09-01, we would like to invite people to gain familiarity with and test the DwC-DP by attempting to map original datasets to it. We are just beginning to work on the "Darwin Core Data Package Guide", which is intended to contain various "recipes" for publishing different types of datasets. Until that document contains useful content, the best way forward is to look at an already-mapped example dataset that is similar to the one you want to test ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)). This community testing phase will remain open until 2025-08-01.
 
-- **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/index.html).
+In anticipation of a formal public review, scheduled to begin 2025-09-01, we would like to invite people to gain familiarity with and test the DwC-DP by attempting to map original datasets to it. We are just beginning to work on the "Darwin Core Data Package Guide", which is intended to contain various "recipes" for publishing different types of datasets. Until that document contains useful content, the best way forward is to look at an already-mapped example dataset that is similar to the one you want to test (<https://github.com/gbif/dwc-dp-examples>). This community testing phase will remain open until 2025-08-01.
+
+- **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/).
 
 - **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](https://gbif.github.io/dwc-dp-examples/data-mapping-guide.html). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
 
@@ -28,7 +30,7 @@ For help with an issue, feel free to contact [John Wieczorek](mailto:gtuco.btuco
 
 ### Diagrams
 
-In this document we will use figures to illustrate the structure of the DwC-DP. These figures take the form of Entity-Relationship (ER) diagrams. In these diagrams, concepts or classes are implemented as tables and are denoted by boxes with labels in UpperCamelCase. The properties (fields) for these tables are listed within the box for the concept they are properties of, and are in lowerCamelCase. The figures do not necessarily show the full set of fields for the tables they represent, nor do they show data types and other constraints. For that detailed information, you should consult either the [table schemas](https://github.com/gbif/dwc-dp/tree/master/dwc-dp/0.1/table-schemas) or the [DwC-DP Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/). At times we will show snippets of the schema (such as table definitions) for reference. The definitive version of the tables to populate is in [dwc_dp_schema.sql](./gbif/dwc_dp_schema.sql). The term names in the figures (e.g., `eventType`) correspond to their equivalents in lower_snake_case in the database (e.g., `event_type`).
+In this document we will use figures to illustrate the structure of the DwC-DP. These figures take the form of Entity-Relationship (ER) diagrams. In these diagrams, concepts or classes are implemented as tables and are denoted by boxes with labels in UpperCamelCase. The properties (fields) for these tables are listed within the box for the concept they are properties of, and are in lowerCamelCase. The figures do not necessarily show the full set of fields for the tables they represent, nor do they show data types and other constraints. For that detailed information, you should consult either the [table schemas](https://github.com/gbif/dwc-dp/tree/master/dwc-dp/0.1/table-schemas) or the [DwC-DP Quick Reference Guide](/dwc-dp/qrg/). At times we will show snippets of the schema (such as table definitions) for reference. The definitive version of the tables to populate is in [dwc_dp_schema.sql][dwc_dp_schema]. The term names in the figures (e.g., `eventType`) correspond to their equivalents in lower_snake_case in the database (e.g., `event_type`).
 
 ### Implicit Data
 
@@ -42,7 +44,7 @@ It is likely that the source data won't have all tables to match the ones in DwC
 
 In DwC-DP tables represent concepts that are semantically separate from each other and each MUST be identified separately.
 
-The use of record identifiers for concepts in DwC-DP is ubiquitous, and required whenever you have data that correspond to a given concept. When creating tables in DwC-DP, use resolvable global unique identifiers for the `ID` fields if you have them. If you don't, use non-resolvable global unique identifiers if you have them. If you don't, generate UUIDS as identifiers in place of the identifiers that are unique only within the scope of your database. In cases where your database does not have identifiers for records that can be inferred for DwC-DP, generate UUIDs for these identifiers. For every identifier you have to create in the place of a local one in your database, you CAN also create an `Identifier` record that translates between your local identifier and the one you created for sharing via DwC-DP. If you do this, set the `identifierType` to `local`. As an example, here is the statement from [dwc_dp_schema.sql](./gbif/dwc_dp_schema.sql) that creates the structure of the `MaterialIdentifier` table. 
+The use of record identifiers for concepts in DwC-DP is ubiquitous, and required whenever you have data that correspond to a given concept. When creating tables in DwC-DP, use resolvable global unique identifiers for the `ID` fields if you have them. If you don't, use non-resolvable global unique identifiers if you have them. If you don't, generate UUIDS as identifiers in place of the identifiers that are unique only within the scope of your database. In cases where your database does not have identifiers for records that can be inferred for DwC-DP, generate UUIDs for these identifiers. For every identifier you have to create in the place of a local one in your database, you CAN also create an `Identifier` record that translates between your local identifier and the one you created for sharing via DwC-DP. If you do this, set the `identifierType` to `local`. As an example, here is the statement from [dwc_dp_schema.sql][dwc_dp_schema] that creates the structure of the `MaterialIdentifier` table. 
 
 ```sql
 -- MaterialIdentifier
@@ -62,7 +64,7 @@ The `Identifier` and other "common model" tables are described in [GBIF Common M
 
 ### Strictly controlled vocabularies
 
-Some fields whose values are strictly controlled have TYPE ENUMS defined in the [database schema](./gbif/dwc_dp_schema.sql). For example, the term occurrence.occurrenceStatus MUST be populated with either 'detected', 'present', 'not detected', or 'absent'.
+Some fields whose values are strictly controlled have TYPE ENUMS defined in the [database schema][dwc_dp_schema]. For example, the term occurrence.occurrenceStatus MUST be populated with either `"detected"`, `"present"`, `"not detected"`, or `"absent"`.
 
 ```sql
 CREATE TYPE OCCURRENCE_STATUS AS ENUM (
