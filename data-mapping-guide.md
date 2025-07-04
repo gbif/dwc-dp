@@ -1,5 +1,3 @@
-# Data Mapping Guide
-
 ## Table of Contents
 [Introduction](#introduction)<br>
 [Participating and Getting Help](#participating-and-getting-help)<br>
@@ -12,6 +10,12 @@
  - [Agents and Their Roles](#agents-and-their-roles)<br>
  
 [Suggested Mapping Order](#suggested-mapping-order)
+---
+title: Data Mapping Guide
+permalink: /data-mapping-guide/
+toc: true
+---
+
 
 ## Introduction
 
