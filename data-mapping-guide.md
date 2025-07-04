@@ -96,7 +96,7 @@ CREATE TABLE survey (
 );
 ```
 
-# Suggested Mapping Order
+## Suggested Mapping Order
 
 No dataset will require all of the tables in DwC-DP, but every table will be required by some dataset. Below is a list of the steps we suggest to follow to map your data to DwC-DP. Each step has a link to a more detailed description of what to do. The order of these steps was designed to make sure that you will already have records for tables that will be linked to in subsequent steps of the mapping process. 
 
@@ -104,74 +104,144 @@ You can use the list below to quickly make a checklist of the tables you want to
 
 You can see that, for a given dataset, you are likely end up with a very much shorter checklist of tables that you will actually populate. Proceed to populate them successively in the order you find them on the list, as tables further down the list depend on one or more tables above them on the list to have been populated.
 
-## 1. Protocol
-## 2. Agent
-### 2.1 AgentIdentifier
-### 2.2 AgentAgentRole
-## 3. Media
-### 3.1 MediaAssertion
-### 3.2 MediaIdentifier
-### 3.3 MediaAgentRole
-### 3.4 AgentMedia
-## 4. Reference
-### 4.1 ProtocolReference
-## 5. Event
-### 5.1 EventAssertion
-### 5.2 EventIdentifier
-### 5.3 EventAgentRole
-### 5.4 EventMedia
-### 5.5 EventProtocol
-### 5.6 EventReference
-### 5.7 ChronometricAge
-#### 5.7.1 ChronometricAgeAssertion
-#### 5.7.2 ChronometricAgeAgentRole
-#### 5.7.3 ChronometricAgeMedia
-#### 5.7.4 ChronometricAgeProtocol
-#### 5.7.5 ChronometricAgeReference
-### 5.8 GeologicalContext
-#### 5.8.1 GeologicalContextMedia
-### 5.9 Survey
-#### 5.9.1 SurveyTarget
-#### 5.9.2 SurveyAssertion
-#### 5.9.3 SurveyIdentifier
-#### 5.9.4 SurveyAgentRole
-#### 5.9.5 SurveyProtocol
-#### 5.9.6 SurveyReference
-### 5.10 Occurrence
-#### 5.10.1 OccurrenceAssertion
-#### 5.10.2 OccurrenceIdentifier
-#### 5.10.3 OccurrenceAgentRole
-#### 5.10.4 OccurrenceMedia
-#### 5.10.5 OccurrenceProtocol
-#### 5.10.6 OccurrenceReference
-#### 5.10.7 OrganismInteraction
-##### 5.10.7.1 OrganismInteractionAssertion
-##### 5.10.7.2 OrganismInteractionAgentRole
-##### 5.10.7.3 OrganismInteractionMedia
-##### 5.10.7.4 OrganismInteractionReference
-## 6. Material
-### 6.1 MaterialAssertion
-### 6.2 MaterialIdentifier
-### 6.3 MaterialAgentRole
-### 6.4 MaterialMedia
-### 6.5 MaterialProtocol
-### 6.6 MaterialReference
-## 7. NucleotideSequence
-## 8. MolecularProtocol
-### 8.1 MolecularProtocolAssertion
-### 8.2 MolecularProtocolAgentRole
-### 8.3 MolecularProtocolReference
-## 9. NucleotideAnalysis
-### 9.1 NucleotideAnalysisAssertion
-## 10. Identification
-### 10.1 IdentificationAgentRole
-### 10.2 IdentificationTaxon
-## 11. PhylogeneticTree
-### 11.1 PhylogeneticTreeAssertion
-### 11.2 PhylogeneticTreeIdentifier
-### 11.3 PhylogeneticTreeMedia
-### 11.4 PhylogeneticTreeProtocol
-### 11.5 PhylogeneticTreeReference
-### 11.6 PhylogeneticTreeTip
-#### 11.6.1 PhylogeneticTreeTipAssertion
-## 12. Relationship
+### 1. Protocol
+
+### 2. Agent
+
+#### 2.1 AgentIdentifier
+
+#### 2.2 AgentAgentRole
+
+### 3. Media
+
+#### 3.1 MediaAssertion
+
+#### 3.2 MediaIdentifier
+
+#### 3.3 MediaAgentRole
+
+#### 3.4 AgentMedia
+
+### 4. Reference
+
+#### 4.1 ProtocolReference
+
+### 5. Event
+
+#### 5.1 EventAssertion
+
+#### 5.2 EventIdentifier
+
+#### 5.3 EventAgentRole
+
+#### 5.4 EventMedia
+
+#### 5.5 EventProtocol
+
+#### 5.6 EventReference
+
+#### 5.7 ChronometricAge
+
+##### 5.7.1 ChronometricAgeAssertion
+
+##### 5.7.2 ChronometricAgeAgentRole
+
+##### 5.7.3 ChronometricAgeMedia
+
+##### 5.7.4 ChronometricAgeProtocol
+
+##### 5.7.5 ChronometricAgeReference
+
+#### 5.8 GeologicalContext
+
+##### 5.8.1 GeologicalContextMedia
+
+#### 5.9 Survey
+
+##### 5.9.1 SurveyTarget
+
+##### 5.9.2 SurveyAssertion
+
+##### 5.9.3 SurveyIdentifier
+
+##### 5.9.4 SurveyAgentRole
+
+##### 5.9.5 SurveyProtocol
+
+##### 5.9.6 SurveyReference
+
+#### 5.10 Occurrence
+
+##### 5.10.1 OccurrenceAssertion
+
+##### 5.10.2 OccurrenceIdentifier
+
+##### 5.10.3 OccurrenceAgentRole
+
+##### 5.10.4 OccurrenceMedia
+
+##### 5.10.5 OccurrenceProtocol
+
+##### 5.10.6 OccurrenceReference
+
+##### 5.10.7 OrganismInteraction
+
+###### 5.10.7.1 OrganismInteractionAssertion
+
+###### 5.10.7.2 OrganismInteractionAgentRole
+
+###### 5.10.7.3 OrganismInteractionMedia
+
+###### 5.10.7.4 OrganismInteractionReference
+
+### 6. Material
+
+#### 6.1 MaterialAssertion
+
+#### 6.2 MaterialIdentifier
+
+#### 6.3 MaterialAgentRole
+
+#### 6.4 MaterialMedia
+
+#### 6.5 MaterialProtocol
+
+#### 6.6 MaterialReference
+
+### 7. NucleotideSequence
+
+### 8. MolecularProtocol
+
+#### 8.1 MolecularProtocolAssertion
+
+#### 8.2 MolecularProtocolAgentRole
+
+#### 8.3 MolecularProtocolReference
+
+### 9. NucleotideAnalysis
+
+#### 9.1 NucleotideAnalysisAssertion
+
+### 10. Identification
+
+#### 10.1 IdentificationAgentRole
+
+#### 10.2 IdentificationTaxon
+
+### 11. PhylogeneticTree
+
+#### 11.1 PhylogeneticTreeAssertion
+
+#### 11.2 PhylogeneticTreeIdentifier
+
+#### 11.3 PhylogeneticTreeMedia
+
+#### 11.4 PhylogeneticTreeProtocol
+
+#### 11.5 PhylogeneticTreeReference
+
+#### 11.6 PhylogeneticTreeTip
+
+##### 11.6.1 PhylogeneticTreeTipAssertion
+
+### 12. Relationship
