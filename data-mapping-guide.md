@@ -18,13 +18,13 @@ In anticipation of a formal public review, scheduled to begin 2025-09-01, we wou
 
 - **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/).
 
-- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](https://gbif.github.io/dwc-dp-examples/data-mapping-guide.html). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
+- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, (this document). For feedback about any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
 
 - **Issues** For feedback about the structure or documentation of DwC-DP, feel free to register an [Issue](https://github.com/gbif/dwc-dp/issues).
 
 - **Discussion** - For open discussion on the Darwin Core Data Package, see the GBIF [Darwin Core Data Package (DwC-DP) discourse forum topic](https://discourse.gbif.org/t/darwin-core-data-package-dwc-dp/5937).
 
-For help with an issue, feel free to contact [John Wieczorek](mailto:gtuco.btuco@gmail.com).
+- **Help!** - For help with any issue, feel free to contact the DwC-DP helpdesk <dwcdp@gbif.org>.
 
 ## General Considerations
 
