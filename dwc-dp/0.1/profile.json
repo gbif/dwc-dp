@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Darwin Core Data Package",
+  "description": "Darwin Core Data Package (DwC-DP) is a model for publishing biodiversity data, implementing the Darwin Core Conceptual Model (https://gbif.github.io/dwc-dp/#darwin-core-conceptual-model).",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "https://specs.frictionlessdata.io/schemas/data-package.json"
+    }
+  ]
+}

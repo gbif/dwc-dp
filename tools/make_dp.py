@@ -105,7 +105,7 @@ def build_datapackage(path, title, name):
             resources.append(resource)
 
     datapackage = {
-        "profile": "tabular-data-package",
+        "profile": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/profile.json",
         "name": name,
         "title": title,
         "resources": resources
