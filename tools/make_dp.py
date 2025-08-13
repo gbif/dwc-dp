@@ -105,7 +105,7 @@ def build_datapackage(path, title, name):
             resources.append(resource)
 
     datapackage = {
-        "profile": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/profile.json",
+        "profile": "https://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1/profile.json",
         "name": name,
         "title": title,
         "resources": resources
