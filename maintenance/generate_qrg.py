@@ -491,8 +491,13 @@ TEMPLATE = '''<!DOCTYPE html>
 <body>
     <main>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
+        <h2 id="top">Introduction</h2>
         <div class="intro">
-            <p>This Quick Reference Guide provides an navigable overview of the available tables and fields for a <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The sidebar at the right provides quick access to table definitions. Within the table definitions, the definitions of the available fields are listed.</p>
+            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the part of the Darwin Core standard specified in the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md">Darwin Core Data Package Guide</a>.</p>
+
+<p>This document is in support of the Darwin Core Data Package and is distinct from the <a href="https://dwc.tdwg.org/terms/">Darwin Core Quick Reference Guide</a>. This Quick Reference Guide provides an navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data through this particular technology.</p>
+
+<p>The sidebar at the right provides quick access to table definitions, within which the definitions of the available fields for each tabl are listed. Supplementary to this document is the Darwin Core Data Package Relationship Explorer, which provides a visual guide on the options for structure of Darwin Core Data Packages from the perspective of the relationship between tables.</p>
         </div>
         {content}
         <h1 id="model">Table Relationships</h1>
