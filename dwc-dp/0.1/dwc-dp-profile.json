@@ -1,207 +1,158 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Darwin Core Data Package",
-  "description": "Darwin Core Data Package (DwC-DP) is a model for publishing biodiversity data, implementing the Darwin Core Conceptual Model (https://gbif.github.io/dwc-dp/#darwin-core-conceptual-model).",
+  "title": "Darwin Core Data Package (DwC-DP) profile",
+  "description": "Profile for organizing biodiversity data as a Data Package (https://specs.frictionlessdata.io/).",
   "type": "object",
   "$defs": {
-    "version": {
-      "type": "string",
-      "format": "date",
-      "examples": ["2025-09-01"]
+    "dwc-dp-resource-names": {
+      "enum": [
+        "agent",
+        "agent-agent-role",
+        "agent-identifier",
+        "agent-media",
+        "chronometric-age",
+        "chronometric-age-agent-role",
+        "chronometric-age-assertion",
+        "chronometric-age-media",
+        "chronometric-age-protocol",
+        "chronometric-age-reference",
+        "event",
+        "event-agent-role",
+        "event-assertion",
+        "event-identifier",
+        "event-media",
+        "event-protocol",
+        "event-provenance",
+        "event-reference",
+        "geological-context",
+        "geological-context-media",
+        "identification",
+        "identification-agent-role",
+        "identification-taxon",
+        "material",
+        "material-agent-role",
+        "material-assertion",
+        "material-identifier",
+        "material-media",
+        "material-protocol",
+        "material-provenance",
+        "material-reference",
+        "material-rights",
+        "media",
+        "media-agent-role",
+        "media-assertion",
+        "media-identifier",
+        "molecular-protocol",
+        "media-provenance",
+        "media-rights",
+        "molecular-protocol-agent-role",
+        "molecular-protocol-assertion",
+        "molecular-protocol-reference",
+        "nucleotide-analysis",
+        "nucleotide-analysis-assertion",
+        "nucleotide-sequence",
+        "occurrence",
+        "occurrence-agent-role",
+        "occurrence-assertion",
+        "occurrence-identifier",
+        "occurrence-media",
+        "occurrence-protocol",
+        "organism",
+        "organism-assertion",
+        "organism-identifier",
+        "organism-interaction",
+        "organism-interaction-agent-role",
+        "organism-interaction-assertion",
+        "organism-interaction-media",
+        "organism-interaction-reference",
+        "organism-reference",
+        "organism-relationship",
+        "protocol",
+        "provenance",
+        "reference",
+        "rights",
+        "resource-relationship",
+        "survey",
+        "survey-agent-role",
+        "survey-assertion",
+        "survey-identifier",
+        "survey-protocol",
+        "survey-reference",
+        "survey-target"
+      ]
     }
-  }
+  },
   "allOf": [
     {
       "$ref": "https://specs.frictionlessdata.io/schemas/data-package.json"
     },
     {
       "required": [
-        "name",
-        "title",
-        "description",
-        "profile",
-        "created",
-        "resources",
+        "profile"
       ],
-    }
-  ]
-}
-{
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "title": "Darwin Core Data Package Profile (DwC-DP)",
-  "description": "Profile for publishing Darwin Core data as a Frictionless Data Package (DwC-DP). Requires at least one Tabular Data Resource with a Table Schema; encourages reuse and citation of Darwin Core (and related) terms via per-field linking metadata.",
-  "type": "object",
-
-  "allOf": [
-    { "$ref": "https://specs.frictionlessdata.io/schemas/data-package.json" },
-
-    {
-      "type": "object",
       "properties": {
-        "name": { "type": "string" },
-
         "profile": {
-          "oneOf": [
-            { "enum": ["dwc-dp"] },
-            {
-              "type": "string",
-              "format": "uri",
-              "pattern": "dwc-dp-profile\\.json$"
-            }
-          ]
+          "format": "uri"
         },
-
-        "$schema": {
-          "type": "string",
-          "format": "uri",
-          "pattern": "dwc-dp-profile\\.json$"
-        },
-
-        "title": { "type": "string" },
-        "description": { "type": "string" },
-
-        "created": {
-          "type": "string",
-          "format": "date-time"
-        },
-
-        "licenses": {
-          "type": "array",
-          "items": { "type": "object" }
-        },
-
         "resources": {
-          "type": "array",
-          "minItems": 1,
           "items": {
-            "allOf": [
-              { "$ref": "https://specs.frictionlessdata.io/schemas/tabular-data-resource.json" },
+            "oneOf": [
               {
-                "type": "object",
                 "properties": {
-                  "profile": { "enum": ["tabular-data-resource"] },
-
-                  "schema": {
-                    "oneOf": [
-                      { "type": "string", "format": "uri" },
-                      {
-                        "allOf": [
-                          { "$ref": "https://specs.frictionlessdata.io/schemas/table-schema.json" },
-                          {
-                            "type": "object",
-                            "properties": {
-                              "fields": {
-                                "type": "array",
-                                "minItems": 1,
-                                "items": {
-                                  "type": "object",
-                                  "required": ["name"],
-                                  "allOf": [
-                                    { "$ref": "#/definitions/DwCFieldMetadata" }
-                                  ]
-                                }
-                              },
-
-                              "primaryKey": {
-                                "oneOf": [
-                                  { "type": "string" },
-                                  {
-                                    "type": "array",
-                                    "items": { "type": "string" },
-                                    "minItems": 1
-                                  }
-                                ]
-                              },
-
-                              "foreignKeys": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "fields": {
-                                      "oneOf": [
-                                        { "type": "string" },
-                                        {
-                                          "type": "array",
-                                          "items": { "type": "string" },
-                                          "minItems": 1
-                                        }
-                                      ]
-                                    },
-                                    "reference": {
-                                      "type": "object",
-                                      "properties": {
-                                        "resource": { "type": "string" },
-                                        "fields": {
-                                          "oneOf": [
-                                            { "type": "string" },
-                                            {
-                                              "type": "array",
-                                              "items": { "type": "string" },
-                                              "minItems": 1
-                                            }
-                                          ]
-                                        }
-                                      },
-                                      "required": ["fields"]
-                                    },
-
-                                    "predicateLabel": { "type": "string" },
-                                    "predicateIRI": { "type": "string", "format": "uri" }
-                                  },
-                                  "required": ["fields", "reference"]
-                                }
-                              },
-
-                              "missingValues": {
-                                "type": "array",
-                                "items": { "type": "string" }
-                              }
-                            },
-                            "required": ["fields"]
-                          }
-                        ]
-                      }
-                    ]
+                  "name": {
+                    "not": {
+                      "$ref": "#/$defs/dwc-dp-resource-names"
+                    }
                   }
-                },
-                "required": ["profile", "name", "schema"]
+                }
+              },
+              {
+                "required": [
+                  "profile"
+                ],
+                "properties": {
+                  "profile": {
+                    "enum": [
+                      "tabular-data-resource"
+                    ]
+                  },
+                  "name": {
+                    "$ref": "#/$defs/dwc-dp-resource-names"
+                  },
+                  "schema": {
+                    "properties": {
+                      "fields": {
+                        "items": {
+                          "required": [
+                            "name",
+                            "title",
+                            "description",
+                            "type",
+                            "dcterms:isVersionOf",
+                            "dcterms:references"
+                          ],
+                          "properties": {
+                            "dcterms:isVersionOf": {
+                              "type": "string",
+                              "format": "uri",
+                              "pattern": "^http.*$"
+                            },
+                            "dcterms:references": {
+                              "type": "string",
+                              "format": "uri",
+                              "pattern": "^http.*$"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
               }
             ]
           }
         }
-      },
-
-      "required": ["name", "resources"],
-
-      "anyOf": [
-        { "required": ["profile"] },
-        { "required": ["$schema"] }
-      ]
+      }
     }
-  ],
-
-  "definitions": {
-    "DwCFieldMetadata": {
-      "type": "object",
-      "properties": {
-        "comments": { "type": "string" },
-
-        "namespace": { "type": "string" },
-
-        "dcterms:isVersionOf": {
-          "type": "string",
-          "format": "uri",
-          "description": "IRI for the unversioned source term (e.g., http://rs.tdwg.org/dwc/terms/eventID)."
-        },
-        "dcterms:references": {
-          "type": "string",
-          "format": "uri",
-          "description": "IRI for the versioned source term (e.g., http://rs.tdwg.org/dwc/terms/version/eventID-YYYY-MM-DD)."
-        },
-        "rdfs:comment": { "type": "string" }
-      },
-      "additionalProperties": true
-    }
-  }
+  ]
 }
