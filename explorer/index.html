@@ -91,12 +91,14 @@
 
       <div class="category-filters">
         <h2>Filter Categories</h2>
-        <div><label><input checked class="category-filter" type="checkbox" value="Agent" /> Agent</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Agent" /> Agent</label>        <div><label><input checked class="category-filter" type="checkbox" value="Provenance" /> Provenance</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Usage-Policy" /> Usage Policy</label></div>
+</div>
         <div><label><input checked class="category-filter" type="checkbox" value="Assertion" /> Assertion</label></div>
         <div><label><input checked class="category-filter" type="checkbox" value="Identifier" /> Identifier</label></div>
         <div><label><input checked class="category-filter" type="checkbox" value="Media" /> Media</label></div>
         <div><label><input checked class="category-filter" type="checkbox" value="Protocol" /> Protocol</label></div>
-        <div><label><input checked class="category-filter" type="checkbox" value="Reference" /> Reference</label></div>
+        <div><label><input checked class="category-filter" type="checkbox" value="Reference" /> Bibliographic Resource</label></div>
       </div>
 
       <div style="margin-top: 20px;">
@@ -113,6 +115,7 @@
           <input type="file" id="upload-datapackage" accept=".json" />
         </div>
       </div>
+      <div style="margin-top:8px;font-size:12px;color:#555;">v. 2025-08-28</div>
     </div>
   </div>
 
@@ -133,7 +136,7 @@
     let fullData = { nodes, edges };
     let showFullModel = false;
 
-    const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference"];
+    const allCategories = ["agent", "assertion", "identifier", "media", "protocol", "reference", "provenance", "usage-policy"];
     const predicateMap = {};
     predicates.forEach(p => {
       const key = `${p.subject_table}__${p.subject_field}__${p.related_table}__${p.related_field}`;

@@ -1,3 +1,360 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""Run DwC-DP build in two stages using a single version argument:
+1) make_index_json: generates ../dwc-dp/<version>/index.json and table schemas
+2) generate_qrg: renders the Quick Reference Guide using the generated index
+
+Usage:
+  python make_index_and_generate_qrg.py <version>
+
+Examples:
+  python make_index_and_generate_qrg.py 0.1
+  python make_index_and_generate_qrg.py 2025-09-01
+"""
+
+import sys, os, argparse
+
+# ---- CLI ----
+if len(sys.argv) == 1:
+    print("Missing required argument: VERSION\n")
+    print("Examples:")
+    print("  python make_index_and_generate_qrg.py 0.1")
+    print("  python make_index_and_generate_qrg.py 2025-09-01\n")
+    p = argparse.ArgumentParser(description="Build DwC-DP index and QRG")
+    p.add_argument("version", help="DwC-DP version (e.g., 0.1 or 2025-09-01)")
+    p.print_help()
+    sys.exit(2)
+
+parser = argparse.ArgumentParser(description="Build DwC-DP index and QRG")
+parser.add_argument("version", help="DwC-DP version (e.g., 0.1 or 2025-09-01)")
+args, _unknown = parser.parse_known_args()
+
+# Derived paths shared by both stages
+INDEX_JSON_PATH = '../dwc-dp/' + args.version + '/index.json'
+TABLE_SCHEMAS_DIR = '../dwc-dp/' + args.version + '/table-schemas'
+
+print(f"Using INDEX_JSON_PATH: {INDEX_JSON_PATH}")
+print(f"Using TABLE_SCHEMAS_DIR: {TABLE_SCHEMAS_DIR}")
+
+# Ensure output dir exists
+os.makedirs(os.path.dirname(INDEX_JSON_PATH), exist_ok=True)
+os.makedirs(TABLE_SCHEMAS_DIR, exist_ok=True)
+
+# ==================== Stage 1: make_index_json ====================
+# Embedded source (lightly refactored)
+#!/usr/bin/env python3
+"""Generate index.json and per-table schema JSONs for DwC-DP, including keys & predicates,
+and write a version.json alongside index.json.
+
+Run from the repository's `maintenance` directory.
+Requires the three CSV inputs to be present at: ../vocabulary/
+  - dwc-dp-tables.csv
+  - dwc-dp-fields.csv
+  - dwc-dp-predicates.csv
+
+Usage:
+  python make_index.py <output_dir> <version>
+
+Example:
+  python make_index.py ../dwc-dp/0.1 0.1
+"""
+import argparse
+import csv
+import json
+from datetime import datetime
+from pathlib import Path
+from collections import defaultdict
+try:
+    from zoneinfo import ZoneInfo  # Python 3.9+
+except Exception:
+    ZoneInfo = None
+
+EXPECTED_HEADERS = {
+    "dwc-dp-tables.csv": [
+        "name","title","description","comments","example","namespace",
+        "dcterms:isVersionOf","dcterms:references","rdfs:comment","status"
+    ],
+    "dwc-dp-fields.csv": [
+        "table","name","key","title","description","comments","example",
+        "type","format","unique","required","minimum","maximum","namespace",
+        "dcterms:isVersionOf","dcterms:references","rdfs:comment","status"
+    ],
+    "dwc-dp-predicates.csv": [
+        "subject_table","subject_field","predicate","related_table","related_field","status"
+    ],
+}
+
+def repo_root_from_script() -> Path:
+    # Script is expected in <repo_root>/maintenance/
+    return Path(__file__).resolve().parent.parent
+
+def validate_csv_headers(vocabulary_dir: Path) -> None:
+    """Ensure the three required CSVs exist and have the exact headers (order matters)."""
+    for filename, expected in EXPECTED_HEADERS.items():
+        path = vocabulary_dir / filename
+        if not path.is_file():
+            raise FileNotFoundError(f"Required input not found: {path}")
+        with path.open("r", encoding="utf-8-sig", newline="") as fh:
+            reader = csv.DictReader(fh)
+            actual = reader.fieldnames or []
+            if actual != expected:
+                raise ValueError(
+                    "Header mismatch in {file}:\n  Expected: {exp}\n  Actual:   {act}".format(
+                        file=path, exp=expected, act=actual
+                    )
+                )
+
+def today_iso_pst() -> str:
+    # Use America/Los_Angeles as the canonical timezone for 'issued'
+    if ZoneInfo is not None:
+        return datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
+    return datetime.now().date().isoformat()
+
+def build_table_schemas(vocabulary_dir: Path, version: str):
+    """Build tableSchemas list from dwc-dp-tables.csv where status == 'recommended'."""
+    tables_csv = vocabulary_dir / "dwc-dp-tables.csv"
+    table_schemas = []
+    with tables_csv.open("r", encoding="utf-8-sig", newline="") as fh:
+        reader = csv.DictReader(fh)
+        for row in reader:
+            status = (row.get("status", "") or "").strip().lower()
+            if status != "recommended":
+                continue
+            name = (row.get("name", "") or "").strip()
+            title = (row.get("title", "") or "").strip()
+            description = (row.get("description", "") or "").strip()
+            comments = (row.get("comments", "") or "").strip()
+            example = (row.get("example", "") or "").strip()
+            namespace = (row.get("namespace", "") or "").strip()
+            iri = (row.get("dcterms:isVersionOf", "") or "").strip()
+            iri_version = (row.get("dcterms:references", "") or "").strip()
+            rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
+
+            ts = {
+                "identifier": f"http://rs.tdwg.org/dwc/dwc-dp/{name}",
+                "url": f"https://github.com/gbif/dwc-dp/blob/master/dwc-dp/{version}/table-schemas/{name}.json",
+                "name": name,
+                "title": title,
+                "description": description,
+                "comments": comments,
+                "example": example,
+                "namespace": namespace,
+                "iri": iri,
+                "iri_version": iri_version,
+                "rdfs:comment": rdfs_comment,
+            }
+            table_schemas.append(ts)
+    return table_schemas
+
+def build_fields_for_table(vocabulary_dir: Path, table_name: str):
+    """Return (ordered fields list, pk_names list, fk_field_names list) for a table."""
+    fields_csv = vocabulary_dir / "dwc-dp-fields.csv"
+    fields = []
+    pk_names = []
+    fk_field_names = []
+    with fields_csv.open("r", encoding="utf-8-sig", newline="") as fh:
+        reader = csv.DictReader(fh)
+        for row in reader:
+            status = (row.get("status", "") or "").strip().lower()
+            table = (row.get("table", "") or "").strip()
+            if table != table_name or status != "recommended":
+                continue
+
+            name = (row.get("name", "") or "").strip()
+            title = (row.get("title", "") or "").strip()
+            description = (row.get("description", "") or "").strip()
+            comments = (row.get("comments", "") or "").strip()
+            example = (row.get("example", "") or "").strip()
+            ftype = (row.get("type", "") or "").strip()
+            fmt = (row.get("format", "") or "").strip()
+            namespace = (row.get("namespace", "") or "").strip()
+            iri = (row.get("dcterms:isVersionOf", "") or "").strip()
+            iri_version = (row.get("dcterms:references", "") or "").strip()
+            rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
+
+            # Track pk / fk
+            key_val = (row.get("key", "") or "").strip().lower()
+            if key_val == "pk":
+                pk_names.append(name)
+            elif key_val == "fk":
+                fk_field_names.append(name)
+
+            # Constraints
+            constraints_candidates = {
+                "required": (row.get("required", "") or "").strip(),
+                "unique": (row.get("unique", "") or "").strip(),
+                "minimum": (row.get("minimum", "") or "").strip(),
+                "maximum": (row.get("maximum", "") or "").strip(),
+            }
+            constraints = {k: v for k, v in constraints_candidates.items() if v != ""}
+
+            field_obj = {
+                "name": name,
+                "title": title,
+                "description": description,
+                "comments": comments,
+                "example": example,
+                "type": ftype,
+                "format": fmt,
+                "namespace": namespace,
+                "iri": iri,
+                "iri_version": iri_version,
+                "rdfs:comment": rdfs_comment,
+            }
+            if constraints:
+                field_obj["constraints"] = constraints
+
+            fields.append(field_obj)
+    return fields, pk_names, fk_field_names
+
+def load_predicates_map(vocabulary_dir: Path):
+    """Return a mapping: (subject_table, subject_field) -> ordered rows (recommended first)."""
+    preds_csv = vocabulary_dir / "dwc-dp-predicates.csv"
+    mapping_all = defaultdict(list)
+    with preds_csv.open("r", encoding="utf-8-sig", newline="") as fh:
+        reader = csv.DictReader(fh)
+        for row in reader:
+            subj_tbl = (row.get("subject_table", "") or "").strip()
+            subj_fld = (row.get("subject_field", "") or "").strip()
+            mapping_all[(subj_tbl, subj_fld)].append(row)
+    # Order with recommended first
+    mapping = {}
+    for key, rows in mapping_all.items():
+        recommended = [r for r in rows if (r.get("status", "") or "").strip().lower() == "recommended"]
+        ordered = recommended + [r for r in rows if r not in recommended]
+        mapping[key] = ordered
+    return mapping
+
+def build_foreign_keys_for_table(pred_map, table_name: str, fk_field_names: list):
+    """Create foreign key dicts for the given table/fields using predicate rows."""
+    fks = []
+    for fld in fk_field_names:
+        rows = pred_map.get((table_name, fld), [])
+        if not rows:
+            print(f"Warning: No predicate mapping found for {table_name}.{fld}; skipping FK entry")
+            continue
+        row = rows[0]  # prefer 'recommended' if present
+        predicate = (row.get("predicate", "") or "").strip()
+        related_table = (row.get("related_table", "") or "").strip()
+        related_field = (row.get("related_field", "") or "").strip()
+        resource = "" if related_table == table_name else related_table
+
+        fk = {
+            "fields": fld,
+            "predicate": predicate,
+            "reference": {
+                "resource": resource,
+                "fields": related_field,
+            },
+        }
+        fks.append(fk)
+    return fks
+
+def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
+    return {
+        "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
+        "url": f"https://github.com/gbif/dwc-dp/blob/master/dwc-dp/{version}",
+        "name": "dwc-dp",
+        "version": version,
+        "title": "Darwin Core Data Package",
+        "shortTitle": "dwc-dp",
+        "description": "A data package for sharing biodiversity data using Darwin Core.",
+        "issued": today_iso_pst(),
+        "isLatest": True,
+        "tableSchemas": build_table_schemas(vocabulary_dir, version),
+    }
+
+def write_table_schema_files(out_dir: Path, table_schemas: list, vocabulary_dir: Path):
+    ts_dir = out_dir / "table-schemas"
+    ts_dir.mkdir(parents=True, exist_ok=True)
+
+    pred_map = load_predicates_map(vocabulary_dir)
+
+    for ts in table_schemas:
+        name = ts.get("name", "")
+
+        # Build fields, pk, and fk field names
+        fields, pk_names, fk_field_names = build_fields_for_table(vocabulary_dir, name)
+
+        # Build FK objects using predicates csv
+        foreign_keys = build_foreign_keys_for_table(pred_map, name, fk_field_names)
+
+        # Construct the table schema JSON: top-level = same structure as in index.json + fields
+        payload = dict(ts)  # shallow copy preserves order
+        payload["fields"] = fields
+
+        # Add primaryKey if present (single string if one; list if multiple)
+        if pk_names:
+            payload["primaryKey"] = pk_names[0] if len(pk_names) == 1 else pk_names
+
+        # Add foreignKeys if any
+        if foreign_keys:
+            payload["foreignKeys"] = foreign_keys
+
+        dest = ts_dir / f"{name}.json"
+        with dest.open("w", encoding="utf-8") as fh:
+            json.dump(payload, fh, ensure_ascii=False, indent=2)
+            fh.write("\n")
+        print(f"Wrote {dest}")
+
+def write_version_json(out_dir: Path, version: str):
+    """Write version.json next to index.json."""
+    payload = {
+        "version": version,
+        "latestCompatibleVersion": version,
+    }
+    dest = out_dir / "version.json"
+    with dest.open("w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    print(f"Wrote {dest}")
+
+def make_index_stage():
+    parser = argparse.ArgumentParser(description="Generate index.json, version.json, and table schema JSON files for DwC-DP.")
+    parser.add_argument("output_dir", help="Path to output directory for index.json, version.json, and table-schemas/")
+    parser.add_argument("version", help="Version string, e.g., 0.1 or 2025-09-01")
+    args = parser.parse_args()
+
+    out_dir = Path(args.output_dir).resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    root = repo_root_from_script()
+    vocabulary_dir = root / "vocabulary"
+
+    # Validate required inputs exist and have correct headers
+    validate_csv_headers(vocabulary_dir)
+
+    # Build payload including tableSchemas
+    payload = build_index_payload(args.version, vocabulary_dir)
+
+    # Write index.json
+    out_path = out_dir / "index.json"
+    with out_path.open("w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    print(f"Wrote {out_path}")
+
+    # Write version.json
+    write_version_json(out_dir, args.version)
+
+    # Write each table schema file with fields, constraints, primaryKey, and foreignKeys (with predicates)
+    write_table_schema_files(out_dir, payload["tableSchemas"], vocabulary_dir)
+
+# (disabled __main__ guard)
+
+# Run the index stage by simulating its CLI: <output_dir> <version>
+def _run_make_index_stage():
+    import sys as _sys
+    prev_argv = list(_sys.argv)
+    try:
+        _sys.argv = ["make_index_json.py", os.path.dirname(INDEX_JSON_PATH), args.version]
+        # Call the refactored entry point
+        make_index_stage()
+    finally:
+        _sys.argv = prev_argv
+
+# ==================== Stage 2: generate_qrg ====================
+# Embedded code from generate_qrg (CLI removed, globals preserved)
 # Python script to generate the Quick Reference Guide HTML (custom order with separators)
 # Usage: python generate_qrg.py
 
@@ -5,32 +362,39 @@ import json
 import os
 
 ordered_groups = [
-    ['event', 'chronometric-age', 'geological-context', 'occurrence', 'organism-interaction', 'survey', 'survey-target'],
+    ['event', 'chronometric-age', 'geological-context', 'occurrence', 'organism', 
+     'organism-interaction', 'survey', 'survey-target'],
     ['identification', 'identification-taxon'],
-    ['material'],
+    ['material', 'material-geological-context'],
     ['nucleotide-analysis', 'molecular-protocol', 'nucleotide-sequence'],
-    ['phylogenetic-tree', 'phylogenetic-tree-tip'],
     ['agent', 'agent-agent-role', 'chronometric-age-agent-role', 'event-agent-role',
-     'identification-agent-role', 'material-agent-role', 'media-agent-role', 'molecular-protocol-agent-role',
-     'nucleotide-analysis-agent-role', 'occurrence-agent-role', 'organism-interaction-agent-role', 'survey-agent-role'],
-    ['media', 'agent-media', 'chronometric-age-media', 'event-media', 'geological-context-media',
-     'material-media', 'occurrence-media', 'organism-interaction-media', 'phylogenetic-tree-media', 'survey-media'],
-    ['protocol', 'chronometric-age-protocol', 'event-protocol', 'material-protocol', 'occurrence-protocol',
-     'phylogenetic-tree-protocol', 'survey-protocol'],
-    ['reference', 'chronometric-age-reference', 'event-reference', 'material-reference', 'molecular-protocol-reference', 'occurrence-reference', 'protocol-reference',
-     'organism-interaction-reference', 'phylogenetic-tree-reference', 'survey-reference'],
-    ['chronometric-age-assertion', 'event-assertion', 'identification-assertion',
-     'material-assertion', 'media-assertion', 'molecular-protocol-assertion', 'nucleotide-analysis-assertion',
-     'occurrence-assertion', 'organism-interaction-assertion', 'phylogenetic-tree-assertion',
-     'phylogenetic-tree-tip-assertion', 'survey-assertion'],
-    ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier', 'occurrence-identifier',
-     'phylogenetic-tree-identifier', 'survey-identifier'],
-    ['relationship']
+     'identification-agent-role', 'material-agent-role', 'media-agent-role', 
+     'molecular-protocol-agent-role', 'occurrence-agent-role', 
+     'organism-interaction-agent-role', 'survey-agent-role'],
+    ['media', 'agent-media', 'chronometric-age-media', 'event-media', 
+     'geological-context-media', 'material-media', 'occurrence-media', 
+     'organism-interaction-media', 'survey-media'],
+    ['protocol', 'chronometric-age-protocol', 'event-protocol', 'material-protocol', 
+     'occurrence-protocol', 'survey-protocol'],
+    ['bibliographic-resource', 'chronometric-age-reference', 'event-reference', 
+     'material-reference', 'molecular-protocol-reference', 'occurrence-reference', 
+     'organism-reference', 'organism-interaction-reference', 'protocol-reference', 
+     'survey-reference'],
+    ['chronometric-age-assertion', 'event-assertion', 'material-assertion', 
+     'media-assertion', 'molecular-protocol-assertion', 'nucleotide-analysis-assertion',
+     'occurrence-assertion', 'organism-assertion', 'organism-interaction-assertion', 
+     'survey-assertion'],
+    ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier', 
+     'occurrence-identifier', 'organism-identifier', 'survey-identifier'],
+    ['provenance', 'event-provenance', 'material-provenance', 'media-provenance'], 
+    ['usage-policy', 'material-usage-policy', 'media-usage-policy'],
+    ['organism-relationship', 'resource-relationship']
 ]
-
-INDEX_JSON_PATH = '../dwc-dp/0.1/index.json'
-TABLE_SCHEMAS_DIR = '../dwc-dp/0.1/table-schemas'
+# INDEX_JSON_PATH will be set from CLI 'version'
+# TABLE_SCHEMAS_DIR will be set from CLI 'version'
 OUTPUT_PATH = '../qrg/index.html'
+JS_INDEX_JSON_PATH = '../explorer/indexJson.js'
+JS_PREDICATES_PATH = '../explorer/predicates.js'
 
 # Full HTML template (no placeholders, uses .format)
 TEMPLATE = '''<!DOCTYPE html>
@@ -128,7 +492,7 @@ TEMPLATE = '''<!DOCTYPE html>
     <main>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <div class="intro">
-            <p>This Quick Reference Guide provides an navigable overview of tables and available fields for a <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The sidebar at the right provides quick access to table definitions. Within the table definitions, the possible fields in the table and their definitions are listed.</p>
+            <p>This Quick Reference Guide provides an navigable overview of the available tables and fields for a <a href="https://gbif.github.io/dwc-dp/">Darwin Core Data Package</a> (DwC-DP). The sidebar at the right provides quick access to table definitions. Within the table definitions, the definitions of the available fields are listed.</p>
         </div>
         {content}
         <h1 id="model">Table Relationships</h1>
@@ -138,12 +502,13 @@ TEMPLATE = '''<!DOCTYPE html>
             <p>To explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</p>
         </div>
         <footer>
-            <p>This guide is part of the Darwin Core Data Package project and is provided to assist users in applying the standard consistently. For authoritative definitions and updates, visit the <a href="https://dwc.tdwg.org/">Darwin Core website</a>.</p>
+            <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages.</p>
         </footer>
     </main>
     <aside class="nav-menu">
         <a class="top-link" href="#top">&uarr; Top</a>
         <a class="top-link" href="#model">&darr; Table Relationships</a>
+        <a class="top-link" href="https://gbif.github.io/dwc-dp/explorer/">Relationship Explorer</a>
         <h3>Tables</h3>
         <nav class="class-index">
             {class_links}
@@ -156,12 +521,15 @@ def build_term_section(field, class_name):
     rows = []
     if not isinstance(field, dict):
         return ''
-    order = ["title", "namespace", "class", "iri", "description", "comments", "examples", "type", "default", "constraints", "format"]
+    order = ["title", "namespace", "class", "iri", "description", "comments", "example", "type", "default", "constraints", "format", "iri_version"]
     labels = {"title": "Title (Label)", "class": "Table:", "namespace": "Namespace", "iri": "IRI", "description": "Description",
-              "comments": "Comments", "examples": "Examples", "type": "Type", "default": "Default", "constraints": "Constraints", "format": "Format"}
+              "comments": "Comments", "example": "Examples", "type": "Type", "default": "Default", "constraints": "Constraints", "format": "Format", "iri_version": "Source"}
 
     for key in order:
         value = field.get(key)
+        # Use field IRI for the Source row
+        if key == 'iri_version':
+            value = field.get('iri')
         if value is None:
             if key == 'class':
                 value = class_name
@@ -170,12 +538,12 @@ def build_term_section(field, class_name):
         value = str(value).strip()
         if not value:
             continue
-        if key == 'iri':
+        if key == 'iri' or key == 'iri_version':
             value = f'<a href="{value}">{value}</a>'
         if key == 'class':
             value = f'<a href="#{value}">{value}</a>'
-        elif key == 'examples':
-            examples = [ex.strip() for ex in value.split(';') if ex.strip()]
+        elif key == 'example':
+            examples = [ex.strip() for ex in str(value).split(';') if ex.strip()]
             value = ''
             for i, ex in enumerate(examples):
                 if i > 0:
@@ -195,15 +563,17 @@ def generate_field_links(fields, class_name):
         for field in fields if isinstance(field, dict) and field.get("name")
     ])
 
-def build_foreign_key_summary(table_schema):
+
+def build_foreign_key_summary(table_schema, current_table_name=None):
     fks = table_schema.get("foreignKeys", [])
     if not fks:
         return ""
 
     fk_rows = []
     for fk in fks:
+        predicate = fk.get("predicate", "")
         src_fields = fk.get("fields")
-        ref = fk.get("reference", {})
+        ref = fk.get("reference", {}) or {}
         tgt_table = ref.get("resource", "")
         tgt_fields = ref.get("fields")
 
@@ -211,26 +581,31 @@ def build_foreign_key_summary(table_schema):
         src_fields = [src_fields] if isinstance(src_fields, str) else src_fields
         tgt_fields = [tgt_fields] if isinstance(tgt_fields, str) else tgt_fields
 
-        for src, tgt in zip(src_fields, tgt_fields):
-            fk_rows.append((src, tgt_table, tgt))
+        # Self-referential FK: empty resource means same table
+        tgt_table_display = tgt_table if (isinstance(tgt_table, str) and tgt_table.strip()) else (current_table_name or tgt_table)
 
-    # Optional: check requiredness from fields
+        for src, tgt in zip(src_fields or [], tgt_fields or []):
+            fk_rows.append((src, predicate, tgt_table_display, tgt))
+
+    # Requiredness map
     field_required_map = {
-        f["name"]: f.get("constraints", {}).get("required", False)
-        for f in table_schema.get("fields", [])
+        f.get("name"): f.get("constraints", {}).get("required", False)
+        for f in (table_schema.get("fields") or [])
+        if isinstance(f, dict)
     }
 
     table_html = ['<div class="foreign-key-summary">']
     table_html.append('<h4>Relationships to Other Tables</h4>')
     table_html.append('<table class="term-table">')
-    table_html.append('<tr><td class="label">Field</td><td>Target Table</td><td>Target Field</td><td>Required</td></tr>')
+    table_html.append('<tr><td class="label">Field</td><td>Predicate</td><td>Target Table</td><td>Target Field</td><td>Required</td></tr>')
 
-    for src, tgt_table, tgt_field in fk_rows:
+    for src, predicate, tgt_table, tgt_field in fk_rows:
         required = "Yes" if field_required_map.get(src, False) else "No"
-        table_html.append(f'<tr><td class="label">{src}</td><td>{tgt_table}</td><td>{tgt_field}</td><td>{required}</td></tr>')
+        table_html.append(f'<tr><td class="label">{src}</td><td>{predicate}</td><td>{tgt_table}</td><td>{tgt_field}</td><td>{required}</td></tr>')
 
     table_html.append('</table></div>')
     return '\n'.join(table_html)
+
 
 def generate_qrg_with_separators():
     print(f"Loading index from {INDEX_JSON_PATH}...")
@@ -243,6 +618,8 @@ def generate_qrg_with_separators():
     content = ''
     class_links = ''
     inline_links = ''
+
+    all_predicates = []
 
     for group_idx, group in enumerate(ordered_groups):
         print(f"Processing group {group_idx + 1} with tables: {group}")
@@ -266,22 +643,61 @@ def generate_qrg_with_separators():
             content += f'<p><strong>Description:</strong> {table.get("description", "No description.")}</p>'
             if "comments" in table and table["comments"]:
                 content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
-            if "examples" in table and table["examples"]:
+            # Table-level Source fallback from "iri" (in case no Examples)
+            if not table.get("example") and table.get("iri"):
+                src = str(table.get("iri")).strip()
+                if src:
+                    if src.startswith("http://") or src.startswith("https://"):
+                        content += f'<p><strong>Source:</strong> <a href="{src}">{src}</a></p>'
+                    else:
+                        content += f'<p><strong>Source:</strong> {src}</p>'
+
+            if table.get("example"):
                 content += f'<p><strong>Examples:</strong></p>'
-                examples = [ex.strip() for ex in table["examples"].split(';') if ex.strip()]
+                examples = [ex.strip() for ex in str(table.get("example")).split(';') if ex.strip()]
                 value = ''
                 for i, ex in enumerate(examples):
                     if i > 0:
                         value += '<div class="examples-separator"></div>'
                     value += f'<div class="examples-content">{ex}</div>'
                 content += value
+            # Table-level Source from "iri"
+            if table.get("iri"):
+                src = str(table.get("iri")).strip()
+                try:
+                    if src.startswith("http://") or src.startswith("https://"):
+                        content += f'<p><strong>Source:</strong> <a href="{src}">{src}</a></p>'
+                    else:
+                        content += f'<p><strong>Source:</strong> {src}</p>'
+                except Exception:
+                    content += f'<p><strong>Source:</strong> {src}</p>'
+
 
             # Add FK summary block for the current class (only if table schema is available)
             table_schema_path = os.path.join(TABLE_SCHEMAS_DIR, f'{table_name}.json')
             if os.path.isfile(table_schema_path):
                 with open(table_schema_path, 'r', encoding='utf-8') as tf:
                     table_schema = json.load(tf)
-                content += build_foreign_key_summary(table_schema)
+                # Collect predicate mappings for explorer/predicates.js
+                for fk in (table_schema.get('foreignKeys') or []):
+                    pred = fk.get('predicate', '')
+                    src_fields = fk.get('fields')
+                    ref = fk.get('reference', {}) or {}
+                    tgt_table = ref.get('resource', '')
+                    tgt_fields = ref.get('fields')
+                    src_fields = [src_fields] if isinstance(src_fields, str) else src_fields
+                    tgt_fields = [tgt_fields] if isinstance(tgt_fields, str) else tgt_fields
+                    tgt_table_display = tgt_table if (isinstance(tgt_table, str) and tgt_table.strip()) else table_name
+                    for s, t in zip(src_fields or [], tgt_fields or []):
+                        all_predicates.append({
+                            'subject_table': table_name,
+                            'subject_field': s,
+                            'predicate': pred,
+                            'related_table': tgt_table_display,
+                            'related_field': t
+                        })
+
+                content += build_foreign_key_summary(table_schema, table_name)
 
             field_links = generate_field_links(fields, class_name)
             if field_links:
@@ -296,6 +712,32 @@ def generate_qrg_with_separators():
         class_links += '<div class="menu-separator"></div>'
         inline_links += '<div class="menu-separator"></div>'
 
+        # Write explorer/indexJson.js with the tableSchemas currently loaded
+    try:
+        js_obj = {"tableSchemas": tables}
+        js_str = 'const indexJson = ' + json.dumps(js_obj, ensure_ascii=False, indent=2) + ';\n'
+        os.makedirs(os.path.dirname(JS_INDEX_JSON_PATH), exist_ok=True)
+        with open(JS_INDEX_JSON_PATH, 'w', encoding='utf-8') as jsf:
+            jsf.write(js_str)
+        print(f"Wrote {JS_INDEX_JSON_PATH}")
+    except Exception as e:
+        print(f"Warning: could not write {JS_INDEX_JSON_PATH}: {e}")
+    # Write explorer/indexJson.js and explorer/predicates.js
+    try:
+        # indexJson.js
+        js_obj = {'tableSchemas': tables}
+        js_str = 'const indexJson = ' + json.dumps(js_obj, ensure_ascii=False, indent=2) + ';\n'
+        os.makedirs(os.path.dirname(JS_INDEX_JSON_PATH), exist_ok=True)
+        with open(JS_INDEX_JSON_PATH, 'w', encoding='utf-8') as jsf:
+            jsf.write(js_str)
+        # predicates.js
+        preds_str = 'let predicates = ' + json.dumps(all_predicates, ensure_ascii=False, indent=2) + ';\n'
+        os.makedirs(os.path.dirname(JS_PREDICATES_PATH), exist_ok=True)
+        with open(JS_PREDICATES_PATH, 'w', encoding='utf-8') as pf:
+            pf.write(preds_str)
+        print(f"Wrote {JS_INDEX_JSON_PATH} and {JS_PREDICATES_PATH}")
+    except Exception as e:
+        print(f"Warning: could not write explorer JS outputs: {e}")
     print("Assembling final HTML output...")
     html = TEMPLATE.format(content=content, class_links=class_links, inline_class_links=inline_links)
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
@@ -303,5 +745,18 @@ def generate_qrg_with_separators():
         out.write(html)
     print(f"Quick Reference Guide generated at {OUTPUT_PATH}")
 
-if __name__ == '__main__':
-    generate_qrg_with_separators()
+# (disabled __main__ guard)
+
+def main():
+    # Stage 1
+    _run_make_index_stage()
+
+    # Stage 2
+    # Expect generate_qrg_with_separators() to read INDEX_JSON_PATH and produce output
+    if 'generate_qrg_with_separators' in globals():
+        generate_qrg_with_separators()
+    else:
+        raise RuntimeError("generate_qrg_with_separators() not found in embedded QRG code.")
+
+if __name__ == "__main__":
+    main()

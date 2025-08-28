@@ -1,0 +1,193 @@
+subject_table,subject_field,predicate,related_table,related_field,status
+agent-agent-role,agentID,role holder,agent,agentID,recommended
+agent-agent-role,relatedAgentID,role for,agent,agentID,recommended
+agent-identifier,agentID,for,agent,agentID,recommended
+agent-media,mediaID,this media instance,media,mediaID,recommended
+agent-media,agentID,about,agent,agentID,recommended
+bibliographic-resource,parentReferenceID,part of,bibliographic-resource,referenceID,recommended
+bibliographic-resource,authorID,authored by,agent,agentID,recommended
+bibliographic-resource,editorID,edited by,agent,agentID,recommended
+bibliographic-resource,publisherID,published by,agent,agentID,recommended
+chronometric-age,eventID,for,event,eventID,recommended
+chronometric-age,chronometricAgeProtocolID,followed,protocol,protocolID,recommended
+chronometric-age,chronometricAgeConversionProtocolID,followed,protocol,protocolID,recommended
+chronometric-age,materialDatedID,dated,material,materialEntityID,recommended
+chronometric-age,chronometricAgeDeterminedByID,determined by,agent,agentID,recommended
+chronometric-age-agent-role,agentID,role holder,agent,agentID,recommended
+chronometric-age-agent-role,chronometricAgeID,role for,chronometric-age,chronometricAgeID,recommended
+chronometric-age-assertion,chronometricAgeID,about,chronometric-age,chronometricAgeID,recommended
+chronometric-age-assertion,assertionByID,asserted by,agent,agentID,recommended
+chronometric-age-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+chronometric-age-media,mediaID,this media instance,media,mediaID,recommended
+chronometric-age-media,chronometricAgeID,about,chronometric-age,chronometricAgeID,recommended
+chronometric-age-protocol,protocolID,followed,protocol,protocolID,recommended
+chronometric-age-protocol,chronometricAgeID,used for,chronometric-age,chronometricAgeID,recommended
+chronometric-age-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+chronometric-age-reference,chronometricAgeID,mentioned,chronometric-age,chronometricAgeID,recommended
+event,parentEventID,happened during,event,eventID,recommended
+event,eventConductedByID,conducted by,agent,agentID,recommended
+event,georeferencedByID,georeferenced by,agent,agentID,recommended
+event,georeferenceProtocolID,followed,protocol,protocolID,recommended
+event,geologicalContextID,within,geological-context,geologicalContextID,recommended
+event-agent-role,agentID,role holder,agent,agentID,recommended
+event-agent-role,eventID,role for,event,eventID,recommended
+event-assertion,eventID,about,event,eventID,recommended
+event-assertion,assertionByID,asserted by,agent,agentID,recommended
+event-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+event-identifier,eventID,for,event,eventID,recommended
+event-media,mediaID,this media instance,media,mediaID,recommended
+event-media,eventID,about,event,eventID,recommended
+event-protocol,protocolID,followed,protocol,protocolID,recommended
+event-protocol,eventID,used during,event,eventID,recommended
+event-provenance,eventID,for,event,eventID,recommended
+event-provenance,provenanceID,has,provenance,provenanceID,
+event-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+event-reference,eventID,mentioned,event,eventID,recommended
+geological-context-media,mediaID,this media instance,media,mediaID,recommended
+geological-context-media,geologicalContextID,about,geological-context,geologicalContextID,recommended
+identification,materialEntityID,based on,material,materialEntityID,recommended
+identification,mediaID,based on,media,mediaID,recommended
+identification,nucleotideAnalysisID,based on,nucleotide-analysis,nucleotideAnalysisID,recommended
+identification,nucleotideSequenceID,based on,nucleotide-sequence,nucleotideSequenceID,recommended
+identification,occurrenceID,based on,occurrence,occurrenceID,recommended
+identification,organismID,targeted / inferred,organism,organismID,recommended
+identification,identifiedByID,identified by,agent,agentID,recommended
+identification-agent-role,agentID,role holder,agent,agentID,recommended
+identification-agent-role,identificationID,role for,identification,identificationID,recommended
+identification-reference,identificationID,used for,identification,identificationID,recommended
+identification-reference,referenceID,used,bibliographic-resource,referenceID,recommended
+identification-taxon,identificationID,for,identification,identificationID,recommended
+material,eventID,collected during,event,eventID,recommended
+material,institutionID,stored in,agent,agentID,recommended
+material,ownerInstitutionID,owned by,agent,agentID,recommended
+material,collectedByID,collected by,agent,agentID,recommended
+material,evidenceForOccurrenceID,evidence for,occurrence,occurrenceID,recommended
+material,derivedFromMaterialEntityID,derived from,material,materialEntityID,recommended
+material,derivationEventID,derived during,event,eventID,recommended
+material,isPartOfMaterialEntityID,part of,material,materialEntityID,recommended
+material,identifiedByID,identified by,agent,agentID,recommended
+material-agent-role,agentID,role holder,agent,agentID,recommended
+material-agent-role,materialEntityID,role for,material,materialEntityID,recommended
+material-assertion,materialEntityID,about,material,materialEntityID,recommended
+material-assertion,assertionByID,asserted by,agent,agentID,recommended
+material-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+material-geological-context,geologicalContextID,within,geological-context,geologicalContextID,recommended
+material-geological-context,materialEntityID,for,material,materialEntityID,recommended
+material-identifier,materialEntityID,for,material,materialEntityID,recommended
+material-media,mediaID,this media instance,media,mediaID,recommended
+material-media,materialEntityID,about,material,materialEntityID,recommended
+material-protocol,protocolID,followed,protocol,protocolID,recommended
+material-protocol,materialEntityID,used for,material,materialEntityID,recommended
+material-provenance,materialEntityID,for,material,materialEntityID,recommended
+material-provenance,provenanceID,has,provenance,provenanceID,recommended
+material-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+material-reference,materialEntityID,mentioned,material,materialEntityID,recommended
+material-usage-policy,materialEntityID,for,material,materialEntityID,recommended
+material-usage-policy,usagePolicyID,has,usage-policy,usagePolicyID,recommended
+media,derivedFromMediaID,derived from,media,mediaID,recommended
+media,isPartOfMediaID,part of,media,mediaID,recommended
+media,commenterID,comment by,agent,agentID,recommended
+media,reviewerID,reviewed by,agent,agentID,recommended
+media-agent-role,agentID,role holder,agent,agentID,recommended
+media-agent-role,mediaID,role for,media,mediaID,recommended
+media-assertion,mediaID,about,media,mediaID,recommended
+media-assertion,assertionByID,asserted by,agent,agentID,recommended
+media-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+media-identifier,mediaID,for,media,mediaID,recommended
+media-provenance,mediaID,for,media,mediaID,recommended
+media-provenance,provenanceID,has,provenance,provenanceID,recommended
+media-usage-policy,mediaID,for,media,mediaID,recommended
+media-usage-policy,usagePolicyID,has,usage-policy,usagePolicyID,recommended
+molecular-protocol,source_mat_id,has source,material,materialEntityID,recommended
+molecular-protocol-agent-role,agentID,role holder,agent,agentID,recommended
+molecular-protocol-agent-role,molecularProtocolID,role for,molecular-protocol,molecularProtocolID,recommended
+molecular-protocol-assertion,molecularProtocolID,about,molecular-protocol,molecularProtocolID,recommended
+molecular-protocol-assertion,assertionByID,asserted by,agent,agentID,recommended
+molecular-protocol-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+molecular-protocol-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+molecular-protocol-reference,molecularProtocolID,mentioned,molecular-protocol,molecularProtocolID,recommended
+nucleotide-analysis,eventID,material collected during,event,eventID,recommended
+nucleotide-analysis,molecularProtocolID,followed,molecular-protocol,molecularProtocolID,recommended
+nucleotide-analysis,nucleotideSequenceID,produced,nucleotide-sequence,nucleotideSequenceID,recommended
+nucleotide-analysis,materialEntityID,of,material,materialEntityID,recommended
+nucleotide-analysis-assertion,nucleotideAnalysisID,about,nucleotide-analysis,nucleotideAnalysisID,recommended
+nucleotide-analysis-assertion,assertionByID,asserted by,agent,agentID,recommended
+nucleotide-analysis-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+occurrence,eventID,happened during,event,eventID,recommended
+occurrence,surveyTargetID,satisfied,survey-target,surveyTargetID,recommended
+occurrence,organismID,of an,organism,organismID,recommended
+occurrence,recordedByID,recorded by,agent,agentID,recommended
+occurrence,identifiedByID,identified by,agent,agentID,recommended
+occurrence-agent-role,agentID,role holder,agent,agentID,recommended
+occurrence-agent-role,occurrenceID,role for,occurrence,occurrenceID,recommended
+occurrence-assertion,occurrenceID,about,occurrence,occurrenceID,recommended
+occurrence-assertion,assertionByID,asserted by,agent,agentID,recommended
+occurrence-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+occurrence-identifier,occurrenceID,for,occurrence,occurrenceID,recommended
+occurrence-media,mediaID,this media instance,media,mediaID,recommended
+occurrence-media,occurrenceID,about,occurrence,occurrenceID,recommended
+occurrence-protocol,protocolID,followed,protocol,protocolID,recommended
+occurrence-protocol,occurrenceID,used during,occurrence,occurrenceID,recommended
+occurrence-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+occurrence-reference,occurrenceID,mentioned,occurrence,occurrenceID,recommended
+organism-assertion,organismID,about,organism,organismID,recommended
+organism-assertion,assertionByID,asserted by,agent,agentID,recommended
+organism-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+organism-identifier,organismID,for,,,
+organism-interaction,eventID,happened during,event,eventID,recommended
+organism-interaction,subjectOccurrenceID,by,occurrence,occurrenceID,recommended
+organism-interaction,relatedOccurrenceID,with,occurrence,occurrenceID,recommended
+organism-interaction-agent-role,agentID,role holder,agent,agentID,recommended
+organism-interaction-agent-role,organismInteractionID,role for,organism-interaction,organismInteractionID,recommended
+organism-interaction-assertion,organismInteractionID,about,organism-interaction,organismInteractionID,recommended
+organism-interaction-assertion,assertionByID,asserted by,agent,agentID,recommended
+organism-interaction-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+organism-interaction-media,mediaID,this media instance,media,mediaID,recommended
+organism-interaction-media,organismInteractionID,about,organism-interaction,organismInteractionID,recommended
+organism-interaction-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+organism-interaction-reference,organismInteractionID,mentioned,organism-interaction,organismInteractionID,recommended
+organism-reference,organismID,mentioned in,organism,organismID,recommended
+organism-reference,referenceID,mentioned,bibliographic-resource,referenceID,recommended
+organism-relationship,subjectOrganismID,of,organism,organismID,recommended
+organism-relationship,relatedOrganismID,to,organism,organismID,recommended
+organism-relationship,relationshipAccordingToID,according to,agent,agentID,recommended
+phylogenetic-tree,phylogeneticTreeProtocolID,followed,protocol,protocolID,defer
+phylogenetic-tree,referenceID,published in,bibliographic-resource,referenceID,defer
+phylogenetic-tree-assertion,phylogeneticTreeID,about,phylogenetic-tree,phylogeneticTreeID,defer
+phylogenetic-tree-assertion,assertionByID,asserted by,agent,agentID,defer
+phylogenetic-tree-assertion,assertionProtocolID,followed,protocol,protocolID,defer
+phylogenetic-tree-identifier,phylogeneticTreeID,for,phylogenetic-tree,phylogeneticTreeID,defer
+phylogenetic-tree-media,mediaID,this media instance,media,mediaID,defer
+phylogenetic-tree-media,phylogeneticTreeID,about,phylogenetic-tree,phylogeneticTreeID,defer
+phylogenetic-tree-protocol,protocolID,followed,protocol,protocolID,defer
+phylogenetic-tree-protocol,phylogeneticTreeID,used for,phylogenetic-tree,phylogeneticTreeID,defer
+phylogenetic-tree-tip,phylogeneticTreeID,on,phylogenetic-tree,phylogeneticTreeID,defer
+phylogenetic-tree-tip,materialEntityID,has source,material,materialEntityID,defer
+phylogenetic-tree-tip,nucleotideSequenceID,has,nucleotide-sequence,nucleotideSequenceID,defer
+phylogenetic-tree-tip-assertion,phylogeneticTreeTipID,about,phylogenetic-tree-tip,phylogeneticTreeTipID,defer
+phylogenetic-tree-tip-assertion,assertionByID,asserted by,agent,agentID,defer
+phylogenetic-tree-tip-assertion,assertionProtocolID,followed,protocol,protocolID,defer
+protocol-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+protocol-reference,protocolID,mentioned,protocol,protocolID,recommended
+provenance,fundingAttributionID,funded by,agent,agentID,recommended
+provenance,providerID,provided by,agent,agent,recommended
+provenance,creatorID,created by,agent,agentID,recommended
+provenance,metadataCreatorID,metadata created by,agent,agentID,recommended
+provenance,metadataProviderID,metadata provided by,agent,agentID,recommended
+survey,eventID,happened during,event,eventID,recommended
+survey,identifiedByID,identifications by,agent,agentID,recommended
+survey,samplingPerformedByID,sampling performed by,agent,agentID,recommended
+survey,samplingEffortProtocolID,followed,protocol,protocolID,recommended
+survey-agent-role,agentID,role holder,agent,agentID,recommended
+survey-agent-role,surveyID,role for,survey,surveyID,recommended
+survey-assertion,surveyID,about,survey,surveyID,recommended
+survey-assertion,assertionByID,asserted by,agent,agentID,recommended
+survey-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
+survey-identifier,surveyID,for,survey,surveyID,recommended
+survey-protocol,protocolID,followed,protocol,protocolID,recommended
+survey-protocol,surveyID,used during,survey,surveyID,recommended
+survey-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
+survey-reference,surveyID,mentioned,survey,surveyID,recommended
+survey-target,surveyID,for,survey,surveyID,recommended
+usage-policy,rightsHolderID,rights held by,agent,agentID,recommended
+usage-policy,ownerID,owned by,agent,agentID,recommended

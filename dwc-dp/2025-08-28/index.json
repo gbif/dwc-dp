@@ -1,4 +1,13 @@
-const indexJson = {
+{
+  "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-08-28",
+  "name": "dwc-dp",
+  "version": "2025-08-28",
+  "title": "Darwin Core Data Package",
+  "shortTitle": "dwc-dp",
+  "description": "A data package for sharing biodiversity data using Darwin Core.",
+  "issued": "2025-08-28",
+  "isLatest": true,
   "tableSchemas": [
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/agent",
@@ -989,4 +998,4 @@ const indexJson = {
       "rdfs:comment": "Rights and attribution statements applicable to an entity."
     }
   ]
-};
+}
