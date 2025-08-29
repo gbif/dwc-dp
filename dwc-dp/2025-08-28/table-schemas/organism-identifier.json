@@ -103,8 +103,8 @@
       "fields": "organismID",
       "predicate": "for",
       "reference": {
-        "resource": "",
-        "fields": ""
+        "resource": "organism",
+        "fields": "organismID"
       }
     }
   ]

@@ -721,6 +721,20 @@ let predicates = [
     "related_field": "referenceID"
   },
   {
+    "subject_table": "identification-reference",
+    "subject_field": "identificationID",
+    "predicate": "used for",
+    "related_table": "identification",
+    "related_field": "identificationID"
+  },
+  {
+    "subject_table": "identification-reference",
+    "subject_field": "referenceID",
+    "predicate": "used",
+    "related_table": "bibliographic-resource",
+    "related_field": "referenceID"
+  },
+  {
     "subject_table": "material-reference",
     "subject_field": "referenceID",
     "predicate": "mentioned in",
@@ -1067,8 +1081,8 @@ let predicates = [
     "subject_table": "organism-identifier",
     "subject_field": "organismID",
     "predicate": "for",
-    "related_table": "organism-identifier",
-    "related_field": ""
+    "related_table": "organism",
+    "related_field": "organismID"
   },
   {
     "subject_table": "survey-identifier",
@@ -1158,6 +1172,13 @@ let predicates = [
     "subject_table": "usage-policy",
     "subject_field": "rightsHolderID",
     "predicate": "rights held by",
+    "related_table": "agent",
+    "related_field": "agentID"
+  },
+  {
+    "subject_table": "usage-policy",
+    "subject_field": "ownerID",
+    "predicate": "owned by",
     "related_table": "agent",
     "related_field": "agentID"
   },

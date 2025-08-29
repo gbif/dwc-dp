@@ -38,8 +38,8 @@
       "format": "default",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/identificationID",
-      "iri_version": "",
-      "rdfs:comment": "",
+      "iri_version": "http://rs.tdwg.org/dwc/terms/version/identificationID-2023-06-28",
+      "rdfs:comment": "An identifier for the dwc:Identification (the body of information associated with the assignment of a scientific name). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": "true",
         "unique": "false"
