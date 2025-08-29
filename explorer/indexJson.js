@@ -300,6 +300,19 @@ const indexJson = {
       "rdfs:comment": ""
     },
     {
+      "identifier": "http://rs.tdwg.org/dwc/dwc-dp/identification-reference",
+      "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-08-28/table-schemas/identification-reference.json",
+      "name": "identification-reference",
+      "title": "Identification Reference",
+      "description": "A dcterms:BibliographicResource related to a dwc:Event.",
+      "comments": "",
+      "example": "",
+      "namespace": "dwcdp",
+      "iri": "",
+      "iri_version": "",
+      "rdfs:comment": ""
+    },
+    {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/identification-taxon",
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-08-28/table-schemas/identification-taxon.json",
       "name": "identification-taxon",

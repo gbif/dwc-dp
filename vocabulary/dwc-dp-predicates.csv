@@ -40,7 +40,7 @@ event-media,eventID,about,event,eventID,recommended
 event-protocol,protocolID,followed,protocol,protocolID,recommended
 event-protocol,eventID,used during,event,eventID,recommended
 event-provenance,eventID,for,event,eventID,recommended
-event-provenance,provenanceID,has,provenance,provenanceID,
+event-provenance,provenanceID,has,provenance,provenanceID,recommended
 event-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
 event-reference,eventID,mentioned,event,eventID,recommended
 geological-context-media,mediaID,this media instance,media,mediaID,recommended
@@ -133,7 +133,7 @@ occurrence-reference,occurrenceID,mentioned,occurrence,occurrenceID,recommended
 organism-assertion,organismID,about,organism,organismID,recommended
 organism-assertion,assertionByID,asserted by,agent,agentID,recommended
 organism-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
-organism-identifier,organismID,for,,,
+organism-identifier,organismID,for,organism,organismID,recommended
 organism-interaction,eventID,happened during,event,eventID,recommended
 organism-interaction,subjectOccurrenceID,by,occurrence,occurrenceID,recommended
 organism-interaction,relatedOccurrenceID,with,occurrence,occurrenceID,recommended
