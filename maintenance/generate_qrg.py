@@ -493,18 +493,19 @@ TEMPLATE = '''<!DOCTYPE html>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <h2 id="top">Introduction</h2>
         <div class="intro">
-            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the part of the Darwin Core standard specified in the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md">Darwin Core Data Package Guide</a>.</p>
+            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md">Darwin Core Data Package Guide</a>, which is part of the Darwin Core standard.</p>
 
-<p>This document is in support of the Darwin Core Data Package and is distinct from the <a href="https://dwc.tdwg.org/terms/">Darwin Core Quick Reference Guide</a>. This Quick Reference Guide provides an navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data through this particular technology.</p>
+<p>This quick reference guide is in support of the DwC-DP and is distinct from the <a href="https://dwc.tdwg.org/terms/">Darwin Core Quick Reference Guide</a>. It provides a navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data using DwC-DP.</p>
 
-<p>The sidebar at the right provides quick access to table definitions, within which the definitions of the available fields for each tabl are listed. Supplementary to this document is the Darwin Core Data Package Relationship Explorer, which provides a visual guide on the options for structure of Darwin Core Data Packages from the perspective of the relationship between tables.</p>
+<p>DwC-DP is implemented using tables, most of which correspond directly to classes in Darwin Core. The sidebar at the right provides quick access to table definitions, and the definitions of available fields for each table. For an overview of the tables and their relationships, see the <a href="#model">Visual Summary</a>. Supplementary to this document is the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>, which provides an interactive visual guide to the relationships between tables in DwC-DP.</p>
         </div>
         {content}
-        <h1 id="model">Table Relationships</h1>
+        <h1 id="model">Visual Summary</h1>
+        <p>The diagram below shows an overview of the DwC-DP tables (boxes) and the relationships between them (arrows). To avoid clutter, the diagram simplifies the representation of the model in a variety of ways. First, myriad join tables (e.g., EventMedia, MaterialMedia, OccurrenceMedia, etc.) are represented with stacks of boxes by category (e.g., under the box labeled EventMedia) rather than with separate boxes for each join table. The relationships to the tables on both sides of the join tables are represented by single arrows (e.g., to the Media table) rather than the myriad arrows that would otherwise be required. The directionality of the relationships are shown with arrows, but the fields that connect the tables (keys), the cardinality of those connections (uniqueness and whether they are required), and the nature of the relationships (predicates) are not shown. The keys, cardinality and predicates are all shown in the sections for each table titled "Relationships to Other Tables".</p>
         <div class="intro">
-            <img src="../images/overview_model_2025-06-02.png" alt="How tables relate to each other.">
+            <img src="../images/dwc-dp-schema-overview.png" alt="How tables relate to each other.">
             <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
-            <p>To explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</p>
+            <p>To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</p>
         </div>
         <footer>
             <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages.</p>
@@ -512,7 +513,7 @@ TEMPLATE = '''<!DOCTYPE html>
     </main>
     <aside class="nav-menu">
         <a class="top-link" href="#top">&uarr; Top</a>
-        <a class="top-link" href="#model">&darr; Table Relationships</a>
+        <a class="top-link" href="#model">&darr; Visual Summary</a>
         <a class="top-link" href="https://gbif.github.io/dwc-dp/explorer/">Relationship Explorer</a>
         <h3>Tables</h3>
         <nav class="class-index">
@@ -593,11 +594,23 @@ def build_foreign_key_summary(table_schema, current_table_name=None):
             fk_rows.append((src, predicate, tgt_table_display, tgt))
 
     # Requiredness map
-    field_required_map = {
-        f.get("name"): f.get("constraints", {}).get("required", False)
-        for f in (table_schema.get("fields") or [])
-        if isinstance(f, dict)
-    }
+    # Coerce "required" to a real boolean (strings like "false"/"true" are common in CSV-derived schemas)
+    field_required_map = {}
+    for f in (table_schema.get("fields") or []):
+        if not isinstance(f, dict):
+            continue
+        name = f.get("name")
+        cons = (f.get("constraints", {}) or {})
+        val = cons.get("required", f.get("required", False))
+        if isinstance(val, bool):
+            req = val
+        elif isinstance(val, (int, float)):
+            req = bool(val)
+        elif isinstance(val, str):
+            req = val.strip().lower() in {"true", "1", "yes", "y"}
+        else:
+            req = False
+        field_required_map[name] = req
 
     table_html = ['<div class="foreign-key-summary">']
     table_html.append('<h4>Relationships to Other Tables</h4>')
