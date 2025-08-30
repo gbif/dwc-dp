@@ -594,13 +594,13 @@ def build_foreign_key_summary(table_schema, current_table_name=None):
             fk_rows.append((src, predicate, tgt_table_display, tgt))
 
     # Requiredness map
-    # Coerce "required" to a real boolean (strings like "false"/"true" are common in CSV-derived schemas)
+    # Coerce "required" to a real boolean; handle strings and fallback to top-level "required".
     field_required_map = {}
     for f in (table_schema.get("fields") or []):
         if not isinstance(f, dict):
             continue
         name = f.get("name")
-        cons = (f.get("constraints", {}) or {})
+        cons = (f.get("constraints") or {}) if isinstance(f.get("constraints"), dict) else {}
         val = cons.get("required", f.get("required", False))
         if isinstance(val, bool):
             req = val
@@ -656,31 +656,38 @@ def generate_qrg_with_separators():
                 schema = json.load(f)
             fields = schema.get('fields', [])
             content += f'<div class="class-header-wrapper"><h2 id="{class_name}" class="class-header">{class_name}</h2></div>'
+            source_rendered = False
             if "identifier" in table and table["identifier"]:
                 content += f'<p><strong>Identifier:</strong> {table.get("identifier")}</p>'
             content += f'<p><strong>Description:</strong> {table.get("description", "No description.")}</p>'
             if "comments" in table and table["comments"]:
                 content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
             # Table-level Source fallback from "iri" (in case no Examples)
-            if not table.get("example") and table.get("iri"):
+            if not table.get("example") and table.get("iri") and not source_rendered:
                 src = str(table.get("iri")).strip()
                 if src:
                     if src.startswith("http://") or src.startswith("https://"):
                         content += f'<p><strong>Source:</strong> <a href="{src}">{src}</a></p>'
                     else:
                         content += f'<p><strong>Source:</strong> {src}</p>'
+                    source_rendered = True
 
-            if table.get("example"):
-                content += f'<p><strong>Examples:</strong></p>'
-                examples = [ex.strip() for ex in str(table.get("example")).split(';') if ex.strip()]
-                value = ''
-                for i, ex in enumerate(examples):
-                    if i > 0:
-                        value += '<div class="examples-separator"></div>'
-                    value += f'<div class="examples-content">{ex}</div>'
-                content += value
+                # Render Examples only if there are non-empty values
+                _raw_examples = table.get("example")
+                if isinstance(_raw_examples, list):
+                    examples = [str(ex).strip() for ex in _raw_examples if str(ex).strip()]
+                else:
+                    examples = [ex.strip() for ex in str(_raw_examples or "").split(';') if ex.strip()]
+                if examples:
+                    content += f'<p><strong>Examples:</strong></p>'
+                    value = ''
+                    for i, ex in enumerate(examples):
+                        if i > 0:
+                            value += '<div class="examples-separator"></div>'
+                        value += f'<div class="examples-content">{ex}</div>'
+                    content += value
             # Table-level Source from "iri"
-            if table.get("iri"):
+            if table.get("iri") and not source_rendered:
                 src = str(table.get("iri")).strip()
                 try:
                     if src.startswith("http://") or src.startswith("https://"):
@@ -689,7 +696,7 @@ def generate_qrg_with_separators():
                         content += f'<p><strong>Source:</strong> {src}</p>'
                 except Exception:
                     content += f'<p><strong>Source:</strong> {src}</p>'
-
+                source_rendered = True
 
             # Add FK summary block for the current class (only if table schema is available)
             table_schema_path = os.path.join(TABLE_SCHEMAS_DIR, f'{table_name}.json')
