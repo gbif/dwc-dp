@@ -10,14 +10,14 @@ This document contains material to support a proposal for a [Vocabulary Enhancem
 
 The public review covers (see Figure 1):
   - a [Darwin Core Conceptual Model](#darwin-core-conceptual-model) (DwC-CM, a "semantic layer" for Darwin Core), 
-  - a Darwin Core Data Package Guide (a specification for Darwin Core Data Packages),
+  - a [Darwin Core Data Package Guide](https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md) (a specification for Darwin Core Data Packages),
   - a set of proposals for new terms and changes to existing terms in Darwin Core to support an implementation of the Darwin Core Data Package specification - the [Darwin Core Data Package Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model) (DwC-DP).
   - NOTE: The public review does NOT cover the Darwin Core Data Package Publishing Model itself.
 
 Information about efforts related to the development of the DwC-CM, the DwC-DP specification, and the DwC-DP Publishing Model can be found in the [Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report]().
 
 ![Here should be the image of Darwin Core Conceptual Model Review Schematic](images/dwc_review_schematic.png "Darwin Core Review")
-_Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes Darwin Core terms.
+_Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes Darwin Core terms._
 
 ## Darwin Core Conceptual Model
 
@@ -28,44 +28,13 @@ _Figure 2. Overview of the Darwin Core Conceptual Model showing key relationship
 
 ## Darwin Core Data Package Guide
 
-
-## Darwin Core Data Package (DwC-DP) Publishing Model
-
-### Purpose
-
-The DwC-DP Publishing Model supports sharing deeper and richer data than is possible with a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide). 
-
-The Darwin Core Data Package (DwC-DP) is a data model implementation of the [Darwin Core Conceptual Model](#darwin-core-conceptual-model) to use for sharing biodiversity-related data, including data with structure beyond the restrictions of a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) star schema, for a wide variety of new and traditional biodiversity data sources. The model fully supports datasets traditionally published as [Darwin Core Archives](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) (observations and physical specimens, with extensions), but it goes far beyond, allowing richer data to be shared from these traditional datasets than was hitherto supported. Also, it empowers those who desire to share entirely new types of data (biotic surveys with inferred absence and abundance, hierarchical material entities, organism interactions, phylogenetic trees, and nucleotide analyses, among others) via Darwin Core. 
-
-### Structure
-
-The higher-level structure of a Darwin Core Data Package is based on the [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) - they both encapsulate datasets in text files (CSV, TSV) with dataset metadata in an Ecological Markup Language (EML) document that can be packaged and delivered in a compressed archive file. 
-
-![Here should be the image of the Darwin Core Archive structure](images/dwca.png "Darwin Core Archive Structure")
-_Figure 3. Schematic overview of the structure and content of a Darwin Core Archive. CSV files contain the primary data for a dataset, centered around a 'core' table, with optional 'extensions' connected directly to that core (the 'star schema'). The structure of these files and the relationships between them is captured on the meta.xml file. The eml.xml file contains the dataset metadata in Ecological Markup Language (EML). All of these are compressed in the Darwin Core Archive._
-
-![Here should be the image of the Darwin Core Data Package structure](images/dwcdp.png "Darwin Core Data Package Structure")
-_Figure 4. Schematic overview of the structure and content of a Darwin Core Data Package corresponding to the same theoretical dataset as for the Darwin Core Archive in Figure 2. In place of the meta.xml file to describe a core and extensions, the datapackage.json file describes the CSV files, the relationships between them, the fields included in each CSV file, their definitions, constraints, etc. With the exception that the structure is not limited by the 'star schema' and the structure being described in the datapackage.json file, everything else about the Darwin Core Archives and Darwin Core Data Packages is the same._
-
-The biggest difference between a Darwin Core Archive and a Darwin Core Data Package is in the extent to which the data within distinct classes can be stored and shared in distinct text files, and how these files relate to each other. The list of fields and all of their details (including names, labels, definitions, usage comments, examples, and constraints) are defined in the JSON [table schema](https://github.com/gbif/dwc-dp/tree/master/dwc-dp/0.1/table-schemas) files. The details of the relationships between files are also in the table schemas, expressed as primary keys (unique identifiers within a table) and foreign keys (fields that contain the identifiers equal to the value of a primary key in another file).
-
-The beauty of DwC-DP is that it is complicated only for those who want or need it to be, because there is no other way to faithfully capture the complexity of their data. Just as with Darwin Core Archives, a [test version](https://dwcdp-ipt.gbif-test.org/) of the GBIF Integrated Publishing Toolkit (IPT) in development can facilitate data structure mapping and produce Darwin Core Data Packages. If you would like to test structuring your data as a Darwin Core Data Package with this test IPT (not for production use), please contact the DwC-DP helpdesk at <dwcdp@gbif.org>.
-
-### Example Datasets
-
-There is a separate GitHub repository ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)) in which we have been accumulating examples of real datasets mapped to DwC-DP. That repository contains a representation of the DwC-DP as a [database schema](https://github.com/gbif/dwc-dp-examples/blob/master/gbif/dwc_dp_schema.sql) that can be populated with data mapped to DwC-DP and checked for data integrity.
-
-## Implications for Darwin Core
-
-Including the Darwin Core Data Package as a vocabulary enhancement to the Darwin Core standard implies several changes in the standard, including adding terms, modifying existing terms, and providing new documentation accordingly. Two new normative documents will be needed. The first will be a document describing in detail the Darwin Core Semantic Layer, including the [Darwin Core Conceptual Model](#darwin-core-conceptual-model), of which the DwC-DP is an implementation. The second document will be a "Darwin Core Data Package Guide". Much like the [Darwin Core Text Guide](https://dwc.tdwg.org/text/), this second document will describe the requirements for the structure of Darwin Core as a Data Package.
+The Darwin Core Data Package Guide is a specification of the requirements for a data package to be a Darwin Core Data Package. It is similar in purpose to the [Darwin Core Text Guide](https://dwc.tdwg.org/text/). Both describe specifications for data publishing models. The Darwin Core Data Package Guide is to a Darwin Core Data Package as the Darwin Core Text Guide is to a Darwin Core Archive.
 
 ### New Classes and Properties
 
-To enable the Darwin Core Data Package, new terms will have to be added. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/).
+To enable the Darwin Core Data Package as a new publishing model, new terms will have to be added to Darwin Core. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/).
 
 **Agent** - A person, group, organization or other entity that can act.
-
-**IdentificationTaxon** - A construct of components and positions of `dwc:scientificNames` in a `dwc:Identification`.
 
 **Media** - A `dcmi:MediaType` (`dcmi:Sounds`, `dcmi:StillImages`, `dcmi:MovingImages` or `dcmi:Text`) with other entities as content. This class accommodates metadata about media from the [Audiovisual Core](https://ac.tdwg.org/) standard.
 
@@ -77,17 +46,17 @@ To enable the Darwin Core Data Package, new terms will have to be added. These i
 
 **OrganismInteraction** - An interaction between two `dwc:Organisms` during a `dwc:Event`.
 
-**PhylogeneticTree** - A branching diagram that shows the evolutionary relationships between `dwc:Organisms`.
-
-**PhylogeneticTreeTip** - A group of Taxa at the end of a branch of a PhylogeneticTree as determined from relationships between `dwc:Organisms`.
-
 **Protocol** - A method used during an action.
 
-**Reference** - A bibliographic reference in which an entity is mentioned.
+**Provenance** - Information about an entity’s origins.
 
-**Survey** - A biotic survey. This class accommodates the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
+**BibliographicResource** - A book, article, or other documentary resource.
+
+**Survey** - A biotic survey or inventory. This class accommodates the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
 
 **SurveyTarget** - A specification of a characteristic of a `dwc:Occurrence` that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
+
+**UsagePolicy** - Information about rights, usage, and attribution statements applicable to an entity.
 
 ### Changes to Existing Classes and Properties
 
@@ -99,16 +68,8 @@ One of the most fundamental advances of the Semantic Layer, reflected in the DwC
 
 ## Participating and Getting Help
 
-In anticipation of a formal public review, scheduled to begin 2025-09-01, we would like to invite people to gain familiarity with and test the DwC-DP by attempting to map original datasets to it. We are just beginning to work on the "Darwin Core Data Package Guide", which is intended to contain various "recipes" for publishing different types of datasets. Until that document contains useful content, the best way forward is to look at an already-mapped example dataset that is similar to the one you want to test ([gbif/dwc-dp-examples](https://github.com/gbif/dwc-dp-examples)). This community testing phase will remain open until 2025-08-01.
-
 - **Getting started** - In addition to this document, the easiest way to start to understand DwC-DP is to look at the [Darwin Core Data Package - Quick Reference Guide](/dwc-dp/qrg/index.html).
 
-- **Mapping datasets to DwC-DP** - If you need help getting started with mapping a dataset to DwC-DP, see the [Data Mapping Guide](/dwc-dp/data-mapping-guide/). For feedback about the Guide or any of the [DwC-DP Examples](https://github.com/gbif/dwc-dp-examples/), feel free to register an [Issue](https://github.com/gbif/dwc-dp-examples/issues).
-
-- **Testing with IPT** - If you are interested in using the [test instance](https://dwcdp-ipt.gbif-test.org/) of the Integrated Publishing Toolkit (not for production use) to produce a Darwin Core Data Package, please contact the DwC-DP helpdesk to set up an account. 
-
 - **Submitting Issues** - For feedback about the structure or documentation of DwC-DP, feel free to register an [Issue](https://github.com/gbif/dwc-dp/issues).
-
-- **Discussion** - For open discussion on the Darwin Core Data Package, see the GBIF [Darwin Core Data Package (DwC-DP) discourse forum topic](https://discourse.gbif.org/t/darwin-core-data-package-dwc-dp/5937).
 
 - **Help!** - For help with any issue, feel free to contact the DwC-DP helpdesk <dwcdp@gbif.org>.

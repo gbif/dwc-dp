@@ -23,7 +23,7 @@
         h2 { padding-bottom: 4px; margin: 12px 0 8px; }
         .intro { margin: 12px 0; font-size: 1.02em; color: #333; }
         .intro img { display: block; width: 100%; height: auto; border: 1px solid #ccc; box-sizing: border-box; }
-        .figure-caption { font-size: 0.88em; color: #555; text-align: center; margin-top: 4px; }
+        .figure-caption { font-size: 1.02em; color: #555; text-align: left; margin-top: 4px; }
         nav.class-index a.class-box {
             display: inline-block;
             margin: 2px;
@@ -3913,11 +3913,11 @@
 <table class="term-table"><tr><td class="label">Title (Label)</td><td>Relationship Remarks</td></tr><tr><td class="label">Namespace</td><td>dwc</td></tr><tr><td class="label">Table:</td><td><a href="#Resource Relationship">Resource Relationship</a></td></tr><tr><td class="label">IRI</td><td><a href="http://rs.tdwg.org/dwc/terms/relationshipRemarks">http://rs.tdwg.org/dwc/terms/relationshipRemarks</a></td></tr><tr><td class="label">Description</td><td>Comments or notes about a dwc:ResourceRelationship.</td></tr><tr><td class="label">Type</td><td>string</td></tr><tr><td class="label">Source</td><td><a href="http://rs.tdwg.org/dwc/terms/relationshipRemarks">http://rs.tdwg.org/dwc/terms/relationshipRemarks</a></td></tr></table>
 </section>
         <h1 id="model">Visual Summary</h1>
-        <p>The diagram below shows an overview of the DwC-DP tables (boxes) and the relationships between them (arrows). To avoid clutter, the diagram simplifies the representation of the model in a variety of ways. First, myriad join tables (e.g., EventMedia, MaterialMedia, OccurrenceMedia, etc.) are represented with stacks of boxes by category (e.g., under the box labeled EventMedia) rather than with separate boxes for each join table. The relationships to the tables on both sides of the join tables are represented by single arrows (e.g., to the Media table) rather than the myriad arrows that would otherwise be required. The directionality of the relationships are shown with arrows, but the fields that connect the tables (keys), the cardinality of those connections (uniqueness and whether they are required), and the nature of the relationships (predicates) are not shown. The keys, cardinality and predicates are all shown in the sections for each table titled "Relationships to Other Tables".</p>
+        <p>The diagram below shows an overview of the DwC-DP tables (boxes) and the relationships between them (arrows). To avoid clutter, the diagram simplifies the representation of the model in a variety of ways. First, myriad join tables (tables that connect two classes in many-to-many relationships, e.g., EventMedia, MaterialMedia, OccurrenceMedia, etc.) are represented with stacks of boxes by category (e.g., under the box labeled ...Media) rather than with separate boxes for each join table. The relationships to the tables connected through the join tables are represented by single arrows (e.g., to the Media table) and the label "join to" rather than the myriad arrows that would otherwise be required. 
+        Second, the directionality of the relationships are shown with arrows, but the fields that connect the tables (keys), the cardinality of those connections (uniqueness and whether they are required), and the nature of the relationships (predicates) are not shown. The keys, cardinality and predicates are all shown in the sections for each table titled "Relationships to Other Tables".</p>
         <div class="intro">
             <img src="../images/dwc-dp-schema-overview.png" alt="How tables relate to each other.">
-            <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other.</div>
-            <p>To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</p>
+            <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other. To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</div>
         </div>
         <footer>
             <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages.</p>
