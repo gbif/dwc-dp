@@ -61,7 +61,7 @@ Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversit
 
 ---
 
-## 1 Introduction (non-normative)
+## 1 Introduction
 
 ### 1.1 Purpose (non-normative)
 
@@ -116,10 +116,10 @@ The following namespace abbreviations are used in this document:
 | rdf:         | http://www.w3.org/1999/02/22-rdf-syntax-ns# | 
 | rdfs:        | http://www.w3.org/2000/01/rdf-schema# |
 
-## 2. Descriptor content
+## 2 Descriptor content
 
-### 2.1 What is the package descriptor (`datapackage.json`)?
-`datapackage.json` is the single JSON file that describes your dataset: its basic metadata, the profile it conforms to, and the list of data files (“resources”) together with their table schemas.
+### 2.1 What is the package descriptor?
+The file `datapackage.json` is the JSON file that describes your dataset: its basic metadata, the profile it conforms to, and the list of data files (“resources”) together with their table schemas.
 
 A Darwin Core Data Package (DwC-DP):
 - **MUST** be a valid [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/), and  
@@ -360,10 +360,10 @@ Relationships are expressed with Table Schema keys.
 
 ---
 
-### 2.8 Conformance checklist
-- Package has `name`, at least one `resource`, and declares DwC-DP conformance via `profile` or `$schema`.  
-- Every resource has `profile: "tabular-data-resource"` and a `schema` (inline or URL).  
-- Each table schema defines `fields`, uses sensible `type` and `constraints`, and sets `missingValues` if needed.  
-- Tables that are referenced by others define a `primaryKey`.  
-- Foreign keys declare both local `fields` and `reference` to target `resource` and `fields`.  
-- Darwin Core term linkage, when used, includes `dcterms:isVersionOf` and `dcterms:references`, and optionally `rdfs:comment` and `namespace`.
+### 2.8 Conformance checklist (normative)
+- Package MUST have `name`, at least one `resource`, and declare DwC-DP conformance via `profile` or `$schema`.  
+- Every resource MUST have `profile: "tabular-data-resource"` and a `schema` (inline or URL).  
+- Each table schema SHOULD define `fields`, use sensible `type` and `constraints`, and set `missingValues` if needed.  
+- Tables that are referenced by other tables MUST define a `primaryKey`.  
+- Foreign keys MUST declare both local `fields` and `reference` to target `resource` and `fields`. Note: In Data Package version 1.0, self-referential foreign keys MUST leave the reference property blank ("").
+- Links to terms in standard vocabularies, when used, SHOULD include `namespace`, `dcterms:isVersionOf`, `dcterms:references`, and `rdfs:comment`.
