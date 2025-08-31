@@ -1,25 +1,39 @@
 ---
 layout: home
-title: DwC-DP
-description: Darwin Core Data Package
+title: Darwin Core Review
+description: Data Package Guide and Conceptual Model Public Review
 permalink: /
 toc: true
 ---
 
-This website contains material to support a proposal for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) to the [Darwin Core](https://dwc.tdwg.org/) standard. The proposal for the enhancement is scheduled for full **public review beginning 2025-09-01**. The public review will include a [Darwin Core Conceptual Model](#darwin-core-conceptual-model) as a component of a long-awaited Semantic Layer for Darwin Core and a [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model) that implements the conceptual model and supports sharing deeper and richer data than is possible with a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide). The Semantic Layer will define the explicit relationships between the classes that are seen in DwC-DP and will be based on the understanding of biodiversity-related concepts accumulated in the analysis of myriad use cases during the theoretical Unified Model phase of the project [Diversifying the GBIF Data Model](https://www.gbif.org/new-data-model).
+This document contains material to support a proposal for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) to the [Darwin Core](https://dwc.tdwg.org/) standard. 
 
-Previous to the public review, we welcome those who are interested to explore the [Darwin Core Data Package (DwC-DP) Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model). This is an opportunity to **test the data publishing model with your real data**. To understand how you can do this, see the [Participating and Getting Help](#participating-and-getting-help) section, below. **This community testing phase will remain open until 2025-08-01**.
+The public review covers (see Figure 1):
+  - a [Darwin Core Conceptual Model](#darwin-core-conceptual-model) (DwC-CM, a "semantic layer" for Darwin Core), 
+  - a Darwin Core Data Package Guide (a specification for Darwin Core Data Packages),
+  - a set of proposals for new terms and changes to existing terms in Darwin Core to support an implementation of the Darwin Core Data Package specification - the [Darwin Core Data Package Publishing Model](#darwin-core-data-package-dwc-dp-publishing-model) (DwC-DP).
+  - NOTE: The public review does NOT cover the Darwin Core Data Package Publishing Model itself.
+
+Information about efforts related to the development of the DwC-CM, the DwC-DP specification, and the DwC-DP Publishing Model can be found in the [Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report]().
+
+![Here should be the image of Darwin Core Conceptual Model Review Schematic](images/dwc_review_schematic.png "Darwin Core Review")
+_Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes Darwin Core terms.
 
 ## Darwin Core Conceptual Model
 
-The Darwin Core Conceptual Model is based on a distillation of the [GBIF Unified Model](https://www.gbif.org/new-data-model) with an emphasis on practicality for implementations.
+DwC-CM describes explicit relationships between Darwin Core classes based on [research to diversify the GBIF Data Model](https://www.gbif.org/new-data-model) that began in July 2021 and that was based on the analysis of a wide variety of biodiversity-related use cases. 
 
-![Here should be the image of latest Darwin Core Conceptual Model](images/overview_model_2025-06-02.png "Darwin Core Conceptual Model")
-_Figure 1. Overview of the classes in the Darwin Core Conceptual Model (since 2025-06-02) showing the primary relationships between key biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise._
+![Here should be the image of latest Darwin Core Conceptual Model](images/dwc-cm.png "Darwin Core Conceptual Model")
+_Figure 2. Overview of the Darwin Core Conceptual Model showing key relationships between fundamental biodiversity-related concepts. Information is most commonly organized around Events. Clipped-corner, blue boxes indicate the Event class and extensions to it for different event types (Occurrences, OrganismInteractions, and Surveys). Other types of Events, such as Observation and MaterialGathering, can also be accommodated, but do not require a specific extension beyond the Event. Unclipped, green boxes represent additional classes. Of these, Agent, Media, Protocol, and Reference can be connected to other classes throughout the model (indicated by the "joins" in small, yellow rectangles, e.g., EventAgentRole). Specific kinds of Assertions (e.g., EventAssertion) and Identifiers (e.g., EventIdentifier) can be connected directly to other classes. The Relationship class is provided to capture any relationship between instances of classes in the model that are not already explicitly defined, should that unexpected need arise._
+
+## Darwin Core Data Package Guide
+
 
 ## Darwin Core Data Package (DwC-DP) Publishing Model
 
 ### Purpose
+
+The DwC-DP Publishing Model supports sharing deeper and richer data than is possible with a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide). 
 
 The Darwin Core Data Package (DwC-DP) is a data model implementation of the [Darwin Core Conceptual Model](#darwin-core-conceptual-model) to use for sharing biodiversity-related data, including data with structure beyond the restrictions of a [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) star schema, for a wide variety of new and traditional biodiversity data sources. The model fully supports datasets traditionally published as [Darwin Core Archives](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) (observations and physical specimens, with extensions), but it goes far beyond, allowing richer data to be shared from these traditional datasets than was hitherto supported. Also, it empowers those who desire to share entirely new types of data (biotic surveys with inferred absence and abundance, hierarchical material entities, organism interactions, phylogenetic trees, and nucleotide analyses, among others) via Darwin Core. 
 
@@ -28,10 +42,10 @@ The Darwin Core Data Package (DwC-DP) is a data model implementation of the [Dar
 The higher-level structure of a Darwin Core Data Package is based on the [Darwin Core Archive](https://ipt.gbif.org/manual/en/ipt/latest/dwca-guide) - they both encapsulate datasets in text files (CSV, TSV) with dataset metadata in an Ecological Markup Language (EML) document that can be packaged and delivered in a compressed archive file. 
 
 ![Here should be the image of the Darwin Core Archive structure](images/dwca.png "Darwin Core Archive Structure")
-_Figure 2. Schematic overview of the structure and content of a Darwin Core Archive. CSV files contain the primary data for a dataset, centered around a 'core' table, with optional 'extensions' connected directly to that core (the 'star schema'). The structure of these files and the relationships between them is captured on the meta.xml file. The eml.xml file contains the dataset metadata in Ecological Markup Language (EML). All of these are compressed in the Darwin Core Archive._
+_Figure 3. Schematic overview of the structure and content of a Darwin Core Archive. CSV files contain the primary data for a dataset, centered around a 'core' table, with optional 'extensions' connected directly to that core (the 'star schema'). The structure of these files and the relationships between them is captured on the meta.xml file. The eml.xml file contains the dataset metadata in Ecological Markup Language (EML). All of these are compressed in the Darwin Core Archive._
 
 ![Here should be the image of the Darwin Core Data Package structure](images/dwcdp.png "Darwin Core Data Package Structure")
-_Figure 3. Schematic overview of the structure and content of a Darwin Core Data Package corresponding to the same theoretical dataset as for the Darwin Core Archive in Figure 2. In place of the meta.xml file to describe a core and extensions, the datapackage.json file describes the CSV files, the relationships between them, the fields included in each CSV file, their definitions, constraints, etc. With the exception that the structure is not limited by the 'star schema' and the structure being described in the datapackage.json file, everything else about the Darwin Core Archives and Darwin Core Data Packages is the same._
+_Figure 4. Schematic overview of the structure and content of a Darwin Core Data Package corresponding to the same theoretical dataset as for the Darwin Core Archive in Figure 2. In place of the meta.xml file to describe a core and extensions, the datapackage.json file describes the CSV files, the relationships between them, the fields included in each CSV file, their definitions, constraints, etc. With the exception that the structure is not limited by the 'star schema' and the structure being described in the datapackage.json file, everything else about the Darwin Core Archives and Darwin Core Data Packages is the same._
 
 The biggest difference between a Darwin Core Archive and a Darwin Core Data Package is in the extent to which the data within distinct classes can be stored and shared in distinct text files, and how these files relate to each other. The list of fields and all of their details (including names, labels, definitions, usage comments, examples, and constraints) are defined in the JSON [table schema](https://github.com/gbif/dwc-dp/tree/master/dwc-dp/0.1/table-schemas) files. The details of the relationships between files are also in the table schemas, expressed as primary keys (unique identifiers within a table) and foreign keys (fields that contain the identifiers equal to the value of a primary key in another file).
 

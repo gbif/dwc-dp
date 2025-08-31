@@ -9,7 +9,7 @@
   "namespace": "dwc",
   "iri": "http://rs.tdwg.org/dwc/terms/Event",
   "iri_version": "http://rs.tdwg.org/dwc/terms/version/Event-2023-09-18",
-  "rdfs:comment": "",
+  "rdfs:comment": "An action that occurs at some location during some time.",
   "fields": [
     {
       "name": "eventID",

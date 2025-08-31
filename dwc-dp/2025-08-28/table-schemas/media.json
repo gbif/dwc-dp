@@ -5,7 +5,7 @@
   "title": "Media",
   "description": "A dcmi:MediaType or other media type with other entities as subject matter.",
   "comments": "An instance of digital textual media may be better represented as a dcterms:BibiographicResource.",
-  "example": "`dcmi:Sounds`; `dcmi:StillImages`; `dcmi:MovingImages`",
+  "example": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`",
   "namespace": "dwc",
   "iri": "http://rs.tdwg.org/dwc/terms/Media",
   "iri_version": "",

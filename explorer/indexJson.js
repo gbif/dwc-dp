@@ -154,7 +154,7 @@ const indexJson = {
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/Event",
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/Event-2023-09-18",
-      "rdfs:comment": ""
+      "rdfs:comment": "An action that occurs at some location during some time."
     },
     {
       "identifier": "http://rs.tdwg.org/dwc/dwc-dp/event-agent-role",
@@ -278,8 +278,8 @@ const indexJson = {
       "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-08-28/table-schemas/identification.json",
       "name": "identification",
       "title": "Identification",
-      "description": "A taxonomic determination (i.e., the assignment of dwc:Taxa to dwc:Organisms).",
-      "comments": "",
+      "description": "A classification of a resource according to a classification scheme.",
+      "comments": "For biology, the assignment of a scientific name or taxon concept to a dwc:Organism.",
       "example": "`a subspecies determination of an organism`; `a nomenclatural act designating a specimen as a holotype`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/Identification",
@@ -462,7 +462,7 @@ const indexJson = {
       "title": "Media",
       "description": "A dcmi:MediaType or other media type with other entities as subject matter.",
       "comments": "An instance of digital textual media may be better represented as a dcterms:BibiographicResource.",
-      "example": "`dcmi:Sounds`; `dcmi:StillImages`; `dcmi:MovingImages`",
+      "example": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/Media",
       "iri_version": "",
