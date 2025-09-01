@@ -1,3 +1,8 @@
+---
+permalink: /dp/
+toc: true
+---
+
 # Darwin Core data package guide
 
 **Title**  
