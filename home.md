@@ -31,7 +31,7 @@ This document contains material to support a proposal for a <a href="https://git
 Information about efforts related to the development of the DwC-CM, the DwC-DP Guide, and the DwC-DP Publishing Model can be found in the <a href="docs/dwc_dp_implementation_feature_reports.pdf" target="_blank">Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report</a>.
 
 ![Here should be the image of Darwin Core Conceptual Model Review Schematic](images/dwc_review_schematic.png "Darwin Core Review")
-_Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes to existing Darwin Core terms._
+<p style="text-align:left;">Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes to existing Darwin Core terms.</p
 
 ## Darwin Core Conceptual Model
 
@@ -88,7 +88,7 @@ Here you can review the <a href="https://gbif.github.io/dwc-dp/cm/" target="_bla
 
 Here you can review the <a href="https://gbif.github.io/dwc-dp/dp/">Darwin Core Data Package Guide</a>. This is **a document** describing a specification for implementing Darwin Core Data Packages, seeking ratification. This document is independent of the Conceptual Model and of the term changes and additions.
 
-Here you can review the <a href="yyyyyyyy" target="_blank">List of term additions and changes proposal</a>. You may comment on each term, as we normally do for Darwin Core enhancements (see FAQs above).
+Here you can review the <a href="https://github.com/tdwg/dwc/milestone/20" target="_blank">List of term additions and changes proposal</a>. You may comment on each term, as we normally do for Darwin Core enhancements (refer to the <a href="https://github.com/tdwg/dwc/wiki/Darwin-Core-Maintenance-Frequently-Asked-Questions" target="_blank">FAQs</a> above for guidance).
 
 In addition, there are relevant resources closely related and recommended reading:
 - <a href="https://dwc.tdwg.org/terms/" target="_blank">Darwin Core Quick Reference Guide</a> (Darwin Core term definitions). Note that this document DOES NOT contain the proposed changes, it will only incorporate them if they are ratified.
