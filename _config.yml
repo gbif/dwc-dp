@@ -11,18 +11,9 @@ social:
 
 # THEME SETTINGS (ALL OPTIONAL)
 theme: minima
-#remote_theme: peterdesmet/petridish@3.1
 remote_theme: tdwg/petridish
-github_edit: false
-logo: /assets/theme/images/tdwg-logo-short.svg
-
-posts_on_home: false
-#colors:
-#  links: "#4ba2ce"  # GBIF link blue
-#  banner: "#71b171" # GBIF lighter green
-#  footer: "#222222" # GBIF footer gray
-rounded_corners: true
-font_serif: false
+github_edit: true
+logo: /assets/images/under-review.svg
 
 # BUILD SETTINGS
 markdown: kramdown
