@@ -1,5 +1,5 @@
 # SITE SETTINGS
-title: Darwin Core Data Package
+title: Darwin Core Review
 author: Darwin Core Maintenance Group
 url: "https://gbif.github.io"
 baseurl: "/dwc-dp"
@@ -7,7 +7,7 @@ baseurl: "/dwc-dp"
 # SOCIAL PROFILES
 social:
   github: gbif/dwc-dp
-  email: dwcdp@gbif.org
+#  email: dwcdp@gbif.org
 
 # THEME SETTINGS (ALL OPTIONAL)
 theme: minima
