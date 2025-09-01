@@ -38,7 +38,6 @@ Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversit
 ## Table of Contents
 
 - [1 Introduction (non-normative)](#1-introduction-non-normative)
-
   - [1.1 Purpose (non-normative)](#11-purpose-non-normative)
   - [1.2 Audience (non-normative)](#12-audience-non-normative)
   - [1.3 Associated Documents (non-normative)](#13-associated-documents-non-normative)
@@ -46,9 +45,7 @@ Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversit
   - [1.5 RFC 2119 key words (normative)](#15-rfc-2119-key-words-normative)
   - [1.6 Namespace abbreviations (non-normative)](#16-namespace-abbreviations-non-normative)
 - [2. Descriptor content](#2-descriptor-content)
-
   - [2.1 What is the package descriptor (`datapackage.json`)?](#21-what-is-the-package-descriptor-datapackagejson)
-
     - [Package-level properties](#package-level-properties)
     - [Minimal compliant `datapackage.json` (instance)](#minimal-compliant-datapackagejson-instance)
   - [2.2 Resource objects](#22-resource-objects)
@@ -119,13 +116,16 @@ The following namespace abbreviations are used in this document:
 ## 2 Descriptor content
 
 ### 2.1 What is the package descriptor?
+
 The file `datapackage.json` is the JSON file that describes your dataset: its basic metadata, the profile it conforms to, and the list of data files (“resources”) together with their table schemas.
 
 A Darwin Core Data Package (DwC-DP):
+
 - **MUST** be a valid [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/), and  
 - **MUST** declare conformance to the DwC-DP profile using either the `profile` property or the `$schema` property.
 
 #### Package-level properties
+
 - **name**: **MUST** be included.  
 - **resources**: **MUST** include one or more resources, each describing a tabular data file.  
 - **profile** or **$schema**: **MUST** declare DwC-DP conformance, either is acceptable.  
@@ -137,6 +137,7 @@ A Darwin Core Data Package (DwC-DP):
 Additional dataset-level metadata, such as contributors, sources, and bibliographicCitation, **MAY** be included. An external EML document **MAY** accompany the package as supplementary metadata.
 
 #### Minimal compliant `datapackage.json` (instance)
+
 ```json
 {
   "name": "my-dwc-dp",
@@ -163,19 +164,23 @@ Additional dataset-level metadata, such as contributors, sources, and bibliograp
 ---
 
 ### 2.2 Resource objects
+
 Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **MUST** be a **Tabular Data Resource** and **MUST** include a **Table Schema**.
 
 **Resource MUST contain**
+
 - `name`: stable table identifier (for example, `event`, `occurrence`, `agent`).  
 - `profile`: the string `"tabular-data-resource"`.  
 - `schema`: a **Table Schema** object, or a URL to one.  
 
 **Resource MAY contain**
+
 - `path` (for file-based data) or `data` (for inline rows).  
 - `format`, `mediatype`, `encoding`, and `dialect` (CSV parsing hints).  
 - `bytes` and `hash` (recommended for fixity).  
 
 **Example (resource with inline schema)**
+
 ```json
 {
   "name": "occurrence",
@@ -205,13 +210,16 @@ Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **M
 ---
 
 ### 2.3 Table Schema
+
 A **Table Schema** declares the structure and integrity rules for a single resource.
 
 **Table Schema MUST contain**
+
 - `fields`: an array of field descriptors.  
 - If the table is referenced by other tables, a `primaryKey`.  
 
 **Table Schema MAY contain**
+
 - `foreignKeys`: relationships to other resources.  
 - `missingValues`: tokens to treat as nulls (for example, `[""]`).  
 
@@ -220,18 +228,22 @@ A **Table Schema** declares the structure and integrity rules for a single resou
 ---
 
 ### 2.4 Field descriptors
+
 Field descriptors follow Frictionless Table Schema and support DwC-DP linking metadata.
 
 **Field MUST contain**
+
 - `name`: the local column name (for example, `eventID`, `decimalLatitude`).  
 
 **Field SHOULD contain**
+
 - `type`: a Table Schema type (`string`, `integer`, `number`, `boolean`, `date`, `datetime`).  
 - `description`: the Darwin Core definition, or an adapted description when the field is a DwC-DP addition.  
 - `constraints`: as needed, for example, `required`, `unique`, `enum`, `minimum`, `maximum`, `pattern`.  
 - `title`: a human-readable label.  
 
 **DwC-DP field-level linking metadata, optional but recommended**
+
 - `namespace`: abbreviation for the term’s namespace (`"dwc"`, `"dcterms"`, `"rdfs"`, `"rdf"`, and so on).  
 - `dcterms:isVersionOf`: IRI for the unversioned source term (for example, `http://rs.tdwg.org/dwc/terms/eventID`).  
 - `dcterms:references`: IRI for the versioned source term (for example, `http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28`).  
@@ -239,6 +251,7 @@ Field descriptors follow Frictionless Table Schema and support DwC-DP linking me
 - `comments`: usage notes that are specific to this table’s context.  
 
 **Example field using DwC linking**
+
 ```json
 {
   "name": "eventID",
@@ -255,19 +268,23 @@ Field descriptors follow Frictionless Table Schema and support DwC-DP linking me
 ---
 
 ### 2.5 Keys and relationships
+
 Relationships are expressed with Table Schema keys.
 
 **Primary keys**
+
 - Present on any table that other tables reference.  
 - Values should be stable and, when feasible, globally unique.  
 
 **Foreign keys**
+
 - Each FK declares local `fields` and a `reference` with a target `resource` and target `fields`.  
 - Repeatable relationships are permitted.  
 - For many-to-many relations, use an explicit join table with two foreign keys.  
 - To document relationship semantics, you may add `predicateLabel` and `predicateIRI` alongside each foreign key; these do not affect validation.  
 
 **Join table snippet, non-normative**
+
 ```json
 {
   "fields": [
@@ -286,6 +303,7 @@ Relationships are expressed with Table Schema keys.
 ---
 
 ### 2.6 Table dialects and data files
+
 - **CSV or TSV**: DwC-DP resources **SHOULD** use UTF-8 encoded CSV or TSV with a header row.  
 - **Dialect**: If you use non-default quoting, delimiter, or line endings, declare a `dialect` at the resource.  
 - **Missing values**: Declare `missingValues` so validators convert those tokens to null before applying constraints.  
@@ -294,6 +312,7 @@ Relationships are expressed with Table Schema keys.
 ---
 
 ### 2.7 Putting it together, a richer, but still small package
+
 ```json
 {
   "name": "amphibia-survey-2024",
@@ -361,6 +380,7 @@ Relationships are expressed with Table Schema keys.
 ---
 
 ### 2.8 Conformance checklist (normative)
+
 - Package MUST have `name`, at least one `resource`, and declare DwC-DP conformance via `profile` or `$schema`.  
 - Every resource MUST have `profile: "tabular-data-resource"` and a `schema` (inline or URL).  
 - Each table schema SHOULD define `fields`, use sensible `type` and `constraints`, and set `missingValues` if needed.  
