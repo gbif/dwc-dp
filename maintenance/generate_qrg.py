@@ -493,11 +493,11 @@ TEMPLATE = '''<!DOCTYPE html>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <h2 id="top">Introduction</h2>
         <div class="intro">
-            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md">Darwin Core Data Package Guide</a>, which is part of the Darwin Core standard.</p>
+            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md" target="_blank">Darwin Core Data Package Guide</a>, which is part of the Darwin Core standard.</p>
 
-<p>This quick reference guide is in support of the DwC-DP and is distinct from the <a href="https://dwc.tdwg.org/terms/">Darwin Core Quick Reference Guide</a>. It provides a navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data using DwC-DP.</p>
+<p>This quick reference guide is in support of the DwC-DP and is distinct from the <a href="https://dwc.tdwg.org/terms/" target="_blank">Darwin Core Quick Reference Guide</a>. It provides a navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data using DwC-DP.</p>
 
-<p>DwC-DP is implemented using tables, most of which correspond directly to classes in Darwin Core. The sidebar at the right provides quick access to table definitions, and the definitions of available fields for each table. For an overview of the tables and their relationships, see the <a href="#model">Visual Summary</a>. Supplementary to this document is the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>, which provides an interactive visual guide to the relationships between tables in DwC-DP.</p>
+<p>DwC-DP is implemented using tables, most of which correspond directly to classes in Darwin Core. The sidebar at the right provides quick access to table definitions, and the definitions of available fields for each table. For an overview of the tables and their relationships, see the <a href="#model">Visual Summary</a>. Supplementary to this document is the <a href="https://gbif.github.io/dwc-dp/explorer/" target="_blank">Darwin Core Data Package Relationship Explorer</a>, which provides an interactive visual guide to the relationships between tables in DwC-DP.</p>
         </div>
         {content}
         <h1 id="model">Visual Summary</h1>
@@ -505,7 +505,7 @@ TEMPLATE = '''<!DOCTYPE html>
         Second, the directionality of the relationships are shown with arrows, but the fields that connect the tables (keys), the cardinality of those connections (uniqueness and whether they are required), and the nature of the relationships (predicates) are not shown. The keys, cardinality and predicates are all shown in the sections for each table titled "Relationships to Other Tables".</p>
         <div class="intro">
             <img src="../images/dwc-dp-schema-overview.png" alt="How tables relate to each other.">
-            <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other. To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/">Darwin Core Data Package Relationship Explorer</a>.</div>
+            <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other. To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/" target="_blank">Darwin Core Data Package Relationship Explorer</a>.</div>
         </div>
         <footer>
             <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages.</p>
@@ -514,7 +514,7 @@ TEMPLATE = '''<!DOCTYPE html>
     <aside class="nav-menu">
         <a class="top-link" href="#top">&uarr; Top</a>
         <a class="top-link" href="#model">&darr; Visual Summary</a>
-        <a class="top-link" href="https://gbif.github.io/dwc-dp/explorer/">Relationship Explorer</a>
+        <a class="top-link" href="https://gbif.github.io/dwc-dp/explorer/" target="_blank">Relationship Explorer</a>
         <h3>Tables</h3>
         <nav class="class-index">
             {class_links}
@@ -548,9 +548,9 @@ def build_term_section(field, class_name):
         if not value:
             continue
         if key == 'iri' or key == 'iri_version':
-            value = f'<a href="{value}">{value}</a>'
+            value = f'<a href="{value}" target="_blank">{value}</a>'
         if key == 'class':
-            value = f'<a href="#{value}">{value}</a>'
+            value = f'<a href="#{value}" target="_blank">{value}</a>'
         elif key == 'example':
             examples = [ex.strip() for ex in str(value).split(';') if ex.strip()]
             value = ''
@@ -671,7 +671,7 @@ def generate_qrg_with_separators():
                 src = str(table.get("iri")).strip()
                 if src:
                     if src.startswith("http://") or src.startswith("https://"):
-                        content += f'<p><strong>Source:</strong> <a href="{src}">{src}</a></p>'
+                        content += f'<p><strong>Source:</strong> <a href="{src}" target="_blank">{src}</a></p>'
                     else:
                         content += f'<p><strong>Source:</strong> {src}</p>'
 
@@ -689,7 +689,7 @@ def generate_qrg_with_separators():
                 src = str(table.get("iri")).strip()
                 try:
                     if src.startswith("http://") or src.startswith("https://"):
-                        content += f'<p><strong>Source:</strong> <a href="{src}">{src}</a></p>'
+                        content += f'<p><strong>Source:</strong> <a href="{src}" target="_blank">{src}</a></p>'
                     else:
                         content += f'<p><strong>Source:</strong> {src}</p>'
                 except Exception:
