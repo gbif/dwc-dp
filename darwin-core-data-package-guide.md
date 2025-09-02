@@ -49,6 +49,7 @@ Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversit
   - [1.4 Status of the content of this document (normative)](#14-status-of-the-content-of-this-document-normative)
   - [1.5 RFC 2119 key words (normative)](#15-rfc-2119-key-words-normative)
   - [1.6 Namespace abbreviations (non-normative)](#16-namespace-abbreviations-non-normative)
+  - [1.7 Data Package v1 vs v2 (non-normative)](#17-data-package-v1-vs-v2-non-normative)
 - [2. Descriptor content](#2-descriptor-content)
   - [2.1 What is the package descriptor (`datapackage.json`)?](#21-what-is-the-package-descriptor-datapackagejson)
     - [Package-level properties](#package-level-properties)
@@ -117,6 +118,10 @@ The following namespace abbreviations are used in this document:
 | eco:         | http://rs.tdwg.org/eco/terms/ |
 | rdf:         | http://www.w3.org/1999/02/22-rdf-syntax-ns# | 
 | rdfs:        | http://www.w3.org/2000/01/rdf-schema# |
+
+### 1.7 Data Package v1 vs v2 (non-normative)
+
+This guide follows [version 1](https://specs.frictionlessdata.io/) of the Data Package specification. Users **MAY** implement DwC-DP following [version 2](https://datapackage.org/standard/data-package/) of the Data Package specification, which offers a number of useful features (e.g. [fieldMatch](https://datapackage.org/standard/table-schema/#fieldsMatch)), but has limited software support at the time of writing.
 
 ## 2 Descriptor content
 
