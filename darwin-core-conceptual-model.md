@@ -30,7 +30,7 @@ toc: true
 : Guidelines for the semantics of relationships between Darwin Core classes.
 
 **Contributors**  
-: [John Wieczorek](https://orcid.org/0000-0003-1144-0290) Rauthiflor LLC, [Tim Robertson](https://orcid.org/0000-0001-6215-3617) ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), Paula Zermoglio, Cecilie Svenningsen, Ingenloff, Markus Döring, [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), Tobias Guldberg Frøslev
+: [John Wieczorek](https://orcid.org/0000-0003-1144-0290) Rauthiflor LLC, [Tim Robertson](https://orcid.org/0000-0001-6215-3617) ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), [Paula Zermoglio](Instituto de Investigaciones en Recursos Naturales, Agroecología y Desarrollo Rural (IRNAD, CONICET - Universidad Nacional de Río Negro), San Carlos de Bariloche, Río Negro, AR), Cecilie Svenningsen ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), Kate Ingenloff ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), Markus Döring ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), Tobias Guldberg Frøslev ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570))
 
 **Creator**  
 Darwin Core Maintenance Group
@@ -47,17 +47,17 @@ Darwin Core Maintenance Group. 2025. Darwin Core conceptual model. Biodiversity 
 
 The **Darwin Core Conceptual Model (DwC-CM)** provides a high‑level framework that shows how [Darwin Core](https://dwc.tdwg.org) (DwC) classes relate to one another in typical biodiversity information workflows. Darwin Core formally defines a [set of terms](https://dwc.tdwg.org/list/) grouped by classes; DwC‑CM **clarifies the nature of those classes and the relationships among them** so implementers can make consistent, interoperable design choices across different technologies. 
 
-DwC‑CM does not prescribe an ontology of formal predicates for the relationships between classes. Instead, it uses natural‑language labels to convey semantic intent. 
+The DwC‑CM does not prescribe an ontology of formal predicates for the relationships between classes. Instead, it uses natural‑language labels to convey semantic intent. 
 
-DwC-CM does not prescribe the implementation of systems based on Darwin Core using any particular technology. The model is not a strict blueprint for system design; instead, it is a **reference framework that can be applied in whole or in part**. Different system architectures may realize the model in different ways—for example:
+The DwC-CM does not prescribe the implementation of systems based on Darwin Core using any particular technology. The model is not a strict blueprint for system design; instead, it is a **reference framework that can be applied in whole or in part**. Different system architectures may realize the model in different ways—for example:
 
 * A relational database or tabular data publishing schema may represent relationships through joins across normalized tables.  
 * A document-oriented approach may choose to embed related classes as nested objects within a record.  
 * A graph database may emphasize relationships as explicit links between nodes.
 
-DwC-CM is a synthesis of discussion within the Biodiversity Information Standards (TDWG) community. It accommodates the observed use of DwC to date, and accommodates the results of a wide variety of targeted case studies to broaden the scope of Darwin Core. It does not attempt to anticipate every possible use, and it is expected to evolve as the demand for new uses arise.
+The DwC-CM is a synthesis of discussion within the Biodiversity Information Standards (TDWG) community. It accommodates the observed use of DwC to date and accommodates the results of a wide variety of targeted case studies to broaden the scope of Darwin Core. It does not attempt to anticipate every possible use, and it is expected to evolve as the demand for new uses arise.
 
-By clarifying the conceptual relationships between Darwin Core classes, DwC-CM helps implementers understand which connections are essential and the cardinalities involved, to help ensure they are correctly adapted in specific technical environments.
+By clarifying the conceptual relationships between Darwin Core classes, the DwC-CM helps implementers understand which connections are essential and the cardinalities involved, to help ensure they are correctly adapted in specific technical environments.
 
 ## **1.2 Audience (non-normative)**
 
@@ -81,17 +81,17 @@ All sections of this document except this one are non-normative.
 
 ## **1.5 Notes on diagrams (non-normative)**
 
-Diagrams in this document are class diagrams, that is, the boxes represent Darwin Core classes and the lines connecting the boxes represent established relationships between classes. Boxes do not represent instances of those classes (e.g., a specific *Event* as opposed to *Events* in general). For example, in Figure 1, the *OrganismInteraction* class has two relationships to the *Occurrence* class. This does not mean that both relationships necessarily apply to the same *Occurrence* (instance). Indeed, most *OrganismInteractions* involve two distinct *Occurrences* (instances: two *Organisms* at the same place and time).
+Diagrams in this document are class diagrams. The boxes represent Darwin Core classes and the lines connecting the boxes represent established relationships between classes. Boxes do not represent instances of those classes (e.g., a specific *Event* as opposed to *Events* in general). For example, in Figure 1, the *OrganismInteraction* class has two relationships to the *Occurrence* class. This does not mean that both relationships necessarily apply to the same *Occurrence* (instance). Indeed, most *OrganismInteractions* involve two distinct *Occurrences* (instances: two *Organisms* at the same place and time).
 
-In the diagrams other than Figure 1, the relationships between classes are labeled with predicates that describe that relationship succinctly using explanatory natural language. This document does not prescribe specific predicates from controlled vocabularies or ontologies.
+In Figures 2=9, the relationships between classes are labeled with predicates that describe that relationship succinctly using explanatory natural language. This document does not prescribe specific predicates from controlled vocabularies or ontologies.
 
 # **2 Overview (non-normative)**
 
-The Darwin Core Conceptual Model is meant to facilitate the understanding of established relationships between classes in Darwin Core. This document relies on diagrams of these relationships with accompanying descriptions. 
+The Darwin Core Conceptual Model is meant to facilitate understanding of established relationships between Darwin Core classes. This document relies on diagrams of these relationships with accompanying descriptions. 
 
-Throughout the diagrams in this document, classes are referred to with the labels recommended by Darwin Core, in bold (e.g., **Material Entity** for the class [http://rs.tdwg.org/dwc/terms/MaterialEntity](http://rs.tdwg.org/dwc/terms/MaterialEntity)). In the narrative, classes are referred to by their names, in italics, (e.g., *MaterialEntity*). Thus, for example, when *Organism* is used, it is meant precisely in the sense of [http://rs.tdwg.org/dwc/terms/Organism](http://rs.tdwg.org/dwc/terms/Organism).
+Throughout the diagrams in this document, classes are referred to with the labels recommended by Darwin Core in bold (e.g., **Material Entity** for the class [http://rs.tdwg.org/dwc/terms/MaterialEntity](http://rs.tdwg.org/dwc/terms/MaterialEntity)). In the narrative, classes are referred to by their names in italics, (e.g., *MaterialEntity*). Thus, for example, when *Organism* is used, it is meant precisely in the sense of [http://rs.tdwg.org/dwc/terms/Organism](http://rs.tdwg.org/dwc/terms/Organism).
 
-Figure 1 provides an overview of the DwC-CM. To avoid clutter, the nature of the relationships (directionality, cardinality and predicates) are omitted. This diagram also omits the vast number of possible relationships between the classes *Agent*, *Media*, and *Protocol* to all of the other classes in the model. The relationships are described in detail in the thematic sections that follow the Overview. 
+Figure 1 provides an overview of the DwC-CM. To avoid clutter, the nature of the relationships (directionality, cardinality and predicates) are omitted. This diagram also omits the vast number of possible relationships between the classes *Agent*, *Media*, and *Protocol* to all of the other classes in the model. Relationships are described in detail in the thematic sections that follow the Overview. 
 
 <img src="{{ '/images/dwc-cm.png' | relative_url }}" alt="Darwin Core Conceptual Model"
      style="max-width:100%;height:auto;width:100%;">
@@ -121,19 +121,19 @@ In Darwin Core, an *Event* is an action, a process, or a set of circumstances oc
 
 ### **Simplifications**
 
-Figure 2 represents a small subset of the DwC-CM, focussing only on the fundamental aspects of *Events*. *Events* can be related to many other classes in the DwC-CM. Those relationships are covered in further thematic sections below. 
+Figure 2 represents a small subset of the DwC-CM, focusing only on the fundamental aspects of *Events*. *Events* can be related to many other classes in the DwC-CM. Those relationships are covered in further thematic sections below. 
 
-The connections to *Event* from *Occurrence*, *OrganismInteraction*, and *Survey* must not be interpreted to mean that a single *Event* can be a combination of those three classes, rather, it only means that those three classes have *Event* properties in addition to their own distinct properties. 
+Connections to *Event* from *Occurrence*, *OrganismInteraction*, and *Survey* must not be interpreted to mean that a single *Event* can be a combination of those three classes. It only means that those three classes have *Event* properties in addition to their own distinct properties. 
 
 ### **Implementation notes**
 
-Whereas in theory each distinct action, process, or set of circumstances occurring at some place during some period of time is a distinct *Event*, in practice it may be beneficial to allow a single *Event* to provide the spatio-temporal context for multiple activities simultaneously. For example, an *OrganismInteraction* most often happens at the same place and time as each of the *Occurrence* it is related to. The *Organisms* involved in the interaction may also have been collected at the same time. For all of these activities, the spatio-temporal information is the same. Rather than require five *Events* having the same place and time to be created, a single *Event* could be created and referred to by the *OrganismInteraction*, by both *Occurrences* and by both the *MaterialEntities* that were gathered. Care must be taken in this implementation choice to allow the option to designate an *Event* as multi-faceted.
+In theory, each distinct action, process, or set of circumstances occurring at some place during some period of time is a distinct *Event*. In practice, it may be beneficial to allow a single *Event* to provide the spatio-temporal context for multiple activities simultaneously. For example, an *OrganismInteraction* most often happens at the same place and time as each of the *Occurrence* it is related to. The *Organisms* involved in the interaction may also have been collected at the same time. For all of these activities, the spatio-temporal information is the same. Rather than require the creation of five *Event* instances the same place and time, a single *Event* could be created and referred to by the *OrganismInteraction*, by both *Occurrences*, and by both the *MaterialEntities* that were gathered. Care must be taken in this implementation choice to allow the option to designate an *Event* as multi-faceted.
 
-Depending on the intended use of *Event* data, it may simplify data sharing models to subsume the *Location* information within *Events*.
+Depending on the intended use of *Event* data, it may simplify data sharing models to subsume *Location* information within *Events*.
 
 ## **2.2 Survey (non-normative)**
 
-In Darwin Core, a *Survey* refers to an *Event* that is a biotic survey or inventory, which, with sufficiently detailed information, can support not only evidence of presence of *Organisms*, but also absences of detection and estimations of abundance. Figure 3 illustrates the part of the DwC-CM most closely related to *Surveys*. 
+In Darwin Core, a *Survey* refers to an *Event* that is a biotic survey or inventory, which, with sufficiently detailed information, can support not only evidence of presence of *Organisms* but also absences of detection and estimations of abundance. Figure 3 illustrates the part of the DwC-CM most closely related to *Surveys*. 
 
 <img src="{{ '/images/survey.png' | relative_url }}" alt="Survey Conceptual Model"
      style="max-width:100%;height:auto;width:65%;">
@@ -144,29 +144,29 @@ In Darwin Core, a *Survey* refers to an *Event* that is a biotic survey or inven
 
 * Since a *Survey* is a type of *Event*, it happens at a *Location*, can be conducted by an *Agent*, and can participate in an *Event* hierarchy, all as described in the *Event* section. The *Event* hierarchy relationships in the diagram are labeled with "happened during".
 
-* Complex structured *Surveys* can be expressed through an *Event* hierarchy. For example, a regional monitoring program (*Survey*) could consist of multiple repeated *Surveys* with the same or distinct *Protocols* conducted by different groups of people (*Agents*) with distinct devices (*Agents*) at specific sites repeated periodically.
+* Complex structured *Surveys* can be expressed through an *Event* hierarchy. For example, a regional monitoring program (*Survey*) could consist of multiple repeated *Surveys* with the same or distinct *Protocols* conducted by different groups of people (*Agents*) with distinct devices (*Agents*) at specific sites.
 
 * Being a special type of *Event*, a *Survey* has special characteristics in addition to those due to its *Event* nature. These characteristics are defined in the [list of terms](https://eco.tdwg.org/list/) for the Humboldt Extension to Darwin Core.
 
-* One of the important aspects of *Surveys* is the adherence to documented *Protocols*, where a *Protocol* is a method used during an action. A *Survey* may follow many different kinds of *Protocols*, including for sampling and sampling effort (time spent, area covered, distance travelled, participants involved, etc).
+* One important aspect of *Surveys* is that they often adhere to documented *Protocols*, where a *Protocol* is a method used during an action. A *Survey* may follow many different kinds of *Protocols*, including for sampling and sampling effort (time spent, area covered, distance travelled, participants involved, etc).
 
 * In conjunction with *Protocols*, a *Survey* can be limited to specific *SurveyTargets*. A *SurveyTarget* is intended to declare what was being sought, either through *a priori* intention or through *post facto* filtering.
 
-* The results of a *Survey* are expressed in the *Occurrences* it reports. Those *Occurrences* may be incidental ("by catch") or they might match the criteria in a *SurveyTarget*.
+* The results of a *Survey* are expressed in the *Occurrences* it reports. Those *Occurrences* may be incidental ("bycatch") or they might match the criteria in a *SurveyTarget*.
 
 * *SurveyTargets* can be defined based on any combination of taxa, environmental conditions, organismal traits, etc. With sufficient supporting information, such as *Occurrences* accompanied by organism quantities, and whether reporting for the target was complete, a *Survey* has the potential to support inference of absence of detection, estimations of abundance, and statistical analyses of change over time.
 
 ### **Simplifications**
 
-Figure 3 is a small subset of the DwC-CM focussing on S*urveys*. Additional relationships such as *Media* recorded, *MaterialEntities* collected, and *Identifications* of *Organisms*, among others, are omitted here. Those relationships are covered in further thematic sections below.
+Figure 3 is a small subset of the DwC-CM focusing on S*urveys*. Additional relationships such as *Media* recorded, *MaterialEntities* collected, and *Identifications* of *Organisms*, among others, are omitted here. Those relationships are covered in further thematic sections below.
 
 ## **2.3 Occurrence, Organism, and OrganismInteraction (non-normative)**
 
-In Darwin Core, the *Occurrence* class has had a long history of evolving meaning. It originated from the need to capture information about organisms in nature along with the evidence gathered (observations and specimens) to support the use of that information. The original definition of the term, "The category of information pertaining to evidence of an occurrence in nature, in a collection, or in a dataset (specimen, observation, etc.)" betrayed its semantic ambiguity. With the addition of a *MaterialSample* class in 2013 and the *Organism* class in 2014, the semantics began to evolve into something more clearly defined, so that in 2023, with the introduction of the *MaterialEntity* class, *Occurrence* took on its modern definition, "An existence of a dwc:Organism at a particular place at a particular time." In the DwC-CM the *Occurrence* class is further refined to mean, "A state of a dwc:Organism in a dwc:Event." 
+In Darwin Core, the *Occurrence* class has had a long history of evolving meaning. It originated from the need to capture information about organisms in nature along with the evidence gathered (observations and specimens) to support the use of that information. The original definition of the term, "The category of information pertaining to evidence of an occurrence in nature, in a collection, or in a dataset (specimen, observation, etc.)", betrayed its semantic ambiguity. With the addition of *MaterialSample* in 2013 and *Organism* in 2014, the semantics of Darwin Core became more clearly defined. In 2023, the introduction of *MaterialEntity* gave *Occurrence* its modern definition: “An existence of a dwc:Organism at a particular place at a particular time.” In the DwC-CM, the *Occurrence* class is further refined to mean "A state of a dwc:Organism in a dwc:Event." 
 
-An *Organism* in Darwin Core is defined as, "A particular organism or defined group of organisms considered to be taxonomically homogeneous." *Organisms* manifest both permanent and ephemeral characteristics. For example, the date a mammal was born, and the identity of its mother will never change, though its life stage and reproductive condition can. An *Occurrence* can capture the ephemeral state of a particular *Organism* at a place and time, or posit that there was some *Organism* there and then, based on indirect evidence.
+An *Organism* is defined in Darwin Core as "A particular organism or defined group of organisms considered to be taxonomically homogeneous." *Organisms* manifest both permanent and ephemeral characteristics. For example, the date a mammal was born, and the identity of its mother will never change, though its life stage and reproductive condition can. An *Occurrence* can capture the ephemeral state of a particular *Organism* at a place and time or posit that there was some *Organism* there and then based on indirect evidence.
 
-Figure 4 illustrates how DwC-CM relates *Occurrence*, *Organism*, and *OrganismInteraction*.
+Figure 4 illustrates how the DwC-CM relates *Occurrence*, *Organism*, and *OrganismInteraction*.
 
 <img src="{{ '/images/occurrence-organism.png' | relative_url }}" alt="Occurrence Conceptual Model"
      style="max-width:100%;height:auto;width:60%;">
@@ -177,7 +177,7 @@ Figure 4 illustrates how DwC-CM relates *Occurrence*, *Organism*, and *OrganismI
 
 * Since an *Occurrence* is a type of *Event*, it happens at a *Location*, can be conducted by an *Agent*, and can participate in an *Event* hierarchy, all as described in the *Event* section.
 
-* Being a special type of *Event*, an *Occurrence* has special characteristics in addition to those due to its *Event* nature. Specifically, an *Occurrence* represents an *Event* in which there was a direct observation or indirect inference of an *Organism* existing in a particular state (e.g., exhibiting a behavior) at a particular time and *Location*, potentially recorded by an *Agent*.
+* Being a special type of *Event*, an *Occurrence* has special characteristics in addition to those due to its *Event* nature. Specifically, an *Occurrence* represents an *Event* in which there was a direct observation or indirect inference of an *Organism* existing in a particular state (e.g., exhibiting a behavior) at a particular time and *Location* and potentially recorded by an *Agent*.
 
 * An *Organism* can be present in many *Occurrences*, each time with potentially different characteristics.
 
@@ -187,19 +187,19 @@ Figure 4 illustrates how DwC-CM relates *Occurrence*, *Organism*, and *OrganismI
 
 * Non-permanent relationships between *Organisms* can be represented by *OrganismInteractions*. Note that these interactions are explicitly at the *Organism* level, not at the *Taxon* level. Thus, you would expect observed interaction types such as "visited" rather than habitual interactions types such as "visits". Similarly, you should not capture an interaction type such as "parasitoid of" unless that behavior was observed for that particular *Organism*, in which case a better relationship phrase might be "parasitized".
 
-* Figure 4 shows two relationships between *OrganismInteraction* and *Occurrence*. One of these is to represent the actor or subject side of the interaction, while the other is to represent the target or object side of the interaction. In practice, this would usually involve creating two *Occurrence* records (instances) — one for each *Organism*. Only in the special case of an *Organism* engaged in a self-directed behavior would only one *Occurrence* record be needed.
+* Figure 4 shows two relationships between *OrganismInteraction* and *Occurrence*. One of these is to represent the actor or subject side of the interaction while the other is to represent the target or object side of the interaction. In practice, this would usually involve creating two *Occurrence* records (instances) — one for each *Organism*. In the special case of an *Organism* engaged in a self-directed behavior, only one *Occurrence* record is needed.
 
 * The two *Occurrences* participating in an *OrganismInteraction* are different things that happened at the same place and time (e.g., the behaviors of the two participating *Organism* could easily be different). The *OrganismInteraction* is yet something else that happened at that same *Location* and time. Though all three of these *Events* may (but do not necessarily) share the same spatio-temporal context, the activities were distinct. For example, a hummingbird was flying (a behavior characterizing one *Occurrence*) as it "drank nectar from" (the interaction with) a flower (the other *Occurrence*). The *OrganismInteraction* did not fly, the hummingbird did. The interaction is its own *Event* with its potentially own characteristics apart from those of the *Occurrences*. 
 
 ### **Implementation notes**
 
-The implementation notes about in the *Event* section also apply to *Occurrences* and *OrganismInteractions*, namely, that in practice it may be beneficial to allow a single *Event* to provide the spatio-temporal context for multiple activities (two *Occurrences* and their corresponding *OrganismInteraction*) simultaneously.
+The implementation notes in the *Event* section also apply to *Occurrences* and *OrganismInteractions*, namely, that in practice it may be beneficial to allow a single *Event* to provide the spatio-temporal context for multiple activities (two *Occurrences* and their corresponding *OrganismInteraction*).
 
-Depending on the intended use of *Occurrence* and *Organism* data, it may simplify data sharing models to subsume the *Organism* information within *Occurrences*.
+Depending on the intended use of *Occurrence* and *Organism* data, it may simplify data sharing models to subsume *Organism* information within *Occurrences*.
 
 ## **2.4 MaterialEntity, ChronometricAge and GeologicalContext (non-normative)**
 
-In Darwin Core, a *MaterialEntity* is defined as, "An entity that can be identified, exists for some period of time, and consists in whole or in part of physical matter while it exists." The DwC-CM provides a framework for representing the relationships between *MaterialEntities* and other classes that provide the contexts in which they are found and used, as shown in Figure 5\.
+In Darwin Core, a *MaterialEntity* is defined as "An entity that can be identified, exists for some period of time, and consists in whole or in part of physical matter while it exists." The DwC-CM provides a framework for representing the relationships between *MaterialEntities* and other classes that provide the contexts in which they are found and used, as shown in Figure 5.
 
 <img src="{{ '/images/material.png' | relative_url }}" alt="MaterialEntity Conceptual Model"
      style="max-width:100%;height:auto;width:100%;">
@@ -226,7 +226,7 @@ In DwC-CM, the Darwin Core *MaterialSample* class is omitted in favor of *Materi
 
 ## **2.5 Identification (non-normative)**
 
-In Darwin Core, an *Identification* is defined as, "A taxonomic determination (e.g., the assignment to a dwc:Taxon)." In the DwC-CM the following definition is more explicit, "A taxonomic determination (i.e., the assignment of a dwc:Taxon to a dwc:Organism)." Figure 6 illustrates how DwC-CM relates *Identification* to other classes.
+In Darwin Core, an *Identification* is defined as "A taxonomic determination (e.g., the assignment to a dwc:Taxon)." In the DwC-CM, the more explicit definition "A taxonomic determination (i.e., the assignment of a dwc:Taxon to a dwc:Organism)" is preferred. Figure 6 illustrates how DwC-CM relates *Identification* to other classes.
 
 <img src="{{ '/images/identification.png' | relative_url }}" alt="Identification Conceptual Model"
      style="max-width:100%;height:auto;width:90%;">
@@ -246,9 +246,9 @@ In Darwin Core, an *Identification* is defined as, "A taxonomic determination (e
 * An *Agent* can be responsible for making many *Identifications*.
 
 * In addition to *Identifications* based solely on observations, there can be *Identifications* based on several other kinds of evidence:   
-  * the inspection or processing of *Media* of an *Occurrence* by an *Agent* ,   
+  * the inspection or processing of *Media* of an *Occurrence* by an *Agent*,   
   * the inspection or processing of a *MaterialEntity* by an *Agent*,   
-  * the inspection or processing of *Media* of a *MaterialEntity* by an *Agent* ,   
+  * the inspection or processing of *Media* of a *MaterialEntity* by an *Agent*, or
   * a *NucleotideAnalysis* that detects a *NucleotideSequence* or confirms the presence of an *Organism* representing a *Taxon*. This may subsequently be used to infer an *Occurrence* (see the *NucleotideAnalysis* section).
 
 ### **Simplifications**
@@ -261,13 +261,13 @@ Depending on the intended context of *Identification* and *Taxon* data, it may s
 
 ## **2.6 NucleotideAnalysis, NucleotideSequence and MolecularProtocol (non-normative)**
 
-The DwC-CM provides a framework for representing NucleotideAnalyses, accommodating:
+The DwC-CM provides a framework for representing *NucleotideAnalyses*, accommodating:
 
 1. Metabarcoding and metagenomic techniques for detecting taxa in sampled material.  
 2. Targeted DNA-based assays (e.g., qPCR) to confirm the presence or absence of specific target taxa.  
 3. Integration of sequence-based (barcoding) and non-sequence-based identifications derived from the same material.
 
-These cases are represented within the model as depicted in Figure 7\.
+These cases are represented within the model as depicted in Figure 7.
 
 <img src="{{ '/images/nucleotide.png' | relative_url }}" alt="Nucleotide Conceptual Model"
      style="max-width:100%;height:auto;width:100%;">
@@ -287,13 +287,13 @@ These cases are represented within the model as depicted in Figure 7\.
   * a *NucleotideAnalysis* detecting or confirming the presence of one or more target taxa, or  
   * comparisons of detected *NucleotideSequences* against a reference catalogue (potentially yielding many *Identifications*).  
       
-* The resulting body of evidence may be used to infer the *Occurrence* of an *Organism* in the sampled *MaterialEntity* — whether a taxon-specific detection (e.g., qPCR) or from sequenced genomic reads or barcode genes that are identified from matching with a DNA reference database. (e.g., barcoding, metabarcoding and metagenomics).
+* The resulting body of evidence may be used to infer the *Occurrence* of an *Organism* in the sampled *MaterialEntity* — whether a taxon-specific detection (e.g., qPCR) or from sequenced genomic reads or barcode genes that are identified from matching with a DNA reference database (e.g., barcoding, metabarcoding and metagenomics).
 
 ### **Simplifications**
 
 *Agents* (e.g., people) responsible for activities are omitted here, but can be associated with the relevant classes (see the *Agent* section).
 
-A *MaterialEntity* may be either a defined part of or derived from another *MaterialEntity*, such as a tissue extract (see the *MaterialEntity* section).
+A *MaterialEntity* may be either a defined 'part of' or 'derived from' another *MaterialEntity*, such as a tissue extract (see the *MaterialEntity* section).
 
 An *Event* representing the collection of the *MaterialEntity* may belong to a larger *Survey* or to a hierarchy of nested *Events* (see the *Event* and *Survey* sections).
 
@@ -305,7 +305,7 @@ In some cases, the analyzed *MaterialEntity* is not preserved or documented. If 
 
 ## **2.7 Agents (non-normative)**
 
-In Darwin Core an *Agent* is defined as, "A person, group, organization, machine, software or other entity that can act." *Agents* have the capacity to act in relation to any other class as well as to be related to each other. Figure 8 shows a few examples that illustrate the ways in which *Agents* can be related to other classes in the DwC-CM. 
+In Darwin Core, an *Agent* is defined as "A person, group, organization, machine, software or other entity that can act." *Agents* have the capacity to act in relation to any other class as well as to be related to each other. Figure 8 shows a few examples that illustrate the ways in which *Agents* can be related to other classes in the DwC-CM. 
 
 <img src="{{ '/images/agent.png' | relative_url }}" alt="Agent Conceptual Model"
      style="max-width:100%;height:auto;width:65%;">
@@ -316,7 +316,7 @@ In Darwin Core an *Agent* is defined as, "A person, group, organization, machine
 
 * An *Agent* is distinguished by its capacity to act, but is not otherwise limited in its nature.
 
-* An *Agent* may be related to another *Agent*. For example, a person (an *Agent*) might be a member of a crew (an *Agent* that is a group of people), or a person might be the deployer of a camera trap (an *Agent* that is a device), which in turn is owned by an institution (an *Agent*).
+* An *Agent* may be related to another *Agent*. For example, a person (an *Agent*) might belong to a crew (an *Agent* that is a group of people), deploy a camera trap (an *Agent* that is a device), or be associated with an institution (an *Agent*) that owns the device.
 
 * In addition to relationships between *Agents*, the DwC-CM supports any relationship that involves an *Agent* acting in or otherwise fulfilling a role with respect to an instance of another class. For example, a *MaterialEntity* can be identified by an *Agent*. This relationship might be enabled by a dedicated "identifiedBy" property for the *MaterialEntity*. This is a convenient way to capture well-established *Agent* roles. 
 
@@ -332,7 +332,7 @@ In addition to direct relationships through properties of classes as described i
 
 ## **2.8 Media (non-normative)**
 
-In Darwin Core, *Media* are things that are recorded (e.g, instances of the Dublin Core type vocabulary terms StillImage, MovingImage, Sound, and Text). The DwC-CM provides a framework for representing the relationships of *Media* to other classes, as shown in Figure 9.
+In Darwin Core, *Media* are things that are recorded (e.g, instances of the Dublin Core type vocabulary terms StillImage, MovingImage, Sound, and Text). The DwC-CM provides a framework for representing the relationships of *Media* to other classes as shown in Figure 9.
 
 <img src="{{ '/images/media.png' | relative_url }}" alt="Media Conceptual Model"
      style="max-width:100%;height:auto;width:60%;">
@@ -349,11 +349,11 @@ In Darwin Core, *Media* are things that are recorded (e.g, instances of the Dubl
 
 * A *MaterialEntity* might be created from *Media* (e.g., 3D printed model of a skull from a 3D digital model).
 
-* In some cases, relationships need to be made to specific "regions of interest" within *Media* (e.g., a segment of a video or sound track, or a region within an image). A region of interest can be treated as a *Media* instance that is part of its parent *Media* instance. 
+* In some cases, relationships need to be made to specific "regions of interest" within *Media* (e.g., a segment of a video or sound track or a region within an image). A region of interest can be treated as a *Media* instance that is part of its parent *Media* instance. 
 
 ### **Simplifications**
 
-This section does not illustrate all anticipated uses of *Media*, for example relationships of *Media* to *ChronometricAge*, *GeologicalContext*, and *OrganismInteraction* are not shown.
+This section does not illustrate all anticipated uses of *Media*. For example, relationships of *Media* to *ChronometricAge*, *GeologicalContext*, and *OrganismInteraction* are not shown.
 
 # **3 Example implementations (non-normative)**
 
@@ -362,4 +362,4 @@ This section does not illustrate all anticipated uses of *Media*, for example re
 
 # **4 Acknowledgements (non-normative)**
 
-DwC-DM is a synthesis of years of discussion and contributions to Biodiversity Information Standards (TDWG) Interest Groups. The synthesis arose during research towards "Diversifying the GBIF Data Model” within the Global Biodiversity Information Facility work program, which brought additional perspectives from the GBIF community and included a series of iterative approaches to refine and validate both a conceptual model and a data publishing model through a wide variety of biodiversity data use cases. Data structures of many operational systems, including all commonly used open source collection management systems, have been studied and have influenced this model. 
+The DwC-CM is a synthesis of years of discussion and contributions to Biodiversity Information Standards (TDWG) Interest Groups. The synthesis arose during research towards "Diversifying the GBIF Data Model” within the Global Biodiversity Information Facility work program, which brought additional perspectives from the GBIF community and included a series of iterative approaches to refine and validate both a conceptual model and a data publishing model through a wide variety of biodiversity data use cases. Data structures of many operational systems, including all commonly used open source collection management systems, have been studied and have influenced this model. 
