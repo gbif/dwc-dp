@@ -31,7 +31,7 @@ This document contains material to support a proposal for a <a href="https://git
 Information about efforts related to the development of the DwC-CM, the DwC-DP Guide, and the DwC-DP Publishing Model can be found in the <a href="docs/dwc_dp_implementation_feature_reports.pdf" target="_blank">Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report</a>.
 
 ![Here should be the image of Darwin Core Conceptual Model Review Schematic](images/dwc_review_schematic.png "Darwin Core Review")
-<p style="text-align:left;">Figure 1. Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes to existing Darwin Core terms.</p>
+<p style="text-align:left;"><b>Figure 1.</b> Overview of the public review that includes the Darwin Core Conceptual Model (DwC-CM), the Darwin Core Data Package Guide, and proposals for new and changes to existing Darwin Core terms.</p>
 
 ## Darwin Core Conceptual Model
 

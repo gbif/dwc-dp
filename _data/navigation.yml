@@ -11,9 +11,9 @@
   - text: Term change proposals
     href: https://github.com/tdwg/dwc/milestone/20
   - text: "---"
-  - text: Quick Reference Guide
+  - text: DwC-DP Quick Reference Guide
     href: /qrg/
-  - text: Relationship Explorer
+  - text: DwC-DP Relationship Explorer
     href: /explorer/
 #  - text: Data Mapping Guide
 #    href: /data-mapping-guide/
