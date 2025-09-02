@@ -6,7 +6,7 @@ permalink: /
 toc: true
 ---
 
-The members of the <a href="https://www.tdwg.org/community/dwc/" target="_blank">Darwin Core Maintenance Group</a> would like to welcome you to the public review for the set of proposed changes to Darwin Core described below. 
+The members of the <a href="https://www.tdwg.org/community/dwc/" target="_blank">Darwin Core Maintenance Group</a> would like to welcome you to the public review for the set of proposed changes to Darwin Core described below. The proposed changes are developed to support richer, more complex types of biodiversity data than what is currently possible with a Darwin Core Archive.
 This review is distinctive from previous maintenance reviews in that it includes many term changes and addition of documentation to the Darwin Core standard, hence the minimum review period is set to be a minimum of 90 days rather than the customary minimum 30-days.
 
 Below you will find a summary of the proposals under review and the relevant links to participate in this community process.
