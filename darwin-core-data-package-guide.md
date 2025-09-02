@@ -3,10 +3,10 @@ permalink: /dp/
 toc: true
 ---
 
-# Darwin Core data package guide
+# Darwin Core Data Package guide
 
-: Darwin Core data package guide
 **Title**
+: Darwin Core Data Package guide
 
 **Date version issued**
 : 2025-09-01
@@ -35,8 +35,8 @@ toc: true
 **Creator**
 Darwin Core Maintenance Group
 
-Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
 **Bibliographic citation**
+Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
 
 ---
 
