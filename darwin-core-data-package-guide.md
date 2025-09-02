@@ -67,7 +67,7 @@ Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversit
 
 ### 1.1 Purpose (non-normative)
 
-**Darwin Core Data Package (DwC‑DP)** is a community‑developed implementation profile of the [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/) for the exchange of primary biodiversity data. A DwC‑DP consists of a `datapackage.json` file (describing the dataset and its structure) and one or more tabular data files (resources) that contain the data for the dataset.
+**Darwin Core Data Package (DwC‑DP)** is a community‑developed implementation profile of [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/) for the exchange of primary biodiversity data. A DwC‑DP consists of a `datapackage.json` file (describing the dataset and its structure) and one or more tabular data files (resources) that contain the data for the dataset.
 
 This guide explains the goals and scope of DwC‑DP and provides practical direction for structuring packages that use Darwin Core terms. It focuses on how to:
 
@@ -81,7 +81,7 @@ This guide explains the goals and scope of DwC‑DP and provides practical direc
 
 ### 1.2 Audience (non-normative)
 
-This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with CSV/TSV tabular data but not with Frictionless specifications. Where helpful, it references relevant parts of the Frictionless documentation and the Darwin Core standard.
+This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with CSV/TSV tabular data but not with the Frictionless Data Package specification (hereafter referred to as “Data Package”). Where helpful, it references relevant parts of the Data Package documentation and the Darwin Core standard.
 
 ### 1.3 Associated Documents (non-normative)
 
@@ -89,7 +89,7 @@ The following resources are closely related and are recommended reading:
 
 - [Darwin Core Data Package Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/) (DwC‑DP tables, fields, and links to term definitions)
 
-- [Frictionless Data Package specification](https://specs.frictionlessdata.io/data-package/) (descriptor keywords, table schemas, field types, constraints, keys, dialects)
+- [Data Package specification](https://specs.frictionlessdata.io/data-package/) (descriptor, table schemas, field types, constraints, keys, dialects)
 
 - [Darwin Core text guide](https://dwc.tdwg.org/text/) (conceptual and usage guidance for Darwin Core as text)
 
@@ -97,7 +97,7 @@ The following resources are closely related and are recommended reading:
 
 Sections may be either normative (defines what is required to comply with the standard) or non-normative (supports understanding but is not binding) and are marked as such.
 
-Any sentence or phrase beginning with "For example" or "e.g.", whether in a normative section or a non-normative section, is non-normative.
+Any sentence or phrase beginning with “For example” or “e.g.”, whether in a normative section or a non-normative section, is non-normative.
 
 ### 1.5 RFC 2119 key words (normative)
 
@@ -126,8 +126,8 @@ The file `datapackage.json` is the JSON file that describes your dataset: its ba
 
 A Darwin Core Data Package (DwC-DP):
 
-- **MUST** be a valid [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/), and  
 - **MUST** declare conformance to the DwC-DP profile using either the `profile` property or the `$schema` property.
+- **MUST** be a valid [Data Package](https://specs.frictionlessdata.io/data-package/), and
 
 #### Package-level properties
 
@@ -234,7 +234,7 @@ A **Table Schema** declares the structure and integrity rules for a single resou
 
 ### 2.4 Field descriptors
 
-Field descriptors follow Frictionless Table Schema and support DwC-DP linking metadata.
+Field descriptors follow Table Schema and support DwC-DP linking metadata.
 
 **Field MUST contain**
 
