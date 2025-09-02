@@ -91,7 +91,7 @@ Throughout the diagrams in this document, classes are referred to with the label
 
 Figure 1 provides an overview of the DwC-CM. To avoid clutter, the nature of the relationships (directionality, cardinality and predicates) are omitted. This diagram also omits the vast number of possible relationships between the classes *Agent*, *Media*, and *Protocol* to all of the other classes in the model. The relationships are described in detail in the thematic sections that follow the Overview. 
 
-![][images/dwc-cm.png]
+![Darwin Core Conceptual Model]({{ '/images/dwc-cm.png' | relative_url }})
 
 **Figure 1.** An overview of the Darwin Core Conceptual Model. Boxes represent classes and lines represent relationships between classes.
 
@@ -99,7 +99,7 @@ Figure 1 provides an overview of the DwC-CM. To avoid clutter, the nature of the
 
 In Darwin Core, an *Event* is an action, a process, or a set of circumstances occurring at some place during some period of time. Figure 2 illustrates the basic types of *Events* in the DwC-CM. 
 
-![][images/event.png]
+![Event Conceptual Model]({{ '/images/event.png' | relative_url }})
 
 **Figure 2.** Details of the fundamental relationships of *Events*, of which there are four basic types – *Occurrences*, *OrganismInteractions*, *Surveys*, and generic *Events*.
 
@@ -133,7 +133,7 @@ Depending on the intended use of *Event* data, it may simplify data sharing mode
 
 In Darwin Core, a *Survey* refers to an *Event* that is a biotic survey or inventory, which, with sufficiently detailed information, can support not only evidence of presence of *Organisms*, but also absences of detection and estimations of abundance. Figure 3 illustrates the part of the DwC-CM most closely related to *Surveys*. 
 
-![][images/survey.png]
+![Survey Conceptual Model]({{ '/images/survey.png' | relative_url }})
 
 **Figure 3.** Details of the fundamental relationships associated with *Surveys*.
 
@@ -165,7 +165,7 @@ An *Organism* in Darwin Core is defined as, "A particular organism or defined gr
 
 Figure 4 illustrates how DwC-CM relates *Occurrence*, *Organism*, and *OrganismInteraction*.
 
-![][images/occurrence-organism.png]
+![Occurrence Conceptual Model]({{ '/images/occurrence-organism.png' | relative_url }})
 
 **Figure 4.** Details of the fundamental relationships relating *Occurrence* and *Organism*.
 
@@ -197,7 +197,7 @@ Depending on the intended use of *Occurrence* and *Organism* data, it may simpli
 
 In Darwin Core, a *MaterialEntity* is defined as, "An entity that can be identified, exists for some period of time, and consists in whole or in part of physical matter while it exists." The DwC-CM provides a framework for representing the relationships between *MaterialEntities* and other classes that provide the contexts in which they are found and used, as shown in Figure 5\.
 
-![][images/material.png]
+![MaterialEntity Conceptual Model]({{ '/images/material.png' | relative_url }})
 
 **Figure 5.** Details of the fundamental relationships of specimens and material samples expressed as *MaterialEntities*.
 
@@ -223,7 +223,7 @@ In DwC-CM, the Darwin Core *MaterialSample* class is omitted in favor of *Materi
 
 In Darwin Core, an *Identification* is defined as, "A taxonomic determination (e.g., the assignment to a dwc:Taxon)." In the DwC-CM the following definition is more explicit, "A taxonomic determination (i.e., the assignment of a dwc:Taxon to a dwc:Organism)." Figure 6 illustrates how DwC-CM relates *Identification* to other classes.
 
-![][images/identification.png]
+![Identification Conceptual Model]({{ '/images/identification.png' | relative_url }})
 
 **Figure 6.** Details of the fundamental relationships between *Identification* and other classes.
 
@@ -263,7 +263,7 @@ The DwC-CM provides a framework for representing NucleotideAnalyses, accommodati
 
 These cases are represented within the model as depicted in Figure 7\.
 
-![][images/nucleotide.png]
+![Nucleotide Conceptual Model]({{ '/images/nucleotide.png' | relative_url }})
 
 **Figure 7.** Details of the fundamental relationships associated with *NucleotideAnalyses*.
 
@@ -300,7 +300,7 @@ In some cases, the analyzed *MaterialEntity* is not preserved or documented. If 
 
 In Darwin Core an *Agent* is defined as, "A person, group, organization, machine, software or other entity that can act." *Agents* have the capacity to act in relation to any other class as well as to be related to each other. Figure 8 shows a few examples that illustrate the ways in which *Agents* can be related to other classes in the DwC-CM. 
 
-![][images/agent.png]
+![Agent Conceptual Model]({{ '/images/agent.png' | relative_url }})
 
 **Figure 8.** Details of the ways in which *Agents* can be related to other classes. The labels on the relationships all represent well-established *Agent* relationships, but constitute only a few of the many relationships one might want to establish.
 
@@ -326,7 +326,7 @@ In addition to direct relationships through properties of classes as described i
 
 In Darwin Core, *Media* are things that are recorded (e.g, instances of the Dublin Core type vocabulary terms StillImage, MovingImage, Sound, and Text). The DwC-CM provides a framework for representing the relationships of *Media* to other classes, as shown in Figure 9.
 
-![][images/media.png]
+![Media Conceptual Model]({{ '/images/media.png' | relative_url }})
 
 **Figure 9.** Details of the fundamental relationships associated with *Media*.
 
