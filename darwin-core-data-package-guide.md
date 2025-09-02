@@ -40,32 +40,6 @@ Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversit
 
 ---
 
-## Table of Contents
-
-- [1 Introduction (non-normative)](#1-introduction-non-normative)
-
-  - [1.1 Purpose (non-normative)](#11-purpose-non-normative)
-  - [1.2 Audience (non-normative)](#12-audience-non-normative)
-  - [1.3 Associated Documents (non-normative)](#13-associated-documents-non-normative)
-  - [1.4 Status of the content of this document (normative)](#14-status-of-the-content-of-this-document-normative)
-  - [1.5 RFC 2119 key words (normative)](#15-rfc-2119-key-words-normative)
-  - [1.6 Namespace abbreviations (non-normative)](#16-namespace-abbreviations-non-normative)
-- [2. Descriptor content](#2-descriptor-content)
-
-  - [2.1 What is the package descriptor (`datapackage.json`)?](#21-what-is-the-package-descriptor-datapackagejson)
-
-    - [Package-level properties](#package-level-properties)
-    - [Minimal compliant `datapackage.json` (instance)](#minimal-compliant-datapackagejson-instance)
-  - [2.2 Resource objects](#22-resource-objects)
-  - [2.3 Table Schema](#23-table-schema)
-  - [2.4 Field descriptors](#24-field-descriptors)
-  - [2.5 Keys and relationships](#25-keys-and-relationships)
-  - [2.6 Table dialects and data files](#26-table-dialects-and-data-files)
-  - [2.7 Putting it together, a richer, but still small package](#27-putting-it-together-a-richer-but-still-small-package)
-  - [2.8 Conformance checklist](#28-conformance-checklist)
-
----
-
 ## 1 Introduction
 
 ### 1.1 Purpose (non-normative)
@@ -123,14 +97,14 @@ The following namespace abbreviations are used in this document:
 
 ## 2 Descriptor content
 
-### 2.1 What is the package descriptor?
+### 2.1 What is the package descriptor? (normative)
 The file `datapackage.json` is the JSON file that describes your dataset: its basic metadata, the profile it conforms to, and the list of data files (“resources”) together with their table schemas.
 
 A Darwin Core Data Package (DwC-DP):
 - **MUST** be a valid [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/), and  
 - **MUST** declare conformance to the DwC-DP profile using either the `profile` property or the `$schema` property.
 
-#### Package-level properties
+#### 2.1.1 Package-level properties (normative)
 - **name**: **MUST** be included.  
 - **resources**: **MUST** include one or more resources, each describing a tabular data file.  
 - **profile** or **$schema**: **MUST** declare DwC-DP conformance, either is acceptable.  
@@ -141,7 +115,7 @@ A Darwin Core Data Package (DwC-DP):
 
 Additional dataset-level metadata, such as contributors, sources, and bibliographicCitation, **MAY** be included. An external EML document **MAY** accompany the package as supplementary metadata.
 
-#### Minimal compliant `datapackage.json` (instance)
+#### 2.1.2 A minimal, compliant `datapackage.json` (non-normative)
 ```json
 {
   "name": "my-dwc-dp",
@@ -167,7 +141,7 @@ Additional dataset-level metadata, such as contributors, sources, and bibliograp
 
 ---
 
-### 2.2 Resource objects
+### 2.2 Resource objects (normative)
 Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **MUST** be a **Tabular Data Resource** and **MUST** include a **Table Schema**.
 
 **Resource MUST contain**
@@ -178,7 +152,7 @@ Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **M
 **Resource MAY contain**
 - `path` (for file-based data) or `data` (for inline rows).  
 - `format`, `mediatype`, `encoding`, and `dialect` (CSV parsing hints).  
-- `bytes` and `hash` (recommended for fixity).  
+- `bytes` and `hash` (RECOMMENDED for fixity).  
 
 **Example (resource with inline schema)**
 ```json
@@ -209,7 +183,7 @@ Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **M
 
 ---
 
-### 2.3 Table Schema
+### 2.3 Table Schema (normative)
 A **Table Schema** declares the structure and integrity rules for a single resource.
 
 **Table Schema MUST contain**
@@ -220,11 +194,11 @@ A **Table Schema** declares the structure and integrity rules for a single resou
 - `foreignKeys`: relationships to other resources.  
 - `missingValues`: tokens to treat as nulls (for example, `[""]`).  
 
-> Self-references are allowed. For the classic form, set `reference.resource` to an empty string (`""`) and `reference.fields` to the local primary key. Newer tooling may allow omitting `resource`. Both patterns are acceptable in DwC-DP.
+> Self-references are allowed. For the classic form, set `reference.resource` to an empty string (`""`) and `reference.fields` to the local primary key. Newer tooling MAY allow omitting `resource`. Both patterns are acceptable in DwC-DP.
 
 ---
 
-### 2.4 Field descriptors
+### 2.4 Field descriptors (normative)
 Field descriptors follow Frictionless Table Schema and support DwC-DP linking metadata.
 
 **Field MUST contain**
@@ -236,7 +210,7 @@ Field descriptors follow Frictionless Table Schema and support DwC-DP linking me
 - `constraints`: as needed, for example, `required`, `unique`, `enum`, `minimum`, `maximum`, `pattern`.  
 - `title`: a human-readable label.  
 
-**DwC-DP field-level linking metadata, optional but recommended**
+**DwC-DP field-level linking metadata, optional but RECOMMENDED**
 - `namespace`: abbreviation for the term’s namespace (`"dwc"`, `"dcterms"`, `"rdfs"`, `"rdf"`, and so on).  
 - `dcterms:isVersionOf`: IRI for the unversioned source term (for example, `http://rs.tdwg.org/dwc/terms/eventID`).  
 - `dcterms:references`: IRI for the versioned source term (for example, `http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28`).  
@@ -259,20 +233,20 @@ Field descriptors follow Frictionless Table Schema and support DwC-DP linking me
 
 ---
 
-### 2.5 Keys and relationships
+### 2.5 Keys and relationships (normative)
 Relationships are expressed with Table Schema keys.
 
 **Primary keys**
 - Present on any table that other tables reference.  
-- Values should be stable and, when feasible, globally unique.  
+- Values SHOULD be stable and, when feasible, globally unique.  
 
 **Foreign keys**
 - Each FK declares local `fields` and a `reference` with a target `resource` and target `fields`.  
 - Repeatable relationships are permitted.  
 - For many-to-many relations, use an explicit join table with two foreign keys.  
-- To document relationship semantics, you may add `predicateLabel` and `predicateIRI` alongside each foreign key; these do not affect validation.  
+- To document relationship semantics, you MAY add `predicateLabel` and `predicateIRI` alongside each foreign key; these do not affect validation.  
 
-**Join table snippet, non-normative**
+**Join table snippet** (non-normative)
 ```json
 {
   "fields": [
@@ -290,15 +264,15 @@ Relationships are expressed with Table Schema keys.
 
 ---
 
-### 2.6 Table dialects and data files
+### 2.6 Table dialects and data files (normative)
 - **CSV or TSV**: DwC-DP resources **SHOULD** use UTF-8 encoded CSV or TSV with a header row.  
 - **Dialect**: If you use non-default quoting, delimiter, or line endings, declare a `dialect` at the resource.  
 - **Missing values**: Declare `missingValues` so validators convert those tokens to null before applying constraints.  
-- **Fixity**: Including `bytes` and `hash` on resources is recommended for integrity checks.
+- **Fixity**: Including `bytes` and `hash` on resources is RECOMMENDED for integrity checks.
 
 ---
 
-### 2.7 Putting it together, a richer, but still small package
+### 2.7 A richer, compliant `datapackage.json` (non-normative)
 ```json
 {
   "name": "amphibia-survey-2024",
