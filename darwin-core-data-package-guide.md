@@ -9,7 +9,7 @@ toc: true
 : Darwin Core data package guide
 
 **Date version issued**  
-: 2025-09-01
+: 2025-09-03
 
 **Date created**  
 : 2025-08-12
@@ -18,7 +18,7 @@ toc: true
 : <http://www.tdwg.org/standards/450>
 
 **This version**  
-: <http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01>
+: < http://rs.tdwg.org/dwc/doc/dp/2025-09-03>
 
 **Latest version**  
 : <http://rs.tdwg.org/dwc/terms/guides/dp/>
@@ -36,7 +36,7 @@ toc: true
 Darwin Core Maintenance Group
 
 **Bibliographic citation**  
-Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
+Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG).  http://rs.tdwg.org/dwc/doc/dp/2025-09-03.
 
 ---
 

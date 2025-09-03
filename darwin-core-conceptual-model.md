@@ -9,7 +9,7 @@ toc: true
 : Darwin Core conceptual model
 
 **Date version issued**  
-: 2025-09-01
+: 2025-09-03
 
 **Date created**  
 : 2025-08-12
@@ -18,10 +18,10 @@ toc: true
 : <http://www.tdwg.org/standards/450>
 
 **This version**  
-: <http://rs.tdwg.org/dwc/terms/guides/cm/2025-09-01>
+: < http://rs.tdwg.org/dwc/doc/cm/2025-09-03>
 
 **Latest version**  
-: <http://rs.tdwg.org/dwc/terms/guides/cm/>
+: < http://rs.tdwg.org/dwc/doc/cm/>
 
 **Previous version**  
 : —
@@ -36,7 +36,7 @@ toc: true
 Darwin Core Maintenance Group
 
 **Bibliographic citation**  
-Darwin Core Maintenance Group. 2025. Darwin Core conceptual model. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/cm/2025-09-01.
+Darwin Core Maintenance Group. 2025. Darwin Core conceptual model. Biodiversity Information Standards (TDWG).  http://rs.tdwg.org/dwc/doc/cm/2025-09-03.
 
 ---
 # **Darwin Core Conceptual Model**
