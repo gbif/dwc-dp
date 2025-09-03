@@ -125,39 +125,32 @@ This guide follows [version 1](https://specs.frictionlessdata.io/) of the Data P
 
 ## 2 Descriptor content
 
-### 2.1 What is the package descriptor?
+A Data Package has a descriptor: a JSON file named `datapackage.json` that acts as an entry point to your dataset. It contains a list of the data files included in the dataset (“resources”), a reference to the profile the dataset conforms to, and (optionally) dataset-level metadata. If undefined, the profile defaults to `data-package`, i.e. it expect conformity with the generic Data Package specification at <https://specs.frictionlessdata.io/schemas/data-package.json>.
 
-The file `datapackage.json` is the JSON file that describes your dataset: its basic metadata, the profile it conforms to, and the list of data files (“resources”) together with their table schemas.
+A Darwin Core Data Package (DwC-DP) extends the Data Package specification with additional requirements.
 
-A Darwin Core Data Package (DwC-DP):
+### 2.1 Package-level properties
 
-- **MUST** declare conformance to the DwC-DP profile using either the `profile` property or the `$schema` property.
-- **MUST** be a valid [Data Package](https://specs.frictionlessdata.io/data-package/), and
+The descriptor **MUST** contain:
 
-#### Package-level properties
+- [resources](https://specs.frictionlessdata.io/data-package/#required-properties) with at least one resource (Data Package requirement).
+- [profile](https://specs.frictionlessdata.io/data-package/#profile) with a URL referencing a version of the DwC-DP profile. This indicates the intended compliance of the dataset with this profile as well as the generic Data Package specification.
 
-- **name**: **MUST** be included.
-- **resources**: **MUST** include one or more resources, each describing a tabular data file.
-- **profile** or **$schema**: **MUST** declare DwC-DP conformance, either is acceptable.
-- **title**: **SHOULD** be included.
-- **description**: **SHOULD** be included.
-- **created**: **SHOULD** be an RFC 3339 date-time.
-- **licenses**: **SHOULD** be included.
+The descriptor **SHOULD** contain:
 
-Additional dataset-level metadata, such as contributors, sources, and bibliographicCitation, **MAY** be included. An external EML document **MAY** accompany the package as supplementary metadata.
+- [id](https://specs.frictionlessdata.io/data-package/#id)
+- [created](https://specs.frictionlessdata.io/data-package/#created)
+- [version](https://specs.frictionlessdata.io/data-package/#version)
+
+The descriptor **MAY** contain additional dataset-level metadata, such as title, description, contributors, sources, and licenses. An external EML document **MAY** accompany the package as supplementary metadata.
 
 #### Minimal compliant `datapackage.json` (instance)
 
 ```json
 {
-  "name": "my-dwc-dp",
   "profile": "https://raw.githubusercontent.com/tdwg/dwc-dp/1.0.0/dwc-dp-profile.json",
-  "title": "Example dataset",
-  "description": "Occurrences and events for demonstration purposes.",
   "created": "2025-09-01T00:00:00Z",
-  "licenses": [
-    { "name": "CC-BY-4.0", "path": "https://creativecommons.org/licenses/by/4.0/" }
-  ],
+  "version": "1.0",
   "resources": [
     {
       "name": "event",
