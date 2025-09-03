@@ -18,7 +18,7 @@ Part of TDWG Standard
 : <http://www.tdwg.org/standards/450>
 
 This version
-: < http://rs.tdwg.org/dwc/doc/dp/2025-09-03>
+: <http://rs.tdwg.org/dwc/doc/dp/2025-09-03>
 
 Latest version
 : <http://rs.tdwg.org/dwc/terms/guides/dp/>
