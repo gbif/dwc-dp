@@ -9,7 +9,7 @@ Title
 : Darwin Core Data Package guide
 
 Date version issued
-: 2025-09-01
+: 2025-09-03
 
 Date created
 : 2025-08-12
@@ -18,7 +18,7 @@ Part of TDWG Standard
 : <http://www.tdwg.org/standards/450>
 
 This version
-: <http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01>
+: < http://rs.tdwg.org/dwc/doc/dp/2025-09-03>
 
 Latest version
 : <http://rs.tdwg.org/dwc/terms/guides/dp/>
@@ -36,7 +36,7 @@ Creator
 : Darwin Core Maintenance Group
 
 Bibliographic citation
-: Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
+Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG).  http://rs.tdwg.org/dwc/doc/dp/2025-09-03.
 
 ## 1 Introduction
 
@@ -141,7 +141,7 @@ Tip: You can inline the table schema instead of linking to a URL, see 2.3.
 
 ---
 
-### 2.2 Resources
+### 2.2 Resources (normative)
 
 Each data file included in the dataset (e.g. CSV file) is a _resource_. If the resource represents a table described in the DwC-DP profile, it **MUST** be a _Tabular Data Resource_ and **MUST** include a _Table Schema_. 
 
@@ -200,7 +200,7 @@ You **MAY** also include additional resources, that do not represent tables desc
 }
 ```
 
-### 2.3 Table Schemas
+### 2.3 Table Schemas (normative)
 
 A _Table Schema_ declares the structure and integrity rules for a Tabular Data Resource. When representing a table described by the DwC-DP profile:
 
@@ -214,7 +214,7 @@ The table schema **MAY** contain:
 - [`foreignKeys`](https://specs.frictionlessdata.io/table-schema/#foreign-keys) to express relationships with other tables or within-table relationships (e.g. `parentEventID -> eventID`). For the latter, set the `reference.resource` to `""`.
 - [`missingValues`](https://specs.frictionlessdata.io/table-schema/#missing-values) with strings to treat as `null` values (e.g. `""`).
 
-### 2.4 Field descriptors
+### 2.4 Field descriptors (normative)
 
 Field descriptors follow Table Schema and support DwC-DP linking metadata.
 
@@ -254,7 +254,7 @@ Field descriptors follow Table Schema and support DwC-DP linking metadata.
 
 ---
 
-### 2.5 Keys and relationships
+### 2.5 Keys and relationships (normative)
 
 Relationships are expressed with Table Schema keys.
 
@@ -289,7 +289,7 @@ Relationships are expressed with Table Schema keys.
 
 ---
 
-### 2.6 Table dialects and data files
+### 2.6 Table dialects and data files (normative)
 
 - **CSV or TSV**: DwC-DP resources **SHOULD** use UTF-8 encoded CSV or TSV with a header row.
 - **Dialect**: If you use non-default quoting, delimiter, or line endings, declare a `dialect` at the resource.
@@ -298,7 +298,7 @@ Relationships are expressed with Table Schema keys.
 
 ---
 
-### 2.7 Putting it together, a richer, but still small package
+### 2.7 A richer, compliant `datapackage.json` (non-normative)
 
 ```json
 {
