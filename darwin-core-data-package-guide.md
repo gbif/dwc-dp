@@ -125,7 +125,7 @@ This guide follows [version 1](https://specs.frictionlessdata.io/) of the Data P
 
 ## 2 Descriptor content
 
-A Data Package has a descriptor: a JSON file named `datapackage.json` that acts as an entry point to your dataset. It contains a list of the data files included in the dataset (“resources”), a reference to the profile the dataset conforms to, and (optionally) dataset-level metadata. If undefined, the profile defaults to `data-package`, i.e. it expect conformity with the generic Data Package specification at <https://specs.frictionlessdata.io/schemas/data-package.json>.
+A Data Package has a _descriptor_: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a list of the data files included in the dataset (_resources_), a reference to the _profile_ the dataset conforms to, and (optionally) dataset-level metadata. If undefined, the profile defaults to `"data-package"`, i.e. it expect conformity with the generic Data Package specification at <https://specs.frictionlessdata.io/schemas/data-package.json>.
 
 A Darwin Core Data Package (DwC-DP) extends the Data Package specification with additional requirements.
 
@@ -144,11 +144,11 @@ The descriptor **SHOULD** contain:
 
 The descriptor **MAY** contain additional dataset-level metadata, such as title, description, contributors, sources, and licenses. An external EML document **MAY** accompany the package as supplementary metadata.
 
-#### Minimal compliant `datapackage.json` (instance)
+#### Minimal compliant `datapackage.json`
 
 ```json
 {
-  "profile": "https://raw.githubusercontent.com/tdwg/dwc-dp/1.0.0/dwc-dp-profile.json",
+  "profile": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/dwc-dp-profile.json",
   "created": "2025-09-01T00:00:00Z",
   "version": "1.0",
   "resources": [
@@ -156,13 +156,13 @@ The descriptor **MAY** contain additional dataset-level metadata, such as title,
       "name": "event",
       "profile": "tabular-data-resource",
       "path": "event.csv",
-      "schema": "https://example.org/table-schemas/event.table-schema.json"
+      "schema": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/event.json"
     }
   ]
 }
 ```
 
-> Tip: You can inline the table schema instead of linking to a URL, see 2.3.
+Tip: You can inline the table schema instead of linking to a URL, see 2.3.
 
 ---
 
