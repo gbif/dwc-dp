@@ -6,10 +6,10 @@
 # python data-package-migration.py
 # -i "http://rs.gbif.org/data-packages/dwc-dp" \
 # -I "http://rs.tdwg.org/dwc/dwc-dp" \
-# -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1" \
-# -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1"
+# -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/2025-09-03" \
+# -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03"
 
-#python data-package-migration.py -i "http://rs.gbif.org/data-packages/dwc-dp" -I "http://rs.tdwg.org/dwc/dwc-dp" -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1" -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1"
+#python data-package-migration.py -i "http://rs.gbif.org/data-packages/dwc-dp" -I "http://rs.tdwg.org/dwc/dwc-dp" -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/2025-09-03" -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03"
 
 import os
 import shutil

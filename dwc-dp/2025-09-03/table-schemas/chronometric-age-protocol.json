@@ -1,0 +1,67 @@
+{
+  "identifier": "http://rs.tdwg.org/dwc/dwc-dp/chronometric-age-protocol",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/chronometric-age-protocol.json",
+  "name": "chronometric-age-protocol",
+  "title": "Chronometric Age Protocol",
+  "description": "A dwc:Protocol used for a chrono:ChronometricAge.",
+  "comments": "",
+  "example": "",
+  "namespace": "",
+  "iri": "",
+  "iri_version": "",
+  "rdfs:comment": "",
+  "fields": [
+    {
+      "name": "chronometricAgeID",
+      "title": "Chronometric Age ID",
+      "description": "An identifier for a chrono:ChronometricAge.",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "example": "`https://www.canadianarchaeology.ca/samples/70673`",
+      "type": "string",
+      "format": "default",
+      "namespace": "chrono",
+      "iri": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
+      "iri_version": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
+      "rdfs:comment": "An identifier for the set of information associated with a chrono:ChronometricAge.",
+      "constraints": {
+        "required": "TRUE",
+        "unique": "FALSE"
+      }
+    },
+    {
+      "name": "protocolID",
+      "title": "Protocol ID",
+      "description": "An identifier for a dwc:Protocol.",
+      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "example": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "iri": "",
+      "iri_version": "",
+      "rdfs:comment": "",
+      "constraints": {
+        "required": "TRUE",
+        "unique": "FALSE"
+      }
+    }
+  ],
+  "foreignKeys": [
+    {
+      "fields": "chronometricAgeID",
+      "predicate": "used for",
+      "reference": {
+        "resource": "chronometric-age",
+        "fields": "chronometricAgeID"
+      }
+    },
+    {
+      "fields": "protocolID",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocolID"
+      }
+    }
+  ]
+}
