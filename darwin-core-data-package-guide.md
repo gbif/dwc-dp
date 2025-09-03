@@ -58,7 +58,7 @@ This guide explains the goals and scope of DwC‑DP and provides practical direc
 
 This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with CSV/TSV tabular data but not with the Frictionless Data Package specification (hereafter referred to as “Data Package”). Where helpful, it references relevant parts of the Data Package documentation and the Darwin Core standard.
 
-### 1.3 Associated Documents (non-normative)
+### 1.3 Associated documents (non-normative)
 
 The following resources are closely related and are recommended reading:
 
@@ -136,6 +136,7 @@ The descriptor **MAY** contain additional dataset-level metadata, such as `title
 }
 ```
 
+{:.alert .alert-info}
 Tip: You can inline the table schema instead of linking to a URL, see 2.3.
 
 ---
