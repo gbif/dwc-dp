@@ -122,7 +122,7 @@ The descriptor **MAY** contain additional dataset-level metadata, such as `title
 
 ```json
 {
-  "profile": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/dwc-dp-profile.json",
+  "profile": "https://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json",
   "created": "2025-09-01T00:00:00Z",
   "version": "1.0",
   "resources": [
@@ -200,25 +200,19 @@ You **MAY** also include additional resources, that do not represent tables desc
 }
 ```
 
----
+### 2.3 Table Schemas
 
-### 2.3 Table Schema
+A _Table Schema_ declares the structure and integrity rules for a Tabular Data Resource. When representing a table described by the DwC-DP profile:
 
-A **Table Schema** declares the structure and integrity rules for a single resource.
+The table schema **MUST** contain:
 
-**Table Schema MUST contain**
+- [`fields`](https://specs.frictionlessdata.io/table-schema/#descriptor) with an array of field descriptors, in the same order as and describing all columns in the tabular data file.
+- [`primaryKey`](https://specs.frictionlessdata.io/table-schema/#primary-key) if the table is referenced by other tables.
 
-- `fields`: an array of field descriptors.
-- If the table is referenced by other tables, a `primaryKey`.
+The table schema **MAY** contain:
 
-**Table Schema MAY contain**
-
-- `foreignKeys`: relationships to other resources.
-- `missingValues`: tokens to treat as nulls (for example, `[""]`).
-
-> Self-references are allowed. For the classic form, set `reference.resource` to an empty string (`""`) and `reference.fields` to the local primary key. Newer tooling may allow omitting `resource`. Both patterns are acceptable in DwC-DP.
-
----
+- [`foreignKeys`](https://specs.frictionlessdata.io/table-schema/#foreign-keys) to express relationships with other tables or within-table relationships (e.g. `parentEventID -> eventID`). For the latter, set the `reference.resource` to `""`.
+- [`missingValues`](https://specs.frictionlessdata.io/table-schema/#missing-values) with strings to treat as `null` values (e.g. `""`).
 
 ### 2.4 Field descriptors
 
