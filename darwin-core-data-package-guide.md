@@ -141,41 +141,56 @@ Tip: You can inline the table schema instead of linking to a URL, see 2.3.
 
 ---
 
-### 2.2 Resource objects
+### 2.2 Resources
 
-Each dataset entity (CSV table) is a **resource**. In DwC-DP, every resource **MUST** be a **Tabular Data Resource** and **MUST** include a **Table Schema**.
+Each data file included in the dataset (e.g. CSV file) is a _resource_. If the resource represents a table described in the DwC-DP profile, it **MUST** be a _Tabular Data Resource_ and **MUST** include a _Table Schema_. 
 
-**Resource MUST contain**
+Each of those resources **MUST** contain:
 
-- `name`: stable table identifier (for example, `event`, `occurrence`, `agent`).
-- `profile`: the string `"tabular-data-resource"`.
-- `schema`: a **Table Schema** object, or a URL to one.
+- [`name`](https://specs.frictionlessdata.io/data-resource/#name) with the DwC-DP profile table name (e.g. `event`, `occurrence`, `agent`).
+- [`path` or `data`](https://specs.frictionlessdata.io/data-resource/#data-location) with a `path` to the data file or `data` containing inline data.
+- [`profile`](https://specs.frictionlessdata.io/data-resource/#profile) with `"tabular-data-resource"` to indicate that the resource is tabular in nature.
+- [`schema`](https://specs.frictionlessdata.io/data-resource/#resource-schemas) with a _Table Schema_ object or URL to one (see 2.3).
 
-**Resource MAY contain**
+Each of those resource **MAY** contain additional resource-level properties, such as `format`, `mediatype`, `encoding`, `dialect`, `bytes`, and `hash`.
 
-- `path` (for file-based data) or `data` (for inline rows).
-- `format`, `mediatype`, `encoding`, and `dialect` (CSV parsing hints).
-- `bytes` and `hash` (recommended for fixity).
+You **MAY** also include additional resources, that do not represent tables described in DwC-DP profile.
 
-**Example (resource with inline schema)**
+#### Example (resource with inline schema)
 
 ```json
 {
   "name": "occurrence",
-  "profile": "tabular-data-resource",
   "path": "occurrence.csv",
-  "encoding": "utf-8",
-  "dialect": { "delimiter": "," },
+  "profile": "tabular-data-resource",
+  "format": "csv",
+  "mediatype": "text/csv",
+  "encoding": "UTF-8",
   "schema": {
     "fields": [
-      { "name": "occurrenceID", "type": "string", "constraints": { "required": true, "unique": true } },
-      { "name": "eventID", "type": "string", "constraints": { "required": true } }
+      {
+        "name": "occurrenceID",
+        "type": "string",
+        "constraints": {
+          "required": true,
+          "unique": true
+        }
+      },
+      {
+        "name": "eventID",
+        "type": "string", "constraints": {
+          "required": true
+        }
+      }
     ],
     "primaryKey": "occurrenceID",
     "foreignKeys": [
       {
         "fields": "eventID",
-        "reference": { "resource": "event", "fields": "eventID" },
+        "reference": {
+          "resource": "event",
+          "fields": "eventID"
+        },
         "predicateLabel": "observed during",
         "predicateIRI": "http://example.org/predicate/observedDuring"
       }
