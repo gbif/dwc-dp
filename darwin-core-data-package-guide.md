@@ -35,30 +35,6 @@ Contributors
 Creator
 : Darwin Core Maintenance Group
 
-
-## Table of Contents
-
-- [1 Introduction (non-normative)](#1-introduction-non-normative)
-  - [1.1 Purpose (non-normative)](#11-purpose-non-normative)
-  - [1.2 Audience (non-normative)](#12-audience-non-normative)
-  - [1.3 Associated Documents (non-normative)](#13-associated-documents-non-normative)
-  - [1.4 Status of the content of this document (normative)](#14-status-of-the-content-of-this-document-normative)
-  - [1.5 RFC 2119 key words (normative)](#15-rfc-2119-key-words-normative)
-  - [1.6 Namespace abbreviations (non-normative)](#16-namespace-abbreviations-non-normative)
-  - [1.7 Data Package v1 vs v2 (non-normative)](#17-data-package-v1-vs-v2-non-normative)
-- [2. Descriptor content](#2-descriptor-content)
-  - [2.1 What is the package descriptor (`datapackage.json`)?](#21-what-is-the-package-descriptor-datapackagejson)
-    - [Package-level properties](#package-level-properties)
-    - [Minimal compliant `datapackage.json` (instance)](#minimal-compliant-datapackagejson-instance)
-  - [2.2 Resource objects](#22-resource-objects)
-  - [2.3 Table Schema](#23-table-schema)
-  - [2.4 Field descriptors](#24-field-descriptors)
-  - [2.5 Keys and relationships](#25-keys-and-relationships)
-  - [2.6 Table dialects and data files](#26-table-dialects-and-data-files)
-  - [2.7 Putting it together, a richer, but still small package](#27-putting-it-together-a-richer-but-still-small-package)
-  - [2.8 Conformance checklist](#28-conformance-checklist)
-
----
 Bibliographic citation
 : Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
 
