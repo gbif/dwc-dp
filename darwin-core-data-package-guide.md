@@ -36,7 +36,9 @@ Creator
 : Darwin Core Maintenance Group
 
 Bibliographic citation
-Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG).  http://rs.tdwg.org/dwc/doc/dp/2025-09-03.
+: Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG).  http://rs.tdwg.org/dwc/doc/dp/2025-09-03.
+
+---
 
 ## 1 Introduction
 
