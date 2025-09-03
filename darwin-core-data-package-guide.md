@@ -107,16 +107,16 @@ A Darwin Core Data Package (DwC-DP) extends the Data Package specification with 
 
 The descriptor **MUST** contain:
 
-- [resources](https://specs.frictionlessdata.io/data-package/#required-properties) with at least one resource (Data Package requirement).
-- [profile](https://specs.frictionlessdata.io/data-package/#profile) with a URL referencing a version of the DwC-DP profile. This indicates the intended compliance of the dataset with this profile as well as the generic Data Package specification.
+- [`resources`](https://specs.frictionlessdata.io/data-package/#required-properties) with at least one resource (see 2.2).
+- [`profile`](https://specs.frictionlessdata.io/data-package/#profile) with a URL referencing a version of the DwC-DP profile. This indicates the intended compliance of the dataset with this profile as well as the generic Data Package specification.
 
 The descriptor **SHOULD** contain:
 
-- [id](https://specs.frictionlessdata.io/data-package/#id)
-- [created](https://specs.frictionlessdata.io/data-package/#created)
-- [version](https://specs.frictionlessdata.io/data-package/#version)
+- [`id`](https://specs.frictionlessdata.io/data-package/#id)
+- [`created`](https://specs.frictionlessdata.io/data-package/#created)
+- [`version`](https://specs.frictionlessdata.io/data-package/#version)
 
-The descriptor **MAY** contain additional dataset-level metadata, such as title, description, contributors, sources, and licenses. An external EML document **MAY** accompany the package as supplementary metadata.
+The descriptor **MAY** contain additional dataset-level metadata, such as `title`, `description`, `contributors`, `sources`, and `licenses`. An external EML document **MAY** accompany the package as supplementary metadata.
 
 #### Minimal compliant `datapackage.json`
 
@@ -128,8 +128,8 @@ The descriptor **MAY** contain additional dataset-level metadata, such as title,
   "resources": [
     {
       "name": "event",
-      "profile": "tabular-data-resource",
       "path": "event.csv",
+      "profile": "tabular-data-resource",
       "schema": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/event.json"
     }
   ]
