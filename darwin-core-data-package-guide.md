@@ -5,40 +5,36 @@ toc: true
 
 # Darwin Core Data Package guide
 
-**Title**
+Title
 : Darwin Core Data Package guide
 
-**Date version issued**
+Date version issued
 : 2025-09-01
 
-**Date created**
+Date created
 : 2025-08-12
 
-**Part of TDWG Standard**
+Part of TDWG Standard
 : <http://www.tdwg.org/standards/450>
 
-**This version**
+This version
 : <http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01>
 
-**Latest version**
+Latest version
 : <http://rs.tdwg.org/dwc/terms/guides/dp/>
 
-**Previous version**
+Previous version
 : —
 
-**Abstract**
+Abstract
 : Guidelines for implementing Darwin Core in Frictionless Data Packages.
 
-**Contributors**
+Contributors
 : [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), [Tim Robertson](https://orcid.org/0000-0001-6215-3617) ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), [John Wieczorek](https://orcid.org/0000-0003-1144-0290) Rauthiflor LLC
 
-**Creator**
-Darwin Core Maintenance Group
+Creator
+: Darwin Core Maintenance Group
 
-**Bibliographic citation**
-Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
-
----
 
 ## Table of Contents
 
@@ -63,6 +59,8 @@ Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversit
   - [2.8 Conformance checklist](#28-conformance-checklist)
 
 ---
+Bibliographic citation
+: Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-01.
 
 ## 1 Introduction
 
