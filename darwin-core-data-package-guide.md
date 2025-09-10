@@ -382,15 +382,6 @@ A **field descriptor** describes a single field in a table schema (e.g. name, de
 {:.alert .alert-info}
 (non-normative) You will meet the requirements for field descriptors by copying field descriptors from the table schemas provided at `rs.tdwg.org`.
 
-### 2.8 Conformance checklist (normative)
-
-- Package MUST have `name`, at least one `resource`, and declare DwC-DP conformance via `profile` or `$schema`.
-- Every resource MUST have `profile: "tabular-data-resource"` and a `schema` (inline or URL).
-- Each table schema SHOULD define `fields`, use sensible `type` and `constraints`, and set `missingValues` if needed.
-- Tables that are referenced by other tables MUST define a `primaryKey`.
-- Foreign keys MUST declare both local `fields` and `reference` to target `resource` and `fields`. Note: In Data Package version 1.0, self-referential foreign keys MUST leave the reference property blank ("").
-- Links to terms in standard vocabularies, when used, SHOULD include `namespace`, `dcterms:isVersionOf`, `dcterms:references`, and `rdfs:comment`.
-
 ## 4. DwC-DP tables (non-normative)
 
 table name | table schema
