@@ -227,6 +227,17 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 [package.id]: https://specs.frictionlessdata.io/data-package/#id
 [package.created]: https://specs.frictionlessdata.io/data-package/#created
 [package.version]: https://specs.frictionlessdata.io/data-package/#version
+[resource]: https://specs.frictionlessdata.io/data-resource/
+[csv-dialect]: https://specs.frictionlessdata.io/csv-dialect/
+[tabular-data-resource]: https://specs.frictionlessdata.io/tabular-data-resource/
+[resource.name]: https://specs.frictionlessdata.io/data-resource/#name
+[resource.path]: https://specs.frictionlessdata.io/data-resource/#path-data-in-files
+[resource.profile]: https://specs.frictionlessdata.io/data-resource/#profile
+[resource.format]: https://specs.frictionlessdata.io/data-resource/#optional-properties
+[resource.mediatype]: https://specs.frictionlessdata.io/data-resource/#optional-properties
+[resource.dialect]: https://specs.frictionlessdata.io/tabular-data-resource/#csv-dialect
+[resource.schema]: https://specs.frictionlessdata.io/data-resource/#resource-schemas
+[resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
 {:.alert .alert-info}
@@ -255,46 +266,20 @@ The descriptor MUST follow the [Data Package specification][package.descriptor] 
 
 7. An external EML document MAY accompany the dataset as supplementary metadata.
 
-### 2.2 Resources (normative)
+### 3.3 Resources
 
-Each data file included in the dataset (e.g. CSV file) is a _resource_. If the resource represents a table described in the DwC-DP profile, it **MUST** be a _Tabular Data Resource_ and **MUST** include a _Table Schema_. 
+Each data file included in DwC-DP is a **resource**. Each resource MUST follow the [Data Resource specification][resource].
 
-Each of those resources **MUST** contain:
+Of special interest are resources with (biodiversity) data organized in tables that implement the [Darwin Core Conceptual Model (DwC-CM)](../cm/). These resources/tables (hereafter referred to as “**DwC-DP tables**”) have additional requirements.
 
-- [`name`](https://specs.frictionlessdata.io/data-resource/#name) with the DwC-DP profile table name (e.g. `event`, `occurrence`, `agent`).
 - [`path` or `data`](https://specs.frictionlessdata.io/data-resource/#data-location) with a `path` to the data file or `data` containing inline data.
-- [`profile`](https://specs.frictionlessdata.io/data-resource/#profile) with `"tabular-data-resource"` to indicate that the resource is tabular in nature.
-- [`schema`](https://specs.frictionlessdata.io/data-resource/#resource-schemas) with a _Table Schema_ object or URL to one (see 2.3).
 
-Each of those resource **MAY** contain additional resource-level properties, such as `format`, `mediatype`, `encoding`, `dialect`, `bytes`, and `hash`.
 
-You **MAY** also include additional resources, that do not represent tables described in DwC-DP profile.
+1. A CSV file MUST be encoded as UTF-8 OR when deviating from that encoding, the DwC-DP table MUST have an `encoding` property that MUST follow the [Data Resource specification][resource.encoding] and the files MUST follow that encoding.
 
-#### Example (resource with inline schema)
 
-```json
 {
-  "name": "occurrence",
-  "path": "occurrence.csv",
   "profile": "tabular-data-resource",
-  "format": "csv",
-  "mediatype": "text/csv",
-  "encoding": "UTF-8",
-  "schema": {
-    "fields": [
-      {
-        "name": "occurrenceID",
-        "type": "string",
-        "constraints": {
-          "required": true,
-          "unique": true
-        }
-      },
-      {
-        "name": "eventID",
-        "type": "string", "constraints": {
-          "required": true
-        }
       }
     ],
     "primaryKey": "occurrenceID",
@@ -314,42 +299,35 @@ You **MAY** also include additional resources, that do not represent tables desc
 }
 ```
 
-### 2.3 Table Schemas (normative)
+1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved names defined in the DwC-DP profile (e.g. `"event"`, `"occurrence"`[^1]).
 
-A _Table Schema_ declares the structure and integrity rules for a Tabular Data Resource. When representing a table described by the DwC-DP profile:
+2. A DwC-DP table MUST have a `path` property, with the path to the data file. It MUST follow the [Data Resource specification][resource.path].
 
-The table schema **MUST** contain:
+3. A DwC-DP table MUST have a `profile` property, indicating the type of resource. It MUST be the value `"tabular-data-resource"`, thereby indicating that it follows the [Tabular Data Resource][tabular-data-resource] specification.
 
-- [`fields`](https://specs.frictionlessdata.io/table-schema/#descriptor) with an array of field descriptors, in the same order as and describing all columns in the tabular data file.
-- [`primaryKey`](https://specs.frictionlessdata.io/table-schema/#primary-key) if the table is referenced by other tables.
+4. A DwC-DP table SHOULD have a `format` property, indicating the standard file extension of the data file (e.g. `"csv"`, `"tsv"`). It MUST follow the [Data Package specification][resource.format].
 
-The table schema **MAY** contain:
+5. A DwC-DP table SHOULD have a `mediatype` property, indicating the mediatype of the data file (e.g. `"text/csv"`). It MUST follow the [Data Package specification][resource.mediatype] and MUST be the value `"text/csv"`.
 
-- [`foreignKeys`](https://specs.frictionlessdata.io/table-schema/#foreign-keys) to express relationships with other tables or within-table relationships (e.g. `parentEventID -> eventID`). For the latter, set the `reference.resource` to `""`.
-- [`missingValues`](https://specs.frictionlessdata.io/table-schema/#missing-values) with strings to treat as `null` values (e.g. `""`).
+6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Package specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
 
-### 2.4 Field descriptors (normative)
 
 Field descriptors follow Table Schema and support DwC-DP linking metadata.
 
 **Field MUST contain**
 
-- `name`: the local column name (for example, `eventID`, `decimalLatitude`).
+A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a reserved `name` defined in the DwC-DP profile[^1].
 
-**Field SHOULD contain**
+### 3.4 Table Schemas
 
-- `type`: a Table Schema type (`string`, `integer`, `number`, `boolean`, `date`, `datetime`).
-- `description`: the Darwin Core definition, or an adapted description when the field is a DwC-DP addition.
-- `constraints`: as needed, for example, `required`, `unique`, `enum`, `minimum`, `maximum`, `pattern`.
-- `title`: a human-readable label.
+A **table schema** describes the fields, relationships and missing values of a tabular data file.
 
 **DwC-DP field-level linking metadata, optional but recommended**
 
 - `namespace`: abbreviation for the term’s namespace (`"dwc"`, `"dcterms"`, `"rdfs"`, `"rdf"`, and so on).
 - `dcterms:isVersionOf`: IRI for the unversioned source term (for example, `http://rs.tdwg.org/dwc/terms/eventID`).
 - `dcterms:references`: IRI for the versioned source term (for example, `http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28`).
-- `rdfs:comment`: the canonical definition text copied from the source term.
-- `comments`: usage notes that are specific to this table’s context.
+- `fields`: an array of **field descriptors** that describe the columns in the data file. All columns MUST be described, in the order they appear in the file. `fields` MUST NOT describe a superset, subset or different order of columns. See [section 3.5](#3.5-field-descriptors) for details.
 
 **Example field using DwC linking**
 
@@ -401,16 +379,9 @@ Relationships are expressed with Table Schema keys.
 }
 ```
 
----
 
-### 2.6 Table dialects and data files (normative)
 
-- **CSV or TSV**: DwC-DP resources **SHOULD** use UTF-8 encoded CSV or TSV with a header row.
-- **Dialect**: If you use non-default quoting, delimiter, or line endings, declare a `dialect` at the resource.
-- **Missing values**: Declare `missingValues` so validators convert those tokens to null before applying constraints.
-- **Fixity**: Including `bytes` and `hash` on resources is recommended for integrity checks.
 
----
 
 ### 2.7 A richer, compliant `datapackage.json` (non-normative)
 
@@ -488,3 +459,5 @@ Relationships are expressed with Table Schema keys.
 - Tables that are referenced by other tables MUST define a `primaryKey`.
 - Foreign keys MUST declare both local `fields` and `reference` to target `resource` and `fields`. Note: In Data Package version 1.0, self-referential foreign keys MUST leave the reference property blank ("").
 - Links to terms in standard vocabularies, when used, SHOULD include `namespace`, `dcterms:isVersionOf`, `dcterms:references`, and `rdfs:comment`.
+
+[^1]: DwC-DP table names: `"agent"`, `"agent-agent-role"`, `"agent-identifier"`, `"agent-media"`, `"chronometric-age"`, `"chronometric-age-agent-role"`, `"chronometric-age-assertion"`, `"chronometric-age-media"`, `"chronometric-age-protocol"`, `"chronometric-age-reference"`, `"event"`, `"event-agent-role"`, `"event-assertion"`, `"event-identifier"`, `"event-media"`, `"event-protocol"`, `"event-provenance"`, `"event-reference"`, `"geological-context"`, `"geological-context-media"`, `"identification"`, `"identification-agent-role"`, `"identification-taxon"`, `"material"`, `"material-agent-role"`, `"material-assertion"`, `"material-identifier"`, `"material-media"`, `"material-protocol"`, `"material-provenance"`, `"material-reference"`, `"material-rights"`, `"media"`, `"media-agent-role"`, `"media-assertion"`, `"media-identifier"`, `"molecular-protocol"`, `"media-provenance"`, `"media-rights"`, `"molecular-protocol-agent-role"`, `"molecular-protocol-assertion"`, `"molecular-protocol-reference"`, `"nucleotide-analysis"`, `"nucleotide-analysis-assertion"`, `"nucleotide-sequence"`, `"occurrence"`, `"occurrence-agent-role"`, `"occurrence-assertion"`, `"occurrence-identifier"`, `"occurrence-media"`, `"occurrence-protocol"`, `"organism"`, `"organism-assertion"`, `"organism-identifier"`, `"organism-interaction"`, `"organism-interaction-agent-role"`, `"organism-interaction-assertion"`, `"organism-interaction-media"`, `"organism-interaction-reference"`, `"organism-reference"`, `"organism-relationship"`, `"protocol"`, `"provenance"`, `"reference"`, `"rights"`, `"resource-relationship"`, `"survey"`, `"survey-agent-role"`, `"survey-assertion"`, `"survey-identifier"`, `"survey-protocol"`, `"survey-reference"`, `"survey-target"`.
