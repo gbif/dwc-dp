@@ -219,6 +219,13 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 [resource.dialect]: https://specs.frictionlessdata.io/tabular-data-resource/#csv-dialect
 [resource.schema]: https://specs.frictionlessdata.io/data-resource/#resource-schemas
 [resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
+[schema]: https://specs.frictionlessdata.io/table-schema/
+[schema.fields]: https://specs.frictionlessdata.io/table-schema/#descriptor
+[schema.fieldMatch]: https://datapackage.org/standard/table-schema/#fieldsMatch
+[schema.primaryKey]: https://specs.frictionlessdata.io/table-schema/#primary-key
+[schema.foreignKeys]: https://specs.frictionlessdata.io/table-schema/#foreign-keys
+[schema.missingValues]: https://specs.frictionlessdata.io/table-schema/#missing-values
+
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
 {:.alert .alert-info}
@@ -285,6 +292,18 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a reserved `name` defined in the DwC-DP profile[^1].
 
 ### 3.4 Table Schemas
+
+A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][schema].
+
+1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It must follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
+
+2. A DwC-DP table schema MAY have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. This property is REQUIRED if the field is referenced by another table. See [section 3.6](#36-relationships-and-keys) for details.
+
+3. A DwC-DP table schema MAY have a `foreignKeys` property, indicating the relationships it has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. This property is REQUIRED if the table has a foreign key relationship with another table. See [section 3.6](#36-relationships-and-keys) for details.
+
+4. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. It MUST follow the [Table Schema specification][schema.missingValues].
+
+5. A DwC-Dp table schema MAY have custom properties.
 
 
 **DwC-DP field-level linking metadata, optional but recommended**
