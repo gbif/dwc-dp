@@ -112,7 +112,6 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
-      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
@@ -149,7 +148,6 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
       "profile": "tabular-data-resource",
       "format": "csv",
       "mediatype": "text/csv",
-      "encoding": "UTF-8",
       "schema": {
         "fields": [
           {
