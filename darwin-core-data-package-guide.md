@@ -68,15 +68,14 @@ The following resources are closely related and are recommended reading:
 
 - [Darwin Core text guide](https://dwc.tdwg.org/text/) (conceptual and usage guidance for Darwin Core as text)
 
-### 1.4 Status of the content of this document (normative)
+### 1.4 Status of the content of this document
 
-Sections may be either normative (defines what is required to comply with the standard) or non-normative (supports understanding but is not binding) and are marked as such.
+All sections of this document are normative (defines what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understand but is not binding).
 
-Any sentence or phrase beginning with “For example” or “e.g.”, whether in a normative section or a non-normative section, is non-normative.
+### 1.5 RFC 2119 key words
 
-### 1.5 RFC 2119 key words (normative)
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
-The key words **“MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”,** and **“OPTIONAL”** in this document are to be interpreted as described in RFC 2119 and RFC 8174 when, and only when, they are written in capitals as shown here.
 
 ### 1.6 Namespace abbreviations (non-normative)
 
