@@ -93,28 +93,19 @@ The following namespace abbreviations are used in this document:
 | rdfs:        | http://www.w3.org/2000/01/rdf-schema# |
 
 
-### 2.1 Package-level properties
 ## 2 Example (non-normative)
 
-The descriptor **MUST** contain:
 Consider a dataset containing four bird Occurrences observed during a single Event. It can be described as two CSV files, each representing a Darwin Core table:
 
-- [`resources`](https://specs.frictionlessdata.io/data-package/#required-properties) with at least one resource (see 2.2).
-- [`profile`](https://specs.frictionlessdata.io/data-package/#profile) with a URL referencing a version of the DwC-DP profile. This indicates the intended compliance of the dataset with this profile as well as the generic Data Package specification.
 **events.csv**
 
-The descriptor **SHOULD** contain:
 ```text
 eventID,eventDate,locationID
 S229876476,2025-04-26T08:57:00+02:00,L43523233
 ```
 
-- [`id`](https://specs.frictionlessdata.io/data-package/#id)
-- [`created`](https://specs.frictionlessdata.io/data-package/#created)
-- [`version`](https://specs.frictionlessdata.io/data-package/#version)
 **occurrences.csv**
 
-The descriptor **MAY** contain additional dataset-level metadata, such as `title`, `description`, `contributors`, `sources`, and `licenses`. An external EML document **MAY** accompany the package as supplementary metadata.
 ```text
 eventID,scientificName,organismQuantity,organismQuantityType
 S229876476,Apus apus,3,individuals
@@ -123,13 +114,10 @@ S229876476,Turdus merula,1,individuals
 S229876476,Erithacus rubecula,1,individuals
 ```
 
-#### Minimal compliant `datapackage.json`
 This dataset can be described as a DwC-DP with the following **descriptor** (`datapackage.json`):
 
 ```json
 {
-  "profile": "https://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json",
-  "created": "2025-09-01T00:00:00Z",
   "profile": "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json",
   "id": "dwc-dp-example-dataset",
   "created": "2025-09-08T09:52:03Z",
@@ -139,7 +127,6 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
       "name": "event",
       "path": "event.csv",
       "profile": "tabular-data-resource",
-      "schema": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/event.json"
       "format": "csv",
       "mediatype": "text/csv",
       "encoding": "UTF-8",
@@ -234,14 +221,39 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 
 [dp.v1]: https://specs.frictionlessdata.io/
 [dp.v2]: https://datapackage.org/
+[package.descriptor]: https://specs.frictionlessdata.io/data-package/#descriptor
+[package.resources]: https://specs.frictionlessdata.io/data-package/#required-properties
+[package.profile]: https://specs.frictionlessdata.io/data-package/#profile
+[package.id]: https://specs.frictionlessdata.io/data-package/#id
+[package.created]: https://specs.frictionlessdata.io/data-package/#created
+[package.version]: https://specs.frictionlessdata.io/data-package/#version
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
 {:.alert .alert-info}
-Tip: You can inline the table schema instead of linking to a URL, see 2.3.
 All requirements and examples in this guide use [version 1][dp.v1] of the Data Package specification, which is RECOMMENDED for DwC-DPs. Users MAY create descriptors using [version 2][dp.v2] of the Data Package specification, which offers functionality that can relax some of the requirements below (e.g. [`fieldMatch`][schema.fieldMatch]), but has limited software support at the time of writing.
 
+### 3.1 Descriptor file
 
----
+The descriptor MUST follow the [Data Package specification][package.descriptor] and MUST be named `datapackage.json`.
+
+### 3.2 Package-level properties
+
+1. The descriptor MUST have a `resources` property, with an array of data files that are considered part of a dataset. It MUST follow the [Data Package specification][package.resources] and MUST contain at least one resource. See [section 3.3](#33-resources) for details.
+
+2. The descriptor MUST have a `profile` property, with a URL referencing the [profile][package.profile] the dataset conforms to. This MUST be a string representing the URL to a **DwC-DP profile** served from `http://rs.tdwg.org`. The URL MUST include the version of the profile (e.g. `http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json` where `1.0` is the version).
+
+    {:.alert .alert-info}
+    The DwC-DP profile imports all [Data Package requirements](https://specs.frictionlessdata.io/schemas/data-package.json). A dataset that conforms to the DwC-DP profile will therefore also conform to the Data Package requirements. In other words: a DwC-DP is also a Data Package.
+
+3. The descriptor SHOULD have an `id` property, with an identifier for the dataset, preferably a DOI. It MUST follow the [Data Package specification][package.id].
+
+4. The descriptor SHOULD have a `created` property, with a timestamp indicating when the dataset was created. It MUST follow the [Data Package specification][package.created].
+
+5. The descriptor SHOULD have a `version` property, indicating the version of the dataset. It MUST follow the [Data Package specification][package.version].
+
+6. The descriptor MAY have additional package-level properties. This includes dataset-level metadata defined by the Data Package specification (e.g. `title`, `description`, `contributors`, `sources`, `licenses`) or custom properties.
+
+7. An external EML document MAY accompany the dataset as supplementary metadata.
 
 ### 2.2 Resources (normative)
 
