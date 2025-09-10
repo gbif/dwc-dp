@@ -270,7 +270,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 #### 3.3.2 DwC-DP table properties
 
-1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved names defined in the DwC-DP profile (e.g. `"event"`, `"occurrence"`[^1]).
+1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved table names defined in the DwC-DP profile (e.g. `"event"`, `"occurrence"`). See [section 4](#4-dwc-dp-tables-non-normative) for an overview.
 
 2. A DwC-DP table MUST have a `path` property, with the path to the data file. It MUST follow the [Data Resource specification][resource.path].
 
@@ -289,7 +289,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 #### 3.3.3 Other resources
 
-A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a reserved `name` defined in the DwC-DP profile[^1].
+A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a `name` that is one of the reserved table names defined in the DwC-DP profile. See [section 4](#4-dwc-dp-tables-non-normative) for an overview.
 
 ### 3.4 Table Schemas
 
@@ -370,4 +370,80 @@ Relationships are expressed with Table Schema keys.
 - Foreign keys MUST declare both local `fields` and `reference` to target `resource` and `fields`. Note: In Data Package version 1.0, self-referential foreign keys MUST leave the reference property blank ("").
 - Links to terms in standard vocabularies, when used, SHOULD include `namespace`, `dcterms:isVersionOf`, `dcterms:references`, and `rdfs:comment`.
 
-[^1]: DwC-DP table names: `"agent"`, `"agent-agent-role"`, `"agent-identifier"`, `"agent-media"`, `"chronometric-age"`, `"chronometric-age-agent-role"`, `"chronometric-age-assertion"`, `"chronometric-age-media"`, `"chronometric-age-protocol"`, `"chronometric-age-reference"`, `"event"`, `"event-agent-role"`, `"event-assertion"`, `"event-identifier"`, `"event-media"`, `"event-protocol"`, `"event-provenance"`, `"event-reference"`, `"geological-context"`, `"geological-context-media"`, `"identification"`, `"identification-agent-role"`, `"identification-taxon"`, `"material"`, `"material-agent-role"`, `"material-assertion"`, `"material-identifier"`, `"material-media"`, `"material-protocol"`, `"material-provenance"`, `"material-reference"`, `"material-rights"`, `"media"`, `"media-agent-role"`, `"media-assertion"`, `"media-identifier"`, `"molecular-protocol"`, `"media-provenance"`, `"media-rights"`, `"molecular-protocol-agent-role"`, `"molecular-protocol-assertion"`, `"molecular-protocol-reference"`, `"nucleotide-analysis"`, `"nucleotide-analysis-assertion"`, `"nucleotide-sequence"`, `"occurrence"`, `"occurrence-agent-role"`, `"occurrence-assertion"`, `"occurrence-identifier"`, `"occurrence-media"`, `"occurrence-protocol"`, `"organism"`, `"organism-assertion"`, `"organism-identifier"`, `"organism-interaction"`, `"organism-interaction-agent-role"`, `"organism-interaction-assertion"`, `"organism-interaction-media"`, `"organism-interaction-reference"`, `"organism-reference"`, `"organism-relationship"`, `"protocol"`, `"provenance"`, `"reference"`, `"rights"`, `"resource-relationship"`, `"survey"`, `"survey-agent-role"`, `"survey-assertion"`, `"survey-identifier"`, `"survey-protocol"`, `"survey-reference"`, `"survey-target"`.
+## 4. DwC-DP tables (non-normative)
+
+table name | table schema
+--- | ---
+`"agent"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/agent.json>
+`"agent-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/agent-agent-role.json>
+`"agent-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/agent-identifier.json>
+`"agent-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/agent-media.json>
+`"chronometric-age"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age.json>
+`"chronometric-age-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age-agent-role.json>
+`"chronometric-age-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age-assertion.json>
+`"chronometric-age-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age-media.json>
+`"chronometric-age-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age-protocol.json>
+`"chronometric-age-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/chronometric-age-reference.json>
+`"event"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event.json>
+`"event-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-agent-role.json>
+`"event-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-assertion.json>
+`"event-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-identifier.json>
+`"event-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-media.json>
+`"event-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-protocol.json>
+`"event-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-provenance.json>
+`"event-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/event-reference.json>
+`"geological-context"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/geological-context.json>
+`"geological-context-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/geological-context-media.json>
+`"identification"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/identification.json>
+`"identification-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/identification-agent-role.json>
+`"identification-taxon"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/identification-taxon.json>
+`"material"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material.json>
+`"material-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-agent-role.json>
+`"material-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-assertion.json>
+`"material-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-identifier.json>
+`"material-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-media.json>
+`"material-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-protocol.json>
+`"material-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-provenance.json>
+`"material-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-reference.json>
+`"material-rights"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/material-rights.json> <span class="badge bg-danger">MISSING</span>
+`"media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media.json>
+`"media-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media-agent-role.json>
+`"media-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media-assertion.json>
+`"media-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media-identifier.json>
+`"molecular-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/molecular-protocol.json>
+`"media-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media-provenance.json>
+`"media-rights"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/media-rights.json> <span class="badge bg-danger">MISSING</span>
+`"molecular-protocol-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/molecular-protocol-agent-role.json>
+`"molecular-protocol-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/molecular-protocol-assertion.json>
+`"molecular-protocol-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/molecular-protocol-reference.json>
+`"nucleotide-analysis"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/nucleotide-analysis.json>
+`"nucleotide-analysis-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/nucleotide-analysis-assertion.json>
+`"nucleotide-sequence"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/nucleotide-sequence.json>
+`"occurrence"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence.json>
+`"occurrence-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence-agent-role.json>
+`"occurrence-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence-assertion.json>
+`"occurrence-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence-identifier.json>
+`"occurrence-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence-media.json>
+`"occurrence-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/occurrence-protocol.json>
+`"organism"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism.json>
+`"organism-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-assertion.json>
+`"organism-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-identifier.json>
+`"organism-interaction"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-interaction.json>
+`"organism-interaction-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-interaction-agent-role.json>
+`"organism-interaction-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-interaction-assertion.json>
+`"organism-interaction-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-interaction-media.json>
+`"organism-interaction-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-interaction-reference.json>
+`"organism-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-reference.json>
+`"organism-relationship"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/organism-relationship.json>
+`"protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/protocol.json>
+`"provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/provenance.json>
+`"reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/reference.json>
+`"rights"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/rights.json> <span class="badge bg-danger">MISSING</span>
+`"resource-relationship"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/resource-relationship.json>
+`"survey"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey.json>
+`"survey-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-agent-role.json>
+`"survey-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-assertion.json>
+`"survey-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-identifier.json>
+`"survey-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-protocol.json>
+`"survey-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-reference.json>
+`"survey-target"` | <https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/table-schemas/survey-target.json>
