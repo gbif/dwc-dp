@@ -27,7 +27,7 @@ Previous version
 : —
 
 Abstract
-: Guidelines for implementing Darwin Core in Frictionless Data Packages.
+: Specification for creating Darwin Core Data Packages.
 
 Contributors
 : [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), [John Wieczorek](https://orcid.org/0000-0003-1144-0290) (Rauthiflor LLC)
@@ -38,27 +38,6 @@ Creator
 Bibliographic citation
 : Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). <http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-10>.
 
-## 1 Introduction
-
-### 1.1 Purpose (non-normative)
-
-**Darwin Core Data Package (DwC‑DP)** is a community‑developed implementation profile of [Frictionless Data Package](https://specs.frictionlessdata.io/data-package/) for the exchange of primary biodiversity data. A DwC‑DP consists of a `datapackage.json` file (describing the dataset and its structure) and one or more tabular data files (resources) that contain the data for the dataset.
-
-This guide explains the goals and scope of DwC‑DP and provides practical direction for structuring packages that use Darwin Core terms. It focuses on how to:
-
-- represent tables as resources and declare their Table Schemas;
-
-- define fields, types, and constraints aligned with Darwin Core definitions;
-
-- declare primary keys and foreign keys to model relationships; and
-
-- record packaging details needed for reliable exchange.
-
-### 1.2 Audience (non-normative)
-
-This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with CSV/TSV tabular data but not with the Frictionless Data Package specification (hereafter referred to as “Data Package”). Where helpful, it references relevant parts of the Data Package documentation and the Darwin Core standard.
-
-### 1.3 Associated documents (non-normative)
 [dp.v1]: https://specs.frictionlessdata.io/
 [dp.v2]: https://datapackage.org/
 [data-package]: https://specs.frictionlessdata.io/data-package/
@@ -93,19 +72,19 @@ This guide is intended for biodiversity data providers, curators, aggregators, r
 [field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
 [field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
-The following resources are closely related and are recommended reading:
+## 1 Introduction
 
-- [Darwin Core Data Package Quick Reference Guide](https://gbif.github.io/dwc-dp/qrg/) (DwC‑DP tables, fields, and links to term definitions)
+Darwin Core Data Package (hereafter referred to as “**DwC-DP**”) is a community-developed container format to exchange biodiversity data. It extends the [Data Package specification][dp.v1] (developed by Frictionless Data) as an implementation for the [Darwin Core Conceptual Model](../cm/). This document specifies the requirements for datasets to comply with DwC-DP.
 
-- [Data Package specification](https://specs.frictionlessdata.io/data-package/) (descriptor, table schemas, field types, constraints, keys, dialects)
+### 1.1 Audience (non-normative)
 
-- [Darwin Core text guide](https://dwc.tdwg.org/text/) (conceptual and usage guidance for Darwin Core as text)
+This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with tabular data, but not with the Data Package specification. Where helpful, it references relevant parts of the Data Package specification and the Darwin Core standard.
 
-### 1.4 Status of the content of this document
+### 1.2 Status of the content of this document
 
 All sections of this document are normative (defines what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understand but is not binding).
 
-### 1.5 RFC 2119 key words
+### 1.3 RFC 2119 key words
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
