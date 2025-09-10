@@ -103,26 +103,45 @@ A Data Package has a _descriptor_: a JSON file named `datapackage.json` that act
 A Darwin Core Data Package (DwC-DP) extends the Data Package specification with additional requirements.
 
 ### 2.1 Package-level properties
+## 2 Example (non-normative)
 
 The descriptor **MUST** contain:
+Consider a dataset containing four bird Occurrences observed during a single Event. It can be described as two CSV files, each representing a Darwin Core table:
 
 - [`resources`](https://specs.frictionlessdata.io/data-package/#required-properties) with at least one resource (see 2.2).
 - [`profile`](https://specs.frictionlessdata.io/data-package/#profile) with a URL referencing a version of the DwC-DP profile. This indicates the intended compliance of the dataset with this profile as well as the generic Data Package specification.
+**events.csv**
 
 The descriptor **SHOULD** contain:
+```text
+eventID,eventDate,locationID
+S229876476,2025-04-26T08:57:00+02:00,L43523233
+```
 
 - [`id`](https://specs.frictionlessdata.io/data-package/#id)
 - [`created`](https://specs.frictionlessdata.io/data-package/#created)
 - [`version`](https://specs.frictionlessdata.io/data-package/#version)
+**occurrences.csv**
 
 The descriptor **MAY** contain additional dataset-level metadata, such as `title`, `description`, `contributors`, `sources`, and `licenses`. An external EML document **MAY** accompany the package as supplementary metadata.
+```text
+eventID,scientificName,organismQuantity,organismQuantityType
+S229876476,Apus apus,3,individuals
+S229876476,Troglodytes troglodytes,1,individuals
+S229876476,Turdus merula,1,individuals
+S229876476,Erithacus rubecula,1,individuals
+```
 
 #### Minimal compliant `datapackage.json`
+This dataset can be described as a DwC-DP with the following **descriptor** (`datapackage.json`):
 
 ```json
 {
   "profile": "https://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json",
   "created": "2025-09-01T00:00:00Z",
+  "profile": "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json",
+  "id": "dwc-dp-example-dataset",
+  "created": "2025-09-08T09:52:03Z",
   "version": "1.0",
   "resources": [
     {
@@ -130,6 +149,91 @@ The descriptor **MAY** contain additional dataset-level metadata, such as `title
       "path": "event.csv",
       "profile": "tabular-data-resource",
       "schema": "https://rs.tdwg.org/dwc-dp/1.0/table-schemas/event.json"
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "eventID",
+            "title": "Event ID",
+            "description": "An identifier for a dwc:Event.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"
+          },
+          {
+            "name": "eventDate",
+            "title": "Event Date",
+            "description": "A date or time interval during which a dwc:Event occurred.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2025-06-12"
+          },
+          {
+            "name": "locationID",
+            "title": "Location ID",
+            "description": "An identifier a dcterms:Location.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationID",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationID-2023-06-28"
+          }
+        ],
+        "primaryKey": ["eventID"]
+      }
+    },
+    {
+      "name": "occurrence",
+      "path": "occurrence.csv",
+      "profile": "tabular-data-resource",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "UTF-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "eventID",
+            "title": "Event ID",
+            "description": "An identifier for a dwc:Event.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"
+          },
+          {
+            "name": "scientificName",
+            "title": "Scientific Name",
+            "description": "A full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in dwc:verbatimIdentification.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2023-06-28"
+          },
+          {
+            "name": "organismQuantity",
+            "title": "Organism Quantity",
+            "description": "A number or enumeration value for the quantity of dwc:Organisms.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantity",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantity-2023-06-28"
+          },
+          {
+            "name": "organismQuantityType",
+            "title": "Organism Quantity Type",
+            "description": "A type of quantification system used for the quantity of dwc:Organisms.",
+            "type": "string",
+            "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantityType",
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantityType-2023-06-28"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "fields": "eventID",
+            "reference": {
+              "resource": "event",
+              "fields": "eventID"
+            }
+          }
+        ]
+      }
     }
   ]
 }
