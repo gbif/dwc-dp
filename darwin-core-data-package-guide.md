@@ -294,15 +294,19 @@ A DwC-DP MAY include other resources that do not represent a DwC-DP table. They 
 
 A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][schema].
 
+Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#4-dwc-dp-tables-non-normative) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
+
 1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It must follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
 
-2. A DwC-DP table schema MAY have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. This property is REQUIRED if the field is referenced by another table. See [section 3.6](#36-relationships-and-keys) for details.
+2. Each field in a DwC-DP table schema MUST be described with the field descriptor of the table schema provided at `rs.tdwg.org` for that table. E.g. if you want to describe an `"eventID"` field in an `"event"` table, you MUST use the field descriptor for `"eventID"` in the table schema for `"event"` provided at `rs.tdwg.org`. Fields MUST NOT be misrepresented. Custom fields SHOULD NOT be added.
 
-3. A DwC-DP table schema MAY have a `foreignKeys` property, indicating the relationships it has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. This property is REQUIRED if the table has a foreign key relationship with another table. See [section 3.6](#36-relationships-and-keys) for details.
+3. A DwC-DP table schema MAY have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. This property is REQUIRED if the field is referenced by another table. `primaryKey` values MUST be one or more `primaryKey` values of the table schema provided at `rs.tdwg.org` for that table. See [section 3.6](#36-relationships-and-keys) for details.
 
-4. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. It MUST follow the [Table Schema specification][schema.missingValues].
+4. A DwC-DP table schema MAY have a `foreignKeys` property, with an array of relationships the table has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. This property is REQUIRED if the table has a foreign key relationship with another table. `foreignKeys` values MUST be one or more `foreignKeys` values of the table schema provided at `rs.tdwg.org` for that table. See [section 3.6](#36-relationships-and-keys) for details.
 
-5. A DwC-Dp table schema MAY have custom properties.
+5. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. It MUST follow the [Table Schema specification][schema.missingValues].
+
+6. A DwC-DP table schema MAY have custom properties.
 
 
 **DwC-DP field-level linking metadata, optional but recommended**
