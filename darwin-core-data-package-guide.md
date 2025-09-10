@@ -228,7 +228,6 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
-{:.alert .alert-info}
 All requirements and examples in this guide use [version 1][dp.v1] of the Data Package specification, which is RECOMMENDED for DwC-DPs. Users MAY create descriptors using [version 2][dp.v2] of the Data Package specification, which offers functionality that can relax some of the requirements below (e.g. [`fieldMatch`][schema.fieldMatch]), but has limited software support at the time of writing.
 
 ### 3.1 Descriptor file
@@ -242,7 +241,7 @@ The descriptor MUST follow the [Data Package specification][package.descriptor] 
 2. The descriptor MUST have a `profile` property, with a URL referencing the [profile][package.profile] the dataset conforms to. This MUST be a string representing the URL to a **DwC-DP profile** served from `http://rs.tdwg.org`. The URL MUST include the version of the profile (e.g. `http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json` where `1.0` is the version).
 
     {:.alert .alert-info}
-    The DwC-DP profile imports all [Data Package requirements](https://specs.frictionlessdata.io/schemas/data-package.json). A dataset that conforms to the DwC-DP profile will therefore also conform to the Data Package requirements. In other words: a DwC-DP is also a Data Package.
+    (non-normative) The DwC-DP profile imports all [Data Package requirements](https://specs.frictionlessdata.io/schemas/data-package.json). A dataset that conforms to the DwC-DP profile will therefore also conform to the Data Package requirements. In other words: a DwC-DP is also a Data Package.
 
 3. The descriptor SHOULD have an `id` property, with an identifier for the dataset, preferably a DOI. It MUST follow the [Data Package specification][package.id].
 
@@ -283,7 +282,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Resource specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
 
     {:.alert .alert-info}
-    By verbosely including the `schema`, a descriptor does not rely on externally hosted files (except for the DwC-DP profile) to describe the data it represents.
+    (non-normative) By verbosely including the `schema`, a descriptor does not rely on externally hosted files (except for the DwC-DP profile) to describe the data it represents.
 
 7. A DwC-DP table MAY have additional properties. This includes those defined by the Data Package specification (e.g. `bytes`, `hash`) or custom properties.
 
