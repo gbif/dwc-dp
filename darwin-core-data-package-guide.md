@@ -308,13 +308,48 @@ Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 
 
 2. Each field in a DwC-DP table schema MUST be described with the field descriptor of the table schema provided at `rs.tdwg.org` for that table. E.g. if you want to describe an `"eventID"` field in an `"event"` table, you MUST use the field descriptor for `"eventID"` in the table schema for `"event"` provided at `rs.tdwg.org`. Fields MUST NOT be misrepresented. Custom fields SHOULD NOT be added.
 
-3. A DwC-DP table schema MAY have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. This property is REQUIRED if the field is referenced by another table. `primaryKey` values MUST be one or more `primaryKey` values of the table schema provided at `rs.tdwg.org` for that table. See [section 3.6](#36-relationships-and-keys) for details.
+3. A DwC-DP table schema SHOULD have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. The `primaryKey` property is REQUIRED if the field is referenced by another table. `primaryKey` values MUST be one or more of the `primaryKey` values defined in table schema provided at `rs.tdwg.org` for that table (i.e. do not define primary keys not defined there).
 
-4. A DwC-DP table schema MAY have a `foreignKeys` property, with an array of relationships the table has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. This property is REQUIRED if the table has a foreign key relationship with another table. `foreignKeys` values MUST be one or more `foreignKeys` values of the table schema provided at `rs.tdwg.org` for that table. See [section 3.6](#36-relationships-and-keys) for details.
+4. A DwC-DP table schema SHOULD have a `foreignKeys` property, with an array of relationships the table has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. If the table has a foreign key relationship with other tables, then the `foreignKeys` property is REQUIRED and every relationship MUST be expressed. `foreignKeys` values MUST be one or more of the `foreignKeys` values defined in the table schema provided at `rs.tdwg.org` (i.e. do not define foreign key relationships not defined there). `foreignKeys` MAY have a `predicate` property to document relationship semantics.
 
 5. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. It MUST follow the [Table Schema specification][schema.missingValues].
 
 6. A DwC-DP table schema MAY have custom properties.
+
+#### 3.4.1 Relationships example (non-normative)
+
+Consider an `"event"` table with the following table schema:
+
+```json
+{
+  "fields": [],
+  "primaryKey": "eventID",
+  "foreignKeys": [
+    {
+      "fields": "eventConductedByID",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
+      }
+    },
+    {
+      "fields": "parentEventID",
+      "reference": {
+        "resource": "",
+        "fields": "eventID"
+      }
+    }
+  ]
+}
+```
+
+For brevity, let's name fields as `table_name.field_name` (e.g. `event.eventID` refers to the `"eventID"` field in the `"event"` table). The above schema expresses:
+
+1. A relationship between the `"event"` and `"agent"` tables. For each value in `event.eventConductedBy` a corresponding value is expected in `agent.agentID`, linking those records.
+
+2. A relationship between the `"event"` table and itself. For each value in `event.parentEventID` a corresponding value is expected in `event.eventID`, linking those records.
+
+3. Since `event.eventID` is the target of a foreign key relationship, it must be a primary key.
 
 ### 3.5 Field descriptors
 
@@ -341,50 +376,11 @@ A **field descriptor** describes a single field in a table schema (e.g. name, de
 10. A field descriptor MAY have a `namespace` property, with an abbreviation of the namespace of the source term (e.g. `"dwc"`, `"dcterms"`).
 
 11. A field descriptor SHOULD have a `constraints` property, indicating value requirements that SHOULD be used in validation. It MUST follow the [Table Schema specification][field.constraints].
+
 12. A field descriptor MAY have additional properties. This includes those defined by the [Table Schema specification][table-schema] (e.g. `example`) or custom properties.
 
 {:.alert .alert-info}
 (non-normative) You will meet the requirements for field descriptors by copying field descriptors from the table schemas provided at `rs.tdwg.org`.
-
-
-```json
-{
-}
-```
-
-
-### 2.5 Keys and relationships (normative)
-
-Relationships are expressed with Table Schema keys.
-
-**Primary keys**
-
-- Present on any table that other tables reference.
-- Values should be stable and, when feasible, globally unique.
-
-**Foreign keys**
-
-- Each FK declares local `fields` and a `reference` with a target `resource` and target `fields`.
-- Repeatable relationships are permitted.
-- For many-to-many relations, use an explicit join table with two foreign keys.
-- To document relationship semantics, you may add `predicateLabel` and `predicateIRI` alongside each foreign key; these do not affect validation.
-
-**Join table snippet, non-normative**
-
-```json
-{
-  "fields": [
-    { "name": "identificationID", "type": "string", "constraints": { "required": true } },
-    { "name": "occurrenceID", "type": "string", "constraints": { "required": true } },
-    { "name": "role", "type": "string" }
-  ],
-  "primaryKey": ["identificationID", "occurrenceID"],
-  "foreignKeys": [
-    { "fields": "identificationID", "reference": { "resource": "identification", "fields": "identificationID" } },
-    { "fields": "occurrenceID", "reference": { "resource": "occurrence", "fields": "occurrenceID" } }
-  ]
-}
-```
 
 ### 2.8 Conformance checklist (normative)
 
