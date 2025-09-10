@@ -1,32 +1,82 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Run DwC-DP build in two stages using a single version argument:
-1) make_index_json: generates ../dwc-dp/<version>/index.json and table schemas
-2) generate_qrg: renders the Quick Reference Guide using the generated index
+"""Run DwC-DP build in two stages:
+Stage 1) read the csv files in ../vocabulary and generate:
+  ../dwc-dp/<version>/index.json
+  ../dwc-dp/<version>/version.json
+  ../dwc-dp/<version>/table-schemas/*.json
+
+Stage 2) renders the 
+  ../qrg/index.html (DwC-DP Quick Reference Guide)
+  ../explorer/index.html (DwC-DP Relationship Explorer)
 
 Usage:
-  python make_index_and_generate_qrg.py <version>
+  python generate_qrg.py <version>
 
 Examples:
-  python make_index_and_generate_qrg.py 0.1
-  python make_index_and_generate_qrg.py 2025-09-01
+  python generate_qrg.py 2025-09-03
 """
 
-import sys, os, argparse
+import sys
+import os
+import argparse
+import json
+import csv
+from pathlib import Path
+from collections import defaultdict
+
+# Original source files for rendering the data package files, the DwC-DP Quick Reference
+# Guide, and the DwC-DP Relationsip Explorer
+
+EXPECTED_HEADERS = {
+    "dwc-dp-tables.csv": [
+        "name","title","description","comments","example","namespace",
+        "dcterms:isVersionOf","dcterms:references","rdfs:comment","status","new","ignore"
+    ],
+    "dwc-dp-fields.csv": [
+        "table","name","key","title","description","comments","example","type","format",
+        "unique","required","minimum","maximum","namespace","dcterms:isVersionOf",
+        "dcterms:references","rdfs:comment","status","new","ignore"
+    ],
+    "dwc-dp-predicates.csv": [
+       "subject_table","subject_field","predicate","related_table","related_field",
+       "status"
+    ],
+}
+
+ORDERED_GROUPS = [
+    ['event', 'chronometric-age', 'geological-context', 'occurrence', 'organism', 
+     'organism-interaction', 'survey', 'survey-target'],
+    ['identification', 'identification-taxon'],
+    ['material', 'material-geological-context'],
+    ['nucleotide-analysis', 'molecular-protocol', 'nucleotide-sequence'],
+    ['agent', 'agent-agent-role', 'chronometric-age-agent-role', 'event-agent-role',
+     'identification-agent-role', 'material-agent-role', 'media-agent-role', 
+     'molecular-protocol-agent-role', 'occurrence-agent-role', 
+     'organism-interaction-agent-role', 'survey-agent-role'],
+    ['media', 'agent-media', 'chronometric-age-media', 'event-media', 
+     'geological-context-media', 'material-media', 'occurrence-media', 
+     'organism-interaction-media'],
+    ['protocol', 'chronometric-age-protocol', 'event-protocol', 'material-protocol', 
+     'occurrence-protocol', 'survey-protocol'],
+    ['bibliographic-resource', 'chronometric-age-reference', 'event-reference', 
+     'identification-reference', 'material-reference', 'molecular-protocol-reference', 
+     'occurrence-reference', 'organism-reference', 'organism-interaction-reference', 
+     'protocol-reference', 'survey-reference'],
+    ['chronometric-age-assertion', 'event-assertion', 'material-assertion', 
+     'media-assertion', 'molecular-protocol-assertion', 'nucleotide-analysis-assertion',
+     'occurrence-assertion', 'organism-assertion', 'organism-interaction-assertion', 
+     'survey-assertion'],
+    ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier', 
+     'occurrence-identifier', 'organism-identifier', 'survey-identifier'],
+    ['provenance', 'event-provenance', 'material-provenance', 'media-provenance'], 
+    ['usage-policy', 'material-usage-policy', 'media-usage-policy'],
+    ['organism-relationship', 'resource-relationship']
+]
 
 # ---- CLI ----
-if len(sys.argv) == 1:
-    print("Missing required argument: VERSION\n")
-    print("Examples:")
-    print("  python make_index_and_generate_qrg.py 0.1")
-    print("  python make_index_and_generate_qrg.py 2025-09-01\n")
-    p = argparse.ArgumentParser(description="Build DwC-DP index and QRG")
-    p.add_argument("version", help="DwC-DP version (e.g., 0.1 or 2025-09-01)")
-    p.print_help()
-    sys.exit(2)
-
 parser = argparse.ArgumentParser(description="Build DwC-DP index and QRG")
-parser.add_argument("version", help="DwC-DP version (e.g., 0.1 or 2025-09-01)")
+parser.add_argument("version", help="DwC-DP version (e.g., 2025-09-03)")
 args, _unknown = parser.parse_known_args()
 
 # Derived paths shared by both stages
@@ -41,48 +91,34 @@ os.makedirs(os.path.dirname(INDEX_JSON_PATH), exist_ok=True)
 os.makedirs(TABLE_SCHEMAS_DIR, exist_ok=True)
 
 # ==================== Stage 1: make_index_json ====================
-# Embedded source (lightly refactored)
-#!/usr/bin/env python3
-"""Generate index.json and per-table schema JSONs for DwC-DP, including keys & predicates,
-and write a version.json alongside index.json.
+def make_index_stage(output_dir: str, version: str):
+    out_dir = Path(output_dir).resolve()
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-Run from the repository's `maintenance` directory.
-Requires the three CSV inputs to be present at: ../vocabulary/
-  - dwc-dp-tables.csv
-  - dwc-dp-fields.csv
-  - dwc-dp-predicates.csv
+    root = repo_root_from_script()
+    vocabulary_dir = root / "vocabulary"
 
-Usage:
-  python make_index.py <output_dir> <version>
+    # Validate required CSVs and headers
+    validate_csv_headers(vocabulary_dir)
 
-Example:
-  python make_index.py ../dwc-dp/0.1 0.1
-"""
-import argparse
-import csv
-import json
-from datetime import datetime
-from pathlib import Path
-from collections import defaultdict
-try:
-    from zoneinfo import ZoneInfo  # Python 3.9+
-except Exception:
-    ZoneInfo = None
+    # Build payload including tableSchemas
+    payload = build_index_payload(version, vocabulary_dir)
 
-EXPECTED_HEADERS = {
-    "dwc-dp-tables.csv": [
-        "name","title","description","comments","example","namespace",
-        "dcterms:isVersionOf","dcterms:references","rdfs:comment","status"
-    ],
-    "dwc-dp-fields.csv": [
-        "table","name","key","title","description","comments","example",
-        "type","format","unique","required","minimum","maximum","namespace",
-        "dcterms:isVersionOf","dcterms:references","rdfs:comment","status"
-    ],
-    "dwc-dp-predicates.csv": [
-        "subject_table","subject_field","predicate","related_table","related_field","status"
-    ],
-}
+    # Write index.json
+    out_path = out_dir / "index.json"
+    with out_path.open("w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    print(f"Wrote {out_path}")
+
+    # Write version.json
+    write_version_json(out_dir, version)
+
+    # Write per-table schema files
+    write_table_schema_files(out_dir, payload["tableSchemas"], vocabulary_dir)
+
+    print(f"Index + schemas ready under {out_dir}")
+    return out_path
 
 def repo_root_from_script() -> Path:
     # Script is expected in <repo_root>/maintenance/
@@ -103,12 +139,6 @@ def validate_csv_headers(vocabulary_dir: Path) -> None:
                         file=path, exp=expected, act=actual
                     )
                 )
-
-def today_iso_pst() -> str:
-    # Use America/Los_Angeles as the canonical timezone for 'issued'
-    if ZoneInfo is not None:
-        return datetime.now(ZoneInfo("America/Los_Angeles")).date().isoformat()
-    return datetime.now().date().isoformat()
 
 def build_table_schemas(vocabulary_dir: Path, version: str):
     """Build tableSchemas list from dwc-dp-tables.csv where status == 'recommended'."""
@@ -259,7 +289,7 @@ def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
         "title": "Darwin Core Data Package",
         "shortTitle": "dwc-dp",
         "description": "A data package for sharing biodiversity data using Darwin Core.",
-        "issued": today_iso_pst(),
+        "issued": version,
         "isLatest": True,
         "tableSchemas": build_table_schemas(vocabulary_dir, version),
     }
@@ -309,87 +339,7 @@ def write_version_json(out_dir: Path, version: str):
         fh.write("\n")
     print(f"Wrote {dest}")
 
-def make_index_stage():
-    parser = argparse.ArgumentParser(description="Generate index.json, version.json, and table schema JSON files for DwC-DP.")
-    parser.add_argument("output_dir", help="Path to output directory for index.json, version.json, and table-schemas/")
-    parser.add_argument("version", help="Version string, e.g., 0.1 or 2025-09-01")
-    args = parser.parse_args()
-
-    out_dir = Path(args.output_dir).resolve()
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    root = repo_root_from_script()
-    vocabulary_dir = root / "vocabulary"
-
-    # Validate required inputs exist and have correct headers
-    validate_csv_headers(vocabulary_dir)
-
-    # Build payload including tableSchemas
-    payload = build_index_payload(args.version, vocabulary_dir)
-
-    # Write index.json
-    out_path = out_dir / "index.json"
-    with out_path.open("w", encoding="utf-8") as fh:
-        json.dump(payload, fh, ensure_ascii=False, indent=2)
-        fh.write("\n")
-    print(f"Wrote {out_path}")
-
-    # Write version.json
-    write_version_json(out_dir, args.version)
-
-    # Write each table schema file with fields, constraints, primaryKey, and foreignKeys (with predicates)
-    write_table_schema_files(out_dir, payload["tableSchemas"], vocabulary_dir)
-
-# (disabled __main__ guard)
-
-# Run the index stage by simulating its CLI: <output_dir> <version>
-def _run_make_index_stage():
-    import sys as _sys
-    prev_argv = list(_sys.argv)
-    try:
-        _sys.argv = ["make_index_json.py", os.path.dirname(INDEX_JSON_PATH), args.version]
-        # Call the refactored entry point
-        make_index_stage()
-    finally:
-        _sys.argv = prev_argv
-
-# ==================== Stage 2: generate_qrg ====================
-# Embedded code from generate_qrg (CLI removed, globals preserved)
-# Python script to generate the Quick Reference Guide HTML (custom order with separators)
-# Usage: python generate_qrg.py
-
-import json
-import os
-
-ordered_groups = [
-    ['event', 'chronometric-age', 'geological-context', 'occurrence', 'organism', 
-     'organism-interaction', 'survey', 'survey-target'],
-    ['identification', 'identification-taxon'],
-    ['material', 'material-geological-context'],
-    ['nucleotide-analysis', 'molecular-protocol', 'nucleotide-sequence'],
-    ['agent', 'agent-agent-role', 'chronometric-age-agent-role', 'event-agent-role',
-     'identification-agent-role', 'material-agent-role', 'media-agent-role', 
-     'molecular-protocol-agent-role', 'occurrence-agent-role', 
-     'organism-interaction-agent-role', 'survey-agent-role'],
-    ['media', 'agent-media', 'chronometric-age-media', 'event-media', 
-     'geological-context-media', 'material-media', 'occurrence-media', 
-     'organism-interaction-media'],
-    ['protocol', 'chronometric-age-protocol', 'event-protocol', 'material-protocol', 
-     'occurrence-protocol', 'survey-protocol'],
-    ['bibliographic-resource', 'chronometric-age-reference', 'event-reference', 
-     'identification-reference', 'material-reference', 'molecular-protocol-reference', 
-     'occurrence-reference', 'organism-reference', 'organism-interaction-reference', 
-     'protocol-reference', 'survey-reference'],
-    ['chronometric-age-assertion', 'event-assertion', 'material-assertion', 
-     'media-assertion', 'molecular-protocol-assertion', 'nucleotide-analysis-assertion',
-     'occurrence-assertion', 'organism-assertion', 'organism-interaction-assertion', 
-     'survey-assertion'],
-    ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier', 
-     'occurrence-identifier', 'organism-identifier', 'survey-identifier'],
-    ['provenance', 'event-provenance', 'material-provenance', 'media-provenance'], 
-    ['usage-policy', 'material-usage-policy', 'media-usage-policy'],
-    ['organism-relationship', 'resource-relationship']
-]
+# ==================== Stage 2: Generate QRG and Explorer ====================
 # INDEX_JSON_PATH will be set from CLI 'version'
 # TABLE_SCHEMAS_DIR will be set from CLI 'version'
 OUTPUT_PATH = '../qrg/index.html'
@@ -493,7 +443,7 @@ TEMPLATE = '''<!DOCTYPE html>
         <h1 id="top">Darwin Core Data Package - Quick Reference Guide</h1>
         <h2 id="top">Introduction</h2>
         <div class="intro">
-            <p>The Darwin Core Data Package (DwC-DP) is an implementation of the <a href="https://github.com/gbif/dwc-dp/blob/master/darwin-core-data-package-guide.md" target="_blank">Darwin Core Data Package Guide</a>, which is part of the Darwin Core standard.</p>
+            <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages. The Darwin Core Data Package (DwC-DP) is an implementation of the Darwin Core Conceptual Model following the specifications in the <a href="https://gbif.github.io/dwc-dp/dp/" target="_blank">Darwin Core Data Package Guide</a>.</p>
 
 <p>This quick reference guide is in support of the DwC-DP and is distinct from the <a href="https://dwc.tdwg.org/terms/" target="_blank">Darwin Core Quick Reference Guide</a>. It provides a navigable reference to the vast array of options for tables and fields that can be used for sharing biodiversity data using DwC-DP.</p>
 
@@ -508,7 +458,7 @@ TEMPLATE = '''<!DOCTYPE html>
             <div class="figure-caption">Figure 1. Overview of the Darwin Core Data Package (DwC-DP), showing tables (classes) and their relationships to each other. To further explore the relationships between tables, see the <a href="https://gbif.github.io/dwc-dp/explorer/" target="_blank">Darwin Core Data Package Relationship Explorer</a>.</div>
         </div>
         <footer>
-            <p>This guide is provided to assist users to understand the structure and content of Darwin Core Data Packages.</p>
+            <p>Version: {version}</p>
         </footer>
     </main>
     <aside class="nav-menu">
@@ -644,7 +594,7 @@ def generate_qrg_with_separators():
 
     all_predicates = []
 
-    for group_idx, group in enumerate(ordered_groups):
+    for group_idx, group in enumerate(ORDERED_GROUPS):
         print(f"Processing group {group_idx + 1} with tables: {group}")
         for table_name in group:
             table = table_map.get(table_name)
@@ -762,20 +712,21 @@ def generate_qrg_with_separators():
     except Exception as e:
         print(f"Warning: could not write explorer JS outputs: {e}")
     print("Assembling final HTML output...")
-    html = TEMPLATE.format(content=content, class_links=class_links, inline_class_links=inline_links)
+    html = TEMPLATE.format(content=content, class_links=class_links, inline_class_links=inline_links, version=args.version)
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     with open(OUTPUT_PATH, 'w', encoding='utf-8') as out:
         out.write(html)
     print(f"Quick Reference Guide generated at {OUTPUT_PATH}")
 
-# (disabled __main__ guard)
-
 def main():
     # Stage 1
-    _run_make_index_stage()
+    # Expect acquisition of original CSV data in vocabulary/ to produce data package 
+    # artifacts in INDEX_JSON_PATH
+    make_index_stage(os.path.dirname(INDEX_JSON_PATH), args.version)
 
     # Stage 2
-    # Expect generate_qrg_with_separators() to read INDEX_JSON_PATH and produce output
+    # Expect generate_qrg_with_separators() to read index.json at INDEX_JSON_PATH 
+    # and produce output
     if 'generate_qrg_with_separators' in globals():
         generate_qrg_with_separators()
     else:

@@ -18,7 +18,7 @@ Part of TDWG Standard
 : <http://www.tdwg.org/standards/450>
 
 This version
-: <http://rs.tdwg.org/dwc/dp/2025-09-10>
+: <http://rs.tdwg.org/dwc/doc/dp/2025-09-10>
 
 Latest version
 : <http://rs.tdwg.org/dwc/dp/>
@@ -36,7 +36,7 @@ Creator
 : Darwin Core Maintenance Group
 
 Bibliographic citation
-: Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). <http://rs.tdwg.org/dwc/terms/guides/dp/2025-09-10>.
+: Darwin Core Maintenance Group. 2025. Darwin Core data package guide. Biodiversity Information Standards (TDWG). <http://rs.tdwg.org/dwc/doc/dp/2025-09-10>.
 
 [dp.v1]: https://specs.frictionlessdata.io/
 [dp.v2]: https://datapackage.org/
