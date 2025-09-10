@@ -218,7 +218,9 @@ All requirements and examples in this guide use [version 1][dp.v1] of the Data P
 
 ### 3.1 Descriptor file
 
-The descriptor MUST follow the [Data Package specification][package.descriptor] and MUST be named `datapackage.json`.
+1. The descriptor MUST follow the [Data Package specification][package.descriptor] and MUST be named `datapackage.json`.
+
+2. Dataset metadata MAY be expressed in an `eml.xml` file. It MUST follow the [Ecological Metadata Language specification](https://eml.ecoinformatics.org/) and MUST be placed at the same level as the `datapackage.json` file.
 
 ### 3.2 Package-level properties
 
@@ -236,8 +238,6 @@ The descriptor MUST follow the [Data Package specification][package.descriptor] 
 5. The descriptor SHOULD have a `version` property, indicating the version of the dataset. It MUST follow the [Data Package specification][package.version].
 
 6. The descriptor MAY have additional package-level properties. This includes dataset-level metadata defined by the [Data Package specification][data-package] (e.g. `title`, `description`, `contributors`, `sources`, `licenses`) or custom properties.
-
-7. An external EML document MAY accompany the dataset as supplementary metadata or MAY be included within the data package with the filename `eml.xml`.
 
 ### 3.3 Resources
 
@@ -263,7 +263,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 4. A DwC-DP table SHOULD have a `format` property, indicating the standard file extension of the data file (e.g. `"csv"`, `"tsv"`). It MUST follow the [Data Resource specification][resource.format].
 
-5. A DwC-DP table SHOULD have a `mediatype` property, indicating the mediatype of the data file (e.g. `"text/csv"`). It MUST follow the [Data Resource specification][resource.mediatype] and MUST be the value `"text/csv"`.
+5. A DwC-DP table MUST have a `mediatype` property, indicating the mediatype of the data file (e.g. `"text/csv"`). It MUST follow the [Data Resource specification][resource.mediatype] and MUST be the value `"text/csv"`.
 
 6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Resource specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
 
