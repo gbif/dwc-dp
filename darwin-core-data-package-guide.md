@@ -59,6 +59,39 @@ This guide explains the goals and scope of DwC‑DP and provides practical direc
 This guide is intended for biodiversity data providers, curators, aggregators, researchers, software implementers, and standards developers who prepare or consume datasets using Darwin Core. It assumes familiarity with CSV/TSV tabular data but not with the Frictionless Data Package specification (hereafter referred to as “Data Package”). Where helpful, it references relevant parts of the Data Package documentation and the Darwin Core standard.
 
 ### 1.3 Associated documents (non-normative)
+[dp.v1]: https://specs.frictionlessdata.io/
+[dp.v2]: https://datapackage.org/
+[data-package]: https://specs.frictionlessdata.io/data-package/
+[package.descriptor]: https://specs.frictionlessdata.io/data-package/#descriptor
+[package.resources]: https://specs.frictionlessdata.io/data-package/#required-properties
+[package.profile]: https://specs.frictionlessdata.io/data-package/#profile
+[package.id]: https://specs.frictionlessdata.io/data-package/#id
+[package.created]: https://specs.frictionlessdata.io/data-package/#created
+[package.version]: https://specs.frictionlessdata.io/data-package/#version
+[data-resource]: https://specs.frictionlessdata.io/data-resource/
+[tabular-data-resource]: https://specs.frictionlessdata.io/tabular-data-resource/
+[csv-dialect]: https://specs.frictionlessdata.io/csv-dialect/
+[resource]: https://specs.frictionlessdata.io/data-resource/#name
+[resource.name]: https://specs.frictionlessdata.io/data-resource/#name
+[resource.path]: https://specs.frictionlessdata.io/data-resource/#path-data-in-files
+[resource.profile]: https://specs.frictionlessdata.io/data-resource/#profile
+[resource.format]: https://specs.frictionlessdata.io/data-resource/#optional-properties
+[resource.mediatype]: https://specs.frictionlessdata.io/data-resource/#optional-properties
+[resource.dialect]: https://specs.frictionlessdata.io/tabular-data-resource/#csv-dialect
+[resource.schema]: https://specs.frictionlessdata.io/data-resource/#resource-schemas
+[resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
+[table-schema]: https://specs.frictionlessdata.io/table-schema/
+[schema.fields]: https://specs.frictionlessdata.io/table-schema/#descriptor
+[schema.fieldMatch]: https://datapackage.org/standard/table-schema/#fieldsMatch
+[schema.primaryKey]: https://specs.frictionlessdata.io/table-schema/#primary-key
+[schema.foreignKeys]: https://specs.frictionlessdata.io/table-schema/#foreign-keys
+[schema.missingValues]: https://specs.frictionlessdata.io/table-schema/#missing-values
+[field.name]: https://specs.frictionlessdata.io/table-schema/#name
+[field.title]: https://specs.frictionlessdata.io/table-schema/#title
+[field.description]: https://specs.frictionlessdata.io/table-schema/#description
+[field.type]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
+[field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
+[field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
 The following resources are closely related and are recommended reading:
 
@@ -199,40 +232,6 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 ```
 
 ## 3 Descriptor content
-
-[dp.v1]: https://specs.frictionlessdata.io/
-[dp.v2]: https://datapackage.org/
-[data-package]: https://specs.frictionlessdata.io/data-package/
-[package.descriptor]: https://specs.frictionlessdata.io/data-package/#descriptor
-[package.resources]: https://specs.frictionlessdata.io/data-package/#required-properties
-[package.profile]: https://specs.frictionlessdata.io/data-package/#profile
-[package.id]: https://specs.frictionlessdata.io/data-package/#id
-[package.created]: https://specs.frictionlessdata.io/data-package/#created
-[package.version]: https://specs.frictionlessdata.io/data-package/#version
-[data-resource]: https://specs.frictionlessdata.io/data-resource/
-[tabular-data-resource]: https://specs.frictionlessdata.io/tabular-data-resource/
-[csv-dialect]: https://specs.frictionlessdata.io/csv-dialect/
-[resource]: https://specs.frictionlessdata.io/data-resource/#name
-[resource.name]: https://specs.frictionlessdata.io/data-resource/#name
-[resource.path]: https://specs.frictionlessdata.io/data-resource/#path-data-in-files
-[resource.profile]: https://specs.frictionlessdata.io/data-resource/#profile
-[resource.format]: https://specs.frictionlessdata.io/data-resource/#optional-properties
-[resource.mediatype]: https://specs.frictionlessdata.io/data-resource/#optional-properties
-[resource.dialect]: https://specs.frictionlessdata.io/tabular-data-resource/#csv-dialect
-[resource.schema]: https://specs.frictionlessdata.io/data-resource/#resource-schemas
-[resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
-[table-schema]: https://specs.frictionlessdata.io/table-schema/
-[schema.fields]: https://specs.frictionlessdata.io/table-schema/#descriptor
-[schema.fieldMatch]: https://datapackage.org/standard/table-schema/#fieldsMatch
-[schema.primaryKey]: https://specs.frictionlessdata.io/table-schema/#primary-key
-[schema.foreignKeys]: https://specs.frictionlessdata.io/table-schema/#foreign-keys
-[schema.missingValues]: https://specs.frictionlessdata.io/table-schema/#missing-values
-[field.name]: https://specs.frictionlessdata.io/table-schema/#name
-[field.title]: https://specs.frictionlessdata.io/table-schema/#title
-[field.description]: https://specs.frictionlessdata.io/table-schema/#description
-[field.type]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
-[field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
-[field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
