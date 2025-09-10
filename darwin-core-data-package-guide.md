@@ -202,15 +202,17 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 
 [dp.v1]: https://specs.frictionlessdata.io/
 [dp.v2]: https://datapackage.org/
+[data-package]: https://specs.frictionlessdata.io/data-package/
 [package.descriptor]: https://specs.frictionlessdata.io/data-package/#descriptor
 [package.resources]: https://specs.frictionlessdata.io/data-package/#required-properties
 [package.profile]: https://specs.frictionlessdata.io/data-package/#profile
 [package.id]: https://specs.frictionlessdata.io/data-package/#id
 [package.created]: https://specs.frictionlessdata.io/data-package/#created
 [package.version]: https://specs.frictionlessdata.io/data-package/#version
-[resource]: https://specs.frictionlessdata.io/data-resource/
-[csv-dialect]: https://specs.frictionlessdata.io/csv-dialect/
+[data-resource]: https://specs.frictionlessdata.io/data-resource/
 [tabular-data-resource]: https://specs.frictionlessdata.io/tabular-data-resource/
+[csv-dialect]: https://specs.frictionlessdata.io/csv-dialect/
+[resource]: https://specs.frictionlessdata.io/data-resource/#name
 [resource.name]: https://specs.frictionlessdata.io/data-resource/#name
 [resource.path]: https://specs.frictionlessdata.io/data-resource/#path-data-in-files
 [resource.profile]: https://specs.frictionlessdata.io/data-resource/#profile
@@ -219,12 +221,18 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 [resource.dialect]: https://specs.frictionlessdata.io/tabular-data-resource/#csv-dialect
 [resource.schema]: https://specs.frictionlessdata.io/data-resource/#resource-schemas
 [resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
-[schema]: https://specs.frictionlessdata.io/table-schema/
+[table-schema]: https://specs.frictionlessdata.io/table-schema/
 [schema.fields]: https://specs.frictionlessdata.io/table-schema/#descriptor
 [schema.fieldMatch]: https://datapackage.org/standard/table-schema/#fieldsMatch
 [schema.primaryKey]: https://specs.frictionlessdata.io/table-schema/#primary-key
 [schema.foreignKeys]: https://specs.frictionlessdata.io/table-schema/#foreign-keys
 [schema.missingValues]: https://specs.frictionlessdata.io/table-schema/#missing-values
+[field.name]: https://specs.frictionlessdata.io/table-schema/#name
+[field.title]: https://specs.frictionlessdata.io/table-schema/#title
+[field.description]: https://specs.frictionlessdata.io/table-schema/#description
+[field.type]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
+[field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
+[field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
 
@@ -249,7 +257,7 @@ The descriptor MUST follow the [Data Package specification][package.descriptor] 
 
 5. The descriptor SHOULD have a `version` property, indicating the version of the dataset. It MUST follow the [Data Package specification][package.version].
 
-6. The descriptor MAY have additional package-level properties. This includes dataset-level metadata defined by the Data Package specification (e.g. `title`, `description`, `contributors`, `sources`, `licenses`) or custom properties.
+6. The descriptor MAY have additional package-level properties. This includes dataset-level metadata defined by the [Data Package specification][data-package] (e.g. `title`, `description`, `contributors`, `sources`, `licenses`) or custom properties.
 
 7. An external EML document MAY accompany the dataset as supplementary metadata.
 
@@ -284,7 +292,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
     {:.alert .alert-info}
     (non-normative) By verbosely including the `schema`, a descriptor does not rely on externally hosted files (except for the DwC-DP profile) to describe the data it represents.
 
-7. A DwC-DP table MAY have additional properties. This includes those defined by the Data Package specification (e.g. `bytes`, `hash`) or custom properties.
+7. A DwC-DP table MAY have additional properties. This includes those defined by the [Data Resource specification][data-resource] (e.g. `bytes`, `hash`) or custom properties.
 
 #### 3.3.3 Other resources
 
@@ -292,7 +300,7 @@ A DwC-DP MAY include other resources that do not represent a DwC-DP table. They 
 
 ### 3.4 Table Schemas
 
-A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][schema].
+A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][table-schema].
 
 Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#4-dwc-dp-tables-non-normative) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
 
@@ -308,25 +316,39 @@ Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 
 
 6. A DwC-DP table schema MAY have custom properties.
 
+### 3.5 Field descriptors
 
-**DwC-DP field-level linking metadata, optional but recommended**
+A **field descriptor** describes a single field in a table schema (e.g. name, description, format, constraints).
 
-- `namespace`: abbreviation for the term’s namespace (`"dwc"`, `"dcterms"`, `"rdfs"`, `"rdf"`, and so on).
-- `dcterms:isVersionOf`: IRI for the unversioned source term (for example, `http://rs.tdwg.org/dwc/terms/eventID`).
-- `dcterms:references`: IRI for the versioned source term (for example, `http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28`).
+1. A field descriptor MUST have a `name` property, with the machine-readable name of the field (e.g. `"eventID"`). It MUST follow the [Table schema specification][field.name] and SHOULD correspond to the name of field/column in the data file (if a header is present).
 
-**Example field using DwC linking**
+2. A field descriptor MUST have a `title` property, with the human-readable label of the field (e.g. `"Event ID"`). It MUST follow the [Table schema specification][field.title].
+
+3. A field descriptor MUST have a `description` property, with a human-readable description of the field, such as the Darwin Core definition. It MUST follow the [Table schema specification][field.description].
+
+4. A field descriptor MAY have a `comments` property, with usage notes.
+
+5. A field descriptor MUST have a `type` property, indicating the data type of values in the field (e.g. `"string"`, `"number"`). It MUST follow the [Table schema specification][field.type].
+
+6. A field descriptor SHOULD have a `format` property, indicating how values should be parsed. It MUST follow the [Table schema specification](field.format).
+
+7. A field descriptor MUST have a `dcterms:isVersionOf` property, with the URL of the unversioned source term describing the field (e.g. `"http://rs.tdwg.org/dwc/terms/eventID"`).
+
+8. A field descriptor MAY have a `dcterms:references` property, with the URL of the versioned source term describing the field (e.g. `"http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"`).
+
+9. A field descriptor MAY have a `rdfs:comment` property, with the canical definition of the source term.
+
+10. A field descriptor MAY have a `namespace` property, with an abbreviation of the namespace of the source term (e.g. `"dwc"`, `"dcterms"`).
+
+11. A field descriptor SHOULD have a `constraints` property, indicating value requirements that SHOULD be used in validation. It MUST follow the [Table Schema specification][field.constraints].
+12. A field descriptor MAY have additional properties. This includes those defined by the [Table Schema specification][table-schema] (e.g. `example`) or custom properties.
+
+{:.alert .alert-info}
+(non-normative) You will meet the requirements for field descriptors by copying field descriptors from the table schemas provided at `rs.tdwg.org`.
+
 
 ```json
 {
-  "name": "eventID",
-  "title": "Event ID",
-  "type": "string",
-  "constraints": { "required": true, "unique": true },
-  "namespace": "dwc",
-  "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
-  "rdfs:comment": "An identifier for the set of information associated with a dwc:Event."
 }
 ```
 
