@@ -92,15 +92,6 @@ The following namespace abbreviations are used in this document:
 | rdf:         | http://www.w3.org/1999/02/22-rdf-syntax-ns# | 
 | rdfs:        | http://www.w3.org/2000/01/rdf-schema# |
 
-### 1.7 Data Package v1 vs v2 (non-normative)
-
-This guide follows [version 1](https://specs.frictionlessdata.io/) of the Data Package specification. Users **MAY** implement DwC-DP following [version 2](https://datapackage.org/standard/data-package/) of the Data Package specification, which offers a number of useful features (e.g. [fieldMatch](https://datapackage.org/standard/table-schema/#fieldsMatch)), but has limited software support at the time of writing.
-
-## 2 Descriptor content
-
-A Data Package has a _descriptor_: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a list of the data files included in the dataset (_resources_), a reference to the _profile_ the dataset conforms to, and (optionally) dataset-level metadata. If undefined, the profile defaults to `"data-package"`, i.e. it expect conformity with the generic Data Package specification at <https://specs.frictionlessdata.io/schemas/data-package.json>.
-
-A Darwin Core Data Package (DwC-DP) extends the Data Package specification with additional requirements.
 
 ### 2.1 Package-level properties
 ## 2 Example (non-normative)
@@ -239,8 +230,16 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 }
 ```
 
+## 3 Descriptor content
+
+[dp.v1]: https://specs.frictionlessdata.io/
+[dp.v2]: https://datapackage.org/
+A DwC-DP has a **descriptor**: a JSON file named `datapackage.json` that acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
+
 {:.alert .alert-info}
 Tip: You can inline the table schema instead of linking to a URL, see 2.3.
+All requirements and examples in this guide use [version 1][dp.v1] of the Data Package specification, which is RECOMMENDED for DwC-DPs. Users MAY create descriptors using [version 2][dp.v2] of the Data Package specification, which offers functionality that can relax some of the requirements below (e.g. [`fieldMatch`][schema.fieldMatch]), but has limited software support at the time of writing.
+
 
 ---
 
