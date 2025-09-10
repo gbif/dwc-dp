@@ -253,32 +253,15 @@ Each data file included in DwC-DP is a **resource**. Each resource MUST follow t
 
 Of special interest are resources with (biodiversity) data organized in tables that implement the [Darwin Core Conceptual Model (DwC-CM)](../cm/). These resources/tables (hereafter referred to as “**DwC-DP tables**”) have additional requirements.
 
-- [`path` or `data`](https://specs.frictionlessdata.io/data-resource/#data-location) with a `path` to the data file or `data` containing inline data.
+#### 3.3.1 DwC-DP table file requirements
 
+Data files representing a DwC-DP table MUST be delimited text files (hereafter referred to as “**CSV files**”, irrespective of the chosen delimiter). CSV files MUST follow [RFC 4180](https://tools.ietf.org/html/rfc4180), with the following exceptions:
 
 1. A CSV file MUST be encoded as UTF-8 OR when deviating from that encoding, the DwC-DP table MUST have an `encoding` property that MUST follow the [Data Resource specification][resource.encoding] and the files MUST follow that encoding.
 
+2. When a CSV file deviates from RFC 4180 regarding dialect (e.g. line terminators, field delimiters, quote characters), the DwC-DP table MUST have a `dialect` property describing the dialect. That property MUST follow the [CSV Dialect specification][csv-dialect]. Only dialect properties deviating from the default SHOULD be provided. If the CSV file follows all defaults, a `dialect` property SHOULD NOT be provided.
 
-{
-  "profile": "tabular-data-resource",
-      }
-    ],
-    "primaryKey": "occurrenceID",
-    "foreignKeys": [
-      {
-        "fields": "eventID",
-        "reference": {
-          "resource": "event",
-          "fields": "eventID"
-        },
-        "predicateLabel": "observed during",
-        "predicateIRI": "http://example.org/predicate/observedDuring"
-      }
-    ],
-    "missingValues": [""]
-  }
-}
-```
+#### 3.3.2 DwC-DP table properties
 
 1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved names defined in the DwC-DP profile (e.g. `"event"`, `"occurrence"`[^1]).
 
@@ -286,29 +269,29 @@ Of special interest are resources with (biodiversity) data organized in tables t
 
 3. A DwC-DP table MUST have a `profile` property, indicating the type of resource. It MUST be the value `"tabular-data-resource"`, thereby indicating that it follows the [Tabular Data Resource][tabular-data-resource] specification.
 
-4. A DwC-DP table SHOULD have a `format` property, indicating the standard file extension of the data file (e.g. `"csv"`, `"tsv"`). It MUST follow the [Data Package specification][resource.format].
+4. A DwC-DP table SHOULD have a `format` property, indicating the standard file extension of the data file (e.g. `"csv"`, `"tsv"`). It MUST follow the [Data Resource specification][resource.format].
 
-5. A DwC-DP table SHOULD have a `mediatype` property, indicating the mediatype of the data file (e.g. `"text/csv"`). It MUST follow the [Data Package specification][resource.mediatype] and MUST be the value `"text/csv"`.
+5. A DwC-DP table SHOULD have a `mediatype` property, indicating the mediatype of the data file (e.g. `"text/csv"`). It MUST follow the [Data Resource specification][resource.mediatype] and MUST be the value `"text/csv"`.
 
-6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Package specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
+6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Resource specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
 
+    {:.alert .alert-info}
+    By verbosely including the `schema`, a descriptor does not rely on externally hosted files (except for the DwC-DP profile) to describe the data it represents.
 
-Field descriptors follow Table Schema and support DwC-DP linking metadata.
+7. A DwC-DP table MAY have additional properties. This includes those defined by the Data Package specification (e.g. `bytes`, `hash`) or custom properties.
 
-**Field MUST contain**
+#### 3.3.3 Other resources
 
 A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a reserved `name` defined in the DwC-DP profile[^1].
 
 ### 3.4 Table Schemas
 
-A **table schema** describes the fields, relationships and missing values of a tabular data file.
 
 **DwC-DP field-level linking metadata, optional but recommended**
 
 - `namespace`: abbreviation for the term’s namespace (`"dwc"`, `"dcterms"`, `"rdfs"`, `"rdf"`, and so on).
 - `dcterms:isVersionOf`: IRI for the unversioned source term (for example, `http://rs.tdwg.org/dwc/terms/eventID`).
 - `dcterms:references`: IRI for the versioned source term (for example, `http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28`).
-- `fields`: an array of **field descriptors** that describe the columns in the data file. All columns MUST be described, in the order they appear in the file. `fields` MUST NOT describe a superset, subset or different order of columns. See [section 3.5](#3.5-field-descriptors) for details.
 
 **Example field using DwC linking**
 
@@ -325,7 +308,6 @@ A **table schema** describes the fields, relationships and missing values of a t
 }
 ```
 
----
 
 ### 2.5 Keys and relationships (normative)
 
