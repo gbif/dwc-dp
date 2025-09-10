@@ -30,7 +30,7 @@ Abstract
 : Guidelines for implementing Darwin Core in Frictionless Data Packages.
 
 Contributors
-: [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), [Tim Robertson](https://orcid.org/0000-0001-6215-3617) ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), [John Wieczorek](https://orcid.org/0000-0003-1144-0290) Rauthiflor LLC
+: [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), [John Wieczorek](https://orcid.org/0000-0003-1144-0290) (Rauthiflor LLC)
 
 Creator
 : Darwin Core Maintenance Group
