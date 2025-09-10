@@ -128,8 +128,7 @@
                             "title",
                             "description",
                             "type",
-                            "dcterms:isVersionOf",
-                            "dcterms:references"
+                            "dcterms:isVersionOf"
                           ],
                           "properties": {
                             "dcterms:isVersionOf": {
