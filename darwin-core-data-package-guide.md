@@ -76,23 +76,6 @@ All sections of this document are normative (defines what is required to comply 
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
-
-### 1.6 Namespace abbreviations (non-normative)
-
-The following namespace abbreviations are used in this document:
-
-| Abbreviation | Namespace |
-| ------------ | --------- |
-| chrono:      | http://rs.tdwg.org/chrono/terms/ |
-| dc:          | http://purl.org/dc/elements/1.1/ |
-| dcterms:     | http://purl.org/dc/terms/ |
-| dwc:         | http://rs.tdwg.org/dwc/terms/ |
-| dwciri:      | http://rs.tdwg.org/dwc/iri/ |
-| eco:         | http://rs.tdwg.org/eco/terms/ |
-| rdf:         | http://www.w3.org/1999/02/22-rdf-syntax-ns# | 
-| rdfs:        | http://www.w3.org/2000/01/rdf-schema# |
-
-
 ## 2 Example (non-normative)
 
 Consider a dataset containing four bird Occurrences observed during a single Event. It can be described as two CSV files, each representing a Darwin Core table:
