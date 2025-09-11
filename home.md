@@ -1,21 +1,25 @@
 ---
 layout: home
 title: Darwin Core Review
-description: Proposed Conceptual Model, Data Package Guide, and Term Changes
+description: Proposed Conceptual Model, Data Package guide, and term changes
 permalink: /
 toc: true
 ---
 
-The members of the <a href="https://www.tdwg.org/community/dwc/" target="_blank">Darwin Core Maintenance Group</a> would like to welcome you to the public review for the set of proposed changes to Darwin Core described below. The proposed changes are developed to support richer, more complex types of biodiversity data than what is currently possible with a Darwin Core Archive.
-This review is distinctive from previous maintenance reviews in that it includes many term changes and addition of documentation to the Darwin Core standard, hence the minimum review period is set to be a minimum of 90 days rather than the customary minimum 30-days.
+## Introduction
+
+{:.lead}
+The members of the [Darwin Core Maintenance Group](https://www.tdwg.org/community/dwc/) would like to welcome you to the **public review for the set of proposed changes to Darwin Core** described below. The proposed changes are developed to support richer, more complex types of biodiversity data than what is currently possible with a Darwin Core Archive.
+
+This review is distinctive from previous maintenance reviews in that it includes many term changes and addition of documentation to the Darwin Core standard, hence the minimum review period is set to be a minimum of 90 days rather than the customary minimum 30 days.
 
 Below you will find a summary of the proposals under review and the relevant links to participate in this community process.
 
-Your comments are welcome and important for the evolution of the Darwin Core standard.
+{:.alert .alert-info}
+Your comments are welcome and important for the evolution of the Darwin Core standard. [See below](#participate) how you can participate.
 
-Thank you,
 
-The Darwin Core Maintenance Team
+
 
 
 This document contains material to support a proposal for a <a href="https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements" target="_blank">Vocabulary Enhancement</a> to the <a href="https://dwc.tdwg.org/" target="_blank">Darwin Core</a> standard. Under consideration are (see Figure 1):
