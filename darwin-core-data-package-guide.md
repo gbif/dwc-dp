@@ -230,6 +230,15 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 }
 ```
 
+Together with a `eml.xml` file containing dataset-level **metadata**, the dataset would consists of the following files that may be zipped for easier transfer:
+
+```text
+datapackage.json
+eml.xml
+event.csv
+occurrence.csv
+```
+
 ## 3 Descriptor content
 
 A DwC-DP has a **descriptor**: a JSON file named `datapackage.json`, which acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
