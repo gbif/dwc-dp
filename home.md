@@ -22,7 +22,6 @@ Your comments are welcome and important for the evolution of the Darwin Core sta
 
 This is not a proposal for a new standard. Instead, this proposal contains material for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) of the existing [Darwin Core](https://dwc.tdwg.org/) standard. Under consideration are **three items** (see Figure 1):
 
-     In addition to clarifying the semantics of Darwin Core terms, these changes support for the implementation of the <a href ="https://gbif.github.io/dwc-dp/qrg/"  target="_blank">Darwin Core Data Package Publishing Model</a> (DwC-DP), which is an implementation of the [Darwin Core Conceptual Model](#darwin-core-conceptual-model) following the specifications found in the [Darwin Core Data Package Guide](#darwin-core-data-package-guide).
 1. [**Darwin Core Conceptual Model**](#cm): a new specification for a non-normative "semantic layer" for Darwin Core.
 
 2. [**Darwin Core Data Package guide**](#dp): a new specification for creating Darwin Core datasets as Frictionless Data Packages. It is one implementation of the conceptual model.
