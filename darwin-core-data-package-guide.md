@@ -103,10 +103,10 @@ S229876476,2025-04-26T20:57:00+02:00,L43523233
 
 ```text
 occurrenceID,eventID,scientificName,organismQuantity,organismQuantityType
-occ1,S229876476,Apus apus,3,individuals
-occ2,S229876476,Troglodytes troglodytes,1,individuals
-occ3,S229876476,Turdus merula,1,individuals
-occ4,S229876476,Erithacus rubecula,1,individuals
+1,S229876476,Apus apus,3,individuals
+2,S229876476,Troglodytes troglodytes,1,individuals
+3,S229876476,Turdus merula,1,individuals
+4,S229876476,Erithacus rubecula,1,individuals
 ```
 
 This dataset can be described as a DwC-DP with the following **descriptor** (`datapackage.json`):
@@ -131,6 +131,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Event ID",
             "description": "An identifier for a dwc:Event.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"
           },
@@ -139,6 +140,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Event Date",
             "description": "A date or time interval during which a dwc:Event occurred.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2025-06-12"
           },
@@ -147,6 +149,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Location ID",
             "description": "An identifier a dcterms:Location.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationID",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationID-2023-06-28"
           }
@@ -167,6 +170,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Occurrence ID",
             "description": "An identifier for a dwc:Occurrence.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28"
           },
@@ -175,6 +179,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Event ID",
             "description": "An identifier for a dwc:Event.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"
           },
@@ -183,6 +188,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Scientific Name",
             "description": "A full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in dwc:verbatimIdentification.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2023-06-28"
           },
@@ -191,6 +197,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Organism Quantity",
             "description": "A number or enumeration value for the quantity of dwc:Organisms.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantity",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantity-2023-06-28"
           },
@@ -199,6 +206,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "title": "Organism Quantity Type",
             "description": "A type of quantification system used for the quantity of dwc:Organisms.",
             "type": "string",
+            "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantityType",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantityType-2023-06-28"
           }
@@ -291,7 +299,7 @@ A **table schema** describes the fields, relationships and missing values of a t
 
 Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#4-dwc-dp-tables-non-normative) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
 
-1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It must follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
+1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It MUST follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
 
 2. Each field in a DwC-DP table schema MUST be described with the field descriptor of the table schema provided at `rs.tdwg.org` for that table. For example, if you want to describe an `"eventID"` field in an `"event"` table, you MUST use the field descriptor for `"eventID"` in the table schema for `"event"` provided at `rs.tdwg.org`. Fields MUST NOT be misrepresented. Custom fields SHOULD NOT be added.
 
