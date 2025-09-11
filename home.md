@@ -23,33 +23,37 @@ Your comments are welcome and important for the evolution of the Darwin Core sta
 This is not a proposal for a new standard. Instead, this proposal contains material for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) of the existing [Darwin Core](https://dwc.tdwg.org/) standard. Under consideration are **three items** (see Figure 1):
 
      In addition to clarifying the semantics of Darwin Core terms, these changes support for the implementation of the <a href ="https://gbif.github.io/dwc-dp/qrg/"  target="_blank">Darwin Core Data Package Publishing Model</a> (DwC-DP), which is an implementation of the [Darwin Core Conceptual Model](#darwin-core-conceptual-model) following the specifications found in the [Darwin Core Data Package Guide](#darwin-core-data-package-guide).
-1. [**Darwin Core Conceptual Model**](#dwc-cm): a new specification for a non-normative "semantic layer" for Darwin Core.
+1. [**Darwin Core Conceptual Model**](#cm): a new specification for a non-normative "semantic layer" for Darwin Core.
 
-2. [**Darwin Core Data Package guide**](#dwc-dp-guide): a new specification for creating Darwin Core datasets as Frictionless Data Packages. It is one implementation of the conceptual model.
+2. [**Darwin Core Data Package guide**](#dp): a new specification for creating Darwin Core datasets as Frictionless Data Packages. It is one implementation of the conceptual model.
 
-3. [**Changes to Darwin Core terms**](#dwc-term-changes): proposals for new terms and changes to existing terms, mainly to clarify semantics and support the above.
+3. [**Changes to Darwin Core terms**](#term-changes): proposals for new terms and changes to existing terms, mainly to clarify semantics and support the above.
 
 [![Here should be a schematic of the Darwin Core review](images/dwc_review_schematic.png "Darwin Core Review")](images/dwc_review_schematic.png)
 _Figure 1: Overview of the public review that includes the Darwin Core Conceptual Model, the Darwin Core Data Package guide, and proposals for new and changes to existing Darwin Core terms._
 
-{:id="dwc-cm"}
+{:id="cm"}
 ### Darwin Core Conceptual Model
 
-[Access the document](/cm/){:.btn .btn-primary}
+[Explore the model](cm/){:.btn .btn-primary}
 
 The **Darwin Core Conceptual Model (DwC-CM)** provides a high‑level framework that describes explicit relationships between Darwin Core classes in typical biodiversity information workflows. DwC-CM is a synthesis of years of discussion and contributions to Biodiversity Information Standards (TDWG) Interest Groups. The synthesis arose during research towards [“Diversifying the GBIF Data Model”](https://www.gbif.org/new-data-model), which brought additional perspectives from the GBIF community and included a series of iterative approaches to refine and validate both a conceptual model and a data publishing model through a wide variety of biodiversity data use cases. Data structures of many operational systems, including all commonly used open source collection management systems, have been studied and have influenced this model.
 
-{:id="dwc-dp-guide"}
+{:id="dp"}
 ### Darwin Core Data Package guide
 
-[Access the document](/dp/){:.btn .btn-primary}
+[Read the guide](dp/){:.btn .btn-primary}
 
 The **Darwin Core Data Package guide** is a specification for creating “Darwin Core Data Packages” (DwC-DP): an exchange format for biodiversity data. It extends the [Data Package specification](https://specs.frictionlessdata.io/) (developed by Frictionless Data) as an implementation for the Darwin Core Conceptual Model. It is similar in purpose to the [Darwin Core Text guide](https://dwc.tdwg.org/text/), which is a specification for Darwin Core Archives.
 
-The Darwin Core Data Package guide references a [DwC-DP profile](dp/#32-package-level-properties) and [table schemas](dm/#dwc-dp-tables), but these are not part of the public review, because the standard does not include those implementation schemas. Nevertheless, it is extremely useful for understanding how the Conceptual Model and Data Package specification would be put into practice. It is the application of the theory.
+The Darwin Core Data Package guide references a [DwC-DP profile](dp/#32-package-level-properties) and [table schemas](dp/#dwc-dp-tables), but these are not part of the public review, because the standard does not include those implementation schemas. Nevertheless, it is extremely useful for understanding how the Conceptual Model and Data Package specification would be put into practice. It is the application of the theory.
 
-{:id="dwc-term-changes"}
+{:id="term-changes"}
 ### Changes to Darwin Core terms
+
+[See suggested changes](https://github.com/tdwg/dwc/milestone/20){:.btn .btn-primary}
+[Explore all classes and terms](qrg/){:.btn .btn-outline-primary}
+
 #### New classes and properties
 
 To enable an implementation of a Darwin Core Data Package as a new publishing model, new terms are added in Darwin Core. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the <a href="https://gbif.github.io/dwc-dp/qrg/" target="_blank">Darwin Core Data Package - Quick Reference Guide</a>.
