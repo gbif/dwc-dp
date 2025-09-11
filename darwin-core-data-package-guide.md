@@ -72,6 +72,9 @@ Bibliographic citation
 [field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
 [field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
+{:.alert .alert-warning}
+This guide references non-production URLs for DwC-DP. Once DwC-DP is released, every link containing `https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/` should be replaced with `http://rs.tdwg.org/dwc-dp/1.0/`.
+
 ## 1 Introduction
 
 Darwin Core Data Package (hereafter referred to as “**DwC-DP**”) is a community-developed container format to exchange biodiversity data. It extends the [Data Package specification][dp.v1] (developed by Frictionless Data) as an implementation for the [Darwin Core Conceptual Model](../cm/). This document specifies the requirements for datasets to comply with DwC-DP.
@@ -113,7 +116,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 
 ```json
 {
-  "profile": "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json",
+  "profile": "https://raw.githubusercontent.com/gbif/dwc-dp/refs/heads/master/dwc-dp/0.1/dwc-dp-profile.json",
   "id": "dwc-dp-example-dataset",
   "created": "2025-09-08T09:52:03Z",
   "version": "1.0",
