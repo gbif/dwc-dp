@@ -92,20 +92,18 @@ One of the most fundamental advances of the Semantic Layer, reflected in the DwC
 {:id="participate"}
 ## Participating in the review
 
-To understand how to participate in the review process, please refer to <a href="https://github.com/tdwg/dwc/wiki/Darwin-Core-Maintenance-Frequently-Asked-Questions" target="_blank">Darwin Core Maintenance Frequently Asked Questions</a>, which provides information on the review process and the maintenance of the Darwin Core standard in general.
+Thank you for considering to review (parts of) this proposal! If you have:
 
-Here you can review the <a href="https://gbif.github.io/dwc-dp/cm/" target="_blank">Darwin Core Conceptual Model</a>. This is **a document** describing the conceptual model, seeking ratification. It goes hand in hand with the changes and new terms proposed. To comment on those, see below.
+1. **Feedback on the Darwin Core Conceptual Model**: follow [these instructions](https://github.com/tdwg/dwc/issues/728).
 
-Here you can review the <a href="https://gbif.github.io/dwc-dp/dp/">Darwin Core Data Package Guide</a>. This is **a document** describing a specification for implementing Darwin Core Data Packages, seeking ratification. This document is independent of the Conceptual Model and of the term changes and additions.
+2. **Feedback on the Darwin Core Data Package guide**: follow [these instructions](https://github.com/tdwg/dwc/issues/727).
+
+3. **Feedback on the changes to Darwin Core terms**: these are submitted as separate issues in the Darwin Core GitHub repository. Please [look for the issue](https://github.com/tdwg/dwc/issues?q=is%3Aissue%20state%3Aopen%20milestone%3A%22DwC-DP%20Issues%22) related to your term you want to provide feedback for and add a comment to the issue.
+
 ## Who's behind this?
 
 This proposal was developed by representives from the [Darwin Core Maintenance Group](https://www.tdwg.org/community/dwc/) and the [Global Biodiversity Information Facility (GBIF)](http://www.gbif.org), using numerous use cases submitted by third parties.
 
-Here you can review the <a href="https://github.com/tdwg/dwc/milestone/20" target="_blank">List of term additions and changes proposal</a>. You may comment on each term, as we normally do for Darwin Core enhancements (refer to the <a href="https://github.com/tdwg/dwc/wiki/Darwin-Core-Maintenance-Frequently-Asked-Questions" target="_blank">FAQs</a> above for guidance).
 The proposal is the result of an iterative and open approach. Whether you were involved in this process or not, everyone has a chance to review.
 
-In addition, there are relevant resources closely related and recommended reading:
-- <a href="https://dwc.tdwg.org/terms/" target="_blank">Darwin Core Quick Reference Guide</a> (Darwin Core term definitions). Note that this document DOES NOT contain the proposed changes, it will only incorporate them if they are ratified.
-- <a href="https://gbif.github.io/dwc-dp/qrg/" target="_blank">Darwin Core Data Package Quick Reference Guide</a> (contextual term definitions for tables and fields for a Darwin Core Data Package implementation of DwC-CM).
-- <a href="https://gbif.github.io/dwc-dp/explorer/" target="_blank">Darwin Core Data Package Relationship Explorer</a> (tool to visualize and explore the relationships implemented in the Darwin Core Data Package).
 Information about efforts related to the development of this proposal can be found in the [Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report](docs/dwc_dp_implementation_feature_reports.pdf).
