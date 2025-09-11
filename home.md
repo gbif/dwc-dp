@@ -56,36 +56,35 @@ The Darwin Core Data Package guide references a [DwC-DP profile](dp/#32-package-
 
 #### New classes and properties
 
-To enable an implementation of a Darwin Core Data Package as a new publishing model, new terms are added in Darwin Core. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the <a href="https://gbif.github.io/dwc-dp/qrg/" target="_blank">Darwin Core Data Package - Quick Reference Guide</a>.
+To enable an implementation of a Darwin Core Data Package as a new publishing model, new terms are added in Darwin Core. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](qrg/).
 
-**Agent** - A person, group, organization or other entity that can act.
+- **Agent** - A person, group, organization or other entity that can act.
 
-**BibliographicResource** - A book, article, or other documentary resource.
+- **BibliographicResource** - A book, article, or other documentary resource.
 
-**Media** - A `dcmi:MediaType` (`dcmi:Sounds`, `dcmi:StillImages`, `dcmi:MovingImages` or `dcmi:Text`) with other entities as content. This class accommodates metadata about media from the <a href="https://ac.tdwg.org/" target="_blank">Audiovisual Core</a> standard.
+- **Media** - A `dcmi:MediaType` (`dcmi:Sounds`, `dcmi:StillImages`, `dcmi:MovingImages` or `dcmi:Text`) with other entities as content. This class accommodates metadata about media from the [Audiovisual Core](https://ac.tdwg.org/) standard.
 
-**MolecularProtocol** - A protocol used to derive and identify a nucleotide sequence from a `dwc:MaterialEntity`. This class accommodates the <a href="https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml" target="_blank">DNA derived data extension</a>.
+- **MolecularProtocol** - A protocol used to derive and identify a nucleotide sequence from a `dwc:MaterialEntity`. This class accommodates the [DNA derived data extension](https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml).
 
-**NucleotideAnalysis** - A link between a NucleotideSequence and a `dwc:Event` and a `dwc:MaterialEntity` from which it was derived, using a specified Protocol.
+- **NucleotideAnalysis** - A link between a NucleotideSequence and a `dwc:Event` and a `dwc:MaterialEntity` from which it was derived, using a specified Protocol.
 
-**NucleotideSequence** - A digital representation of a nucleotide sequence.
+- **NucleotideSequence** - A digital representation of a nucleotide sequence.
 
-**OrganismInteraction** - An interaction between two `dwc:Organisms` during a `dwc:Event`.
+- **OrganismInteraction** - An interaction between two `dwc:Organisms` during a `dwc:Event`.
 
-**Protocol** - A method used during an action.
+- **Protocol** - A method used during an action.
 
-**Provenance** - Information about an entity’s origins.
+- **Provenance** - Information about an entity’s origins.
 
-**Survey** - A biotic survey or inventory. This class accommodates the <a href="https://eco.tdwg.org/" target="_blank">Humboldt Extension for Ecological Inventories</a>.
+- **Survey** - A biotic survey or inventory. This class accommodates the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
 
-**SurveyTarget** - A specification of a characteristic of a `dwc:Occurrence` that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the <a href="https://eco.tdwg.org/" target="_blank">Humboldt Extension for Ecological Inventories</a>.
+-  **SurveyTarget** - A specification of a characteristic of a `dwc:Occurrence` that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
 
-**UsagePolicy** - Information about rights, usage, and attribution statements applicable to an entity.
+- **UsagePolicy** - Information about rights, usage, and attribution statements applicable to an entity.
 
 #### Changes to existing classes and properties
 
-The semantics embodied in the <a href="https://gbif.github.io/dwc-dp/cm/" target="_blank">Darwin Core Conceptual Model</a>, and their implementation through the <a href="https://gbif.github.io/dwc-dp/qrg/" target="_blank">Darwin Core Data Package publishing model</a>, clarify many of the ambiguities that existed in Darwin Core previously. Changes needed to mitigate these ambiguities include assigning existing properties to different classes, adding new properties to existing Darwin Core classes and 
-improving definitions, usage comments and examples of existing Darwin Core terms (both classes and properties).
+The semantics embodied in the [Darwin Core Conceptual Model](#dwc-cm), and their implementation through the [Darwin Core Data Package publishing model](qrg/), clarify many of the ambiguities that existed in Darwin Core previously. Changes needed to mitigate these ambiguities include assigning existing properties to different classes, adding new properties to existing Darwin Core classes and improving definitions, usage comments and examples of existing Darwin Core terms (both classes and properties).
 
 ##### Occurrence
 
