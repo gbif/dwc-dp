@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/geological-context",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/geological-context.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/geological-context.json",
   "name": "geological-context",
   "title": "Geological Context",
   "description": "A set of geological designations, such as stratigraphy, that qualifies a dcterms:Location.",
@@ -31,7 +31,7 @@
     {
       "name": "earliestEonOrLowestEonothem",
       "title": "Earliest Eon Or Lowest Eonothem",
-      "description": "A full name of a earliest possible geochronologic eon or lowest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Phanerozoic`; `Proterozoic`",
       "type": "string",
@@ -44,7 +44,7 @@
     {
       "name": "latestEonOrHighestEonothem",
       "title": "Latest Eon Or Highest Eonothem",
-      "description": "A full name of a latest possible geochronologic eon or highest chrono-stratigraphic eonothem or the informal name ('Precambrian') attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Phanerozoic`; `Proterozoic`",
       "type": "string",
@@ -57,7 +57,7 @@
     {
       "name": "earliestEraOrLowestErathem",
       "title": "Earliest Era Or Lowest Erathem",
-      "description": "A full name of a earliest possible geochronologic era or lowest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic era or lowest chronostratigraphic erathem attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Cenozoic`; `Mesozoic`",
       "type": "string",
@@ -70,7 +70,7 @@
     {
       "name": "latestEraOrHighestErathem",
       "title": "Latest Era Or Highest Erathem",
-      "description": "A full name of a latest possible geochronologic era or highest chronostratigraphic erathem attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic era or highest chronostratigraphic erathem attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Cenozoic`; `Mesozoic`",
       "type": "string",
@@ -83,7 +83,7 @@
     {
       "name": "earliestPeriodOrLowestSystem",
       "title": "Earliest Period Or Lowest System",
-      "description": "A full name of a earliest possible geochronologic period or lowest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic period or lowest chronostratigraphic system attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Neogene`; `Tertiary`; `Quaternary`",
       "type": "string",
@@ -96,7 +96,7 @@
     {
       "name": "latestPeriodOrHighestSystem",
       "title": "Latest Period Or Highest System",
-      "description": "A full name of a latest possible geochronologic period or highest chronostratigraphic system attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic period or highest chronostratigraphic system attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Neogene`; `Tertiary`; `Quaternary`",
       "type": "string",
@@ -109,7 +109,7 @@
     {
       "name": "earliestEpochOrLowestSeries",
       "title": "Earliest Epoch Or Lowest Series",
-      "description": "A full name of a earliest possible geochronologic epoch or lowest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic epoch or lowest chronostratigraphic series attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Holocene`; `Pleistocene`; `Ibexian Series`",
       "type": "string",
@@ -122,7 +122,7 @@
     {
       "name": "latestEpochOrHighestSeries",
       "title": "Latest Epoch Or Highest Series",
-      "description": "A full name of a latest possible geochronologic epoch or highest chronostratigraphic series attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic epoch or highest chronostratigraphic series attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Holocene`; `Pleistocene`; `Ibexian Series`",
       "type": "string",
@@ -135,7 +135,7 @@
     {
       "name": "earliestAgeOrLowestStage",
       "title": "Earliest Age Or Lowest Stage",
-      "description": "A full name of a earliest possible geochronologic age or lowest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic age or lowest chronostratigraphic stage attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Atlantic`; `Boreal`; `Skullrockian`",
       "type": "string",
@@ -148,7 +148,7 @@
     {
       "name": "latestAgeOrHighestStage",
       "title": "Latest Age Or Highest Stage",
-      "description": "A full name of a latest possible geochronologic age or highest chronostratigraphic stage attributable to the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic age or highest chronostratigraphic stage attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Atlantic`; `Boreal`; `Skullrockian`",
       "type": "string",
@@ -161,7 +161,7 @@
     {
       "name": "lowestBiostratigraphicZone",
       "title": "Lowest Biostratigraphic Zone",
-      "description": "A full name of a lowest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the lowest possible geological biostratigraphic zone of the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Maastrichtian`",
       "type": "string",
@@ -174,7 +174,7 @@
     {
       "name": "highestBiostratigraphicZone",
       "title": "Highest Biostratigraphic Zone",
-      "description": "A full name of a highest possible geological biostratigraphic zone of the stratigraphic horizon from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the highest possible geological biostratigraphic zone of the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Blancan`",
       "type": "string",
@@ -187,7 +187,7 @@
     {
       "name": "lithostratigraphicTerms",
       "title": "Lithostratigraphic Terms",
-      "description": "A combination of all lithostratigraphic names for a rock from which a dwc:MaterialEntity was collected.",
+      "description": "The combination of all lithostratigraphic names for the rock from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Pleistocene-Weichselien`",
       "type": "string",
@@ -200,7 +200,7 @@
     {
       "name": "group",
       "title": "Group",
-      "description": "A full name of a lithostratigraphic group from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the lithostratigraphic group from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Bathurst`; `Lower Wealden`",
       "type": "string",
@@ -213,7 +213,7 @@
     {
       "name": "formation",
       "title": "Formation",
-      "description": "A full name of a lithostratigraphic formation from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the lithostratigraphic formation from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Notch Peak Formation`; `House Limestone`; `Fillmore Formation`",
       "type": "string",
@@ -226,7 +226,7 @@
     {
       "name": "member",
       "title": "Member",
-      "description": "A full name of a lithostratigraphic member from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the lithostratigraphic member from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Lava Dam Member`; `Hellnmaria Member`",
       "type": "string",
@@ -239,7 +239,7 @@
     {
       "name": "bed",
       "title": "Bed",
-      "description": "A full name of a lithostratigraphic bed from which a dwc:MaterialEntity was collected.",
+      "description": "The full name of the lithostratigraphic bed from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "example": "`Harlem coal`",
       "type": "string",

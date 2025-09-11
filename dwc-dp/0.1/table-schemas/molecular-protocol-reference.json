@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/molecular-protocol-reference",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/molecular-protocol-reference.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/molecular-protocol-reference.json",
   "name": "molecular-protocol-reference",
   "title": "Molecular Protocol Reference",
   "description": "A dcterms:BibliographicResource related to a dwc:MolecularProtocol.",

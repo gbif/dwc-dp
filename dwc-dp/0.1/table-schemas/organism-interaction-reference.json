@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/organism-interaction-reference",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/organism-interaction-reference.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/organism-interaction-reference.json",
   "name": "organism-interaction-reference",
   "title": "Organism Interaction Reference",
   "description": "A dcterms:BibliographicResource related to a dwc:OrganismInteraction.",

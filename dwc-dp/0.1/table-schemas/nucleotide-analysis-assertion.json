@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/nucleotide-analysis-assertion",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/nucleotide-analysis-assertion.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/nucleotide-analysis-assertion.json",
   "name": "nucleotide-analysis-assertion",
   "title": "Nucleotide Analysis Assertion",
   "description": "A dwc:Assertion made by a dcterms:Agent about a dwc:NucleotideSequence.",

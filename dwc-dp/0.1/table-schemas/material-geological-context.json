@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/material-geological-context",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/material-geological-context.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/material-geological-context.json",
   "name": "material-geological-context",
   "title": "Material Geological Context",
   "description": "A dwc:GeologicalContext from which a dwc:MaterialEntify was derived.",

@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/molecular-protocol-assertion",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/molecular-protocol-assertion.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/molecular-protocol-assertion.json",
   "name": "molecular-protocol-assertion",
   "title": "Molecular Protocol Assertion",
   "description": "A dwc:Assertion made by a dcterms:Agent about a dwc:MolecularProtocol.",

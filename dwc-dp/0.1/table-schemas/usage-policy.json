@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/usage-policy",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/usage-policy.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/usage-policy.json",
   "name": "usage-policy",
   "title": "Usage Policy",
   "description": "Information about rights, usage, and attribution statements applicable to an entity.",

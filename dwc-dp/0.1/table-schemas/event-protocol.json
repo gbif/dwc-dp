@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/event-protocol",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/event-protocol.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/event-protocol.json",
   "name": "event-protocol",
   "title": "Event Protocol",
   "description": "A dwc:Protocol used for a dwc:Event.",

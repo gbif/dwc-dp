@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/survey",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/survey.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/survey.json",
   "name": "survey",
   "title": "Survey",
   "description": "A biotic survey or inventory.",
@@ -587,8 +587,8 @@
     {
       "name": "sampleSizeUnit",
       "title": "Sample Size Unit",
-      "description": "A unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
-      "comments": "A dwc:sampleSizeUnit must have a corresponding dwc:sampleSizeValue, e.g., `5` for dwc:sampleSizeValue with `metre` for dwc:sampleSizeUnit.",
+      "description": "The unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
+      "comments": "A dwc:sampleSizeUnit must have a corresponding dwc:sampleSizeValue, e.g., `5` for dwc:sampleSizeValue with `m` for dwc:sampleSizeUnit. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "example": "`minute`; `hour`; `day`; `metre`; `square metre`; `cubic metre`",
       "type": "string",
       "format": "default",

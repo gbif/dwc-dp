@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/material-assertion",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/material-assertion.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/material-assertion.json",
   "name": "material-assertion",
   "title": "Material Assertion",
   "description": "A dwc:Assertion made by a dcterms:Agent about a dwc:MaterialEntity.",

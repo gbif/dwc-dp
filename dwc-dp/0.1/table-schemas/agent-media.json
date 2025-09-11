@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/agent-media",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/agent-media.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/agent-media.json",
   "name": "agent-media",
   "title": "Agent Media",
   "description": "A dcterms:Agent as content in a dwc:Media entity.",

@@ -14,7 +14,7 @@ Usage:
   python generate_qrg.py <version>
 
 Examples:
-  python generate_qrg.py 2025-09-03
+  python generate_qrg.py 0.1
 """
 
 import sys
@@ -76,7 +76,7 @@ ORDERED_GROUPS = [
 
 # ---- CLI ----
 parser = argparse.ArgumentParser(description="Build DwC-DP index and QRG")
-parser.add_argument("version", help="DwC-DP version (e.g., 2025-09-03)")
+parser.add_argument("version", help="DwC-DP version (e.g., 0.1)")
 args, _unknown = parser.parse_known_args()
 
 # Derived paths shared by both stages
@@ -616,14 +616,6 @@ def generate_qrg_with_separators():
             content += f'<p><strong>Description:</strong> {table.get("description", "No description.")}</p>'
             if "comments" in table and table["comments"]:
                 content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
-            # Table-level Source fallback from "iri" (in case no Examples)
-            if not table.get("example") and table.get("iri"):
-                src = str(table.get("iri")).strip()
-                if src:
-                    if src.startswith("http://") or src.startswith("https://"):
-                        content += f'<p><strong>Source:</strong> <a href="{src}" target="_blank">{src}</a></p>'
-                    else:
-                        content += f'<p><strong>Source:</strong> {src}</p>'
 
             if table.get("example"):
                 content += f'<p><strong>Examples:</strong></p>'

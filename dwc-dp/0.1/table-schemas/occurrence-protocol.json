@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/occurrence-protocol",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/occurrence-protocol.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/occurrence-protocol.json",
   "name": "occurrence-protocol",
   "title": "Occurrence Protocol",
   "description": "A dwc:Protocol used for a dwc:Occurrence.",

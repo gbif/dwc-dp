@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/organism-relationship",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/organism-relationship.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/organism-relationship.json",
   "name": "organism-relationship",
   "title": "Organism Relationship",
   "description": "A dwc:ResourceRelationship of one dwc:Organism to another dwc:Organism.",

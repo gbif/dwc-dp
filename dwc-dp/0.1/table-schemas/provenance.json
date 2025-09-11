@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/provenance",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/provenance.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/provenance.json",
   "name": "provenance",
   "title": "Provenance",
   "description": "Information about an entity’s origins.",
@@ -57,15 +57,15 @@
     {
       "name": "fundingAttributionID",
       "title": "Funding Attribution ID",
-      "description": "A list (concatenated and separated) of globally unique identifiers for funding organizations or agencies that supported a project.",
-      "comments": "Provide a unique identifier for the funding body, such as an identifier used in governmental or international databases. If no official identifier exists, use a persistent and unique identifier within your organization or dataset. The Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "description": "An identifier for a dcterms:Agent that financially supported a project.",
+      "comments": "Provide a unique identifier for the funding body, such as an identifier used in governmental or international databases. If no official identifier exists, use a persistent and unique identifier within your organization or dataset.",
       "example": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "iri": "http://rs.tdwg.org/dwc/terms/fundingAttributionID",
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/fundingAttributionID-2025-06-12",
-      "rdfs:comment": "An organization or agency that provided funding for a project.",
+      "rdfs:comment": "An identifier for a dcterms:Agent that financially supported a project.",
       "constraints": {
         "required": "FALSE",
         "unique": "FALSE"
@@ -273,7 +273,7 @@
       "name": "projectID",
       "title": "Project ID",
       "description": "A list (concatenated and separated) of identifiers for projects that contributed to a dwc:Event.",
-      "comments": "A projectID can be may be shared in multiple distinct datasets. The nature of the association can be described in the metadata project description element. This term should be used to provide a globally unique identifier (GUID) for a project, if available. This could be a DOI, URI, or any other persistent identifier that ensures a project can be uniquely distinguished from others. The Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "comments": "A projectID may be shared in multiple distinct datasets. The nature of the association can be described in the metadata project description element. This term should be used to provide a globally unique identifier (GUID) for a project, if available. This could be a DOI, URI, or any other persistent identifier that ensures a project can be uniquely distinguished from others. The Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
       "example": "`https://arvenetternansen.com/`; `https://doi.org/10.26259/3b15eca7`; `https://doi.org/10.3030/101180559`; `OC202405`; `RCN276730`; `RCN276730 | Artsproject_7-24`",
       "type": "string",
       "format": "default",

@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp/chronometric-age-assertion",
-  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03/table-schemas/chronometric-age-assertion.json",
+  "url": "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1/table-schemas/chronometric-age-assertion.json",
   "name": "chronometric-age-assertion",
   "title": "Chronometric Age Assertion",
   "description": "A dwc:Assertion made by a dcterms:Agent about a chrono:ChronometricAge.",
