@@ -91,6 +91,7 @@ All sections of this document are normative (defines what is required to comply 
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
+{:id="example"}
 ## 2 Example (non-normative)
 
 Consider a dataset containing four bird Occurrences observed during a single parent Event. It can be described with two CSV files, each representing a DwC-DP table:
@@ -284,7 +285,7 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 #### 3.3.2 DwC-DP table properties
 
-1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved table names defined in the DwC-DP profile (e.g., `"event"`, `"occurrence"`). See [section 4](#4-dwc-dp-tables-non-normative) for an overview.
+1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved table names defined in the DwC-DP profile (e.g., `"event"`, `"occurrence"`). See [section 4](#dwc-dp-tables) for an overview.
 
 2. A DwC-DP table MUST have a `path` property, with the path to the data file. It MUST follow the [Data Resource specification][resource.path].
 
@@ -303,13 +304,13 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 #### 3.3.3 Other resources
 
-A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a `name` that is one of the reserved table names defined in the DwC-DP profile. See [section 4](#4-dwc-dp-tables-non-normative) for an overview.
+A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a `name` that is one of the reserved table names defined in the DwC-DP profile. See [section 4](#dwc-dp-tables) for an overview.
 
 ### 3.4 Table Schemas
 
 A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][table-schema].
 
-Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#4-dwc-dp-tables-non-normative) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
+Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#dwc-dp-tables) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
 
 1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It MUST follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
 
@@ -389,6 +390,7 @@ A **field descriptor** describes a single field in a table schema (e.g., name, d
 {:.alert .alert-info}
 (non-normative) You will meet the requirements for field descriptors by copying field descriptors from the table schemas provided at `rs.tdwg.org`.
 
+{:id="dwc-dp-tables"}
 ## 4. DwC-DP tables (non-normative)
 
 table name | table schema
