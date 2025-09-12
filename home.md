@@ -80,6 +80,6 @@ Thank you for considering to review (parts of) this proposal! If you have:
 
 This proposal was developed by representives from the [Darwin Core Maintenance Group](https://www.tdwg.org/community/dwc/) and the [Global Biodiversity Information Facility (GBIF)](http://www.gbif.org), using numerous use cases submitted by third parties.
 
-The proposal is the result of an iterative and open approach. Whether you were involved in this process or not, everyone has a chance to review.
+The proposal is the result of an iterative and open approach. Whether you were involved in this process or not, everyone welcome to review.
 
 Information about efforts related to the development of this proposal can be found in the [Darwin Core Data Package (DwC-DP) Implementation Experience and Feature Report](docs/dwc_dp_implementation_feature_reports.pdf).
