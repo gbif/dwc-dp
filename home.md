@@ -55,39 +55,15 @@ The Darwin Core Data Package guide references a [DwC-DP profile](dp/#32-package-
 
 #### New classes and properties
 
-To enable an implementation of a Darwin Core Data Package as a new publishing model, new terms are added in Darwin Core. These include new classes and new properties in those classes. New classes are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](qrg/).
-
-- **Agent** - A person, group, organization or other entity that can act.
-
-- **BibliographicResource** - A book, article, or other documentary resource.
-
-- **Media** - A `dcmi:MediaType` (`dcmi:Sounds`, `dcmi:StillImages`, `dcmi:MovingImages` or `dcmi:Text`) with other entities as content. This class accommodates metadata about media from the [Audiovisual Core](https://ac.tdwg.org/) standard.
-
-- **MolecularProtocol** - A protocol used to derive and identify a nucleotide sequence from a `dwc:MaterialEntity`. This class accommodates the [DNA derived data extension](https://rs.gbif.org/extension/gbif/1.0/dna_derived_data_2024-07-11.xml).
-
-- **NucleotideAnalysis** - A link between a NucleotideSequence and a `dwc:Event` and a `dwc:MaterialEntity` from which it was derived, using a specified Protocol.
-
-- **NucleotideSequence** - A digital representation of a nucleotide sequence.
-
-- **OrganismInteraction** - An interaction between two `dwc:Organisms` during a `dwc:Event`.
-
-- **Protocol** - A method used during an action.
-
-- **Provenance** - Information about an entity’s origins.
-
-- **Survey** - A biotic survey or inventory. This class accommodates the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
-
--  **SurveyTarget** - A specification of a characteristic of a `dwc:Occurrence` that was included or excluded in a Survey. This class accommodates and extended the Scope aspects of the [Humboldt Extension for Ecological Inventories](https://eco.tdwg.org/).
-
-- **UsagePolicy** - Information about rights, usage, and attribution statements applicable to an entity.
+To enable an implementation of a Darwin Core Data Package as a new publishing model, new terms are being added to Darwin Core and many others are being borrowed from other standard vocabularies. These additions include new classes and new properties in those classes. The list of new classes under consideration for public review are described below. To explore all classes and their properties in detail, see the [Darwin Core Data Package - Quick Reference Guide](qrg/). For a list of proposals for new class terms, see the issues [labeled with "new" and "class"](https://github.com/tdwg/dwc/issues?q=state%3Aopen%20label%3Aclass%20label%3Anew). Proposals for new properties can be found in the lists of subissues for individual classes via [Issue Summaries] (https://github.com/tdwg/dwc/issues?q=state%3Aopen%20label%3A%22Issue%20Summary%22).
 
 #### Changes to existing classes and properties
 
-The semantics embodied in the [Darwin Core Conceptual Model](#dwc-cm), and their implementation through the [Darwin Core Data Package publishing model](qrg/), clarify many of the ambiguities that existed in Darwin Core previously. Changes needed to mitigate these ambiguities include assigning existing properties to different classes, adding new properties to existing Darwin Core classes and improving definitions, usage comments and examples of existing Darwin Core terms (both classes and properties).
+The semantics of the [Darwin Core Conceptual Model](#dwc-cm), and their implementation through the [Darwin Core Data Package publishing model](qrg/), clarify many of the ambiguities that existed in Darwin Core previously. Changes needed to mitigate these ambiguities include assigning existing properties to different classes and improving definitions, usage comments and examples of existing Darwin Core terms (both classes and properties). For a list of proposals for changes to existing Darwin Core terms, see the issues [labeled with "change" and "class"](https://github.com/tdwg/dwc/issues?q=state%3Aopen%20label%3Aclass%20label%3Achange). Proposals for changes to existing properties can be found in the lists of subissues for individual classes in [Issue Summaries] (https://github.com/tdwg/dwc/issues?q=state%3Aopen%20label%3A%22Issue%20Summary%22).
 
 ##### Occurrence
 
-One of the most fundamental advances of the Semantic Layer, reflected in the DwC-DP publishing model, is the disambiguation of the `dwc:Occurrence` class. Previously, in practice, a `dwc:Occurrence` was a catch-all for information in support of the existence of a `dwc:Organism` at a place and time. Under DwC-CM, a `dwc:Occurrence` is "A state of a `dwc:Organism` in a `dwc:Event`." Thus, material evidence, though it can support the validity of a `dwc:Occurrence`, does not consist of properties of the Occurrence. Instead, all of the ephemeral characteristics of the state of an Organism are properties of a `dwc:Occurrence` while the permanent characteristics remain properties of the Organism. In short, the `dwc:Occurrence` now consists of the changeable things about a `dwc:Organism` at a given place and time that were observed or inferred.
+One of the most fundamental advances of the Semantic Layer, reflected in the DwC-DP publishing model, is the disambiguation of the `dwc:Occurrence` class. Previously, in practice, a `dwc:Occurrence` was a catch-all for information in support of the existence of a `dwc:Organism` at a place and time. Under DwC-CM, a `dwc:Occurrence` is "A state of a `dwc:Organism` in a `dwc:Event`." Thus, material evidence, though it can support the validity of a `dwc:Occurrence`, does not consist of properties of the `dwc:Occurrence`. Instead, all of the ephemeral characteristics of the state of a `dwc:Organism` are properties of a `dwc:Occurrence`, while the permanent characteristics remain properties of the `dwc:Organism`. In short, the `dwc:Occurrence` now consists of the changeable things about a `dwc:Organism` that was observed or inferred at a given place and time.
 
 {:id="participate"}
 ## Participating in the review
