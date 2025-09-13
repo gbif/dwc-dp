@@ -15,7 +15,7 @@
       "name": "surveyTargetID",
       "title": "Survey Target ID",
       "description": "An identifier for a dwc:SurveyTarget.",
-      "comments": "Recommended best practice is to use a globally unique identifier. Note: values of this term are not meant to be unique within a SurveyTarget. A full SurveyTarget is composed of all records that share the same surveyTargetID.",
+      "comments": "Recommended best practice is to use a globally unique identifier. Note: values of this term are not meant to be unique within a dwc:SurveyTarget. A full dwc:SurveyTarget is composed of all records that share the same dwc:surveyTargetID.",
       "example": "",
       "type": "string",
       "format": "default",
