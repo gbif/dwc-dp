@@ -85,7 +85,7 @@ This guide is intended for biodiversity data providers, curators, aggregators, r
 
 ### 1.2 Status of the content of this document
 
-All sections of this document are normative (defines what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understand but is not binding).
+All sections of this document are normative (define what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understand but are not binding).
 
 ### 1.3 RFC 2119 key words
 
