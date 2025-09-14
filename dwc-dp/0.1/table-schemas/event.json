@@ -380,7 +380,7 @@
     {
       "name": "georeferenceVerificationStatus",
       "title": "Georeference Verification Status",
-      "description": "A categorical description of the extent to which a georeference has been verified to represent the best possible spatial description for a dcterms:Location.",
+      "description": "A categorical description of the extent to which the georeference has been verified to represent the best possible spatial description for the dcterms:Location of the dwc:Occurrence.",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "example": "`unable to georeference`; `requires georeference`; `requires verification`; `verified by data custodian`; `verified by contributor`",
       "type": "string",
@@ -721,7 +721,7 @@
     {
       "name": "minimumDistanceAboveSurfaceInMeters",
       "title": "Minimum Distance Above Surface In Meters",
-      "description": "A lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
+      "description": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "example": "`-1.5` (below the surface); `4.2` (above the surface); For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
       "type": "number",
@@ -734,7 +734,7 @@
     {
       "name": "maximumDistanceAboveSurfaceInMeters",
       "title": "Maximum Distance Above Surface In Meters",
-      "description": "A greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
+      "description": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "example": "`-1.5` (below the surface); `4.2` (above the surface); For a 1.5 meter sediment core from the bottom of a lake (at depth 20m) at 300m elevation: verbatimElevation: `300m` minimumElevationInMeters: `300`, maximumElevationInMeters: `300`, verbatimDepth: `20m`, minimumDepthInMeters: `20`, maximumDepthInMeters: `20`, minimumDistanceAboveSurfaceInMeters: `0`, maximumDistanceAboveSurfaceInMeters: `-1.5`.",
       "type": "number",
@@ -967,7 +967,7 @@
       "title": "Georeference Sources",
       "description": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference a dcterms:Location, described specifically enough to allow anyone in the future to use the same resources.",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`GeoLocate`, 'GeoPick`; `https://www.geonames.org/`; `USGS 1:24000 Florence Montana Quad 1967 | Terrametrics 2008 on Google Earth`",
+      "example": "`GeoLocate`, `GeoPick`; `https://www.geonames.org/`; `USGS 1:24000 Florence Montana Quad 1967 | Terrametrics 2008 on Google Earth`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
