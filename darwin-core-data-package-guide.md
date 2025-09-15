@@ -100,7 +100,7 @@ Consider a dataset containing four bird Occurrences observed during a single par
 
 ```text
 eventID,eventDate,locationID
-S229876476,2025-04-26T20:57:00+02:00,L43523233
+S229876476,2025-04-26T20:57:00+02:00,https://ebird.org/hotspot/L43523233
 ```
 
 **occurrences.csv**
