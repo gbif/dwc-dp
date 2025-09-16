@@ -4,7 +4,7 @@
   "name": "usage-policy",
   "title": "Usage Policy",
   "description": "Information about rights, usage, and attribution statements applicable to an entity.",
-  "comments": "",
+  "comments": "This is a convenience class to group related properties.",
   "example": "",
   "namespace": "dwc",
   "iri": "http://rs.tdwg.org/dwc/terms/UsagePolicy",

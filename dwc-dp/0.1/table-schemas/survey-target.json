@@ -50,7 +50,7 @@
       "title": "Survey Target Type",
       "description": "A scope a dwc:SurveyTarget describes.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`taxon`; `habitat`; `establishmentMeans`; `growthForm`; `sex`; `lifeStage`",
+      "example": "`taxon`; `habitat`; `establishmentMeans`; `growthForm`; `sex`; `lifeStage`; `minimum length`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

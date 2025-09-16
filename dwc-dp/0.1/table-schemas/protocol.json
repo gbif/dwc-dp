@@ -57,7 +57,7 @@
     {
       "name": "protocolDescription",
       "title": "Protocol Description",
-      "description": "A description of a dwc:Protocol.",
+      "description": "A detailed description of a dwc:Protocol.",
       "comments": "",
       "example": "",
       "type": "string",
@@ -71,7 +71,7 @@
       "name": "protocolReferences",
       "title": "Protocol References",
       "description": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Protocol.",
-      "comments": "Recommended best practice is to separate multiple values in a list with space vertical bar space ( | ).",
+      "comments": "Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
       "example": "`Penguins from space: faecal stains reveal the location of emperor penguin colonies, https://doi.org/10.1111/j.1466-8238.2009.00467.x`",
       "type": "string",
       "format": "default",

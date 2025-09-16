@@ -75,7 +75,7 @@
       "name": "discipline",
       "title": "Discipline",
       "description": "The primary branch or branches of knowledge represented by the dwc:MaterialEntity.",
-      "comments": "This term can be used to classify records according to branches of knowledge. Recommended best practice is to use a controlled vocabulary and to separate the values in a list with space vertical bar space ( | ). It is also recommended to use this field to describe specimenType in MIDS.",
+      "comments": "This term can be used to classify records according to branches of knowledge. Recommended best practice is to use a controlled vocabulary and to separate the values in a list with space vertical bar space (` | `). It is also recommended to use this field to describe specimenType in MIDS.",
       "example": "`Botany`; `Botany | Virology | Taxonomy`",
       "type": "string",
       "format": "default",
