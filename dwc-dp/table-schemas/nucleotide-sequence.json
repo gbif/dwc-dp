@@ -29,8 +29,8 @@
       }
     },
     {
-      "name": "nucleotideSequence",
-      "title": "Nucleotide Sequence",
+      "name": "sequence",
+      "title": "Sequence",
       "description": "A string representing nucleotide base pairs.",
       "comments": "",
       "examples": "",

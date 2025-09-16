@@ -9,7 +9,7 @@
 # -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/2025-09-03" \
 # -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03"
 
-#python data-package-migration.py -i "http://rs.gbif.org/data-packages/dwc-dp" -I "http://rs.tdwg.org/dwc/dwc-dp" -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/2025-09-03" -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/2025-09-03"
+#python data-package-migration.py -i "http://rs.gbif.org/data-packages/dwc-dp" -I "http://rs.tdwg.org/dwc/dwc-dp" -u "http://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1" -U "https://github.com/gbif/dwc-dp/blob/master/dwc-dp/0.1"
 
 import os
 import shutil
@@ -63,7 +63,7 @@ def apply_substitutions(directory, id_old, id_new, url_old, url_new):
                     print(f"Updated: {file_path}")
 
 def main(id_old, id_new, url_old, url_new):
-    source_dir ='../dwc-dp/0.1'
+    source_dir ='../dwc-dp'
     dest_dir = '../sandbox'
     copy_directory(source_dir, dest_dir)
     apply_substitutions(dest_dir, id_old, id_new, url_old, url_new)
