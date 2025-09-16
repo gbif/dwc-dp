@@ -59,6 +59,32 @@
       "rdfs:comment": ""
     },
     {
+      "name": "surveyTargetTypeIRI",
+      "title": "Survey Target Type IRI",
+      "description": "An IRI of a controlled vocabulary value for a type of target.",
+      "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "iri": "http://purl.org/dc/terms/type",
+      "iri_version": "",
+      "rdfs:comment": "The nature or genre of the resource."
+    },
+    {
+      "name": "surveyTargetTypeSource",
+      "title": "Survey Target Type Source",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:surveyTargetType is given.",
+      "comments": "",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dc",
+      "iri": "http://purl.org/dc/elements/1.1/source",
+      "iri_version": "",
+      "rdfs:comment": "A related resource from which the described resource is derived."
+    },
+    {
       "name": "surveyTargetValue",
       "title": "Survey Target Value",
       "description": "A value of a characteristic sought for a dwc:SurveyTarget for a given dwc:surveyTargetType.",
@@ -72,6 +98,32 @@
       "rdfs:comment": ""
     },
     {
+      "name": "surveyTargetValueIRI",
+      "title": "Survey Target Value IRI",
+      "description": "An IRI of a controlled vocabulary value for a target value.",
+      "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwciri",
+      "iri": "",
+      "iri_version": "",
+      "rdfs:comment": ""
+    },
+    {
+      "name": "surveyTargetValueSource",
+      "title": "Survey Target Value Source",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:surveyTargetValue is given.",
+      "comments": "",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dc",
+      "iri": "http://purl.org/dc/elements/1.1/source",
+      "iri_version": "",
+      "rdfs:comment": "A related resource from which the described resource is derived."
+    },
+    {
       "name": "surveyTargetUnit",
       "title": "Survey Target Unit",
       "description": "Units associated with a value in dwc:surveyTargetValue.",
@@ -83,6 +135,32 @@
       "iri": "",
       "iri_version": "",
       "rdfs:comment": ""
+    },
+    {
+      "name": "surveyTargetUnitIRI",
+      "title": "Survey Target Unit IRI",
+      "description": "An IRI of a controlled vocabulary value for a target unit.",
+      "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwciri",
+      "iri": "",
+      "iri_version": "",
+      "rdfs:comment": ""
+    },
+    {
+      "name": "surveyTargetUnitSource",
+      "title": "Survey Target Unit Source",
+      "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:surveyTargetUnit is given.",
+      "comments": "",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dc",
+      "iri": "http://purl.org/dc/elements/1.1/source",
+      "iri_version": "",
+      "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
       "name": "includeOrExclude",
