@@ -305,7 +305,7 @@ def build_foreign_keys_for_table(pred_map, table_name: str, fk_field_names: list
 def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
     return {
         "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
-        "url": f"index.json",
+        "url": f"",
         "name": "dwc-dp",
         "version": version,
         "title": "Darwin Core Data Package",

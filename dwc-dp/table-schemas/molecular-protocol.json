@@ -33,7 +33,7 @@
       "title": "Assay Type",
       "description": "A method used in the study to detect taxon/taxa of interest in the sample.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "examples": "`targeted`; metabarcoding`; `other`",
+      "examples": "`targeted`; `metabarcoding`; `other`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

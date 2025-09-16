@@ -1,6 +1,6 @@
 {
   "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
-  "url": "index.json",
+  "url": "./",
   "name": "dwc-dp",
   "version": "0.1",
   "title": "Darwin Core Data Package",
@@ -313,7 +313,7 @@
       "url": "table-schemas/identification-reference.json",
       "name": "identification-reference",
       "title": "Identification Reference",
-      "description": "A dcterms:BibliographicResource related to a dwc:Event.",
+      "description": "A dcterms:BibliographicResource related to a dwc:Identification.",
       "comments": "",
       "examples": "",
       "namespace": "",

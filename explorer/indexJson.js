@@ -304,7 +304,7 @@ const indexJson = {
       "url": "table-schemas/identification-reference.json",
       "name": "identification-reference",
       "title": "Identification Reference",
-      "description": "A dcterms:BibliographicResource related to a dwc:Event.",
+      "description": "A dcterms:BibliographicResource related to a dwc:Identification.",
       "comments": "",
       "examples": "",
       "namespace": "",
