@@ -5,7 +5,7 @@
   "title": "Survey Protocol",
   "description": "A dwc:Protocol used for an eco:Survey.",
   "comments": "",
-  "example": "",
+  "examples": "",
   "namespace": "",
   "iri": "",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Protocol ID",
       "description": "An identifier for a dwc:Protocol.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Survey ID",
       "description": "An identifier for a dwc:Survey.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     }
   ],

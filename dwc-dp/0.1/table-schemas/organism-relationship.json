@@ -5,7 +5,7 @@
   "title": "Organism Relationship",
   "description": "A dwc:ResourceRelationship of one dwc:Organism to another dwc:Organism.",
   "comments": "An OrganismRelationship must be a permanent relationship. Ephemeral relationships between dwc:Organisms should be recorded as dwc:OrganismInteractions.",
-  "example": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`",
+  "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`",
   "namespace": "dwc",
   "iri": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
   "iri_version": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
@@ -16,7 +16,7 @@
       "title": "Organism Relationship ID",
       "description": "An identifier for a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2023-06-28",
       "rdfs:comment": "An identifier for an instance of relationship between one resource (the subject) and another (dwc:relatedResource, the object).",
       "constraints": {
-        "required": "TRUE",
-        "unique": "TRUE"
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Subject Organism ID",
       "description": "An identifier for the dwc:Organism that is the subject of a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
       "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -50,7 +50,7 @@
       "title": "Relationship Type",
       "description": "A relationship of a subject resource (identified by dwc:subjectOrganismID) to a related resource (identified by dwc:relatedOrganismID).",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`same as`; `duplicate of`; `mother of`; `offspring of`; `sibling of`; `parasite of`; `host of`; `valid synonym of`; `located within`; `pollinator of members of taxon`; `pollinated specific plant`; `pollinated by members of taxon`; `on slab with`",
+      "examples": "`same as`; `duplicate of`; `mother of`; `offspring of`; `sibling of`; `parasite of`; `host of`; `valid synonym of`; `located within`; `pollinator of members of taxon`; `pollinated specific plant`; `pollinated by members of taxon`; `on slab with`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -63,7 +63,7 @@
       "title": "Relationship Type IRI",
       "description": "An IRI of a controlled vocabulary value for the type of a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
-      "example": "`http://purl.obolibrary.org/obo/RO_0002456` (for the relation pollinated by); `http://purl.obolibrary.org/obo/RO_0002455` (for the relation pollinates); `https://www.inaturalist.org/observation_fields/879` (for the relation eaten by)",
+      "examples": "`http://purl.obolibrary.org/obo/RO_0002456` (for the relation pollinated by); `http://purl.obolibrary.org/obo/RO_0002455` (for the relation pollinates); `https://www.inaturalist.org/observation_fields/879` (for the relation eaten by)",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -76,7 +76,7 @@
       "title": "Relationship Type Source",
       "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:relationshipType is given.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dc",
@@ -89,7 +89,7 @@
       "title": "Related Organism ID",
       "description": "An identifier for the related dwc:Organism (the object) of a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -97,8 +97,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
       "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -106,7 +106,7 @@
       "title": "External Related Organism ID",
       "description": "An identifier for the related dwc:Organism (the object) of a dwc:ResourceRelationship that is not within the same dataset.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -119,7 +119,7 @@
       "title": "External Related Organism Source",
       "description": "A reference to a source outside the dataset where the related dwc:Organism record can be found.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dc",
@@ -132,7 +132,7 @@
       "title": "Relationship Order",
       "description": "A numerical position of a dwc:ResourceRelationship in a set of dwc:ResourceRelationships that have the same combination of dwc:organismID, dwc:relatedOrganismID, dwc:relationshipType, dwc:relationshipTypeIRI, and dwc:relationshipTypeSource.",
       "comments": "One could use relationshipOrder to create an ordered list of authors for a Reference, for example. The first would have relationshipOrder=1, the second would have relationshipOrder=2.",
-      "example": "",
+      "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
@@ -140,7 +140,7 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "minimum": "1"
+        "minimum": true
       }
     },
     {
@@ -148,7 +148,7 @@
       "title": "Relationship According To",
       "description": "A name of a dcterms:Agent responsible for asserting a dwc:ResourceRelationship.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -161,7 +161,7 @@
       "title": "Relationship According To ID",
       "description": "An identifier for a dcterms:Agent responsible for asserting a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -169,8 +169,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -178,7 +178,7 @@
       "title": "Relationship Established Date",
       "description": "A date on which a dwc:ResourceRelationship was established.",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -191,7 +191,7 @@
       "title": "Relationship Remarks",
       "description": "Comments or notes about a dwc:ResourceRelationship.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

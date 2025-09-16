@@ -5,7 +5,7 @@
   "title": "Survey",
   "description": "A biotic survey or inventory.",
   "comments": "This class includes properties found in the Humboldt Extension to Darwin Core (eco: namespace), except for the target scope terms, which can be accommodated in eco:SurveyTarget.",
-  "example": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
+  "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
   "namespace": "eco",
   "iri": "http://rs.tdwg.org/eco/terms/Survey",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Survey ID",
       "description": "An identifier for a dwc:Survey.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "TRUE"
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -50,7 +50,7 @@
       "title": "Site Count",
       "description": "Total number of individual sites surveyed during a dwc:Event.",
       "comments": "Site refers to the location at which observations are made or samples/measurements are taken. The site can be at any level of hierarchy.",
-      "example": "`1`; `15`",
+      "examples": "`1`; `15`",
       "type": "integer",
       "format": "default",
       "namespace": "eco",
@@ -58,7 +58,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/siteCount-2024-02-28",
       "rdfs:comment": "Total number of individual sites surveyed during the dwc:Event.",
       "constraints": {
-        "minimum": "1"
+        "minimum": true
       }
     },
     {
@@ -66,7 +66,7 @@
       "title": "Site Nesting Description",
       "description": "Textual description of a hierarchical sampling design.",
       "comments": "Site refers to the location at which observations are made or samples/measurements are taken. The site can be at any level of hierarchy.",
-      "example": "`5 sampling sites of 3-5 plots each`",
+      "examples": "`5 sampling sites of 3-5 plots each`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -79,7 +79,7 @@
       "title": "Verbatim Site Descriptions",
       "description": "Original textual description of site(s).",
       "comments": "Site refers to the location at which observations are made or samples/measurements are taken. The site can be at any level of hierarchy. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
-      "example": "`Wet flatwoods | Wet depression surrounded by mesic longleaf pine flatwoods | Ground cover of thick Andropogon spp., Sporobolus floridanus, Vaccinium spp, Rhynchospora spp., Centella erecta, Panicum rigidulum.`",
+      "examples": "`Wet flatwoods | Wet depression surrounded by mesic longleaf pine flatwoods | Ground cover of thick Andropogon spp., Sporobolus floridanus, Vaccinium spp, Rhynchospora spp., Centella erecta, Panicum rigidulum.`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -92,7 +92,7 @@
       "title": "Verbatim Site Names",
       "description": "A list (concatenated and separated) of original site names.",
       "comments": "Site refers to the location at which observations are made or samples/measurements are taken. The site can be at any level of hierarchy. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
-      "example": "`East Coastal Fringe | St. Marks Wildlife Management Area`; `S1 | S2 | C1 | C2 | R14 | R22 | W1`",
+      "examples": "`East Coastal Fringe | St. Marks Wildlife Management Area`; `S1 | S2 | C1 | C2 | R14 | R22 | W1`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -105,7 +105,7 @@
       "title": "Geospatial Scope Area Value",
       "description": "The numeric value for the total area of a geospatial scope of a dwc:Event.",
       "comments": "Geospatial scope refers to a dwc:Event location reported using the terms organized in Darwin Core under dcterms:Location. This area is always greater than or equal to the eco:totalAreaSampledValue. An eco:geospatialScopeAreaValue must have a corresponding eco:geospatialScopeAreaUnit.",
-      "example": "`25`",
+      "examples": "`25`",
       "type": "number",
       "format": "default",
       "namespace": "eco",
@@ -113,7 +113,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/geospatialScopeAreaValue-2024-02-28",
       "rdfs:comment": "The numeric value for the total area of the geospatial scope of the dwc:Event.",
       "constraints": {
-        "minimum": "0"
+        "minimum": false
       }
     },
     {
@@ -121,7 +121,7 @@
       "title": "Geospatial Scope Area Unit",
       "description": "Units associated with a value in eco:geospatialScopeAreaValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary. For units containing exponents, use characters from the Unicode Latin-1 Supplement character set (hex 00B2 for squared and 00B3 for cubed). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`km²`",
+      "examples": "`km²`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -134,7 +134,7 @@
       "title": "Total Area Sampled Unit",
       "description": "Units associated with a value in eco:totalAreaSampledValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary. For units containing exponents, use characters from the Unicode Latin-1 Supplement character set (hex 00B2 for squared and 00B3 for cubed). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`0.8`",
+      "examples": "`0.8`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -147,7 +147,7 @@
       "title": "Total Area Sampled Value",
       "description": "The numeric value for the total area dwc:Surveyed during a dwc:Event.",
       "comments": "This area is always less than or equal to the eco:geospatialScopeAreaValue. An eco:totalAreaSampledValue must have a corresponding eco:totalAreaSampledUnit.",
-      "example": "`km²`",
+      "examples": "`km²`",
       "type": "number",
       "format": "default",
       "namespace": "eco",
@@ -155,7 +155,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/totalAreaSampledValue-2024-02-28",
       "rdfs:comment": "The numeric value for the total area surveyed during the dwc:Event.",
       "constraints": {
-        "minimum": "0"
+        "minimum": false
       }
     },
     {
@@ -163,7 +163,7 @@
       "title": "Reported Extreme Conditions",
       "description": "A description of any extreme weather or environmental conditions that may have affected a dwc:Event.",
       "comments": "",
-      "example": "`{\"minimumTemperatureInDegreesFahrenheit\": 18, \"maximumTemperatureInDegreesFahrenheit\": 32}`",
+      "examples": "`{\"minimumTemperatureInDegreesFahrenheit\": 18, \"maximumTemperatureInDegreesFahrenheit\": 32}`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -176,7 +176,7 @@
       "title": "Reported Weather",
       "description": "A list of weather or climatic conditions present during a dwc:Event.",
       "comments": "Recommended best practice is to use a key:value encoding schema for a data interchange format such as JSON.",
-      "example": "`flooding during week 3 of surveys`; `rockslide at site 2`",
+      "examples": "`flooding during week 3 of surveys`; `rockslide at site 2`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -189,7 +189,7 @@
       "title": "Event Duration Value",
       "description": "The numeric value for the duration of a dwc:Event.",
       "comments": "`An eco:eventDurationValue must have a corresponding eco:eventDurationUnit.`",
-      "example": "`1`; `30`",
+      "examples": "`1`; `30`",
       "type": "number",
       "format": "default",
       "namespace": "eco",
@@ -197,7 +197,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/eventDurationValue-2024-02-28",
       "rdfs:comment": "The numeric value for the duration of the dwc:Event.",
       "constraints": {
-        "minimum": "0"
+        "minimum": false
       }
     },
     {
@@ -205,7 +205,7 @@
       "title": "Event Duration Unit",
       "description": "Units associated with a value in eco:eventDurationValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`minutes`; `hours`; `days`; `months`; `years`",
+      "examples": "`minutes`; `hours`; `days`; `months`; `years`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -218,7 +218,7 @@
       "title": "Taxon Completeness Reported",
       "description": "Statement about whether the taxonomic completeness of a dwc:Event was assessed.",
       "comments": "This term is meant to alert users that the inventory was conducted in such a way that all of the target taxa (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) should have been detectable if they were present during a dwc:Event. This term can provide data users with a qualitative measure of how comprehensively an area has been surveyed, which assists in interpreting species populations, areas of occupancy, inferring species absences, etc. This term is only relevant if a dwc:Event used restricted search or open search methods. If taxonomic completeness was assessed, the methods used or an explanation of the basis of the completeness should be stated in eco:taxonCompletenessProtocols. Recommended best practice is to use controlled value strings from the controlled vocabulary designated for use with this term, listed at http://rs.tdwg.org/dwc/doc/tcr/. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`notReported`; `reportedComplete`; `reportedIncomplete`",
+      "examples": "`notReported`; `reportedComplete`; `reportedIncomplete`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -231,7 +231,7 @@
       "title": "Taxon Completeness Protocols",
       "description": "A description of or reference to the dwc:Protocols used to determine eco:taxonCompletenessReported.",
       "comments": "This term allows users to determine how comprehensively an area has been sampled. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`census | based on sampling effort`; `based on species accumulation curves`",
+      "examples": "`census | based on sampling effort`; `based on species accumulation curves`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -244,7 +244,7 @@
       "title": "Is Absence Reported",
       "description": "Taxonomic absences were reported.",
       "comments": "Absences can be reported at any taxonomic level.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -257,7 +257,7 @@
       "title": "Absent Taxa",
       "description": "A list (concatenated and separated) of taxa reported absent during a dwc:Event.",
       "comments": "Absences can be reported at any taxonomic level. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`Parabuteo unicinctus | Geranoaetus melanoleucus`; `Cetoniinae | Aclopinae | Cyclocephala modesta`",
+      "examples": "`Parabuteo unicinctus | Geranoaetus melanoleucus`; `Cetoniinae | Aclopinae | Cyclocephala modesta`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -270,7 +270,7 @@
       "title": "Has Non Target Taxa",
       "description": "One or more dwc:Organisms of taxa outside the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) were detected and reported for this dwc:Event.",
       "comments": "This term is meant to alert users to the presence of non-target taxa (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Examination of the taxonomic scope is needed in order to identify the non-target taxa. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available) or by exploring eco:nonTargetTaxa for this dwc:Event (if populated). The value of this term should be 'true' if dwc:Occurrences of taxa outside the taxonomic scope as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -283,7 +283,7 @@
       "title": "Non Target Taxa",
       "description": "A list (concatenated and separated) of taxa reported during a dwc:Event that are outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope).",
       "comments": "This term is meant to allow the full list of taxa that are considered outside of the taxonomic scope and yet were reported in the dataset to be shared. This term is relevant only if a target taxonomic scope is declared and eco:hasNonTargetTaxa is ‘true’. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Non-target taxa (in some disciplines called “bycatch”) can be reported at any taxonomic level. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`Parabuteo unicinctus | Geranoaetus melanoleucus`; `Cetoniinae | Aclopinae | Cyclocephala modesta`",
+      "examples": "`Parabuteo unicinctus | Geranoaetus melanoleucus`; `Cetoniinae | Aclopinae | Cyclocephala modesta`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -296,7 +296,7 @@
       "title": "Are Non Target Taxa Fully Reported",
       "description": "Every dwc:Organism that was outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) and detected during a dwc:Event, and that was detectable using the given protocol (given in eco:protocolDescriptions and dwc:samplingProtocol), was reported.",
       "comments": "This term is meant to inform a user of the data whether there were non-target taxa that were detected, but left unreported. This term is only relevant if a dwc:Event used restricted search or open search methods and if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Within dwc:Events that used either a restricted search or an open search method and declared a taxonomic scope, if all dwc:Organisms that are not included within the target taxonomic scope and that were detected during a dwc:Event were reported, the value of this term should be 'true', otherwise the value of this term should be ‘false'.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -309,7 +309,7 @@
       "title": "Has Non Target Organisms",
       "description": "One or more dwc:Organisms outside the target organismal scopes (eco:targetDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:targetLifeStageScope) were detected and reported for this dwc:Event.",
       "comments": "This term is meant to alert users to the presence of non-target organisms (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target organismal scope is declared. Organismal scope is based on the combination of all of the following terms: eco:targetLifeStageScope, eco:excludedLifeStageScope, eco:targetDegreeOfEstablishmentScope, eco:excludedDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:excludedGrowthFormScope. Examination of the organismal scope is needed in order to identify the non-target dwc:Organisms. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available). The value of this term should be 'true' if dwc:Occurrences of dwc:Organisms outside the organismal scope(s) as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -322,7 +322,7 @@
       "title": "Verbatim Target Scope",
       "description": "A verbatim original description of a dwc:Event scope.",
       "comments": "Recommended best practice is first to populate explicit scope terms to the fullest extent possible (e.g., eco:targetTaxonomicScope). It is not recommended to use this term in assessing absence or completeness.",
-      "example": "`small mammals`; `freshwater macroinvertebrates`; `dead animals, ground-living insects`",
+      "examples": "`small mammals`; `freshwater macroinvertebrates`; `dead animals, ground-living insects`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -335,7 +335,7 @@
       "title": "Identified By",
       "description": "A list (concatenated and separated) of names of dcterms:Agents responsible for making a taxonomic determination of a dwc:Organism.",
       "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Event. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`James L. Patton`; `Theodore Pappenfuss | Robert Macey`",
+      "examples": "`James L. Patton`; `Theodore Pappenfuss | Robert Macey`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -348,7 +348,7 @@
       "title": "Identified By ID",
       "description": "An identifier for a dcterms:Agent responsible for making a taxonomic determination of a dwc:Organism.",
       "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Survey. Recommended best practice is to provide a single identifier that disambiguates the details of the identifying dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`https://orcid.org/0000-0002-1825-0097`",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
@@ -356,8 +356,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/iri/version/identifiedBy-2025-06-12",
       "rdfs:comment": "A list (concatenated and separated) of the globally unique identifier for the person, people, groups, or organizations responsible for assigning the dwc:Taxon to the subject.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -365,7 +365,7 @@
       "title": "Identification References",
       "description": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification.",
       "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Survey. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`Aves del Noroeste Patagonico. Christie et al. 2004.`; `Stebbins, R. Field Guide to Western Reptiles and Amphibians. 3rd Edition. 2003. | Irschick, D.J. and Shaffer, H.B. (1997). The polytypic species revisited: Morphological differentiation among tiger salamanders (Ambystoma tigrinum) (Amphibia: Caudata). Herpetologica, 53(1), 30-49.`",
+      "examples": "`Aves del Noroeste Patagonico. Christie et al. 2004.`; `Stebbins, R. Field Guide to Western Reptiles and Amphibians. 3rd Edition. 2003. | Irschick, D.J. and Shaffer, H.B. (1997). The polytypic species revisited: Morphological differentiation among tiger salamanders (Ambystoma tigrinum) (Amphibia: Caudata). Herpetologica, 53(1), 30-49.`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -378,7 +378,7 @@
       "title": "Compilation Types",
       "description": "A statement specifying whether data reported are derived from sampling events, ancillary data compiled from other sources, or a combination of both.",
       "comments": "This term is only relevant if a dwc:Event is an inventory. Recommended best practice is to use a controlled vocabulary. Recommended best practice is to separate the values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`samplingEvents`; `compilationOfExistingSourcesAndSamplingEvents`; `compilationOfExistingSources`; `compilationOfExistingSourcesAndSamplingEvents | compilationOfExistingSources`",
+      "examples": "`samplingEvents`; `compilationOfExistingSourcesAndSamplingEvents`; `compilationOfExistingSources`; `compilationOfExistingSourcesAndSamplingEvents | compilationOfExistingSources`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -391,7 +391,7 @@
       "title": "Compilation Source Types",
       "description": "The types of data sources contributing to the compilation reported.",
       "comments": "This term is only relevant if a dwc:Event is a compilation in which one or more types of data sources were used. Recommended best practice is to use a controlled vocabulary and separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`museumSpecimens`; `literature`; `expertKnowledge | localKnowledge`",
+      "examples": "`museumSpecimens`; `literature`; `expertKnowledge | localKnowledge`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -404,7 +404,7 @@
       "title": "Inventory Types",
       "description": "The types of search processes used to conduct the inventory.",
       "comments": "This term is only relevant if a dwc:Event represents an inventory. Recommended best practice is to use a controlled vocabulary. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`restrictedSearch`; `openSearch`; `opportunisticSearch`; `adventitious`; `compilation`; `openSearch | opportunisticSearch`",
+      "examples": "`restrictedSearch`; `openSearch`; `opportunisticSearch`; `adventitious`; `compilation`; `openSearch | opportunisticSearch`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -417,7 +417,7 @@
       "title": "Protocol Names",
       "description": "Categorical descriptive names for the dwc:Protocols used during a dwc:Event.",
       "comments": "Recommended best practice is to use a controlled vocabulary and separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`boxTrapping`; `floraInventory`; `boxTrapping | funnelTrapping`",
+      "examples": "`boxTrapping`; `floraInventory`; `boxTrapping | funnelTrapping`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -430,7 +430,7 @@
       "title": "Protocol Descriptions",
       "description": "A detailed description of the dwc:Protocols used during a dwc:Survey.",
       "comments": "This description should be associated with protocols provided in eco:protocolNames. The description may include deviations from a protocol referred to in eco:protocolReferences. Recommended good practice is to provide information about instruments used, calibration, etc. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
-      "example": "`Three conventional harp traps (3.2m ht x 2.2m w) were established in flight path zones for a period of 4 hrs at dawn and dusk for a total of 10 trap nights. Traps were visited on an hourly basis during each deployment period and the trap catch recorded for species, size, weight, sex, age and maternal status.`",
+      "examples": "`Three conventional harp traps (3.2m ht x 2.2m w) were established in flight path zones for a period of 4 hrs at dawn and dusk for a total of 10 trap nights. Traps were visited on an hourly basis during each deployment period and the trap catch recorded for species, size, weight, sex, age and maternal status.`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -443,7 +443,7 @@
       "title": "Protocol References",
       "description": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Protocol.",
       "comments": "Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
-      "example": "`Penguins from space: faecal stains reveal the location of emperor penguin colonies, https://doi.org/10.1111/j.1466-8238.2009.00467.x`",
+      "examples": "`Penguins from space: faecal stains reveal the location of emperor penguin colonies, https://doi.org/10.1111/j.1466-8238.2009.00467.x`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -456,7 +456,7 @@
       "title": "Is Abundance Reported",
       "description": "The number of dwc:Organisms collected or observed was reported.",
       "comments": "Typically the abundance values would be reported in a dwc:organismQuantity and dwc:organismQuantityType terms for the child dwc:Occurrence records for this dwc:Event.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -469,7 +469,7 @@
       "title": "Is Abundance Cap Reported",
       "description": "A maximum number of dwc:Organisms was reported, as specified or restricted by the dwc:Protocol used.",
       "comments": "Values of abundance cap should be captured under the term eco:abundanceCap.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -482,7 +482,7 @@
       "title": "Abundance Cap",
       "description": "The reported maximum number of dwc:Organisms.",
       "comments": "",
-      "example": "`300; `700`",
+      "examples": "`300; `700`",
       "type": "integer",
       "format": "default",
       "namespace": "eco",
@@ -490,7 +490,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/abundanceCap-2024-02-28",
       "rdfs:comment": "The reported maximum number of dwc:Organisms.",
       "constraints": {
-        "minimum": "0"
+        "minimum": false
       }
     },
     {
@@ -498,7 +498,7 @@
       "title": "Is Vegetation Cover Reported",
       "description": "A vegetation cover metric was reported.",
       "comments": "Typically values or descriptions of vegetation cover would be captured under the term eco:verbatimSiteDescriptions.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -511,7 +511,7 @@
       "title": "Is Least Specific Target Category Quantity Inclusive",
       "description": "The total detected quantity for a dwc:Taxon (including subcategories thereof) in a dwc:Event is given explicitly in a single record (dwc:organismQuantity value) for that dwc:Taxon.",
       "comments": "Recommended values are 'true' and 'false'. This term is only relevant if dwc:organismQuantity is a number. For a detailed explanation, see http://rs.tdwg.org/dwc/doc/inclusive/.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -524,7 +524,7 @@
       "title": "Has Vouchers",
       "description": "Specimen vouchers were collected during a dwc:Event.",
       "comments": "",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -537,7 +537,7 @@
       "title": "Voucher Institutions",
       "description": "A list (concatenated and separated) of the names or acronyms of the institutions where vouchers collected during a dwc:Event were deposited.",
       "comments": "Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
-      "example": "`FMNH`; `AMNH | MVZ`; `Nairobi National Museum`",
+      "examples": "`FMNH`; `AMNH | MVZ`; `Nairobi National Museum`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -550,7 +550,7 @@
       "title": "Has Material Samples",
       "description": "Material samples were collected during a dwc:Event.",
       "comments": "",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -563,7 +563,7 @@
       "title": "Material Sample Types",
       "description": "A list (concatenated and separated) of material sample types collected during a dwc:Event.",
       "comments": "Recommended best practice is to use a controlled vocabulary and separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`wholeOrganism`; `skeleton`; `tissue | blood | fecal | stomachContent`",
+      "examples": "`wholeOrganism`; `skeleton`; `tissue | blood | fecal | stomachContent`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -576,7 +576,7 @@
       "title": "Sample Size Value",
       "description": "A numeric value for a measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
       "comments": "A dwc:sampleSizeValue must have a corresponding dwc:sampleSizeUnit.",
-      "example": "`5` (sampleSizeValue) with `metre` (sampleSizeUnit)",
+      "examples": "`5` (sampleSizeValue) with `metre` (sampleSizeUnit)",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -589,7 +589,7 @@
       "title": "Sample Size Unit",
       "description": "The unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event.",
       "comments": "A dwc:sampleSizeUnit must have a corresponding dwc:sampleSizeValue, e.g., `5` for dwc:sampleSizeValue with `m` for dwc:sampleSizeUnit. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`minute`; `hour`; `day`; `metre`; `square metre`; `cubic metre`",
+      "examples": "`minute`; `hour`; `day`; `metre`; `square metre`; `cubic metre`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -602,7 +602,7 @@
       "title": "Sampling Performed By",
       "description": "A dcterms:Agent responsible for sampling.",
       "comments": "The sampling dwc:Event could be at any level of hierarchy. In the case of a higher level (parent) dwc:Event, include all the organizations or people involved in the child dwc:Events that contributed to the parent dwc:Event. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`North American Butterfly Association`; `KK Wall`; `JJ Green`; `LL Pink and FF Grey | Aspen Center for Environmental Studies`",
+      "examples": "`North American Butterfly Association`; `KK Wall`; `JJ Green`; `LL Pink and FF Grey | Aspen Center for Environmental Studies`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -615,7 +615,7 @@
       "title": "Sampling Performed By ID",
       "description": "An identifier for a dcterms:Agent responsible for sampling.",
       "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the sampling dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`https://orcid.org/0000-0002-1825-0097`",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -623,8 +623,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -632,7 +632,7 @@
       "title": "Is Sampling Effort Reported",
       "description": "The sampling effort associated with a dwc:Event was reported.",
       "comments": "Typically values of effort would be captured under the terms eco:samplingEffortValue and eco:samplingEffortUnit.",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
@@ -645,7 +645,7 @@
       "title": "Sampling Effort Protocol",
       "description": "A description of or reference to a Protocol used to determine a eco:samplingEffortValue.",
       "comments": "This description should be associated with the values reported in eco:samplingEffortValue and eco:samplingEffortUnit. This is a specialization of eco:protocolDescriptions focused on effort, distinct from the survey method. The effort relates to the intensity of sampling and therefore can assist in interpreting estimates of completeness. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`40 box traps deployed at even spacings along 4 parallel 100m transects placed 50m apart and visited at 6 hourly intervals over a 48 hour period`; `2 people occupying a bird hide for a period of 8 hours and undertaking a 30 minute count of species within the 150 degree field of view every 2 hours`; `A single baited camera trap station with motion sensor trigger, deployed for a period of 10 days and configured for detecting large fauna moving through a known traffic way`",
+      "examples": "`40 box traps deployed at even spacings along 4 parallel 100m transects placed 50m apart and visited at 6 hourly intervals over a 48 hour period`; `2 people occupying a bird hide for a period of 8 hours and undertaking a 30 minute count of species within the 150 degree field of view every 2 hours`; `A single baited camera trap station with motion sensor trigger, deployed for a period of 10 days and configured for detecting large fauna moving through a known traffic way`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -658,7 +658,7 @@
       "title": "Sampling Effort Protocol ID",
       "description": "An identifier for a dwc:Protocol used to determine a eco:samplingEffortValue.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ecoiri",
@@ -666,8 +666,8 @@
       "iri_version": "http://rs.tdwg.org/eco/iri/version/samplingEffortProtocol-2025-07-10",
       "rdfs:comment": "A method or protocol used to determine the sampling effort, denoted by an IRI.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -675,7 +675,7 @@
       "title": "Sampling Effort Value",
       "description": "The numeric value for the sampling effort expended during a dwc:Event.",
       "comments": "This term is meant to capture the total sampling effort value. To express details of how the effort was determined use eco:samplingEffortProtocol. For compilations it is recommend not to infer effort. An eco:samplingEffortValue must have a corresponding eco:samplingEffortUnit.",
-      "example": "`1900`; `40`; `5.5`",
+      "examples": "`1900`; `40`; `5.5`",
       "type": "number",
       "format": "default",
       "namespace": "eco",
@@ -683,7 +683,7 @@
       "iri_version": "http://rs.tdwg.org/eco/terms/version/samplingEffortValue-2024-02-28",
       "rdfs:comment": "The numeric value for the sampling effort expended during the dwc:Event.",
       "constraints": {
-        "minimum": "0"
+        "minimum": false
       }
     },
     {
@@ -691,7 +691,7 @@
       "title": "Sampling Effort Unit",
       "description": "Units associated with a value in eco:samplingEffortValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "example": "`trapHours`; `personHours`; `trapDays`",
+      "examples": "`trapHours`; `personHours`; `trapDays`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -704,7 +704,7 @@
       "title": "Information Withheld",
       "description": "Additional information that exists about a resource, but that is not shared publicly.",
       "comments": "",
-      "example": "`location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
+      "examples": "`location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -717,7 +717,7 @@
       "title": "Data Generalizations",
       "description": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request.",
       "comments": "",
-      "example": "`Coordinates generalized from original GPS coordinates to the nearest half degree grid cell.`",
+      "examples": "`Coordinates generalized from original GPS coordinates to the nearest half degree grid cell.`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -730,7 +730,7 @@
       "title": "Feedback URL",
       "description": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record.",
       "comments": "Recommended best practice is to optionally include query strings that act to pre-populate web page form elements and communicate the context.",
-      "example": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
+      "examples": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

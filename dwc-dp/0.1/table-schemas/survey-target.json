@@ -5,7 +5,7 @@
   "title": "Survey Target",
   "description": "A specification of characteristics of dwc:Occurrences that were included or excluded in an eco:Survey.",
   "comments": "",
-  "example": "`include all bird species`; `include reproductive female Ctenomys sociabilis`; `include Oncorhynchus mykiss, include Oncorhynchus clarkii, exclude total length < 12 inches`",
+  "examples": "`include all bird species`; `include reproductive female Ctenomys sociabilis`; `include Oncorhynchus mykiss, include Oncorhynchus clarkii, exclude total length < 12 inches`",
   "namespace": "eco",
   "iri": "http://rs.tdwg.org/eco/terms/SurveyTarget",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Survey Target ID",
       "description": "An identifier for a dwc:SurveyTarget.",
       "comments": "Recommended best practice is to use a globally unique identifier. Note: values of this term are not meant to be unique within a dwc:SurveyTarget. A full dwc:SurveyTarget is composed of all records that share the same dwc:surveyTargetID.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Survey ID",
       "description": "An identifier for a dwc:Survey.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -50,7 +50,7 @@
       "title": "Survey Target Type",
       "description": "A scope a dwc:SurveyTarget describes.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`taxon`; `habitat`; `establishmentMeans`; `growthForm`; `sex`; `lifeStage`; `minimum length`",
+      "examples": "`taxon`; `habitat`; `establishmentMeans`; `growthForm`; `sex`; `lifeStage`; `minimum length`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -63,7 +63,7 @@
       "title": "Survey Target Value",
       "description": "A value of a characteristic sought for a dwc:SurveyTarget for a given dwc:surveyTargetType.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`Aves`; `oak savannah`; `native`; `tree`; `female`; `adult`; `height`; `weight`",
+      "examples": "`Aves`; `oak savannah`; `native`; `tree`; `female`; `adult`; `height`; `weight`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -76,7 +76,7 @@
       "title": "Survey Target Unit",
       "description": "Units associated with a value in dwc:surveyTargetValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`m`; `g`; `years`",
+      "examples": "`m`; `g`; `years`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -89,7 +89,7 @@
       "title": "Include Or Exclude",
       "description": "A term to declare whether an instance of a dwc:SurveyTarget is an included scope or an excluded scope. Combinations of dwc:SurveyTarget records of inclusions and exclusions can define complex scopes such as all flying adult Aves except Passeriformes.",
       "comments": "Recommended best practice is use a controlled vocabulary consisting of 'include' and 'exclude' only.",
-      "example": "`include`; `exclude`",
+      "examples": "`include`; `exclude`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -97,8 +97,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -106,7 +106,7 @@
       "title": "Is Survey Target Fully Reported",
       "description": "A declaration of whether the counts for an instance of the dwc:SurveyTarget report everything that matches the declared dwc:SurveyTarget. If they do, this enables inference of absence of detection for everything in that dwc:SurveyTarget that is included but that does not appear in the count.",
       "comments": "",
-      "example": "`true`; `false`",
+      "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
       "namespace": "dwc",
@@ -114,8 +114,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     }
   ],

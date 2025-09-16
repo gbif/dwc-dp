@@ -5,7 +5,7 @@
   "title": "Provenance",
   "description": "Information about an entity’s origins.",
   "comments": "This is a convenience class to group related properties.",
-  "example": "",
+  "examples": "",
   "namespace": "dwc",
   "iri": "",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Provenance ID",
       "description": "An identifier for a dwc:Provenance.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "TRUE"
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Dataset ID",
       "description": "An identifier for a dataset from which data originated.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "`b15d4952-7d20-46f1-8a3e-556a512b04c5`",
+      "examples": "`b15d4952-7d20-46f1-8a3e-556a512b04c5`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -46,7 +46,7 @@
       "title": "Funding Attribution",
       "description": "A list (concatenated and separated) of names of the funding organizations or agencies that provided funding for a project.",
       "comments": "Specify the full official name of the funding body. This should include the complete name without abbreviations, unless the abbreviation is an official and commonly recognized form (e.g., NSF for the National Science Foundation). Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`Artsdatabanken`; `National Science Foundation`; `Norges forskningsråd`; `Ocean Census | Nippon Foundation`",
+      "examples": "`Artsdatabanken`; `National Science Foundation`; `Norges forskningsråd`; `Ocean Census | Nippon Foundation`",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -59,7 +59,7 @@
       "title": "Funding Attribution ID",
       "description": "An identifier for a dcterms:Agent that financially supported a project.",
       "comments": "Provide a unique identifier for the funding body, such as an identifier used in governmental or international databases. If no official identifier exists, use a persistent and unique identifier within your organization or dataset. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`https://ror.org/00epmv149`; `https://ror.org/00epmv149 | https://ror.org/04jnzhb65`; `https://www.wikidata.org/wiki/Q13102615`",
+      "examples": "`https://ror.org/00epmv149`; `https://ror.org/00epmv149 | https://ror.org/04jnzhb65`; `https://www.wikidata.org/wiki/Q13102615`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -67,8 +67,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/fundingAttributionID-2025-06-12",
       "rdfs:comment": "An identifier for a dcterms:Agent that financially supported a project.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -76,7 +76,7 @@
       "title": "Source",
       "description": "A related resource from which this resource is derived.",
       "comments": "The described resource may be derived from the related resource in whole or in part. Recommended best practice is to identify the related resource by means of a string conforming to a formal identification system.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dc",
@@ -89,7 +89,7 @@
       "title": "Source IRI",
       "description": "An identifier for a resource from which this resource is derived.",
       "comments": "This property is intended to be used with non-literal values. The described resource may be derived from the related resource in whole or in part. Best practice is to identify the related resource by means of a URI or a string conforming to a formal identification system.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
@@ -102,7 +102,7 @@
       "title": "Creator",
       "description": "A name of a dcterms:Agent primarily responsible for making the resource.",
       "comments": "Human readable, or doi number, or URL. Simple name of parent for human readable.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dc",
@@ -115,7 +115,7 @@
       "title": "Creator ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for making the resource.",
       "comments": "Recommended practice is to identify the creator with a URI. If this is not possible or feasible, a literal value that identifies the creator may be provided.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
@@ -123,8 +123,8 @@
       "iri_version": "",
       "rdfs:comment": "An entity primarily responsible for making the resource.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -132,7 +132,7 @@
       "title": "Provider",
       "description": "A name of a dcterms:Agent responsible for presenting the dwc:Media resource.",
       "comments": "If no separate Metadata Provider is given, this also attributes the metadata.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -145,7 +145,7 @@
       "title": "Provider ID",
       "description": "An identifier for a dcterms:Agent responsible for presenting the dwc:Media resource.",
       "comments": "If no separate Metadata Provider is given, this also attributes the metadata.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -153,8 +153,8 @@
       "iri_version": "http://rs.tdwg.org/ac/terms/version/provider-2023-09-05",
       "rdfs:comment": "URI for person or organization responsible for presenting the media resource.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -162,7 +162,7 @@
       "title": "Metadata Creator",
       "description": "A name of a dcterms:Agent that created the resource metadata.",
       "comments": "See also the entry for ac:metadataCreator and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -175,7 +175,7 @@
       "title": "Metadata Creator ID",
       "description": "An identifier for a dcterms:Agent that created the resource metadata.",
       "comments": "See also the entry for ac:metadataCreatorLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -183,8 +183,8 @@
       "iri_version": "http://rs.tdwg.org/ac/terms/version/metadataCreator-2023-09-05",
       "rdfs:comment": "A URI representing a person or organization originally creating the resource metadata record.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -192,7 +192,7 @@
       "title": "Metadata Provider",
       "description": "A name of a dcterms:Agent that provided the resource metadata.",
       "comments": "Media resources and their metadata may be served from different institutions, e. g. in the case of aggregators adding user annotations, taxon identifications, or ratings. Compare Provider. See also the entry for ac:metadataProvider in this document and the section Namespaces, Prefixes and Term Names for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -205,7 +205,7 @@
       "title": "Metadata Provider ID",
       "description": "An identifier for a dcterms:Agent that provided the resource metadata.",
       "comments": "Media resources and their metadata may be served from different institutions, e. g. in the case of aggregators adding user annotations, taxon identifications, or ratings. Compare Provider. See also the entry for ac:metadataProviderLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -213,8 +213,8 @@
       "iri_version": "http://rs.tdwg.org/ac/terms/version/metadataProvider-2023-09-05",
       "rdfs:comment": "URI of person or organization originally responsible for providing the resource metadata record.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -222,7 +222,7 @@
       "title": "Further Information URL",
       "description": "A URL of a website that provides additional information about the version of the dwc:Media resource that is provided by the Service Access Point.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
@@ -235,7 +235,7 @@
       "title": "Feedback URL",
       "description": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record.",
       "comments": "Recommended best practice is to optionally include query strings that act to pre-populate web page form elements and communicate the context.",
-      "example": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
+      "examples": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -248,7 +248,7 @@
       "title": "References",
       "description": "A related resource that is referenced, cited, or otherwise pointed to by the described resource.",
       "comments": "This property is intended to be used with non-literal values. This property is an inverse property of Is Referenced By.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
@@ -261,7 +261,7 @@
       "title": "Bibliographic Citation",
       "description": "A bibliographic reference for a resource.",
       "comments": "From Dublin Core, 'Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible.' The intended usage of this term in Darwin Core is to provide the preferred way to cite the resource itself. Note that the intended usage of dcterms:references in Darwin Core, by contrast, is to point to the definitive source representation of the resource, if one is available.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
@@ -274,7 +274,7 @@
       "title": "Project ID",
       "description": "A list (concatenated and separated) of identifiers for projects that contributed to a dwc:Event.",
       "comments": "A projectID may be shared in multiple distinct datasets. The nature of the association can be described in the metadata project description element. This term should be used to provide a globally unique identifier (GUID) for a project, if available. This could be a DOI, URI, or any other persistent identifier that ensures a project can be uniquely distinguished from others. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`https://arvenetternansen.com/`; `https://doi.org/10.26259/3b15eca7`; `https://doi.org/10.3030/101180559`; `OC202405`; `RCN276730`; `RCN276730 | Artsproject_7-24`",
+      "examples": "`https://arvenetternansen.com/`; `https://doi.org/10.26259/3b15eca7`; `https://doi.org/10.3030/101180559`; `OC202405`; `RCN276730`; `RCN276730 | Artsproject_7-24`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -287,7 +287,7 @@
       "title": "Project Title",
       "description": "A list (concatenated and separated) of titles or names for projects that contributed to a dwc:Event.",
       "comments": "Use this term to provide the official name or title of a project as it is commonly known and cited. Avoid abbreviations unless they are widely understood. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "example": "`Arctic Deep`; `Scalidophora i Noreg`; `The Nansen Legacy`; `Underwater Oases of the Mar del Plata Canyon: Talud Continental IV`",
+      "examples": "`Arctic Deep`; `Scalidophora i Noreg`; `The Nansen Legacy`; `Underwater Oases of the Mar del Plata Canyon: Talud Continental IV`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -319,7 +319,7 @@
       "predicate": "provided by",
       "reference": {
         "resource": "agent",
-        "fields": "agent"
+        "fields": "agentID"
       }
     },
     {

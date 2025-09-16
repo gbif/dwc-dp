@@ -5,7 +5,7 @@
   "title": "Media Provenance",
   "description": "A dwc:Provenance for a dwc:Media entity.",
   "comments": "",
-  "example": "",
+  "examples": "",
   "namespace": "",
   "iri": "",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Provenance ID",
       "description": "An identifier for a dwc:Provenance.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Media ID",
       "description": "An identifier for a dwc:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     }
   ],

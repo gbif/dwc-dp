@@ -1110,7 +1110,7 @@ let predicates = [
     "subject_field": "providerID",
     "predicate": "provided by",
     "related_table": "agent",
-    "related_field": "agent"
+    "related_field": "agentID"
   },
   {
     "subject_table": "provenance",

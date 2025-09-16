@@ -5,7 +5,7 @@
   "title": "Nucleotide Analysis",
   "description": "A link between a dwc:NucleotideSequence and a dwc:Event and a dwc:MaterialEntity from which it was derived, using a specified dwc:Protocol.",
   "comments": "",
-  "example": "",
+  "examples": "",
   "namespace": "dwc",
   "iri": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Nucleotide Analysis ID",
       "description": "An identifier for a dwc:NucleotideAnalysis.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "TRUE"
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Event ID",
       "description": "An identifier for a dwc:Event.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -50,7 +50,7 @@
       "title": "Molecular Protocol ID",
       "description": "An identifier for a dwc:MolecularProtocol.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -58,8 +58,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -67,7 +67,7 @@
       "title": "Nucleotide Sequence ID",
       "description": "An identifier for a dwc:NucleotideSequence.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -75,8 +75,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -84,7 +84,7 @@
       "title": "Material Entity ID",
       "description": "An identifier for a dwc:MaterialEntity.",
       "comments": "Values of dwc:materialEntityID are intended to uniquely and persistently identify a particular dwc:MaterialEntity within some context. Examples of context include a particular sample collection, an organization, or the worldwide scale. Recommended best practice is to use a persistent, globally unique identifier. The identifier is bound to a physical object (a dwc:MaterialEntity) as opposed to a particular digital record (representation) of that physical object.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -92,8 +92,8 @@
       "iri_version": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
       "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
       "constraints": {
-        "required": "FALSE",
-        "unique": "FALSE"
+        "required": false,
+        "unique": false
       }
     },
     {
@@ -101,7 +101,7 @@
       "title": "Read Count",
       "description": "A number of reads for a dwc:NucleotideSequence in a dwc:NucleotideAnalysis.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
@@ -114,7 +114,7 @@
       "title": "Total Read Count",
       "description": "A total number of reads in a dwc:NucleotideAnalysis.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "dwc",

@@ -170,7 +170,7 @@ phylogenetic-tree-tip-assertion,assertionProtocolID,followed,protocol,protocolID
 protocol-reference,referenceID,mentioned in,bibliographic-resource,referenceID,recommended
 protocol-reference,protocolID,mentioned,protocol,protocolID,recommended
 provenance,fundingAttributionID,funded by,agent,agentID,recommended
-provenance,providerID,provided by,agent,agent,recommended
+provenance,providerID,provided by,agent,agentID,recommended
 provenance,creatorID,created by,agent,agentID,recommended
 provenance,metadataCreatorID,metadata created by,agent,agentID,recommended
 provenance,metadataProviderID,metadata provided by,agent,agentID,recommended

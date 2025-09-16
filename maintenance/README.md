@@ -2,14 +2,6 @@
 Scripts in this folder are meant to be used to check various aspects of the data package and prepare the data package for use from the GBIF schema repository rs.gbif.org.
 
 ## Checks 
-**all_fields_summary.py** - Script to make a CSV file with one entry for each field from the ./dwc-dp/0.1/table-schemas.
-
-**check_dwc_consistency.py** - Script to check that the descriptions, comments, and examples in the local ./dwc-dp/0.1/table-schemas are the same as their corresponding terms in the canonical term_versions files in the TDWG GitHub repositories.
-
-**check_table_consistency.py** - Script to check that the descriptions, comments, and examples in the local ./dwc-dp/0.1/table-schema files follow some consistent patterns.
-
-**check_table_descriptions.py** - Script to check that the table descriptions in the local ./dwc-dp/0.1/index.json file are the same as the table descriptions in the table schema files in ./dwc-dp/0.1/table-schemas.
-
 **data-packages-validation-checks-local.py** - Script to validate the data package locally to the extent possible - no calls to non-local resources.
 
 **data-packages-validation-checks-sandbox.py** - Script to validate the sandbox version of the data package locally.
@@ -19,7 +11,7 @@ When the local content of the data package schemas is released, the schemas for 
 
 - 1. Prepare data package schemas.
 - 2. Check data package locally (see [Checks](#checks)).
-- 3. Update the data package version in ./dwc-dp/index.json
+- 3. Update the data package version in ./dwc-dp/index.json if necessary (generate_qrg.py should take care of this)
 - 4. Create sandbox-ready data package.
   - **local_to_sandbox.sh** - Make a GBIF sandbox-ready data package in the ./sandbox folder.
 - 5. Validate the data package in the local sandbox copy using the script **data-packages-validation-checks-sandbox.py**.

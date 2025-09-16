@@ -5,7 +5,7 @@
   "title": "Agent",
   "description": "A resource that acts or has the power to act.",
   "comments": "A person, group, organization, machine, software or other entity that can act. Membership in the dcterms:Agent class is determined by the capacity to act, even if not doing so in a specific context. To act: To participate in an event or process by contributing through behavior, operation, or an effect resulting from active participation — regardless of whether that contribution is intentional, volitional, or conscious.",
-  "example": "`Carl Linnaeus`; `The Terra Nova Expedition`; `The National Science Foundation`; `The El Yunque National Forest ARBIMON System`; `ChatGPT`",
+  "examples": "`Carl Linnaeus`; `The Terra Nova Expedition`; `The National Science Foundation`; `The El Yunque National Forest ARBIMON System`; `ChatGPT`",
   "namespace": "dcterms",
   "iri": "http://purl.org/dc/terms/Agent",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Agent ID",
       "description": "An identifier for a dcterms:Agent.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "TRUE"
+        "required": true,
+        "unique": true
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Agent Type",
       "description": "A category that best matches the nature of a dcterms:Agent.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
-      "example": "`person`; `group`; `organization`; `camera`",
+      "examples": "`person`; `group`; `organization`; `camera`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -46,7 +46,7 @@
       "title": "Preferred Agent Name",
       "description": "A name of a dcterms:Agent preferred in searches and results.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
@@ -59,7 +59,7 @@
       "title": "Agent Remarks",
       "description": "Comments or notes about a dcterms:Agent.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

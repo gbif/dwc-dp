@@ -90,6 +90,26 @@ print(f"Using TABLE_SCHEMAS_DIR: {TABLE_SCHEMAS_DIR}")
 os.makedirs(os.path.dirname(INDEX_JSON_PATH), exist_ok=True)
 os.makedirs(TABLE_SCHEMAS_DIR, exist_ok=True)
 
+def _parse_scalar(s):
+    """Coerce CSV cell text to proper JSON scalars (bool/int/float/None/str)."""
+    if s is None:
+        return None
+    t = str(s).strip()
+    if t == "":
+        return None
+    low = t.lower()
+    if low in ("true", "yes", "1"):
+        return True
+    if low in ("false", "no", "0"):
+        return False
+    try:
+        # try numbers (int first unless float-like)
+        if "." in t or "e" in low:
+            return float(t)
+        return int(t)
+    except ValueError:
+        return t
+
 # ==================== Stage 1: make_index_json ====================
 def make_index_stage(output_dir: str, version: str):
     out_dir = Path(output_dir).resolve()
@@ -167,7 +187,7 @@ def build_table_schemas(vocabulary_dir: Path, version: str):
                 "title": title,
                 "description": description,
                 "comments": comments,
-                "example": example,
+                "examples": example,
                 "namespace": namespace,
                 "iri": iri,
                 "iri_version": iri_version,
@@ -209,21 +229,22 @@ def build_fields_for_table(vocabulary_dir: Path, table_name: str):
             elif key_val == "fk":
                 fk_field_names.append(name)
 
-            # Constraints
+            # Constraints (coerce CSV strings to proper JSON scalars)
             constraints_candidates = {
-                "required": (row.get("required", "") or "").strip(),
-                "unique": (row.get("unique", "") or "").strip(),
-                "minimum": (row.get("minimum", "") or "").strip(),
-                "maximum": (row.get("maximum", "") or "").strip(),
+                "required": _parse_scalar(row.get("required")),
+                "unique": _parse_scalar(row.get("unique")),
+                "minimum": _parse_scalar(row.get("minimum")),
+                "maximum": _parse_scalar(row.get("maximum")),
             }
-            constraints = {k: v for k, v in constraints_candidates.items() if v != ""}
+            # Keep only keys with real values (None means "absent")
+            constraints = {k: v for k, v in constraints_candidates.items() if v is not None}
 
             field_obj = {
                 "name": name,
                 "title": title,
                 "description": description,
                 "comments": comments,
-                "example": example,
+                "examples": example,
                 "type": ftype,
                 "format": fmt,
                 "namespace": namespace,
@@ -267,7 +288,8 @@ def build_foreign_keys_for_table(pred_map, table_name: str, fk_field_names: list
         predicate = (row.get("predicate", "") or "").strip()
         related_table = (row.get("related_table", "") or "").strip()
         related_field = (row.get("related_field", "") or "").strip()
-        resource = "" if related_table == table_name else related_table
+        resource = related_table
+#        resource = "" if related_table == table_name else related_table
 
         fk = {
             "fields": fld,
@@ -611,9 +633,14 @@ def build_term_section(field, class_name):
     rows = []
     if not isinstance(field, dict):
         return ''
-    order = ["title", "namespace", "class", "iri", "description", "comments", "example", "type", "default", "constraints", "format", "iri_version"]
-    labels = {"title": "Title (Label)", "class": "Table:", "namespace": "Namespace", "iri": "IRI", "description": "Description",
-              "comments": "Comments", "example": "Examples", "type": "Type", "default": "Default", "constraints": "Constraints", "format": "Format", "iri_version": "Source"}
+
+    order = ["title", "namespace", "class", "iri", "description", "comments", 
+        "examples", "type", "default", "constraints", "format", "iri_version"]
+
+    labels = {"title": "Title (Label)", "class": "Table:", "namespace": "Namespace",
+          "iri": "IRI", "description": "Description", "comments": "Comments",
+          "examples": "Examples", "type": "Type", "default": "Default",
+          "constraints": "Constraints", "format": "Format", "iri_version": "Source"}
 
     for key in order:
         value = field.get(key)
@@ -635,7 +662,7 @@ def build_term_section(field, class_name):
             value = f'<a href="{value}" target="_blank">{value}</a>'
         if key == 'class':
             value = f'<a href="#{value}" target="_blank">{value}</a>'
-        elif key == 'example':
+        elif key == 'examples':
             examples = [ex.strip() for ex in str(value).split(';') if ex.strip()]
             value = ''
             for i, ex in enumerate(examples):

@@ -5,7 +5,7 @@
   "title": "Molecular Protocol Agent Role",
   "description": "A role filled by a dcterms:Agent with respect to a dwc:MolecularProtocol.",
   "comments": "",
-  "example": "",
+  "examples": "",
   "namespace": "",
   "iri": "",
   "iri_version": "",
@@ -16,7 +16,7 @@
       "title": "Agent ID",
       "description": "An identifier for a dcterms:Agent.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -24,8 +24,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -33,7 +33,7 @@
       "title": "Molecular Protocol ID",
       "description": "An identifier for a dwc:MolecularProtocol.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -41,8 +41,8 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "required": "TRUE",
-        "unique": "FALSE"
+        "required": true,
+        "unique": false
       }
     },
     {
@@ -50,7 +50,7 @@
       "title": "Agent Role",
       "description": "A category that best matches the nature of a role of a dcterms:Agent.",
       "comments": "Recommended best practice is to use a controlled vocabulary for the roles appropriate to the class of resource a dcterms:AgentRole is related to.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -63,7 +63,7 @@
       "title": "Agent Role IRI",
       "description": "An IRI of the controlled vocabulary value for a role of a dcterms:Agent.",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
@@ -76,7 +76,7 @@
       "title": "Agent Role Source",
       "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:agentRole is given.",
       "comments": "",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dc",
@@ -89,7 +89,7 @@
       "title": "Agent Role Order",
       "description": "A numerical position of a dcterms:AgentRole in a set of dcterms:AgentRoles that have the same combination of dwc:agentRole, dwc:agentRoleIRI, dwc:agentRoleSource and related target.",
       "comments": "One could use dwc:agentRoleOrder to create an ordered list of collectors (dwc:agentRole = 'collector') for a dwc:MaterialEntity, for example. The first would have dwc:agentRoleOrder=1, the second would have dwc:agentRoleOrder=2.",
-      "example": "",
+      "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
@@ -97,7 +97,7 @@
       "iri_version": "",
       "rdfs:comment": "",
       "constraints": {
-        "minimum": "1"
+        "minimum": true
       }
     },
     {
@@ -105,7 +105,7 @@
       "title": "Agent Role Date",
       "description": "An interval during which a dcterms:AgentRole was in effect.",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
-      "example": "",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
