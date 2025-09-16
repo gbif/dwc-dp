@@ -59,7 +59,7 @@ To enable an implementation of a Darwin Core Data Package as a new publishing mo
 
 ##### Assertion
 
-This public review includes a proposal for an [Assertion class](https://github.com/tdwg/dwc/issues/574) and its properties. The Assertion class is effectively an upgrade of the MeasurementOrFact class and many of its properties have equivalent properties in MeasurementOrFact. The decision to create an Assertion class was to avoid the longstanding misleading nature of the MeasurementOrFact class, which only sometimes conveys measurements and never, rigorously speaking, conveys facts. There is no proposal to deprecate MeasurementOrFact, as that would definitely have severe stability repercussions. Rather, it is hoped that people will transition from MeasurementOrFact to Assertion at their convenience.
+This public review includes a proposal for an [Assertion class](https://github.com/tdwg/dwc/issues/574) and its properties. The Assertion class is effectively an upgrade of the MeasurementOrFact class. The decision to create an Assertion class arose from the desire to avoid the longstanding awkward and misleading nature of the MeasurementOrFact class, which only sometimes conveys measurements and otherwise is used for either objective or subjective information that might be misconstrued as "facts". The Assertion class aims to improve on that. There is no current proposal to deprecate MeasurementOrFact, as that would definitely have severe stability repercussions. Rather, it is hoped that people will transition from MeasurementOrFact to Assertion at their convenience.
 
 
 #### Changes to existing classes and properties

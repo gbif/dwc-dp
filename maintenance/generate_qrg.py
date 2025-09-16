@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 """Run DwC-DP build in two stages:
 Stage 1) read the csv files in ../vocabulary and generate:
-  ../dwc-dp/<version>/index.json
-  ../dwc-dp/<version>/version.json
-  ../dwc-dp/<version>/table-schemas/*.json
+  ../dwc-dp/index.json
+  ../dwc-dp/version.json
+  ../dwc-dp/table-schemas/*.json
 
 Stage 2) renders the 
   ../qrg/index.html (DwC-DP Quick Reference Guide)
@@ -80,8 +80,8 @@ parser.add_argument("version", help="DwC-DP version (e.g., 0.1)")
 args, _unknown = parser.parse_known_args()
 
 # Derived paths shared by both stages
-INDEX_JSON_PATH = '../dwc-dp/' + args.version + '/index.json'
-TABLE_SCHEMAS_DIR = '../dwc-dp/' + args.version + '/table-schemas'
+INDEX_JSON_PATH = '../dwc-dp/index.json'
+TABLE_SCHEMAS_DIR = '../dwc-dp/table-schemas'
 
 print(f"Using INDEX_JSON_PATH: {INDEX_JSON_PATH}")
 print(f"Using TABLE_SCHEMAS_DIR: {TABLE_SCHEMAS_DIR}")
@@ -182,7 +182,7 @@ def build_table_schemas(vocabulary_dir: Path, version: str):
 
             ts = {
                 "identifier": f"http://rs.tdwg.org/dwc/dwc-dp/{name}",
-                "url": f"https://github.com/gbif/dwc-dp/blob/master/dwc-dp/{version}/table-schemas/{name}.json",
+                "url": f"table-schemas/{name}.json",
                 "name": name,
                 "title": title,
                 "description": description,
@@ -288,8 +288,8 @@ def build_foreign_keys_for_table(pred_map, table_name: str, fk_field_names: list
         predicate = (row.get("predicate", "") or "").strip()
         related_table = (row.get("related_table", "") or "").strip()
         related_field = (row.get("related_field", "") or "").strip()
-        resource = related_table
-#        resource = "" if related_table == table_name else related_table
+#        resource = related_table
+        resource = "" if related_table == table_name else related_table
 
         fk = {
             "fields": fld,
@@ -305,7 +305,7 @@ def build_foreign_keys_for_table(pred_map, table_name: str, fk_field_names: list
 def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
     return {
         "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
-        "url": f"https://github.com/gbif/dwc-dp/blob/master/dwc-dp/{version}",
+        "url": f"index.json",
         "name": "dwc-dp",
         "version": version,
         "title": "Darwin Core Data Package",
@@ -655,7 +655,11 @@ def build_term_section(field, class_name):
                 value = class_name
             else:
                 continue
-        value = str(value).strip()
+        if key == 'constraints' and isinstance(value, dict):
+            # JSON renders booleans as lowercase true/false
+            value = json.dumps(value, ensure_ascii=False)
+        else:
+            value = str(value).strip()
         if not value:
             continue
         if key == 'iri' or key == 'iri_version':
@@ -778,16 +782,16 @@ def generate_qrg_with_separators():
             if "comments" in table and table["comments"]:
                 content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
 
-            if table.get("example"):
+            ex_val = table.get("examples") or table.get("example")
+            if ex_val:
                 content += f'<p><strong>Examples:</strong></p>'
-                examples = [ex.strip() for ex in str(table.get("example")).split(';') if ex.strip()]
+                examples = [ex.strip() for ex in str(ex_val).split(';') if ex.strip()]
                 value = ''
                 for i, ex in enumerate(examples):
                     if i > 0:
                         value += '<div class="examples-separator"></div>'
                     value += f'<div class="examples-content">{ex}</div>'
-                content += value
-            # Table-level Source from "iri"
+                content += value# Table-level Source from "iri"
             if table.get("iri"):
                 src = str(table.get("iri")).strip()
                 try:

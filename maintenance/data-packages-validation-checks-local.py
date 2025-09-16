@@ -77,46 +77,85 @@ def check_table_schemas(package_file_path, package_data):
             print(f"Error: Invalid table schema JSON: {schema_file_path}")
 
 
+
+
 def check_foreign_keys(package_file, package_data):
+    """
+    Validate that all foreignKeys declared in each table schema:
+      - Reference an existing source field in the current table schema
+      - Point to an existing target table schema (including self-reference when `resource` is empty/missing)
+      - Reference an existing target field in the referenced schema
+    The function is tolerant of:
+      - `fields` being a string or a one-element list
+      - missing/empty `reference.resource` (interpreted as self-reference)
+    """
     global error_found
 
-    if "tableSchemas" not in package_data:
+    # Optional: skip known sandbox aggregate indexes if desired
+    if package_file in ('sandbox/data-packages/index.json', 'data-packages/index.json'):
         return
 
-    for schema in package_data['tableSchemas']:
-        table_schema_file = package_file.replace("index.json", f"table-schemas/{schema['name']}.json")
+    table_schemas = package_data.get('tableSchemas') or []
+    if not table_schemas:
+        return
+
+    for schema in table_schemas:
+        table_schema_name = schema.get('name')
+        table_schema_file = package_file.replace('index.json', f'table-schemas/{table_schema_name}.json')
 
         try:
-            with open(table_schema_file, 'r') as f:
+            with open(table_schema_file, 'r', encoding='utf-8') as f:
                 table_schema_json = json.load(f)
-
-            if "foreignKeys" in table_schema_json:
-                for fk in table_schema_json['foreignKeys']:
-                    fk_field = fk['fields']
-                    fk_ref_resource = fk['reference']['resource']
-                    fk_ref_field = fk['reference']['fields']
-
-                    if not any(f['name'] == fk_field for f in table_schema_json['fields']):
-                        print(f"Error: Field '{fk_field}' missing in {table_schema_file}")
-                        error_found = True
-
-                    ref_schema_file = package_file.replace(
-                        "index.json", f"table-schemas/{fk_ref_resource}.json"
-                    )
-
-                    if Path(ref_schema_file).exists():
-                        with open(ref_schema_file, 'r') as rf:
-                            ref_schema_json = json.load(rf)
-                        if not any(f['name'] == fk_ref_field for f in ref_schema_json['fields']):
-                            print(f"Error: Foreign key {schema['name']}/{fk_field} references non-existing field {fk_ref_resource}/{fk_ref_field}")
-                            error_found = True
-                    else:
-                        print(f"Error: Foreign key {schema['name']}/{fk_field} references non-existing table schema {fk_ref_resource}")
-                        error_found = True
-
-        except (json.JSONDecodeError, FileNotFoundError):
-            print(f"Error: Problem reading {table_schema_file}")
+        except Exception as e:
+            print(f"Error: Problem reading {table_schema_file}: {e}")
             error_found = True
+            continue
+
+        # Build a quick set of source field names for existence checks
+        source_fields = { (fld.get('name')) for fld in (table_schema_json.get('fields') or []) }
+
+        for fk in (table_schema_json.get('foreignKeys') or []):
+            # Source field (string or [string])
+            src_field = fk.get('fields')
+            if isinstance(src_field, list):
+                src_field = src_field[0] if src_field else None
+
+            if not src_field or src_field not in source_fields:
+                print(f"Error: Field '{src_field}' missing in {table_schema_name} (schema file {os.path.basename(table_schema_file)})")
+                error_found = True
+                # Can't validate further without a valid source field
+                continue
+
+            ref = fk.get('reference') or {}
+            # Target field (string or [string])
+            tgt_field = ref.get('fields')
+            if isinstance(tgt_field, list):
+                tgt_field = tgt_field[0] if tgt_field else None
+
+            # Target resource (self if empty/missing)
+            tgt_resource = ref.get('resource')
+            if not tgt_resource or (isinstance(tgt_resource, str) and not tgt_resource.strip()):
+                tgt_resource = table_schema_name  # interpret as self-reference
+
+            # Open referenced schema
+            ref_schema_file = package_file.replace('index.json', f'table-schemas/{tgt_resource}.json')
+            if not os.path.exists(ref_schema_file):
+                print(f"Error: Foreign key {table_schema_name}/{src_field} references non-existing table schema {tgt_resource}")
+                error_found = True
+                continue
+
+            try:
+                with open(ref_schema_file, 'r', encoding='utf-8') as rf:
+                    ref_schema_json = json.load(rf)
+            except Exception as e:
+                print(f"Error: Problem reading referenced schema {ref_schema_file}: {e}")
+                error_found = True
+                continue
+
+            target_fields = { (fld.get('name')) for fld in (ref_schema_json.get('fields') or []) }
+            if not tgt_field or tgt_field not in target_fields:
+                print(f"Error: Foreign key {table_schema_name}/{src_field} references non-existing field {tgt_resource}/{tgt_field}")
+                error_found = True
 
 def check_valid_frictionless(index_file_str):
     table_schema_files = find_package_table_schemas(index_file_str)
@@ -128,62 +167,6 @@ def check_valid_frictionless(index_file_str):
         except Exception as e:
             print(f"{file}: Error - {str(e)}")
 
-def check_foreign_keys(package_file, package_data):
-    global error_found
-
-    # print(f"Checking foreign keys for {package_file}")
-
-    if package_file == 'sandbox/data-packages/index.json' or package_file == 'data-packages/index.json':
-        # print("Skipping foreign keys check")
-        return
-
-    if "tableSchemas" in package_data:
-        for schema in package_data['tableSchemas']:
-            table_schema_name = schema['name']
-            table_schema_file = package_file.replace("index.json", "table-schemas/" + schema['name'] + ".json")
-            # print(f"Checking table schema {table_schema_name}")
-
-            try:
-                with open(table_schema_file, 'r') as f:
-                    table_schema_json = json.load(f)
-
-                if "foreignKeys" in table_schema_json:
-                    for foreign_key in table_schema_json['foreignKeys']:
-                        fk_field = foreign_key['fields']
-                        fk_reference_resource = foreign_key['reference']['resource']
-                        fk_reference_field = foreign_key['reference']['fields']
-
-                        # print(f"Foreign key: {fk_field} references "
-                        #       f"to {fk_reference_resource}/{fk_reference_field}")
-
-                        is_field_present = any(field['name'] == fk_field for field in table_schema_json['fields'])
-
-                        if not is_field_present:
-                            print(f"Error: There is no field {fk_field} in the table schema file {table_schema_file}")
-                            error_found = True
-
-                        reference_table_schema_file = (
-                            package_file.replace("index.json", "table-schemas/" + fk_reference_resource + ".json"))
-
-                        reference_table_schema_file_path = Path(reference_table_schema_file)
-
-                        if reference_table_schema_file_path.exists():
-                            with open(reference_table_schema_file, 'r') as f:
-                                reference_table_schema_json = json.load(f)
-
-                            is_fk_reference_field_present = (any(field['name'] == fk_reference_field for field in reference_table_schema_json['fields']))
-
-                            if not is_fk_reference_field_present:
-                                print(f"Error: Foreign key {table_schema_name}/{fk_field} references non existing "
-                                      f"field {fk_reference_resource}/{fk_reference_field}")
-                                error_found = True
-                        else:
-                            print(f"Error: Foreign key {table_schema_name}/{fk_field} references non existing "
-                                  f"table schema {fk_reference_resource}")
-                            error_found = True
-            except (json.JSONDecodeError, FileNotFoundError) as e:
-                print(f"Error: {type(e).__name__} occurred. Missing or invalid file: {table_schema_file}")
-                error_found = True
 
 def find_package_table_schemas(index_file_str):
     index_path_parent = Path(index_file_str).parent
@@ -211,7 +194,6 @@ for package_file in package_files:
 
     check_table_schemas(package_file, package_data)
     check_valid_frictionless(package_file)
-    check_foreign_keys(package_file, package_data)
     check_foreign_keys(package_file, package_data)
 
 if error_found:
