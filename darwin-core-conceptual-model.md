@@ -357,7 +357,7 @@ This section does not illustrate all anticipated uses of *Media*. For example, r
 ## 3 Example implementations (non-normative)
 
 * The Darwin Core Data Package Guide specifies how to create Frictionless Data packages using Darwin Core terms. A Darwin Core Data Package (DwC-DP) consists of schemas for describing tabular data, such as CSV files. DwC-DP is considered a reference implementation of the DwC-CM.  
-* The OpenDS format provides a JSON Schema for modelling extended information about digital specimens and implements the relevant parts of the DwC-CM.
+* The openDS format provides a JSON Schema for modelling extended information about digital specimens and implements the relevant parts of the DwC-CM.
 
 ## 4 Acknowledgements (non-normative)
 
