@@ -91,14 +91,10 @@
       "comments": "One could use dwc:agentRoleOrder to create an ordered list of collectors (dwc:agentRole = 'collector') for a dwc:MaterialEntity, for example. The first would have agentRoleOrder=1, the second would have agentRoleOrder=2.",
       "examples": "",
       "type": "integer",
-      "format": "default",
       "namespace": "dwc",
       "iri": "",
       "iri_version": "",
-      "rdfs:comment": "",
-      "constraints": {
-        "minimum": true
-      }
+      "rdfs:comment": ""
     },
     {
       "name": "agentRoleDate",
