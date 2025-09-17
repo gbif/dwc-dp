@@ -24,6 +24,7 @@ import json
 import csv
 from pathlib import Path
 from collections import defaultdict
+from datetime import date
 
 # Original source files for rendering the data package files, the DwC-DP Quick Reference
 # Guide, and the DwC-DP Relationsip Explorer
@@ -98,9 +99,9 @@ def _parse_scalar(s):
     if t == "":
         return None
     low = t.lower()
-    if low in ("true", "yes", "1"):
+    if low in ("true", "yes"):
         return True
-    if low in ("false", "no", "0"):
+    if low in ("false", "no"):
         return False
     try:
         # try numbers (int first unless float-like)
@@ -311,7 +312,7 @@ def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
         "title": "Darwin Core Data Package",
         "shortTitle": "dwc-dp",
         "description": "A data package for sharing biodiversity data using Darwin Core.",
-        "issued": version,
+        "issued": date.today().strftime("%Y-%m-%d"),
         "isLatest": True,
         "tableSchemas": build_table_schemas(vocabulary_dir, version),
     }
