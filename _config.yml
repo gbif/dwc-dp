@@ -12,7 +12,7 @@ social:
 # THEME SETTINGS (ALL OPTIONAL)
 theme: minima
 remote_theme: tdwg/petridish
-github_edit: true
+github_edit: master
 logo: /assets/images/under-review.svg
 
 # BUILD SETTINGS
