@@ -78,6 +78,13 @@ let predicates = [
   },
   {
     "subject_table": "occurrence",
+    "subject_field": "isPartOfOccurrenceID",
+    "predicate": "part of",
+    "related_table": "occurrence",
+    "related_field": "occurrenceID"
+  },
+  {
+    "subject_table": "occurrence",
     "subject_field": "surveyTargetID",
     "predicate": "satisfied",
     "related_table": "survey-target",

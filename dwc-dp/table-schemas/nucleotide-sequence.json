@@ -7,8 +7,8 @@
   "comments": "",
   "examples": "",
   "namespace": "dwc",
-  "iri": "http://rs.tdwg.org/dwc/terms/NucleotideSequence",
-  "iri_version": "",
+  "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideSequence",
+  "dcterms:references": "",
   "rdfs:comment": "A digital representation of a nucleotide sequence.",
   "fields": [
     {
@@ -20,8 +20,8 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/nucleotideSequenceID",
+      "dcterms:references": "",
       "rdfs:comment": "",
       "constraints": {
         "required": true,
@@ -37,8 +37,8 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/sequence",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -50,8 +50,8 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/nucleotideSequenceRemarks",
+      "dcterms:references": "",
       "rdfs:comment": ""
     }
   ],

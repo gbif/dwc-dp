@@ -114,6 +114,7 @@ nucleotide-analysis-assertion,nucleotideAnalysisID,about,nucleotide-analysis,nuc
 nucleotide-analysis-assertion,assertionByID,asserted by,agent,agentID,recommended
 nucleotide-analysis-assertion,assertionProtocolID,followed,protocol,protocolID,recommended
 occurrence,eventID,happened during,event,eventID,recommended
+occurrence,isPartOfOccurrenceID,part of,occurrence,occurrenceID,recommended
 occurrence,surveyTargetID,satisfied,survey-target,surveyTargetID,recommended
 occurrence,organismID,of an,organism,organismID,recommended
 occurrence,recordedByID,recorded by,agent,agentID,recommended

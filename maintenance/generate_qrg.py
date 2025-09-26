@@ -178,6 +178,8 @@ def build_table_schemas(vocabulary_dir: Path, version: str):
             example = (row.get("example", "") or "").strip()
             namespace = (row.get("namespace", "") or "").strip()
             iri = (row.get("dcterms:isVersionOf", "") or "").strip()
+            if iri == "":
+                iri = f'http://example.com/term-pending/{namespace}/{name}'
             iri_version = (row.get("dcterms:references", "") or "").strip()
             rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
 
@@ -190,8 +192,8 @@ def build_table_schemas(vocabulary_dir: Path, version: str):
                 "comments": comments,
                 "examples": example,
                 "namespace": namespace,
-                "iri": iri,
-                "iri_version": iri_version,
+                "dcterms:isVersionOf": iri,
+                "dcterms:references": iri_version,
                 "rdfs:comment": rdfs_comment,
             }
             table_schemas.append(ts)
@@ -220,6 +222,8 @@ def build_fields_for_table(vocabulary_dir: Path, table_name: str):
             fmt = (row.get("format", "") or "").strip()
             namespace = (row.get("namespace", "") or "").strip()
             iri = (row.get("dcterms:isVersionOf", "") or "").strip()
+            if iri == "":
+                iri = f'http://example.com/term-pending/{namespace}/{name}'
             iri_version = (row.get("dcterms:references", "") or "").strip()
             rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
 
@@ -249,8 +253,8 @@ def build_fields_for_table(vocabulary_dir: Path, table_name: str):
                 "type": ftype,
                 "format": fmt,
                 "namespace": namespace,
-                "iri": iri,
-                "iri_version": iri_version,
+                "dcterms:isVersionOf": iri,
+                "dcterms:references": iri_version,
                 "rdfs:comment": rdfs_comment,
             }
             if constraints:
@@ -635,22 +639,25 @@ def build_term_section(field, class_name):
     if not isinstance(field, dict):
         return ''
 
-    order = ["title", "namespace", "class", "iri", "description", "comments", 
-        "examples", "type", "default", "constraints", "format", "iri_version"]
+    order = ["title", "namespace", "class", "description", 
+        "comments", "examples", "type", "default", "constraints", "format", 
+        "dcterms:isVersionOf", "dcterms:references"]
 
     labels = {"title": "Title (Label)", "class": "Table:", "namespace": "Namespace",
-          "iri": "IRI", "description": "Description", "comments": "Comments",
+          "dcterms:isVersionOf": "dcterms:isVersionOf", "description": "Description",
+          "comments": "Comments", 
           "examples": "Examples", "type": "Type", "default": "Default",
-          "constraints": "Constraints", "format": "Format", "iri_version": "Source"}
+          "constraints": "Constraints", "format": "Format",
+          "dcterms:references":"dcterms:references"}
 
     for key in order:
         value = field.get(key)
         # Hide Format if default
         if key == 'format' and str(value or '').strip().lower() == 'default':
             continue
-        # Use field IRI for the Source row
-        if key == 'iri_version':
-            value = field.get('iri')
+        # Use field IRI for the dcterms:isVersionOf row
+        if key == 'dcterms:isVersionOf':
+            value = field.get('dcterms:isVersionOf')
         if value is None:
             if key == 'class':
                 value = class_name
@@ -663,8 +670,11 @@ def build_term_section(field, class_name):
             value = str(value).strip()
         if not value:
             continue
-        if key == 'iri' or key == 'iri_version':
-            value = f'<a href="{value}" target="_blank">{value}</a>'
+        if key in ('dcterms:isVersionOf', 'dcterms:references'):
+            # Don’t link the generated placeholder IRI
+            if not (value.startswith('http://example.com/term-pending/')
+                    or value.startswith('https://example.com/term-pending/')):
+                value = f'<a href="{value}" target="_blank">{value}</a>'
         if key == 'class':
             value = f'<a href="#{value}" target="_blank">{value}</a>'
         elif key == 'examples':
@@ -736,7 +746,7 @@ def build_foreign_key_summary(table_schema, current_table_name=None):
     table_html = ['<div class="foreign-key-summary">']
     table_html.append('<h4>Relationships to Other Tables</h4>')
     table_html.append('<table class="term-table">')
-    table_html.append('<tr><td class="label">Field</td><td>Predicate</td><td>Target Table</td><td>Target Field</td><td>Required</td></tr>')
+    table_html.append('<tr><td class="label">Field</td><td><b>Predicate</b></td><td><b>Target Table</b></td><td><b>Target Field</b></td><td><b>Required</b></td></tr>')
 
     for src, predicate, tgt_table, tgt_field in fk_rows:
         required = "Yes" if field_required_map.get(src, False) else "No"
@@ -777,8 +787,10 @@ def generate_qrg_with_separators():
                 schema = json.load(f)
             fields = schema.get('fields', [])
             content += f'<div class="class-header-wrapper"><h2 id="{class_name}" class="class-header">{class_name}</h2></div>'
+
             if "identifier" in table and table["identifier"]:
                 content += f'<p><strong>Identifier:</strong> {table.get("identifier")}</p>'
+
             content += f'<p><strong>Description:</strong> {table.get("description", "No description.")}</p>'
             if "comments" in table and table["comments"]:
                 content += f'<p><strong>Comments:</strong> {table.get("comments")}</p>'
@@ -792,17 +804,20 @@ def generate_qrg_with_separators():
                     if i > 0:
                         value += '<div class="examples-separator"></div>'
                     value += f'<div class="examples-content">{ex}</div>'
-                content += value# Table-level Source from "iri"
-            if table.get("iri"):
-                src = str(table.get("iri")).strip()
+                content += value# Table-level Source from "dcterms:isVersionOf"
+
+            if table.get("dcterms:isVersionOf"):
+                src = str(table.get("dcterms:isVersionOf")).strip()
                 try:
                     if src.startswith("http://") or src.startswith("https://"):
-                        content += f'<p><strong>Source:</strong> <a href="{src}" target="_blank">{src}</a></p>'
+                        if "example.com" not in src:
+                            content += f'<p><strong>dcterms:isVersionOf:</strong> <a href="{src}" target="_blank">{src}</a></p>'
+                        else:
+                            content += f'<p><strong>dcterms:isVersionOf:</strong> {src}</p>'
                     else:
-                        content += f'<p><strong>Source:</strong> {src}</p>'
+                        content += f'<p><strong>dcterms:isVersionOf:</strong> {src}</p>'
                 except Exception:
-                    content += f'<p><strong>Source:</strong> {src}</p>'
-
+                        content += f'<p><strong>dcterms:isVersionOf:</strong> {src}</p>'
 
             # Add FK summary block for the current class (only if table schema is available)
             table_schema_path = os.path.join(TABLE_SCHEMAS_DIR, f'{table_name}.json')

@@ -9,8 +9,8 @@ const indexJson = {
       "comments": "A person, group, organization, machine, software or other entity that can act. Membership in the dcterms:Agent class is determined by the capacity to act, even if not doing so in a specific context. To act: To participate in an event or process by contributing through behavior, operation, or an effect resulting from active participation — regardless of whether that contribution is intentional, volitional, or conscious.",
       "examples": "`Carl Linnaeus`; `The Terra Nova Expedition`; `The National Science Foundation`; `The El Yunque National Forest ARBIMON System`; `ChatGPT`",
       "namespace": "dcterms",
-      "iri": "http://purl.org/dc/terms/Agent",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/Agent",
+      "dcterms:references": "",
       "rdfs:comment": "A resource that acts or has the power to act."
     },
     {
@@ -22,8 +22,8 @@ const indexJson = {
       "comments": "",
       "examples": "`an instance of a dcterms:Agent that is a person is the director of another instance of a dcterms:Agent that is an organization`; `an instance of a dcterms:Agent that is a person is a member of another instance of a dcterms:Agent that is a group`; `an instance of a dcterms:Agent that is a person is the author of another instance of a dcterms:Agent that is software`",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//agent-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -35,8 +35,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "`an ORCID`; `a Wikidata Q-number`; `an Index Herbariorum Institution Code`; `an International Standard Name Identifier`",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -48,8 +48,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a person shown in a photograph`; `a group of people in a video`",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//agent-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -61,8 +61,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dcterms",
-      "iri": "http://purl.org/dc/terms/BibliographicResource",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/BibliographicResource",
+      "dcterms:references": "",
       "rdfs:comment": "A book, article, or other documentary resource."
     },
     {
@@ -74,8 +74,8 @@ const indexJson = {
       "comments": "The age of a dwc:MaterialEntity and how this age is known, whether by a dating assay, a relative association with dated material, or legacy collections information.",
       "examples": "`An age range associated with a specimen derived from an AMS dating assay applied to an oyster shell in the same stratum`; `An age range associated with a specimen derived from a ceramics analysis based on other materials found in the same stratum`; `A maximum age associated with a specimen derived from K-Ar dating applied to a proximal volcanic tuff found stratigraphically below the specimen`; `An age range of a specimen based on its biostratigraphic context`; `An age of a specimen based on what is reported in legacy collections data.`",
       "namespace": "chrono",
-      "iri": "http://rs.tdwg.org/chrono/terms/ChronometricAge",
-      "iri_version": "http://rs.tdwg.org/chrono/terms/version/ChronometricAge-2021-02-21",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/ChronometricAge",
+      "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/ChronometricAge-2021-02-21",
       "rdfs:comment": "An approximation of temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported by evidence."
     },
     {
@@ -87,8 +87,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//chronometric-age-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -100,8 +100,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -113,8 +113,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//chronometric-age-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -126,8 +126,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//chronometric-age-protocol",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -139,8 +139,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//chronometric-age-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -152,8 +152,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a material collecting event`; `a bird observation`; `a camera trap image capture`; `an organism occurrence`; `a biotic survey`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Event",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/Event-2023-09-18",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Event",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Event-2023-09-18",
       "rdfs:comment": "An action that occurs at some location during some time."
     },
     {
@@ -165,8 +165,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//event-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -178,8 +178,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -191,8 +191,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -204,8 +204,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//event-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -217,8 +217,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//event-protocol",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -230,8 +230,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//event-provenance",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -243,8 +243,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//event-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -256,8 +256,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a particular lithostratigraphic layer`; `a specific chronostratigraphic unit`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/GeologicalContext",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/GeologicalContext-2023-09-18",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/GeologicalContext",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/GeologicalContext-2023-09-18",
       "rdfs:comment": "Geological information, such as stratigraphy, that qualifies a region or place."
     },
     {
@@ -269,8 +269,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//geological-context-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -282,8 +282,8 @@ const indexJson = {
       "comments": "For biology, the assignment of a scientific name or taxon concept to a dwc:Organism.",
       "examples": "`a subspecies determination of an organism`; `a nomenclatural act designating a specimen as a holotype`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Identification",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/Identification-2023-09-18",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Identification",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Identification-2023-09-18",
       "rdfs:comment": "A taxonomic determination (e.g., the assignment to a dwc:Taxon)."
     },
     {
@@ -295,8 +295,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//identification-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -308,8 +308,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//identification-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -321,8 +321,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//identification-taxon",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -334,8 +334,8 @@ const indexJson = {
       "comments": "The term is defined at the most general level to admit descriptions of any subtype of material entity within the scope of Darwin Core. In particular, any kind of material sample, preserved specimen, fossil, or exemplar from living collections is intended to be subsumed under this term.",
       "examples": "`the entire contents of a trawl`; `a subset of the contents of a trawl`; `the body of a fish`; `the stomach contents of a fish`; `a rock containing fossils`; `a fossil within a rock`; `an herbarium sheet with its attached plant specimen`; `a flower on a plant specimen`; `a pollen grain`; `a specific water sample`; `an isolated molecule of DNA`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MaterialEntity",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MaterialEntity-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MaterialEntity",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MaterialEntity-2023-09-13",
       "rdfs:comment": "An entity that can be identified, exists for some period of time, and consists in whole or in part of physical matter while it exists."
     },
     {
@@ -347,8 +347,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -360,8 +360,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -373,8 +373,8 @@ const indexJson = {
       "comments": "Use this table to establish one or more GeologicalContexts represented in a dwc:MaterialEntity.",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-geological-context",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -386,8 +386,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -399,8 +399,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -412,8 +412,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-protocol",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -425,8 +425,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-provenance",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -438,8 +438,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -451,8 +451,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//material-usage-policy",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -464,8 +464,8 @@ const indexJson = {
       "comments": "An instance of digital textual media may be better represented as a dcterms:BibliographicResource.",
       "examples": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Media",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Media",
+      "dcterms:references": "",
       "rdfs:comment": "A dcmi:MediaType or other media type with other entities as content."
     },
     {
@@ -477,8 +477,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//media-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -490,8 +490,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -503,8 +503,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -516,8 +516,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//media-provenance",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -529,8 +529,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//media-usage-policy",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -542,8 +542,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a standard DNA barcoding workflow using Sanger sequencing`; `a shotgun metagenomics pipeline for microbial community profiling`; `a high-throughput amplicon sequencing protocol targeting 16S rRNA`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MolecularProtocol",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MolecularProtocol",
+      "dcterms:references": "",
       "rdfs:comment": "A protocol used to derive and identify a nucleotide sequence from a dwc:MaterialEntity."
     },
     {
@@ -555,8 +555,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//molecular-protocol-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -568,8 +568,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -581,8 +581,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//molecular-protocol-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -594,8 +594,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis",
+      "dcterms:references": "",
       "rdfs:comment": "A link between a dwc:NucleotideSequence and a dwc:Event and a dwc:MaterialEntity from which it was derived, using a specified dwc:Protocol."
     },
     {
@@ -607,8 +607,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -620,8 +620,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/NucleotideSequence",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideSequence",
+      "dcterms:references": "",
       "rdfs:comment": "A digital representation of a nucleotide sequence."
     },
     {
@@ -633,8 +633,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a wolf pack on the shore of Kluane Lake in 1988`; `a virus in a plant leaf in the New York Botanical Garden at 15:29 on 2014-10-23`; `a fungus in Central Park in the summer of 1929`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Occurrence",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/Occurrence-2023-09-18",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Occurrence",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Occurrence-2023-09-18",
       "rdfs:comment": "An existence of a dwc:Organism at a particular place at a particular time."
     },
     {
@@ -646,8 +646,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//occurrence-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -659,8 +659,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -672,8 +672,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -685,8 +685,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//occurrence-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -698,8 +698,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//occurrence-protocol",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -711,8 +711,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//occurrence-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -724,8 +724,8 @@ const indexJson = {
       "comments": "Instances of the dwc:Organism class are intended to facilitate linking one or more dwc:Identification instances to one or more dwc:Occurrence instances. Therefore, things that are typically assigned scientific names (such as viruses, hybrids, and lichens) and aggregates whose dwc:Occurrences are typically recorded (such as packs, clones, and colonies) are included in the scope of this class.",
       "examples": "`a specific bird`; `a specific wolf pack`; `a specific instance of a bacterial culture`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Organism",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/Organism-2023-09-18",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Organism",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Organism-2023-09-18",
       "rdfs:comment": "A particular organism or defined group of organisms considered to be taxonomically homogeneous."
     },
     {
@@ -737,8 +737,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -750,8 +750,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -763,8 +763,8 @@ const indexJson = {
       "comments": "Supports only primary observed interactions, not habitual or derived taxon-level interactions. Pairwise interactions must be used to represent multi-organism interactions. When possible, typify the action rather than the state from which an action is inferred, with the actor as the subject dwc:Occurrence and the acted-upon as the related dwc:Occurrence. Only one direction of a two-way interaction is necessary, though both are permissible as distinct OrganismInteractions with distint subject dwc:Occurrences.",
       "examples": "`a bee visiting a flower`; `a Mallophora ruficauda hunting an Apis mellifera in flight`; `a viral infection in a plant`; `a female spider mating with a male spider`; `a lion cub nursing from its mother`; `a mosquito sucking blood from a chimpanzee's arm`; `a slug eating a fungus growing on decomposing stump (2 interactions)`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/OrganismInteraction",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/OrganismInteraction",
+      "dcterms:references": "",
       "rdfs:comment": "An interaction between two dwc:Organisms during a dwc:Event."
     },
     {
@@ -776,8 +776,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//organism-interaction-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -789,8 +789,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -802,8 +802,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//organism-interaction-media",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -815,8 +815,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//organism-interaction-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -828,8 +828,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//organism-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -841,8 +841,8 @@ const indexJson = {
       "comments": "An OrganismRelationship must be a permanent relationship. Ephemeral relationships between dwc:Organisms should be recorded as dwc:OrganismInteractions.",
       "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
       "rdfs:comment": "A relationship of one rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource) to another."
     },
     {
@@ -854,8 +854,8 @@ const indexJson = {
       "comments": "",
       "examples": "`a pitfall trap method for sampling ground-dwelling arthropods`; `a point-radius georeferencing method`; `a linear regression model to estimate body mass from skeletal measurements`; `a Bayesian phylogenetic inference method`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/Protocol",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Protocol",
+      "dcterms:references": "",
       "rdfs:comment": "A method used during an action."
     },
     {
@@ -867,8 +867,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//protocol-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -880,8 +880,8 @@ const indexJson = {
       "comments": "This is a convenience class to group related properties.",
       "examples": "",
       "namespace": "dwc",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/provenance",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -893,8 +893,8 @@ const indexJson = {
       "comments": "Resources can be thought of as identifiable records or instances of classes and may include, but need not be limited to instances of dwc:Occurrence, dwc:Organism, dwc:MaterialEntity, dwc:Event, dcterms:Location, dwc:GeologicalContext, dwc:Identification, or dwc:Taxon.",
       "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`; `a uniquely identified dwc:Occurrence represents the same dwc:Occurrence as another uniquely identified dwc:Occurrence`; `a dwc:MaterialEntity is a subsample of another dwc:MaterialEntity`",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
       "rdfs:comment": "A relationship of one rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource) to another."
     },
     {
@@ -906,8 +906,8 @@ const indexJson = {
       "comments": "This class includes properties found in the Humboldt Extension to Darwin Core (eco: namespace), except for the target scope terms, which can be accommodated in eco:SurveyTarget.",
       "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
       "namespace": "eco",
-      "iri": "http://rs.tdwg.org/eco/terms/Survey",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/Survey",
+      "dcterms:references": "",
       "rdfs:comment": "A biotic survey or inventory."
     },
     {
@@ -919,8 +919,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//survey-agent-role",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -932,8 +932,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "iri_version": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
       "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource)."
     },
     {
@@ -945,8 +945,8 @@ const indexJson = {
       "comments": "An important point to note is that properties of the adms:Identifier class are properties of the Identifier, not the resource that it identifies or the agency that issued it.",
       "examples": "",
       "namespace": "adms",
-      "iri": "http://www.w3.org/ns/adms#Identifier",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
+      "dcterms:references": "",
       "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal."
     },
     {
@@ -958,8 +958,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//survey-protocol",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -971,8 +971,8 @@ const indexJson = {
       "comments": "",
       "examples": "",
       "namespace": "",
-      "iri": "",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://example.com/term-pending//survey-reference",
+      "dcterms:references": "",
       "rdfs:comment": ""
     },
     {
@@ -980,12 +980,12 @@ const indexJson = {
       "url": "table-schemas/survey-target.json",
       "name": "survey-target",
       "title": "Survey Target",
-      "description": "A specification of characteristics of dwc:Occurrences that were included or excluded in an eco:Survey.",
+      "description": "An intended scope for dwc:Occurrences in an eco:Survey.",
       "comments": "",
-      "examples": "`include all bird species`; `include reproductive female Ctenomys sociabilis`; `include Oncorhynchus mykiss, include Oncorhynchus clarkii, exclude total length < 12 inches`",
+      "examples": "`all bird species`; `all bird species except Larus gulls, fulmars and kittiwakes`; `reproductive female Ctenomys sociabilis (only)`; `Oncorhynchus mykiss and Oncorhynchus clarkii (only)`, `all total lengths except < 12 inches`",
       "namespace": "eco",
-      "iri": "http://rs.tdwg.org/eco/terms/SurveyTarget",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/SurveyTarget",
+      "dcterms:references": "",
       "rdfs:comment": "A specification of a characteristics of dwc:Occurrences that were included or excluded in an eco:Survey."
     },
     {
@@ -997,8 +997,8 @@ const indexJson = {
       "comments": "This is a convenience class to group related properties.",
       "examples": "",
       "namespace": "dwc",
-      "iri": "http://rs.tdwg.org/dwc/terms/UsagePolicy",
-      "iri_version": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/UsagePolicy",
+      "dcterms:references": "",
       "rdfs:comment": "Rights and attribution statements applicable to an entity."
     }
   ]
