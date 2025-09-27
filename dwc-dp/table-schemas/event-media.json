@@ -3,7 +3,7 @@
   "url": "table-schemas/event-media.json",
   "name": "event-media",
   "title": "Event Media",
-  "description": "A dwc:Event as content in a dwc:Media entity.",
+  "description": "A dwc:Event as content in an ac:Media entity.",
   "comments": "",
   "examples": "",
   "namespace": "",
@@ -14,7 +14,7 @@
     {
       "name": "mediaID",
       "title": "Media ID",
-      "description": "An identifier for a dwc:Media resource.",
+      "description": "An identifier for an ac:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
@@ -48,7 +48,7 @@
     {
       "name": "subjectCategory",
       "title": "Subject Category",
-      "description": "A category for the content of a dwc:Media resource.",
+      "description": "A category for the content of an ac:Media resource.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
@@ -61,7 +61,7 @@
     {
       "name": "subjectCategoryIRI",
       "title": "Subject Category IRI",
-      "description": "An IRI of a controlled vocabulary value for the subject category of a dwc:Media resource.",
+      "description": "An IRI of a controlled vocabulary value for the subject category of an ac:Media resource.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
@@ -87,7 +87,7 @@
     {
       "name": "subjectPartLiteral",
       "title": "Subject Part Literal",
-      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the dwc:Media resource, denoted by a controlled value string.",
+      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the ac:Media resource, denoted by a controlled value string.",
       "comments": "Values SHOULD be selected from the Controlled Vocabulary for ac:subjectPart. It is best practice to use ac:subjectPart instead of ac:subjectPartLiteral whenever practical.",
       "examples": "",
       "type": "string",
@@ -100,7 +100,7 @@
     {
       "name": "subjectPart",
       "title": "Subject Part",
-      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the dwc:Media resource, denoted by an IRI.",
+      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the ac:Media resource, denoted by an IRI.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -113,7 +113,7 @@
     {
       "name": "subjectOrientationLiteral",
       "title": "Subject Orientation Literal",
-      "description": "Specific orientation (= direction, view angle) of the subject represented in the dwc:Media resource with respect to the acquisition device, denoted by a controlled value string.",
+      "description": "Specific orientation (= direction, view angle) of the subject represented in the ac:Media resource with respect to the acquisition device, denoted by a controlled value string.",
       "comments": "Values SHOULD be selected from the Controlled Vocabulary for ac:subjectOrientation. It is best practice to use ac:subjectOrientation instead of ac:subjectOrientationLiteral whenever practical.",
       "examples": "",
       "type": "string",
@@ -126,7 +126,7 @@
     {
       "name": "subjectOrientation",
       "title": "Subject Orientation",
-      "description": "Specific orientation (= direction, view angle) of the subject represented in the dwc:Media resource with respect to the acquisition device.",
+      "description": "Specific orientation (= direction, view angle) of the subject represented in the ac:Media resource with respect to the acquisition device.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -139,7 +139,7 @@
     {
       "name": "physicalSetting",
       "title": "Physical Setting",
-      "description": "The setting of the content represented in a dwc:Media resource, such as images, sounds, and movies if the provider deems them relevant.",
+      "description": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -147,7 +147,7 @@
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
       "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2020-01-27",
-      "rdfs:comment": "The setting of the content represented in a dwc:Media resource, such as images, sounds, and movies if the provider deems them relevant."
+      "rdfs:comment": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant."
     }
   ],
   "foreignKeys": [

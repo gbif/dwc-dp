@@ -3,7 +3,7 @@
   "url": "table-schemas/molecular-protocol.json",
   "name": "molecular-protocol",
   "title": "Molecular Protocol",
-  "description": "A protocol used to derive and identify a dwc:NucleotideSequence from a dwc:MaterialEntity.",
+  "description": "A protocol used to derive and identify a dwc:NucleotideSequence from an ac:MaterialEntity.",
   "comments": "",
   "examples": "`a standard DNA barcoding workflow using Sanger sequencing`; `a shotgun metagenomics pipeline for microbial community profiling`; `a high-throughput amplicon sequencing protocol targeting 16S rRNA`",
   "namespace": "dwc",

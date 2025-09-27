@@ -3,7 +3,7 @@
   "url": "table-schemas/material-usage-policy.json",
   "name": "material-usage-policy",
   "title": "Material Usage Policy",
-  "description": "Rights, usage, and attribution statements applicable to dwc:MaterialEntity.",
+  "description": "Rights, usage, and attribution statements applicable to a dwc:MaterialEntity.",
   "comments": "",
   "examples": "",
   "namespace": "",

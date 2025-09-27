@@ -48,7 +48,7 @@
     {
       "name": "mediaID",
       "title": "Media ID",
-      "description": "An identifier for a dwc:Media resource based on which a dwc:Identification was made.",
+      "description": "An identifier for an ac:Media resource based on which a dwc:Identification was made.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",

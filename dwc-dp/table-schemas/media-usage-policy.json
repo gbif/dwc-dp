@@ -3,7 +3,7 @@
   "url": "table-schemas/media-usage-policy.json",
   "name": "media-usage-policy",
   "title": "Media Usage Policy",
-  "description": "Rights, usage, and attribution statements applicable to dwc:Media entity.",
+  "description": "Rights, usage, and attribution statements applicable to an ac:Media entity.",
   "comments": "",
   "examples": "",
   "namespace": "",
@@ -31,7 +31,7 @@
     {
       "name": "mediaID",
       "title": "Media ID",
-      "description": "An identifier for a dwc:Media resource.",
+      "description": "An identifier for an ac:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",

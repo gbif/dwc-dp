@@ -130,7 +130,7 @@
     {
       "name": "providerLiteral",
       "title": "Provider",
-      "description": "A name of a dcterms:Agent responsible for presenting the dwc:Media resource.",
+      "description": "A name of a dcterms:Agent responsible for presenting the ac:Media resource.",
       "comments": "If no separate Metadata Provider is given, this also attributes the metadata.",
       "examples": "",
       "type": "string",
@@ -143,7 +143,7 @@
     {
       "name": "providerID",
       "title": "Provider ID",
-      "description": "An identifier for a dcterms:Agent responsible for presenting the dwc:Media resource.",
+      "description": "An identifier for a dcterms:Agent responsible for presenting the ac:Media resource.",
       "comments": "If no separate Metadata Provider is given, this also attributes the metadata.",
       "examples": "",
       "type": "string",
@@ -220,7 +220,7 @@
     {
       "name": "furtherInformationURL",
       "title": "Further Information URL",
-      "description": "A URL of a website that provides additional information about the version of the dwc:Media resource that is provided by the Service Access Point.",
+      "description": "A URL of a website that provides additional information about the version of the ac:Media resource that is provided by the Service Access Point.",
       "comments": "",
       "examples": "",
       "type": "string",

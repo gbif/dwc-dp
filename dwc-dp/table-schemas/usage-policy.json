@@ -182,8 +182,8 @@
     {
       "name": "licensingException",
       "title": "Licensing Exception",
-      "description": "The licensing statement for this variant of the dwc:Media resource if different from that given in the dcterms:license property of the resource.",
-      "comments": "Required only if this version has different licensing than that of a corresponding dwc:Media resource. For example, the highest resolution version may be more restricted than lower resolution versions.",
+      "description": "The licensing statement for this variant of the ac:Media resource if different from that given in the dcterms:license property of the resource.",
+      "comments": "Required only if this version has different licensing than that of a corresponding ac:Media resource. For example, the highest resolution version may be more restricted than lower resolution versions.",
       "examples": "",
       "type": "string",
       "format": "default",

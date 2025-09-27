@@ -6,15 +6,15 @@
   "description": "A dcmi:MediaType or other media type with other entities as subject matter.",
   "comments": "An instance of digital textual media may be better represented as a dcterms:BibliographicResource.",
   "examples": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`",
-  "namespace": "dwc",
-  "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Media",
+  "namespace": "ac",
+  "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/Media",
   "dcterms:references": "",
-  "rdfs:comment": "A dcmi:MediaType or other media type with other entities as content.",
+  "rdfs:comment": "",
   "fields": [
     {
       "name": "mediaID",
       "title": "Media ID",
-      "description": "An identifier for a dwc:Media resource.",
+      "description": "An identifier for an ac:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
@@ -31,8 +31,8 @@
     {
       "name": "derivedFromMediaID",
       "title": "Derived From Media ID",
-      "description": "An identifier for a dwc:Media resource from which this dwc:Media resource was derived.",
-      "comments": "This term can be used when a dwc:Media resource has been separated from its source dwc:Media resource. Recommended best practice is to use a globally unique identifier.",
+      "description": "An identifier for an ac:Media resource from which this ac:Media resource was derived.",
+      "comments": "This term can be used when an ac:Media resource has been separated from its source ac:Media resource. Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -48,8 +48,8 @@
     {
       "name": "isPartOfMediaID",
       "title": "Is Part Of Media ID",
-      "description": "An identifier for a dwc:Media resource of which this dwc:Media resource is a part.",
-      "comments": "This term can be used to define an ac:RegionOfInterest within a dwc:Media resource. Recommended best practice is to use a globally unique identifier.",
+      "description": "An identifier for an ac:Media resource of which this ac:Media resource is a part.",
+      "comments": "This term can be used to define an ac:RegionOfInterest within an ac:Media resource. Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -61,7 +61,7 @@
     {
       "name": "mediaType",
       "title": "Media Type",
-      "description": "A category that best matches the nature of a dwc:Media resource.",
+      "description": "A category that best matches the nature of an ac:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "`Sound`; `StillImage`; `MovingImage`; `InteractiveResource`; `Text`",
       "type": "string",
@@ -113,7 +113,7 @@
     {
       "name": "subtypeLiteral",
       "title": "Subtype Literal",
-      "description": "A subcategory that allows further specialization of a dwc:Media resource type than mediaType.",
+      "description": "A subcategory that allows further specialization of an ac:Media resource type than mediaType.",
       "comments": "The subtypeLiteral term MUST NOT be applied to Collection objects. However, the Description term in the Content Coverage Vocabulary might add further description to a Collection object. Controlled string values SHOULD be selected from the Controlled Vocabulary for ac:subtype. Human-readable information about the Controlled Vocabulary for ac:subtype is at http://rs.tdwg.org/ac/doc/subtype/. It is best practice to use ac:subtype instead of ac:subytpeLiteral whenever practical.",
       "examples": "",
       "type": "string",
@@ -126,7 +126,7 @@
     {
       "name": "subtypeIRI",
       "title": "Subtype IRI",
-      "description": "A class, represented by an IRI, that provides for more specialization of a dwc:Media resource type than dcterms:type.",
+      "description": "A class, represented by an IRI, that provides for more specialization of an ac:Media resource type than dcterms:type.",
       "comments": "The subtype term MUST NOT be applied to Collection objects. However, the Description term in the Content Coverage Vocabulary might add further description to a Collection object. IRI values SHOULD be selected from the Controlled Vocabulary for ac:subtype. Human-readable information about the Controlled Vocabulary for ac:subtype is at http://rs.tdwg.org/ac/doc/subtype/. In text-based systems such as tables, IRI values MUST be in unabbreviated form. When an appropriate subtype is not available in the Audiovisual Core controlled vocabulary, a term IRI that is not in a TDWG namespace MAY be used. Conforming applications MAY choose to ignore controlled values not issued by Audiovisual Core. See ac:subtypeLiteral for usage with strings.",
       "examples": "",
       "type": "string",
@@ -522,7 +522,7 @@
     {
       "name": "furtherInformationURL",
       "title": "Further Information URL",
-      "description": "The URL of a Web site that provides additional information about the version of the dwc:Media resource that is provided by the ac:hasServiceAccessPoint.",
+      "description": "The URL of a Web site that provides additional information about the version of the ac:Media resource that is provided by the ac:hasServiceAccessPoint.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -561,7 +561,7 @@
     {
       "name": "comments",
       "title": "Comments",
-      "description": "Any comment provided on the dwc:Media resource, as free-form text.",
+      "description": "Any comment provided on the ac:Media resource, as free-form text.",
       "comments": "Best practice would also identify the ac:commenter. Comments may refer to the resource itself (e. g., asserting a taxon name or location of a biological subject in an image), or to the relation between resource and associated metadata (e. g., asserting that the taxon name given in the metadata is wrong, without asserting a positive identification). There is a separate item from ac:reviewerComments, which is defined more as an expert-level review. Implementers or communities of practice might establish conventions about the meaning of the absence of an ac:commenter, but this specification is silent on that matter.",
       "examples": "",
       "type": "string",
@@ -575,7 +575,7 @@
       "name": "Rating",
       "title": "Rating",
       "description": "A user-assigned rating for this file. The value shall be -1 or in the range [0..5], where -1 indicates \"rejected\" and 0 indicates \"unrated\". If xmp:Rating is not present, a value of 0 should be assumed.",
-      "comments": "A rating for a dwc:Media resource, provided by record originators or editors, with '1' (worst) to '5' (best). Anticipated usage is for a typical 'star rating' UI, with the addition of a notion of rejection. Values MAY be decimal numbers in the permitted range. The origin of the rating is not communicated. It may, e. g., be based on user feedback or on editorial ratings. By \"user-assigned\" is meant assigned by the originator or editor of the record using the term.",
+      "comments": "A rating for an ac:Media resource, provided by record originators or editors, with '1' (worst) to '5' (best). Anticipated usage is for a typical 'star rating' UI, with the addition of a notion of rejection. Values MAY be decimal numbers in the permitted range. The origin of the rating is not communicated. It may, e. g., be based on user feedback or on editorial ratings. By \"user-assigned\" is meant assigned by the originator or editor of the record using the term.",
       "examples": "`1`; `5`",
       "type": "string",
       "format": "default",
@@ -588,7 +588,7 @@
       "name": "reviewerLiteral",
       "title": "Reviewer Literal",
       "description": "A name of a dcterms:Agent primarily responsible for providing the ac:reviewerComments",
-      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed a dwc:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewer and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
+      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed an ac:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewer and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -601,7 +601,7 @@
       "name": "reviewerID",
       "title": "Reviewer ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:reviewerComments",
-      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed a dwc:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewerLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
+      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed an ac:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewerLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -626,7 +626,7 @@
     {
       "name": "physicalSetting",
       "title": "Physical Setting",
-      "description": "The setting of the content represented in a dwc:Media resource, such as images, sounds, and movies if the provider deems them relevant.",
+      "description": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -634,12 +634,12 @@
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
       "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2020-01-27",
-      "rdfs:comment": "The setting of the content represented in a dwc:Media resource, such as images, sounds, and movies if the provider deems them relevant. Constrained vocabulary of: `Natural` = Object in its natural setting of the object (e. g. living organisms in their natural environment); `Artificial` = Object in an artificial environment (e. g. living organisms in an artificial environment such as a zoo, garden, greenhouse, or laboratory); `Edited` = Human media editing of a natural setting or media acquisition with a separate media background such as a photographic backdrop."
+      "rdfs:comment": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant. Constrained vocabulary of: `Natural` = Object in its natural setting of the object (e. g. living organisms in their natural environment); `Artificial` = Object in an artificial environment (e. g. living organisms in an artificial environment such as a zoo, garden, greenhouse, or laboratory); `Edited` = Human media editing of a natural setting or media acquisition with a separate media background such as a photographic backdrop."
     },
     {
       "name": "subjectCategory",
       "title": "Subject Category",
-      "description": "A category for the content of a dwc:Media resource.",
+      "description": "A category for the content of an ac:Media resource.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
@@ -652,7 +652,7 @@
     {
       "name": "subjectCategoryIRI",
       "title": "Subject Category IRI",
-      "description": "An IRI of a controlled vocabulary value for the subject category of a dwc:Media resource.",
+      "description": "An IRI of a controlled vocabulary value for the subject category of an ac:Media resource.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
@@ -691,7 +691,7 @@
     {
       "name": "subjectPartLiteral",
       "title": "Subject Part Literal",
-      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the dwc:Media resource, denoted by a controlled value string.",
+      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the ac:Media resource, denoted by a controlled value string.",
       "comments": "Values SHOULD be selected from the Controlled Vocabulary for ac:subjectPart. It is best practice to use ac:subjectPart instead of ac:subjectPartLiteral whenever practical.",
       "examples": "",
       "type": "string",
@@ -704,7 +704,7 @@
     {
       "name": "subjectPartIRI",
       "title": "Subject Part IRI",
-      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the dwc:Media resource, denoted by an IRI.",
+      "description": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the ac:Media resource, denoted by an IRI.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -717,7 +717,7 @@
     {
       "name": "subjectOrientationLiteral",
       "title": "Subject Orientation Literal",
-      "description": "Specific orientation (= direction, view angle) of the subject represented in the dwc:Media resource with respect to the acquisition device, denoted by a controlled value string.",
+      "description": "Specific orientation (= direction, view angle) of the subject represented in the ac:Media resource with respect to the acquisition device, denoted by a controlled value string.",
       "comments": "Values SHOULD be selected from the Controlled Vocabulary for ac:subjectOrientation. It is best practice to use ac:subjectOrientation instead of ac:subjectOrientationLiteral whenever practical.",
       "examples": "",
       "type": "string",
@@ -730,7 +730,7 @@
     {
       "name": "subjectOrientationIRI",
       "title": "Subject Orientation IRI",
-      "description": "Specific orientation (= direction, view angle) of the subject represented in the dwc:Media resource with respect to the acquisition device, denoted by an IRI.",
+      "description": "Specific orientation (= direction, view angle) of the subject represented in the ac:Media resource with respect to the acquisition device, denoted by an IRI.",
       "comments": "",
       "examples": "",
       "type": "string",
@@ -743,7 +743,7 @@
     {
       "name": "startTime",
       "title": "Start Time in Seconds",
-      "description": "The beginning of a temporal region, specified as an absolute offset relative to the beginning of a dwc:Media resource (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
+      "description": "The beginning of a temporal region, specified as an absolute offset relative to the beginning of an ac:Media resource (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
       "comments": "This term MUST only be applied to a region of interest.",
       "examples": "",
       "type": "number",
@@ -759,7 +759,7 @@
     {
       "name": "endTime",
       "title": "End Time in Seconds",
-      "description": "The end of a temporal region, specified as an absolute offset relative to the beginning of a dwc:Media resource (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
+      "description": "The end of a temporal region, specified as an absolute offset relative to the beginning of an ac:Media resource (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
       "comments": "This term MUST only be applied to a region of interest.",
       "examples": "",
       "type": "number",
@@ -856,7 +856,7 @@
     {
       "name": "xFrac",
       "title": "Fractional X",
-      "description": "The horizontal position of a reference point, measured from the left side of a dwc:Media resource and expressed as a decimal fraction of the width of a dwc:Media resource.",
+      "description": "The horizontal position of a reference point, measured from the left side of an ac:Media resource and expressed as a decimal fraction of the width of an ac:Media resource.",
       "comments": "A valid value MUST be greater than or equal to zero and less than or equal to one. The precision of this value SHOULD be great enough that when the ac:xFrac value is multiplied by the exif:PixelXDimension of the Best Quality variant of the Service Access point, rounding to the nearest integer results in the same horizontal pixel location originally used to define the point. This point can serve as the horizontal position of the upper left corner of a bounding rectangle, or as the center of a circle.",
       "examples": "`0.5`; `1`",
       "type": "number",
@@ -873,7 +873,7 @@
     {
       "name": "yFrac",
       "title": "Fractional Y",
-      "description": "The vertical position of a reference point, measured from the top of a dwc:Media resource and expressed as a decimal fraction of the height of a dwc:Media resource.",
+      "description": "The vertical position of a reference point, measured from the top of an ac:Media resource and expressed as a decimal fraction of the height of an ac:Media resource.",
       "comments": "A valid value MUST be greater than or equal to zero and less than or equal to one. The precision of this value SHOULD be great enough that when the ac:yFrac value is multiplied by the exif:PixelYDimension of the Best Quality variant of the Service Access point, rounding to the nearest integer results in the same vertical pixel originally used to define the point. This point can serve as the vertical position of the upper left corner of a bounding rectangle, or as the center of a circle.",
       "examples": "`0.5`; `1`",
       "type": "number",
@@ -890,7 +890,7 @@
     {
       "name": "heightFrac",
       "title": "Fractional Height",
-      "description": "The height of the bounding rectangle, expressed as a decimal fraction of the height of a dwc:Media resource.",
+      "description": "The height of the bounding rectangle, expressed as a decimal fraction of the height of an ac:Media resource.",
       "comments": "The sum of a valid value plus ac:yFrac MUST be greater than zero and less than or equal to one. The precision of this value SHOULD be great enough that when ac:heightFrac and ac:yFrac are used with the exif:PixelYDimension of the Best Quality variant of the Service Access point to calculate the lower right corner of the rectangle, rounding to the nearest integer results in the same vertical pixel originally used to define the point. This term MUST NOT be used with ac:radius to define a region of interest. Zero-sized bounding rectangles are not allowed. To designate a point, use the radius option with a zero value.",
       "examples": "`0.5`; `1`",
       "type": "number",
@@ -907,7 +907,7 @@
     {
       "name": "widthFrac",
       "title": "Fractional Width",
-      "description": "The width of the bounding rectangle, expressed as a decimal fraction of the width of a dwc:Media resource.",
+      "description": "The width of the bounding rectangle, expressed as a decimal fraction of the width of an ac:Media resource.",
       "comments": "The sum of a valid value plus ac:xFrac MUST be greater than zero and less than or equal to one. The precision of this value SHOULD be great enough that when ac:widthFrac and ac:xFrac are used with the exif:PixelXDimension of the Best Quality variant of the Service Access point to calculate the lower right corner of the rectangle, rounding to the nearest integer results in the same horizontal pixel originally used to define the point. This term MUST NOT be used with ac:radius to define a region of interest. Zero-sized bounding rectangles are not allowed. To designate a point, use the radius option with a zero value.",
       "examples": "`0.5`; `1`",
       "type": "number",
@@ -924,8 +924,8 @@
     {
       "name": "radius",
       "title": "Radius",
-      "description": "The radius of a bounding circle or arc, expressed as a fraction of the width of a dwc:Media resource.",
-      "comments": "A valid value MUST be greater than or equal to zero. A valid value MAY cause the designated circle to extend beyond the bounds of a dwc:Media resource. In that case, the arc within a dwc:Media resource plus the bounds of a dwc:Media resource specify the region of interest. This term MUST NOT be used with ac:widthFrac or ac:heightFrac to define a region of interest. This term may be used with ac:xFrac and ac:yFrac to define a point. In that case, the implication is that the point falls on some object of interest within a dwc:Media resource, but nothing more can be assumed about the bounds of that object.",
+      "description": "The radius of a bounding circle or arc, expressed as a fraction of the width of an ac:Media resource.",
+      "comments": "A valid value MUST be greater than or equal to zero. A valid value MAY cause the designated circle to extend beyond the bounds of an ac:Media resource. In that case, the arc within an ac:Media resource plus the bounds of an ac:Media resource specify the region of interest. This term MUST NOT be used with ac:widthFrac or ac:heightFrac to define a region of interest. This term may be used with ac:xFrac and ac:yFrac to define a point. In that case, the implication is that the point falls on some object of interest within an ac:Media resource, but nothing more can be assumed about the bounds of that object.",
       "examples": "`100`",
       "type": "integer",
       "format": "default",

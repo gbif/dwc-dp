@@ -3,7 +3,7 @@
   "url": "table-schemas/media-provenance.json",
   "name": "media-provenance",
   "title": "Media Provenance",
-  "description": "A dwc:Provenance for a dwc:Media entity.",
+  "description": "A dwc:Provenance for an ac:Media entity.",
   "comments": "",
   "examples": "",
   "namespace": "",
@@ -31,7 +31,7 @@
     {
       "name": "mediaID",
       "title": "Media ID",
-      "description": "An identifier for a dwc:Media resource.",
+      "description": "An identifier for an ac:Media resource.",
       "comments": "Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
