@@ -106,144 +106,156 @@ You can use the list below to quickly make a checklist of the tables you want to
 
 You can see that, for a given dataset, you are likely end up with a very much shorter checklist of tables that you will actually populate. Proceed to populate them successively in the order you find them on the list, as tables further down the list depend on one or more tables above them on the list to have been populated.
 
-### 1. Protocol
+### 1. Agent
 
-### 2. Agent
+#### 1.1 AgentIdentifier
 
-#### 2.1 AgentIdentifier
+#### 1.2 AgentAgentRole
 
-#### 2.2 AgentAgentRole
+### 2. BibliographicResource
 
-### 3. Media
+### 3. Protocol
 
-#### 3.1 MediaAssertion
+#### 3.1 ProtocolReference
 
-#### 3.2 MediaIdentifier
+### 4. Provenance
 
-#### 3.3 MediaAgentRole
+### 5. UsagePolicy
 
-#### 3.4 AgentMedia
+### 6. Media
 
-### 4. Reference
+#### 6.1 MediaAssertion
 
-#### 4.1 ProtocolReference
+#### 6.2 MediaIdentifier
 
-### 5. Event
+#### 6.3 MediaAgentRole
 
-#### 5.1 EventAssertion
+#### 6.4 MediaProvenance
 
-#### 5.2 EventIdentifier
+#### 6.5 MediaUsagePolicy
 
-#### 5.3 EventAgentRole
+#### 6.6 AgentMedia
 
-#### 5.4 EventMedia
+### 7. GeologicalContext
 
-#### 5.5 EventProtocol
+##### 7.1 GeologicalContextMedia
 
-#### 5.6 EventReference
+### 8. Organism
 
-#### 5.7 ChronometricAge
+#### 8.1 OrganismAssertion
 
-##### 5.7.1 ChronometricAgeAssertion
+#### 8.2 OrganismIdentifier
 
-##### 5.7.2 ChronometricAgeAgentRole
+#### 8.3 OrganismReference
 
-##### 5.7.3 ChronometricAgeMedia
+#### 8.4 OrganismRelationship
 
-##### 5.7.4 ChronometricAgeProtocol
+### 9. Event
 
-##### 5.7.5 ChronometricAgeReference
+#### 9.1 EventAssertion
 
-#### 5.8 GeologicalContext
+#### 9.2 EventIdentifier
 
-##### 5.8.1 GeologicalContextMedia
+#### 9.3 EventAgentRole
 
-#### 5.9 Survey
+#### 9.4 EventMedia
 
-##### 5.9.1 SurveyTarget
+#### 9.5 EventProtocol
 
-##### 5.9.2 SurveyAssertion
+#### 9.6 EventProvenance
 
-##### 5.9.3 SurveyIdentifier
+#### 9.7 EventReference
 
-##### 5.9.4 SurveyAgentRole
+#### 9.8 ChronometricAge
 
-##### 5.9.5 SurveyProtocol
+##### 9.8.1 ChronometricAgeAssertion
 
-##### 5.9.6 SurveyReference
+##### 9.8.2 ChronometricAgeAgentRole
 
-#### 5.10 Occurrence
+##### 9.8.3 ChronometricAgeMedia
 
-##### 5.10.1 OccurrenceAssertion
+##### 9.8.4 ChronometricAgeProtocol
 
-##### 5.10.2 OccurrenceIdentifier
+##### 9.8.5 ChronometricAgeReference
 
-##### 5.10.3 OccurrenceAgentRole
+#### 9.9 Survey
 
-##### 5.10.4 OccurrenceMedia
+##### 9.9.1 SurveyTarget
 
-##### 5.10.5 OccurrenceProtocol
+##### 9.9.2 SurveyAssertion
 
-##### 5.10.6 OccurrenceReference
+##### 9.9.3 SurveyIdentifier
 
-##### 5.10.7 OrganismInteraction
+##### 9.9.4 SurveyAgentRole
 
-###### 5.10.7.1 OrganismInteractionAssertion
+##### 9.9.5 SurveyProtocol
 
-###### 5.10.7.2 OrganismInteractionAgentRole
+##### 9.9.6 SurveyReference
 
-###### 5.10.7.3 OrganismInteractionMedia
+#### 9.10 Occurrence
 
-###### 5.10.7.4 OrganismInteractionReference
+##### 9.10.1 OccurrenceAssertion
 
-### 6. Material
+##### 9.10.2 OccurrenceIdentifier
 
-#### 6.1 MaterialAssertion
+##### 9.10.3 OccurrenceAgentRole
 
-#### 6.2 MaterialIdentifier
+##### 9.10.4 OccurrenceMedia
 
-#### 6.3 MaterialAgentRole
+##### 9.10.5 OccurrenceProtocol
 
-#### 6.4 MaterialMedia
+##### 9.10.6 OccurrenceReference
 
-#### 6.5 MaterialProtocol
+##### 9.10.7 OrganismInteraction
 
-#### 6.6 MaterialReference
+###### 9.10.7.1 OrganismInteractionAssertion
 
-### 7. NucleotideSequence
+###### 9.10.7.2 OrganismInteractionAgentRole
 
-### 8. MolecularProtocol
+###### 9.10.7.3 OrganismInteractionMedia
 
-#### 8.1 MolecularProtocolAssertion
+###### 9.10.7.4 OrganismInteractionReference
 
-#### 8.2 MolecularProtocolAgentRole
+### 10. Material
 
-#### 8.3 MolecularProtocolReference
+#### 10.1 MaterialGeologicalContext
 
-### 9. NucleotideAnalysis
+#### 10.2 MaterialAssertion
 
-#### 9.1 NucleotideAnalysisAssertion
+#### 10.3 MaterialIdentifier
 
-### 10. Identification
+#### 10.4 MaterialAgentRole
 
-#### 10.1 IdentificationAgentRole
+#### 10.5 MaterialMedia
 
-#### 10.2 IdentificationTaxon
+#### 10.6 MaterialProtocol
 
-### 11. PhylogeneticTree
+#### 10.7 MaterialProvenance
 
-#### 11.1 PhylogeneticTreeAssertion
+#### 10.8 MaterialUsagePolicy
 
-#### 11.2 PhylogeneticTreeIdentifier
+#### 10.9 MaterialReference
 
-#### 11.3 PhylogeneticTreeMedia
+### 11. NucleotideSequence
 
-#### 11.4 PhylogeneticTreeProtocol
+### 12. MolecularProtocol
 
-#### 11.5 PhylogeneticTreeReference
+#### 12.1 MolecularProtocolAssertion
 
-#### 11.6 PhylogeneticTreeTip
+#### 12.2 MolecularProtocolAgentRole
 
-##### 11.6.1 PhylogeneticTreeTipAssertion
+#### 12.3 MolecularProtocolReference
 
-### 12. Relationship
+### 13. NucleotideAnalysis
+
+#### 13.1 NucleotideAnalysisAssertion
+
+### 14. Identification
+
+#### 14.1 IdentificationAgentRole
+
+#### 14.2 IdentificationReference
+
+#### 14.3 IdentificationTaxon
+
+### 15. Relationship
