@@ -118,23 +118,23 @@ You can see that, for a given dataset, you are likely end up with a very much sh
 
 #### 3.1 ProtocolReference
 
-### 4. Provenance
+### 4. Media
 
-### 5. UsagePolicy
+#### 4.1 MediaAssertion
 
-### 6. Media
+#### 4.2 MediaIdentifier
 
-#### 6.1 MediaAssertion
+#### 4.3 MediaAgentRole
 
-#### 6.2 MediaIdentifier
+#### 4.4 AgentMedia
 
-#### 6.3 MediaAgentRole
+### 5. Provenance
 
-#### 6.4 MediaProvenance
+#### 5.1 MediaProvenance
 
-#### 6.5 MediaUsagePolicy
+### 6. UsagePolicy
 
-#### 6.6 AgentMedia
+#### 6.1 MediaUsagePolicy
 
 ### 7. GeologicalContext
 
