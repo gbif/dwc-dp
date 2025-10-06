@@ -4024,25 +4024,24 @@ This Quick Reference Guide is distinct from the classic <a href="https://dwc.tdw
   <tr class="c4">
     <td class="c6" colspan="1" rowspan="1">
       <p class="c2">
-        <span class="c1">General data structure</span>
+        <span class="c1">Data structure</span>
       </p>
     </td>
     <td class="c7" colspan="1" rowspan="1">
       <p class="c9">
-        <span class="c1">&ldquo;Star schema&rdquo;, with a &ldquo;Core&rdquo; (Event, Occurrence, Taxon) file and other data files shared through &ldquo;Extensions&rdquo; to that Core. Relationships between each extension file and the core file expressed as a primary key in the &quot;Core&quot; and (unique identifiers within a table) and a foreign key in the &quot;Extension&quot;.</span>
+        <span class="c1">Limited&#58; &ldquo;Star schema&rdquo;, with a &ldquo;Core&rdquo; file and optional &ldquo;Extensions&rdquo;.<br><br>Relationships only <b>from</b> Extensions <b>to</b> the Core.<br><br>Flattened, &ldquo;spreadsheet-like&rdquo;<br><br>Defined in&#58; meta.xml</span>
       </p>
     </td>
     <td class="c11" colspan="1" rowspan="1">
       <p class="c9">
-        <span class="c1">No Cores, no Extensions.</span>
-      </p>
-      <p class="c9">
-        <span class="c1">Tables (files) related in multiple ways (Fig 1).</span>
-      </p>
-      <p class="c9">
-        <span class="c1">Details of the relationships between files are also in the table schemas, expressed as primary keys and foreign keys (fields that contain the identifiers equal to the value of a primary key in another file plus a natural language predicate to describe the relationship).</span>
+        <span class="c1">Relational&#58; No &ldquo;Core&rdquo;, no &ldquo;Extensions&rdquo;, just tables.<br><br>Multiple relationships <b>between</b> tables (Figure 1), details in the table definitions.<br><br>Relational, &ldquo;database-like&rdquo;<br><br>Defined in&#58; datapackage.json</span>
       </p>
     </td>
+  </tr>
+  <tr class="c4">
+    <td class="c6" colspan="1" rowspan="1"><p class="c2"><span class="c1">Data type</span></p></td>
+    <td class="c7" colspan="1" rowspan="1"><p class="c9"><span class="c1">Cores&#58; Event, Occurrence, Taxon<br><br>Extensions&#58; Chronometric Age, DNA, Identification, Identifier, Literature Reference, Media, MeasurementsOrFact, Survey</span></p></td>
+    <td class="c11" colspan="1" rowspan="1"><p class="c9"><span class="c1">Agent, Assertion, Bibliographic Resource, Chronometric Age, Event, Geological Context, Identification, Identifier, Material, Media, Molecular Protocol, Nucleotide Analysis, Nucleotide Sequence, Occurrence, Organism, Organism Interaction, Protocol, Provenance, Survey, Survey Target, Usage Policy</span></p></td>
   </tr>
   <tr class="c4">
     <td class="c6" colspan="1" rowspan="1">
@@ -4056,9 +4055,16 @@ This Quick Reference Guide is distinct from the classic <a href="https://dwc.tdw
       </p>
     </td>
         <td class="c11" colspan="1" rowspan="1">
-      <p class="c9"><span class="c1">Structure: datapackage.json</span></p>
-      <p class="c9"><span class="c1">Dataset metadata: eml.xml</span></p>
+      <p class="c9">
+        <span class="c1"><a href="https://gbif.github.io/dwc-dp/dp/" target="_blank">Darwin Core Conceptual Model</a>
+        </span>
+      </p>
     </td>
+  </tr>
+  <tr class="c4">
+    <td class="c6" colspan="1" rowspan="1"><p class="c2"><span class="c1">Dataset metadata</span></p></td>
+    <td class="c7" colspan="1" rowspan="1"><p class="c9"><span class="c1">eml.xml</span></p></td>
+    <td class="c11" colspan="1" rowspan="1"><p class="c9"><span class="c1">eml.xml</span></p></td>
   </tr>
   <tr class="c4">
     <td class="c6" colspan="1" rowspan="1"><p class="c2"><span class="c1">Data format</span></p></td>
