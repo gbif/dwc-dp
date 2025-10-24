@@ -225,7 +225,7 @@ In DwC-CM, the Darwin Core *MaterialSample* class is omitted in favor of *Materi
 
 ### 2.5 Identification (non-normative)
 
-In Darwin Core, an *Identification* is defined as "A taxonomic determination (e.g., the assignment to a dwc:Taxon)." In the DwC-CM, the more explicit definition "A taxonomic determination (i.e., the assignment of a dwc:Taxon to a dwc:Organism)" is preferred. Figure 6 illustrates how DwC-CM relates *Identification* to other classes.
+In Darwin Core, an *Identification* is defined as "A classification of a resource according to a classification scheme." For Organisms, this means, "A taxonomic determination (i.e., the assignment of a dwc:Taxon to a dwc:Organism)". Figure 6 illustrates how DwC-CM relates *Identification* to other classes.
 
 <img src="{{ '/images/identification.png' | relative_url }}" alt="Identification Conceptual Model"
      style="max-width:100%;height:auto;width:90%;">
@@ -234,11 +234,11 @@ In Darwin Core, an *Identification* is defined as "A taxonomic determination (e.
 
 #### Description
 
-* The ultimate target of an *Identification* is an *Organism*. An *Identification* expresses an opinion by an *Agent* (human or otherwise) that an *Organism* (whether observed or inferred) was a member of the set of all *Organisms* that make up a *Taxon*, ideally based on tangible evidence.
+* An *Identification* expresses an opinion by an *Agent* (human or otherwise) that an *Organism* or other *MaterialEntity* (whether observed or inferred) was a member of a class within a classification scheme. For example, an Identification registers an opinion that an *Organism* is a member of the set of all *Organisms* that make up a *Taxon*, ideally based on verifiable evidence.
 
 * A *Taxon* can occupy a rank in a hierarchical classification system.
 
-* There can be multiple *Identifications* for a single *Organism*, including historical ones, accepted ones, and differing opinions, each according to an *Agent*.
+* There can be multiple *Identifications* for a single *Organism* or other *MaterialEntity*, including historical ones, accepted ones, and differing opinions, each according to an *Agent*.
 
 * An *Agent* can make an *Identification* based on an observation of an *Occurrence* of an *Organism* without verifiable evidence.
 
