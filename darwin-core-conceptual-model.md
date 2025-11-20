@@ -82,7 +82,7 @@ All sections of this document except this one are non-normative.
 
 Diagrams in this document are class diagrams. The boxes represent Darwin Core classes and the lines connecting the boxes represent established relationships between classes. Boxes do not represent instances of those classes (e.g., a specific *Event* as opposed to *Events* in general). For example, in Figure 1, the *OrganismInteraction* class has two relationships to the *Occurrence* class. This does not mean that both relationships necessarily apply to the same *Occurrence* (instance). Indeed, most *OrganismInteractions* involve two distinct *Occurrences* (instances: two *Organisms* at the same place and time).
 
-In Figures 2=9, the relationships between classes are labeled with predicates that describe that relationship succinctly using explanatory natural language. This document does not prescribe specific predicates from controlled vocabularies or ontologies.
+In Figures 2-9, the relationships between classes are labeled with predicates that describe that relationship succinctly using explanatory natural language. This document does not prescribe specific predicates from controlled vocabularies or ontologies.
 
 ## 2 Overview (non-normative)
 
