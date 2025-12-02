@@ -599,7 +599,7 @@ This Quick Reference Guide is distinct from the classic <a href="https://dwc.tdw
     </td>
         <td class="c11" colspan="1" rowspan="1">
       <p class="c9">
-        <span class="c1"><a href="https://gbif.github.io/dwc-dp/dp/" target="_blank">Darwin Core Conceptual Model</a>
+        <span class="c1"><a href="https://gbif.github.io/dwc-dp/cm/" target="_blank">Darwin Core Conceptual Model</a>
         </span>
       </p>
     </td>
