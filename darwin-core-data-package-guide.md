@@ -143,7 +143,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "name": "eventDate",
             "title": "Event Date",
             "description": "A date or time interval during which a dwc:Event occurred.",
-            "type": "string",
+            "type": "datetime",
             "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2025-06-12"
@@ -173,7 +173,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "name": "occurrenceID",
             "title": "Occurrence ID",
             "description": "An identifier for a dwc:Occurrence.",
-            "type": "string",
+            "type": "integer",
             "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28"
@@ -200,7 +200,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "name": "organismQuantity",
             "title": "Organism Quantity",
             "description": "A number or enumeration value for the quantity of dwc:Organisms.",
-            "type": "string",
+            "type": "integer",
             "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantity",
             "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantity-2023-06-28"
@@ -212,7 +212,12 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
             "type": "string",
             "format": "default",
             "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantityType",
-            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantityType-2023-06-28"
+            "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantityType-2023-06-28",
+            "constraints": {
+              "enum": [
+                "individuals"
+              ]
+            }
           }
         ],
         "primaryKey": ["occurrenceID"],
@@ -371,9 +376,9 @@ A **field descriptor** describes a single field in a table schema (e.g., name, d
 
 4. A field descriptor MAY have a `comments` property, with usage notes.
 
-5. A field descriptor MUST have a `type` property, indicating the data type of values in the field (e.g., `"string"`, `"number"`). It MUST follow the [Table schema specification][field.type].
+5. A field descriptor MUST have a `type` property, indicating the data type of values in the field (e.g., `"string"`, `"number"`). It MUST follow the [Table schema specification][field.type]. If the `type` provided in the table schema at `rs.tdwg.org` is `"any"`, then a more specific one MAY be defined.
 
-6. A field descriptor SHOULD have a `format` property, indicating how values should be parsed. It MUST follow the [Table schema specification](field.format).
+6. A field descriptor SHOULD have a `format` property, indicating how values should be parsed. It MUST follow the [Table schema specification](field.format). If the `format` provided in the table schema at `rs.tdwg.org` is `"default"`, then a more specific one MAY be defined.
 
 7. A field descriptor MUST have a `dcterms:isVersionOf` property, with the URL of the unversioned source term describing the field (e.g., `"http://rs.tdwg.org/dwc/terms/eventID"`).
 
@@ -383,7 +388,7 @@ A **field descriptor** describes a single field in a table schema (e.g., name, d
 
 10. A field descriptor MAY have a `namespace` property, with an abbreviation of the namespace of the source term (e.g., `"dwc"`, `"dcterms"`).
 
-11. A field descriptor MAY have a `constraints` property, indicating value requirements that SHOULD be used in validation. It MUST follow the [Table Schema specification][field.constraints].
+11. A field descriptor MAY have a `constraints` property, indicating value requirements that SHOULD be used in validation. It MUST follow the [Table Schema specification][field.constraints]. The `constraints` provided in the table schema at `rs.tdwg.org` MAY be updated, but it MUST NOT relax the original constraints.
 
 12. A field descriptor MAY have additional properties. This includes those defined by the [Table Schema specification][table-schema] (e.g., `example`) or custom properties.
 
