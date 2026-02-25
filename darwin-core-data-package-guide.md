@@ -96,14 +96,14 @@ The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL 
 
 Consider a dataset containing four bird Occurrences observed during a single parent Event. It can be described with two CSV files, each representing a DwC-DP table:
 
-**events.csv**
+**event.csv**
 
 ```text
 eventID,eventDate,locationID
 S229876476,2025-04-26T20:57:00+02:00,https://ebird.org/hotspot/L43523233
 ```
 
-**occurrences.csv**
+**occurrence.csv**
 
 ```text
 occurrenceID,eventID,scientificName,organismQuantity,organismQuantityType
@@ -219,6 +219,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
         "foreignKeys": [
           {
             "fields": "eventID",
+            "predicate": "happened during",
             "reference": {
               "resource": "event",
               "fields": "eventID"
@@ -335,6 +336,7 @@ Consider an `"event"` table with the following table schema:
   "foreignKeys": [
     {
       "fields": "eventConductedByID",
+      "predicate": "conducted by",
       "reference": {
         "resource": "agent",
         "fields": "agentID"
@@ -342,6 +344,7 @@ Consider an `"event"` table with the following table schema:
     },
     {
       "fields": "parentEventID",
+      "predicate": "happened during",
       "reference": {
         "resource": "",
         "fields": "eventID"
