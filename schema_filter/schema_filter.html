@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DwC-DP Table Filter</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
+    body { margin: 16px; }
+    h1 { font-size: 20px; margin: 0 0 10px 0; }
+    .subtle { color: #555; font-size: 13px; line-height: 1.4; margin-bottom: 14px; }
+
+    .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+    @media (max-width: 1100px) { .cols { grid-template-columns: 1fr; } }
+
+    .panel { border: 1px solid #ddd; border-radius: 10px; padding: 12px; }
+    .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+    .panel h2 { font-size: 16px; margin: 0 0 6px 0; }
+    .panel .meta { color: #666; font-size: 12px; margin: 0 0 10px 0; }
+    .panel .actions { display: inline-flex; gap: 8px; }
+
+    .btn {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    .btn:hover { background: #f7f7f7; }
+
+    .row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 4px;
+      border-top: 1px solid #f0f0f0;
+    }
+    .row:first-of-type { border-top: none; }
+
+    .row label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      flex: 1;
+    }
+
+    .row input[type="checkbox"] { width: 16px; height: 16px; }
+    .title { font-weight: 500; }
+    .requires { font-size: 12px; color: #666; }
+
+    .disabled label { color: #9a9a9a; cursor: not-allowed; }
+    .disabled .requires { color: #b0b0b0; }
+    .disabled input[type="checkbox"] { cursor: not-allowed; }
+
+    .info {
+      border: 1px solid #ccc;
+      border-radius: 999px;
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #fff;
+      cursor: pointer;
+      user-select: none;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .info:hover { background: #f7f7f7; }
+
+    .status { margin-top: 8px; font-size: 12px; color: #444; }
+    .pill { display: inline-block; padding: 2px 8px; border: 1px solid #ddd; border-radius: 999px; margin-right: 6px; }
+
+    .loading { padding: 10px; border: 1px dashed #bbb; border-radius: 10px; }
+    .error { color: #a00; }
+    .small { font-size: 12px; color: #555; }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.35);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+    }
+    .modal {
+      background: #fff;
+      border-radius: 12px;
+      max-width: 880px;
+      width: 100%;
+      max-height: 85vh;
+      overflow: auto;
+      border: 1px solid #ddd;
+      box-shadow: 0 12px 40px rgba(0,0,0,.25);
+    }
+    .modal header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-bottom: 1px solid #eee;
+    }
+    .modal header h3 { margin: 0; font-size: 16px; }
+    .modal header button {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+    .modal .content { padding: 12px 14px; }
+
+    .kv { margin: 8px 0; }
+    .kv .k { font-weight: 600; }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+    details { border: 1px solid #eee; border-radius: 8px; padding: 8px 10px; margin-top: 10px; }
+    details summary { cursor: pointer; font-weight: 600; }
+    ul.fields { margin: 8px 0 0 18px; padding: 0; }
+    ul.fields li { margin: 2px 0; }
+  </style>
+</head>
+
+<body>
+  <h1>DwC-DP Table Filter</h1>
+
+  <div class="subtle">
+    Select the tables required to capture the full richness of your dataset. Start with at least one table from the first column of tables with no direct required dependencies. Only tables with all required dependencies selected will be enabled. Each table lists all of its required dependencies. Click on an Information icon to see the metadata, examples, and fields for a given table.
+  </div>
+
+  <div id="app" class="loading">Loading DwC-DP profile and schemas…</div>
+
+  <div id="dpPanel" class="panel" style="margin-top: 14px; display: none;">
+    <div class="panel-head">
+      <div>
+        <h2>datapackage.json</h2>
+        <div class="meta">Generated on demand from the currently selected tables.</div>
+      </div>
+      <div class="actions">
+        <button id="btnGenerateDp" class="btn" type="button">Generate</button>
+        <button id="btnCopyDp" class="btn" type="button" disabled>Copy to clipboard</button>
+        <button id="btnDownloadDp" class="btn" type="button" disabled>Download</button>
+      </div>
+    </div>
+    <textarea id="dpText" class="mono" readonly style="width: 100%; height: 260px; box-sizing: border-box; padding: 10px; border: 1px solid #eee; border-radius: 8px;"></textarea>
+    <div id="dpStatus" class="small" style="margin-top: 8px;"></div>
+  </div>
+
+  <div id="uiVersion" class="small" style="margin-top: 10px;">Version: 2026-03-02</div>
+
+
+  <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
+    <div class="modal">
+      <header>
+        <h3 id="modalTitle">Table</h3>
+        <button id="modalCloseBtn" type="button">Close</button>
+      </header>
+      <div class="content" id="modalContent"></div>
+    </div>
+  </div>
+
+<script>
+(function () {
+  // -----------------------------
+  // Configuration
+  // -----------------------------
+  var PROFILE_URL;
+  var INDEX_URL;
+  var BASE_RAW;
+
+  PROFILE_URL = "https://raw.githubusercontent.com/gbif/dwc-dp/master/dwc-dp/dwc-dp-profile.json";
+  INDEX_URL   = "https://raw.githubusercontent.com/gbif/dwc-dp/master/dwc-dp/index.json";
+  BASE_RAW    = "https://raw.githubusercontent.com/gbif/dwc-dp/master/dwc-dp/";
+
+  var FETCH_TIMEOUT_MS;
+  var FETCH_CONCURRENCY;
+
+  FETCH_TIMEOUT_MS = 20000;
+  FETCH_CONCURRENCY = 6;
+
+  // -----------------------------
+  // DOM helpers
+  // -----------------------------
+  function $(selector) {
+    return document.querySelector(selector);
+  }
+
+  function createEl(tagName, attrs) {
+    var node;
+    var children;
+    var i;
+    var key;
+    var value;
+
+    node = document.createElement(tagName);
+    attrs = attrs || {};
+    children = [];
+
+    for (i = 2; i < arguments.length; i += 1) {
+      children.push(arguments[i]);
+    }
+
+    for (key in attrs) {
+      if (!Object.prototype.hasOwnProperty.call(attrs, key)) {
+        continue;
+      }
+
+      value = attrs[key];
+
+      if (key === "class") {
+        node.className = value;
+        continue;
+      }
+
+      if (key === "text") {
+        node.textContent = value;
+        continue;
+      }
+
+      if (key.indexOf("on") === 0 && typeof value === "function") {
+        node.addEventListener(key.slice(2), value);
+        continue;
+      }
+
+      node.setAttribute(key, value);
+    }
+
+    for (i = 0; i < children.length; i += 1) {
+      if (typeof children[i] === "string") {
+        node.appendChild(document.createTextNode(children[i]));
+      } else if (children[i]) {
+        node.appendChild(children[i]);
+      }
+    }
+
+    return node;
+  }
+
+  // -----------------------------
+  // Modal
+  // -----------------------------
+  var backdrop;
+  var modalTitle;
+  var modalContent;
+  var modalCloseBtn;
+
+  backdrop = $("#backdrop");
+  modalTitle = $("#modalTitle");
+  modalContent = $("#modalContent");
+  modalCloseBtn = $("#modalCloseBtn");
+
+  function openModal() {
+    backdrop.style.display = "flex";
+  }
+
+  function closeModal() {
+    backdrop.style.display = "none";
+  }
+
+  modalCloseBtn.addEventListener("click", closeModal);
+
+  backdrop.addEventListener("click", function (e) {
+    if (e.target === backdrop) {
+      closeModal();
+    }
+  });
+
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeModal();
+    }
+  });
+
+  // -----------------------------
+  // State
+  // -----------------------------
+  var schemas;
+  var tableMeta;
+
+  var dependsOnRequired;
+  var transitiveDeps;
+  var maxDepth;
+
+  var entityTable;
+
+  var enabled;
+  var checked;
+
+  var loadErrors;
+  var dwcDpProfileId;
+
+  schemas = new Map();
+  tableMeta = new Map();
+
+  dependsOnRequired = new Map();
+  transitiveDeps = new Map();
+  maxDepth = new Map();
+
+  entityTable = new Map();
+
+  enabled = new Map();
+  checked = new Map();
+
+  loadErrors = [];
+
+  // -----------------------------
+  // Network
+  // -----------------------------
+  function fetchJSONWithTimeout(url, timeoutMs) {
+    var controller;
+    var timerId;
+
+    controller = new AbortController();
+
+    timerId = setTimeout(function () {
+      controller.abort();
+    }, timeoutMs);
+
+    return fetch(url, { cache: "no-store", signal: controller.signal })
+      .then(function (response) {
+        clearTimeout(timerId);
+
+        if (!response.ok) {
+          throw new Error("Fetch failed " + response.status + ": " + url);
+        }
+
+        return response.json();
+      });
+  }
+
+  // Concurrency-limited mapper for promises
+  function mapWithConcurrency(items, concurrency, mapper, onProgress) {
+    var index;
+    var inFlight;
+    var results;
+
+    index = 0;
+    inFlight = 0;
+    results = [];
+
+    return new Promise(function (resolve) {
+      function launchNext() {
+        while (inFlight < concurrency && index < items.length) {
+          (function (item, itemIndex) {
+            inFlight += 1;
+
+            Promise.resolve()
+              .then(function () {
+                return mapper(item, itemIndex);
+              })
+              .then(function (value) {
+                results[itemIndex] = { ok: true, value: value };
+              })
+              .catch(function (err) {
+                results[itemIndex] = { ok: false, error: err };
+              })
+              .finally(function () {
+                inFlight -= 1;
+                index += 1;
+
+                if (typeof onProgress === "function") {
+                  onProgress(index, items.length);
+                }
+
+                if (index >= items.length && inFlight === 0) {
+                  resolve(results);
+                  return;
+                }
+
+                launchNext();
+              });
+          })(items[index], index);
+        }
+      }
+
+      launchNext();
+    });
+  }
+
+  // -----------------------------
+  // Model helpers
+  // -----------------------------
+  function titleFor(tableName) {
+    var meta;
+
+    meta = tableMeta.get(tableName);
+
+    if (meta && meta.title) {
+      return meta.title;
+    }
+
+    return tableName;
+  }
+
+  function isRequiredFK(schemaObj, fk) {
+    var fkFields;
+    var fieldByName;
+    var i;
+    var fieldName;
+    var field;
+    var required;
+
+    fkFields = Array.isArray(fk.fields) ? fk.fields : [fk.fields];
+    fieldByName = new Map();
+
+    (schemaObj.fields || []).forEach(function (f) {
+      fieldByName.set(f.name, f);
+    });
+
+    for (i = 0; i < fkFields.length; i += 1) {
+      fieldName = fkFields[i];
+      field = fieldByName.get(fieldName);
+      required = !!(field && field.constraints && field.constraints.required === true);
+
+      if (!required) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  function computeIsEntity(schemaObj) {
+    var tableName;
+    var primaryKey;
+    var foreignKeys;
+
+    var requiredParents;
+    var fkFieldNames;
+
+    var fields;
+    var nonPkFields;
+    var nonPkNonFkFields;
+
+    var numReqParents;
+    var pureJoin;
+    var relationshipInstance;
+    var singleParentExtension;
+
+    tableName = schemaObj.name;
+    primaryKey = schemaObj.primaryKey;
+    foreignKeys = schemaObj.foreignKeys || [];
+
+    requiredParents = [];
+    foreignKeys.forEach(function (fk) {
+      var ref;
+
+      ref = fk && fk.reference ? fk.reference.resource : "";
+
+      if (!ref) {
+        return;
+      }
+
+      if (ref === tableName) {
+        return;
+      }
+
+      if (!isRequiredFK(schemaObj, fk)) {
+        return;
+      }
+
+      requiredParents.push(ref);
+    });
+
+    numReqParents = requiredParents.length;
+
+    fkFieldNames = new Set();
+    foreignKeys.forEach(function (fk) {
+      var names;
+      var i;
+
+      names = Array.isArray(fk.fields) ? fk.fields : [fk.fields];
+      for (i = 0; i < names.length; i += 1) {
+        fkFieldNames.add(names[i]);
+      }
+    });
+
+    fields = schemaObj.fields || [];
+    nonPkFields = fields
+      .map(function (f) { return f.name; })
+      .filter(function (n) { return n !== primaryKey; });
+
+    nonPkNonFkFields = nonPkFields
+      .filter(function (n) { return !fkFieldNames.has(n); });
+
+    pureJoin = (numReqParents >= 2) && (nonPkNonFkFields.length === 0);
+    relationshipInstance = (numReqParents >= 2) && !pureJoin;
+    singleParentExtension = (numReqParents === 1) && !pureJoin && !relationshipInstance;
+
+    return !pureJoin && !relationshipInstance && !singleParentExtension;
+  }
+
+  function buildDirectRequiredDependencies() {
+    schemas.forEach(function (schemaObj, tableName) {
+      dependsOnRequired.set(tableName, new Set());
+      enabled.set(tableName, true);
+      checked.set(tableName, false);
+    });
+
+    schemas.forEach(function (schemaObj, tableName) {
+      var foreignKeys;
+
+      foreignKeys = schemaObj.foreignKeys || [];
+
+      foreignKeys.forEach(function (fk) {
+        var ref;
+
+        ref = fk && fk.reference ? fk.reference.resource : "";
+
+        if (!ref) {
+          return;
+        }
+
+        if (ref === tableName) {
+          return;
+        }
+
+        if (!isRequiredFK(schemaObj, fk)) {
+          return;
+        }
+
+        dependsOnRequired.get(tableName).add(ref);
+      });
+    });
+  }
+
+  function computeTransitiveDependencies() {
+    transitiveDeps.clear();
+
+    schemas.forEach(function (_schemaObj, tableName) {
+      var closure;
+      var stack;
+      var visited;
+
+      closure = new Set();
+      stack = Array.from(dependsOnRequired.get(tableName) || []);
+      visited = new Set();
+
+      while (stack.length > 0) {
+        var current;
+        var parents;
+
+        current = stack.pop();
+
+        if (!current) {
+          continue;
+        }
+
+        if (visited.has(current)) {
+          continue;
+        }
+
+        visited.add(current);
+        closure.add(current);
+
+        parents = dependsOnRequired.get(current) || new Set();
+        parents.forEach(function (p) {
+          if (!visited.has(p)) {
+            stack.push(p);
+          }
+        });
+      }
+
+      transitiveDeps.set(tableName, closure);
+    });
+  }
+
+  function computeMaximumDepth() {
+    maxDepth.clear();
+
+    var visiting;
+    visiting = new Set();
+
+    function dfs(tableName) {
+      if (maxDepth.has(tableName)) {
+        return maxDepth.get(tableName);
+      }
+
+      if (visiting.has(tableName)) {
+        return 0;
+      }
+
+      visiting.add(tableName);
+
+      var deps;
+      var depthValue;
+
+      deps = dependsOnRequired.get(tableName) || new Set();
+      depthValue = 0;
+
+      if (deps.size > 0) {
+        var bestParentDepth;
+
+        bestParentDepth = 0;
+
+        deps.forEach(function (dep) {
+          bestParentDepth = Math.max(bestParentDepth, dfs(dep));
+        });
+
+        depthValue = 1 + bestParentDepth;
+      }
+
+      visiting.delete(tableName);
+      maxDepth.set(tableName, depthValue);
+
+      return depthValue;
+    }
+
+    schemas.forEach(function (_schemaObj, tableName) {
+      dfs(tableName);
+    });
+  }
+
+  function recomputeEnabledState() {
+    var changed;
+    var guard;
+
+    changed = true;
+    guard = 0;
+
+    while (changed && guard < 50) {
+      changed = false;
+      guard += 1;
+
+      dependsOnRequired.forEach(function (deps, tableName) {
+        var shouldEnable;
+
+        shouldEnable = true;
+
+        deps.forEach(function (dep) {
+          if (!checked.get(dep)) {
+            shouldEnable = false;
+          }
+        });
+
+        if (enabled.get(tableName) !== shouldEnable) {
+          enabled.set(tableName, shouldEnable);
+          changed = true;
+        }
+
+        if (!shouldEnable && checked.get(tableName)) {
+          checked.set(tableName, false);
+          changed = true;
+        }
+      });
+    }
+  }
+
+  function requiresText(tableName) {
+    var deps;
+    var titles;
+
+    deps = transitiveDeps.get(tableName);
+
+    if (!deps || deps.size === 0) {
+      return "";
+    }
+
+    titles = Array.from(deps).map(function (d) {
+      return titleFor(d);
+    });
+
+    titles.sort(function (a, b) {
+      return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+
+    return " (requires " + titles.join(", ") + ")";
+  }
+
+  // -----------------------------
+  // Modal content
+  // -----------------------------
+  function showInfo(tableName) {
+    var schemaObj;
+    var meta;
+
+    schemaObj = schemas.get(tableName);
+    meta = tableMeta.get(tableName);
+
+    if (!schemaObj) {
+      return;
+    }
+
+    modalTitle.textContent = (meta && meta.title ? meta.title : tableName) + " (" + tableName + ")";
+
+    var directDeps;
+    var allDeps;
+
+    directDeps = Array.from(dependsOnRequired.get(tableName) || []).map(function (d) {
+      return titleFor(d) + " (" + d + ")";
+    });
+
+    allDeps = Array.from(transitiveDeps.get(tableName) || []).map(function (d) {
+      return titleFor(d) + " (" + d + ")";
+    });
+
+    var fkLines;
+    fkLines = (schemaObj.foreignKeys || []).map(function (fk) {
+      var ref;
+      var fkFields;
+      var req;
+
+      ref = fk && fk.reference ? fk.reference.resource : "";
+      fkFields = Array.isArray(fk.fields) ? fk.fields : [fk.fields];
+      req = isRequiredFK(schemaObj, fk) ? "required" : "optional";
+
+      return fkFields.join(", ") + " → " + (ref || "(self/blank)") + " [" + req + "]";
+    });
+
+    var fieldLines;
+    fieldLines = (schemaObj.fields || []).map(function (f) {
+      var req;
+
+      req = (f.constraints && f.constraints.required === true) ? "required" : "optional";
+
+      if (f.title) {
+        return f.name + " — " + f.title + " (" + req + ")";
+      }
+
+      return f.name + " (" + req + ")";
+    });
+
+    modalContent.innerHTML = "";
+
+    modalContent.appendChild(createEl(
+      "div",
+      { class: "kv" },
+      createEl("span", { class: "k", text: "Description: " }),
+      createEl("span", { text: schemaObj.description || "" })
+    ));
+
+    if (schemaObj.comments) {
+      modalContent.appendChild(createEl(
+        "div",
+        { class: "kv" },
+        createEl("span", { class: "k", text: "Comments: " }),
+        createEl("span", { text: schemaObj.comments })
+      ));
+    }
+
+    if (schemaObj.examples) {
+      modalContent.appendChild(createEl(
+        "div",
+        { class: "kv" },
+        createEl("span", { class: "k", text: "Examples: " }),
+        createEl("span", { class: "mono", text: schemaObj.examples })
+      ));
+    }
+
+    modalContent.appendChild(createEl(
+      "div",
+      { class: "kv" },
+      createEl("span", { class: "k", text: "Entity table: " }),
+      createEl("span", { text: entityTable.get(tableName) ? "Yes" : "No" })
+    ));
+
+    modalContent.appendChild(createEl(
+      "div",
+      { class: "kv" },
+      createEl("span", { class: "k", text: "Max required dependency depth: " }),
+      createEl("span", { text: String(maxDepth.get(tableName) || 0) })
+    ));
+
+    modalContent.appendChild(createEl(
+      "div",
+      { class: "kv" },
+      createEl("span", { class: "k", text: "Direct required dependencies: " }),
+      createEl("span", { text: directDeps.length ? directDeps.join(", ") : "None" })
+    ));
+
+    modalContent.appendChild(createEl(
+      "div",
+      { class: "kv" },
+      createEl("span", { class: "k", text: "All required dependencies (transitive): " }),
+      createEl("span", { text: allDeps.length ? allDeps.join(", ") : "None" })
+    ));
+
+    modalContent.appendChild(createEl(
+      "details",
+      {},
+      createEl("summary", { text: "Foreign keys (" + (schemaObj.foreignKeys || []).length + ")" }),
+      createEl("div", { class: "mono", text: fkLines.length ? fkLines.join("\n") : "None" })
+    ));
+
+    modalContent.appendChild(createEl(
+      "details",
+      { open: true },
+      createEl("summary", { text: "Fields (" + (schemaObj.fields || []).length + ")" }),
+      createEl("ul", { class: "fields" },
+        ...fieldLines.map(function (line) {
+          return createEl("li", { class: "mono", text: line });
+        })
+      )
+    ));
+
+    openModal();
+  }
+
+  // -----------------------------
+  // Rendering
+  // -----------------------------
+  function renderPanel(panelTitle, tableNames, withActions) {
+    var headLeft;
+    var actions;
+    var panel;
+
+    headLeft = createEl(
+      "div",
+      {},
+      createEl("h2", { text: panelTitle }),
+      createEl("div", { class: "meta", text: tableNames.length + " table(s)" })
+    );
+
+    actions = createEl("div", { class: "actions" });
+
+    if (withActions) {
+      actions.appendChild(createEl("button", {
+        class: "btn",
+        type: "button",
+        onclick: function () {
+          tableNames.forEach(function (t) {
+            if (enabled.get(t)) {
+              checked.set(t, true);
+            }
+          });
+          renderUI();
+        }
+      }, "Select all (enabled)"));
+
+      actions.appendChild(createEl("button", {
+        class: "btn",
+        type: "button",
+        onclick: function () {
+          tableNames.forEach(function (t) {
+            checked.set(t, false);
+          });
+          renderUI();
+        }
+      }, "Clear all"));
+    }
+
+    panel = createEl(
+      "section",
+      { class: "panel" },
+      createEl("div", { class: "panel-head" }, headLeft, actions)
+    );
+
+    tableNames.forEach(function (tableName) {
+      var cb;
+      var infoBtn;
+      var label;
+      var rowClass;
+      var req;
+
+      cb = createEl("input", { type: "checkbox" });
+      cb.checked = !!checked.get(tableName);
+      cb.disabled = !enabled.get(tableName);
+
+      cb.addEventListener("change", function () {
+        checked.set(tableName, cb.checked);
+        renderUI();
+      });
+
+      infoBtn = createEl("button", {
+        type: "button",
+        class: "info",
+        title: "Show table details",
+        onclick: function () {
+          showInfo(tableName);
+        }
+      }, "i");
+
+      req = requiresText(tableName);
+
+      label = createEl(
+        "label",
+        {},
+        cb,
+        createEl("span", { class: "title", text: titleFor(tableName) }),
+        createEl("span", { class: "requires", text: req })
+      );
+
+      rowClass = enabled.get(tableName) ? "row" : "row disabled";
+
+      panel.appendChild(createEl("div", { class: rowClass }, label, infoBtn));
+    });
+
+    var enabledCount;
+    var checkedCount;
+
+    enabledCount = tableNames.filter(function (t) { return enabled.get(t); }).length;
+    checkedCount = tableNames.filter(function (t) { return checked.get(t); }).length;
+
+    panel.appendChild(createEl(
+      "div",
+      { class: "status" },
+      createEl("span", { class: "pill", text: "Enabled: " + enabledCount + "/" + tableNames.length }),
+      createEl("span", { class: "pill", text: "Checked: " + checkedCount + "/" + tableNames.length })
+    ));
+
+    return panel;
+  }
+
+  function renderUI() {
+    recomputeEnabledState();
+
+    var app;
+    var col1;
+    var col2;
+    var col3;
+
+    app = $("#app");
+    app.className = "";
+    app.innerHTML = "";
+
+    col1 = [];
+    col2 = [];
+    col3 = [];
+
+    schemas.forEach(function (_schemaObj, tableName) {
+      var deps;
+      var depth;
+
+      deps = dependsOnRequired.get(tableName);
+
+      // Column 1: no direct required dependencies
+      if (!deps || deps.size === 0) {
+        col1.push(tableName);
+        return;
+      }
+
+      // Column 2: exactly one level of direct dependency
+      depth = maxDepth.get(tableName) || 0;
+
+      if (depth === 1) {
+        col2.push(tableName);
+        return;
+      }
+
+      // Column 3: two or more levels of direct dependency
+      if (depth >= 2) {
+        col3.push(tableName);
+        return;
+      }
+
+      // Fallback (should not happen)
+      col2.push(tableName);
+    });
+
+    function byTitle(a, b) {
+      return titleFor(a).toLowerCase().localeCompare(titleFor(b).toLowerCase());
+    }
+
+    col1.sort(byTitle);
+    col2.sort(byTitle);
+    col3.sort(byTitle);
+
+    var columns;
+    columns = createEl("div", { class: "cols" });
+
+    columns.appendChild(renderPanel("Tables with no direct dependencies", col1, true));
+    columns.appendChild(renderPanel("Tables with one level of direct dependency", col2, false));
+    columns.appendChild(renderPanel("Tables with two or more levels of direct dependency", col3, false));
+
+    app.appendChild(columns);
+
+    if (loadErrors.length > 0) {
+      app.appendChild(createEl(
+        "div",
+        { class: "panel" },
+        createEl("h2", { text: "Load warnings" }),
+        createEl("div", { class: "small error", text: "Some schemas failed to load. They are omitted from the UI." }),
+        createEl("div", { class: "mono", text: loadErrors.join("\n") })
+      ));
+    }
+  }
+
+  function renderLoading(progressText) {
+    var app;
+    app = $("#app");
+    app.className = "loading";
+    app.textContent = progressText;
+  }
+  // -----------------------------
+  // datapackage.json panel
+  // -----------------------------
+  var dpPanel;
+  var dpText;
+  var dpStatus;
+  var btnGenerateDp;
+  var btnCopyDp;
+  var btnDownloadDp;
+
+  var lastGeneratedDp;
+
+  dpPanel = $("#dpPanel");
+  dpText = $("#dpText");
+  dpStatus = $("#dpStatus");
+  btnGenerateDp = $("#btnGenerateDp");
+  btnCopyDp = $("#btnCopyDp");
+  btnDownloadDp = $("#btnDownloadDp");
+
+  lastGeneratedDp = "";
+
+  function getSelectedTables() {
+    var selected;
+
+    selected = [];
+
+    checked.forEach(function (isChecked, tableName) {
+      if (isChecked) {
+        selected.push(tableName);
+      }
+    });
+
+    selected.sort(function (a, b) {
+      return a.toLowerCase().localeCompare(b.toLowerCase());
+    });
+
+    return selected;
+  }
+
+  function buildDatapackageObject(selectedTables) {
+    var dp;
+    var resources;
+
+    resources = [];
+
+    selectedTables.forEach(function (tableName) {
+      var resource;
+      var schemaObj;
+      var schemaClone;
+
+      schemaObj = schemas.get(tableName);
+      schemaClone = JSON.parse(JSON.stringify(schemaObj));
+
+      resource = {};
+      resource.name = tableName;
+      resource.path = tableName + ".csv";
+      resource.profile = "tabular-data-resource";
+      resource.format = "csv";
+      resource.mediatype = "text/csv";
+      resource.schema = schemaClone;
+
+      resources.push(resource);
+    });
+
+    dp = {};
+    dp.profile = dwcDpProfileId || "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json";
+    dp.created = new Date().toISOString();
+    dp.version = "2026-03-02";
+    dp.resources = resources;
+
+    return dp;
+  }
+
+  function setDpButtonsEnabled(canCopyDownload) {
+    btnCopyDp.disabled = !canCopyDownload;
+    btnDownloadDp.disabled = !canCopyDownload;
+  }
+
+  function generateDatapackage() {
+    var selectedTables;
+    var dpObj;
+    var dpJson;
+
+    selectedTables = getSelectedTables();
+
+    if (selectedTables.length === 0) {
+      dpText.value = "";
+      dpStatus.textContent = "Select at least one table, then click Generate.";
+      lastGeneratedDp = "";
+      setDpButtonsEnabled(false);
+      return;
+    }
+
+    dpObj = buildDatapackageObject(selectedTables);
+    dpJson = JSON.stringify(dpObj, null, 2);
+
+    lastGeneratedDp = dpJson;
+    dpText.value = dpJson;
+
+    dpStatus.textContent = "Generated for " + selectedTables.length + " table(s): " + selectedTables.join(", ");
+    setDpButtonsEnabled(true);
+  }
+
+  function copyDatapackageToClipboard() {
+    if (!lastGeneratedDp) {
+      return;
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastGeneratedDp)
+        .then(function () {
+          dpStatus.textContent = "Copied datapackage.json to clipboard.";
+        })
+        .catch(function (err) {
+          dpStatus.textContent = "Copy failed: " + String(err);
+        });
+      return;
+    }
+
+    dpText.focus();
+    dpText.select();
+
+    try {
+      document.execCommand("copy");
+      dpStatus.textContent = "Copied datapackage.json to clipboard.";
+    } catch (e) {
+      dpStatus.textContent = "Copy failed.";
+    }
+  }
+
+  function downloadDatapackage() {
+    var blob;
+    var url;
+    var a;
+
+    if (!lastGeneratedDp) {
+      return;
+    }
+
+    blob = new Blob([lastGeneratedDp], { type: "application/json;charset=utf-8" });
+    url = URL.createObjectURL(blob);
+
+    a = document.createElement("a");
+    a.href = url;
+    a.download = "datapackage.json";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(url);
+
+    dpStatus.textContent = "Downloaded datapackage.json.";
+  }
+
+  btnGenerateDp.addEventListener("click", generateDatapackage);
+  btnCopyDp.addEventListener("click", copyDatapackageToClipboard);
+  btnDownloadDp.addEventListener("click", downloadDatapackage);
+
+
+  // -----------------------------
+  // Boot
+  // -----------------------------
+  function main() {
+    renderLoading("Loading DwC-DP profile and index…");
+
+    Promise.all([
+      fetchJSONWithTimeout(PROFILE_URL, FETCH_TIMEOUT_MS),
+      fetchJSONWithTimeout(INDEX_URL, FETCH_TIMEOUT_MS)
+    ])
+    .then(function (results) {
+      var profile;
+      var index;
+      var tableNames;
+      var tableSchemas;
+
+      profile = results[0];
+      index = results[1];
+
+      dwcDpProfileId = (profile && profile.$id) ? profile.$id : "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json";
+
+      tableNames = (profile && profile.$defs && profile.$defs["dwc-dp-resource-names"] && profile.$defs["dwc-dp-resource-names"].enum) || [];
+
+      if (!Array.isArray(tableNames) || tableNames.length === 0) {
+        throw new Error("Could not find $defs.dwc-dp-resource-names.enum in profile JSON.");
+      }
+
+      tableSchemas = (index && index.tableSchemas) || [];
+
+      tableSchemas.forEach(function (t) {
+        if (!t || !t.name) {
+          return;
+        }
+
+        tableMeta.set(t.name, {
+          name: t.name,
+          title: t.title || t.name,
+          url: t.url
+        });
+      });
+
+      tableNames.forEach(function (name) {
+        if (!tableMeta.has(name)) {
+          tableMeta.set(name, {
+            name: name,
+            title: name,
+            url: "table-schemas/" + name + ".json"
+          });
+        }
+      });
+
+      renderLoading("Loading " + tableNames.length + " table schemas… (0/" + tableNames.length + ")");
+
+      return mapWithConcurrency(
+        tableNames,
+        FETCH_CONCURRENCY,
+        function (tableName) {
+          var meta;
+          var urlPart;
+          var url;
+
+          meta = tableMeta.get(tableName);
+
+          urlPart = meta && meta.url ? meta.url : ("table-schemas/" + tableName + ".json");
+
+          if (urlPart.indexOf("http") === 0) {
+            url = urlPart;
+          } else {
+            url = BASE_RAW + urlPart;
+          }
+
+          return fetchJSONWithTimeout(url, FETCH_TIMEOUT_MS)
+            .then(function (schemaObj) {
+              schemas.set(tableName, schemaObj);
+              return true;
+            });
+        },
+        function (done, total) {
+          renderLoading("Loading " + total + " table schemas… (" + done + "/" + total + ")");
+        }
+      );
+    })
+    .then(function (results) {
+      // Record any schema-load errors but continue
+      results.forEach(function (r, idx) {
+        if (r && r.ok) {
+          return;
+        }
+
+        var msg;
+        msg = "Schema load failed for item #" + idx + ": " + (r && r.error ? String(r.error) : "unknown error");
+        loadErrors.push(msg);
+      });
+
+      if (schemas.size === 0) {
+        throw new Error("No schemas loaded, cannot build UI.");
+      }
+
+      // Entity classification
+      schemas.forEach(function (schemaObj, tableName) {
+        var isEnt;
+
+        isEnt = computeIsEntity(schemaObj);
+        entityTable.set(tableName, isEnt);
+      });
+
+      // Dependencies and derived measures
+      buildDirectRequiredDependencies();
+      computeTransitiveDependencies();
+      computeMaximumDepth();
+
+      // Render final UI
+      renderUI();
+
+      dpPanel.style.display = "block";
+      dpStatus.textContent = "Click Generate to build datapackage.json from the selected tables.";
+    })
+    .catch(function (err) {
+      var app;
+
+      app = $("#app");
+      app.className = "panel";
+      app.innerHTML = "";
+
+      app.appendChild(createEl("div", { class: "error", text: String(err) }));
+      app.appendChild(createEl("div", { class: "small", text: "If this fails, your network may block raw GitHub, or one or more schema URLs may be unreachable." }));
+
+      if (loadErrors.length > 0) {
+        app.appendChild(createEl("div", { class: "mono", text: loadErrors.join("\n") }));
+      }
+    });
+  }
+
+  main();
+})();
+</script>
+</body>
+</html>
