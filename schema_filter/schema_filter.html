@@ -16,7 +16,7 @@
     .panel { border: 1px solid #ddd; border-radius: 10px; padding: 12px; }
     .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
     .panel h2 { font-size: 16px; margin: 0 0 6px 0; }
-    .panel .meta { color: #666; font-size: 12px; margin: 0 0 10px 0; }
+    .panel .meta { color: #666; font-size: 12px; margin: 0 0 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
     .panel .actions { display: inline-flex; gap: 8px; }
 
     .btn {
@@ -132,10 +132,30 @@
   <h1>DwC-DP Table Filter</h1>
 
   <div class="subtle">
-    Select the tables required to capture the full richness of your dataset. Start with at least one table from the first column of tables with no direct required dependencies. Only tables with all required dependencies selected will be enabled. Each table lists all of its required dependencies. Click on an Information icon to see the metadata, examples, and fields for a given table.
+    Select the tables required to capture the full richness of your dataset. Start with at least one table from the column of tables with no required dependencies. Only tables with all required dependencies selected will be enabled. Each table lists all of its required dependencies. Click on an Information icon to see the metadata, examples, and fields for a given table.
   </div>
 
   <div id="app" class="loading">Loading DwC-DP profile and schemas…</div>
+
+
+  <div id="orderPanel" class="panel" style="margin-top: 14px; display: none;">
+    <div class="panel-head">
+      <div>
+        <h2>Recommended table mapping order</h2>
+      </div>
+      <div class="actions">
+        <button id="btnGenerateOrder" class="btn" type="button">Generate</button>
+        <button id="btnCopyOrder" class="btn" type="button" disabled>Copy to clipboard</button>
+      </div>
+    </div>
+<textarea id="orderText"
+              class="mono"
+              readonly
+              style="width: 100%; height: 180px; box-sizing: border-box; padding: 10px; border: 1px solid #eee; border-radius: 8px;"></textarea>
+
+    <div id="orderStatus" class="small" style="margin-top: 8px;"></div>
+  </div>
+
 
   <div id="dpPanel" class="panel" style="margin-top: 14px; display: none;">
     <div class="panel-head">
@@ -149,11 +169,11 @@
         <button id="btnDownloadDp" class="btn" type="button" disabled>Download</button>
       </div>
     </div>
-    <textarea id="dpText" class="mono" readonly style="width: 100%; height: 260px; box-sizing: border-box; padding: 10px; border: 1px solid #eee; border-radius: 8px;"></textarea>
+<textarea id="dpText" class="mono" readonly style="width: 100%; height: 260px; box-sizing: border-box; padding: 10px; border: 1px solid #eee; border-radius: 8px;"></textarea>
     <div id="dpStatus" class="small" style="margin-top: 8px;"></div>
   </div>
 
-  <div id="uiVersion" class="small" style="margin-top: 10px;">Version: 2026-03-02</div>
+  <div id="uiVersion" class="small" style="margin-top: 10px;">Version: 2026-03-03</div>
 
 
   <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
@@ -285,6 +305,9 @@
   var tableMeta;
 
   var dependsOnRequired;
+
+  var dependsOnAnyForeignKey;
+
   var transitiveDeps;
   var maxDepth;
 
@@ -300,7 +323,10 @@
   tableMeta = new Map();
 
   dependsOnRequired = new Map();
-  transitiveDeps = new Map();
+  
+
+  dependsOnAnyForeignKey = new Map();
+transitiveDeps = new Map();
   maxDepth = new Map();
 
   entityTable = new Map();
@@ -530,6 +556,41 @@
       });
     });
   }
+
+  function buildAllForeignKeyDependencies() {
+    // For recommended mapping order, we use ALL foreign key references (required and optional).
+    // Edge direction for ordering: referenced table should appear before the referencing table.
+    if (!dependsOnAnyForeignKey) {
+      dependsOnAnyForeignKey = new Map();
+    }
+
+    dependsOnAnyForeignKey.clear();
+
+    schemas.forEach(function (schemaObj, tableName) {
+      var foreignKeys;
+
+      dependsOnAnyForeignKey.set(tableName, new Set());
+
+      foreignKeys = schemaObj.foreignKeys || [];
+
+      foreignKeys.forEach(function (fk) {
+        var ref;
+
+        ref = fk && fk.reference ? fk.reference.resource : "";
+
+        if (!ref) {
+          return;
+        }
+
+        if (ref === tableName) {
+          return;
+        }
+
+        dependsOnAnyForeignKey.get(tableName).add(ref);
+      });
+    });
+  }
+
 
   function computeTransitiveDependencies() {
     transitiveDeps.clear();
@@ -806,7 +867,23 @@
   // -----------------------------
   // Rendering
   // -----------------------------
-  function renderPanel(panelTitle, tableNames, withActions) {
+  
+  function renderPanel(panelTitle, tableNames, withActions, withClear) {
+    if (withClear !== true) {
+      withClear = false;
+    }
+
+    var enabledCount;
+    var checkedCount;
+
+    enabledCount = tableNames.filter(function (t) {
+      return enabled.get(t);
+    }).length;
+
+    checkedCount = tableNames.filter(function (t) {
+      return checked.get(t);
+    }).length;
+
     var headLeft;
     var actions;
     var panel;
@@ -815,7 +892,13 @@
       "div",
       {},
       createEl("h2", { text: panelTitle }),
-      createEl("div", { class: "meta", text: tableNames.length + " table(s)" })
+      createEl(
+        "div",
+        { class: "meta" },
+        createEl("span", { class: "pill", text: "Total: " + tableNames.length }),
+        createEl("span", { class: "pill", text: "Enabled: " + enabledCount + "/" + tableNames.length }),
+        createEl("span", { class: "pill", text: "Selected: " + checkedCount + "/" + tableNames.length })
+      )
     );
 
     actions = createEl("div", { class: "actions" });
@@ -834,16 +917,20 @@
         }
       }, "Select all (enabled)"));
 
-      actions.appendChild(createEl("button", {
-        class: "btn",
-        type: "button",
-        onclick: function () {
-          tableNames.forEach(function (t) {
-            checked.set(t, false);
-          });
-          renderUI();
-        }
-      }, "Clear all"));
+      if (withClear) {
+        actions.appendChild(createEl("button", {
+          class: "btn",
+          type: "button",
+          onclick: function () {
+            tableNames.forEach(function (t) {
+              checked.set(t, false);
+            });
+            renderUI();
+            resetMappingOrderPanel();
+            resetDatapackagePanel();
+          }
+}, "Clear all"));
+      }
     }
 
     panel = createEl(
@@ -892,21 +979,9 @@
       panel.appendChild(createEl("div", { class: rowClass }, label, infoBtn));
     });
 
-    var enabledCount;
-    var checkedCount;
-
-    enabledCount = tableNames.filter(function (t) { return enabled.get(t); }).length;
-    checkedCount = tableNames.filter(function (t) { return checked.get(t); }).length;
-
-    panel.appendChild(createEl(
-      "div",
-      { class: "status" },
-      createEl("span", { class: "pill", text: "Enabled: " + enabledCount + "/" + tableNames.length }),
-      createEl("span", { class: "pill", text: "Checked: " + checkedCount + "/" + tableNames.length })
-    ));
-
     return panel;
   }
+
 
   function renderUI() {
     recomputeEnabledState();
@@ -965,9 +1040,9 @@
     var columns;
     columns = createEl("div", { class: "cols" });
 
-    columns.appendChild(renderPanel("Tables with no direct dependencies", col1, true));
-    columns.appendChild(renderPanel("Tables with one level of direct dependency", col2, false));
-    columns.appendChild(renderPanel("Tables with two or more levels of direct dependency", col3, false));
+    columns.appendChild(renderPanel("Tables with no required dependencies", col1, true, true));
+    columns.appendChild(renderPanel("Tables with one level of direct required dependency", col2, true, false));
+    columns.appendChild(renderPanel("Tables with two or more levels of direct required dependency", col3, true, false));
 
     app.appendChild(columns);
 
@@ -1087,7 +1162,8 @@
     lastGeneratedDp = dpJson;
     dpText.value = dpJson;
 
-    dpStatus.textContent = "Generated for " + selectedTables.length + " table(s): " + selectedTables.join(", ");
+
+    dpStatus.textContent = "Generated datapackage.json for " + selectedTables.length + " table(s).";
     setDpButtonsEnabled(true);
   }
 
@@ -1145,6 +1221,176 @@
   btnGenerateDp.addEventListener("click", generateDatapackage);
   btnCopyDp.addEventListener("click", copyDatapackageToClipboard);
   btnDownloadDp.addEventListener("click", downloadDatapackage);
+
+
+  
+  // -----------------------------
+  // Recommended Mapping Order (all foreign keys)
+  // -----------------------------
+  var orderPanel;
+  var orderText;
+  var orderStatus;
+  var btnGenerateOrder;
+  var btnCopyOrder;
+  var lastGeneratedOrder;
+
+  orderPanel = document.getElementById("orderPanel");
+  orderText = document.getElementById("orderText");
+  orderStatus = document.getElementById("orderStatus");
+  btnGenerateOrder = document.getElementById("btnGenerateOrder");
+  btnCopyOrder = document.getElementById("btnCopyOrder");
+  lastGeneratedOrder = "";
+
+  function generateMappingOrder() {
+    var selected;
+    var inDegree;
+    var adj;
+
+    selected = getSelectedTables();
+
+    if (selected.length === 0) {
+      lastGeneratedOrder = "";
+      orderText.value = "";
+      orderStatus.textContent = "Select at least one table, then click Generate.";
+      btnCopyOrder.disabled = true;
+      return;
+    }
+
+    // Build graph restricted to selected tables.
+    // For each FK t -> dep, add edge dep -> t (dep mapped before t).
+    inDegree = {};
+    adj = {};
+
+    selected.forEach(function (t) {
+      inDegree[t] = 0;
+      adj[t] = [];
+    });
+
+    selected.forEach(function (t) {
+      var deps;
+
+      deps = dependsOnAnyForeignKey.get(t) || new Set();
+
+      deps.forEach(function (dep) {
+        if (selected.indexOf(dep) === -1) {
+          return;
+        }
+
+        adj[dep].push(t);
+        inDegree[t] += 1;
+      });
+    });
+
+    function compareTables(a, b) {
+      var ta;
+      var tb;
+
+      ta = titleFor(a).toLowerCase();
+      tb = titleFor(b).toLowerCase();
+
+      if (ta < tb) return -1;
+      if (ta > tb) return 1;
+
+      return a.toLowerCase().localeCompare(b.toLowerCase());
+    }
+
+    // Kahn's algorithm
+    var queue;
+    var order;
+
+    queue = [];
+    order = [];
+
+    selected.forEach(function (t) {
+      if (inDegree[t] === 0) {
+        queue.push(t);
+      }
+    });
+
+    queue.sort(compareTables);
+
+    while (queue.length > 0) {
+      var current;
+
+      current = queue.shift();
+      order.push(current);
+
+      adj[current].forEach(function (neighbor) {
+        inDegree[neighbor] -= 1;
+
+        if (inDegree[neighbor] === 0) {
+          queue.push(neighbor);
+          queue.sort(compareTables);
+        }
+      });
+    }
+
+    if (order.length !== selected.length) {
+      lastGeneratedOrder = "";
+      orderText.value = "";
+      orderStatus.textContent = "Cycle detected in foreign-key dependencies among the selected tables. Cannot compute strict mapping order.";
+      btnCopyOrder.disabled = true;
+      return;
+    }
+
+    lastGeneratedOrder = order.join("\n");
+    orderText.value = lastGeneratedOrder;
+    orderStatus.textContent = "Generated mapping order for " + order.length + " table(s).";
+    btnCopyOrder.disabled = false;
+  }
+
+  function copyMappingOrder() {
+    if (!lastGeneratedOrder) {
+      return;
+    }
+
+    navigator.clipboard.writeText(lastGeneratedOrder)
+      .then(function () {
+        orderStatus.textContent = "Copied mapping order to clipboard.";
+      })
+      .catch(function () {
+        orderStatus.textContent = "Copy failed.";
+      });
+  }
+
+  function resetMappingOrderPanel() {
+    lastGeneratedOrder = "";
+    if (orderText) {
+      orderText.value = "";
+    }
+    if (orderStatus) {
+      orderStatus.textContent = "Select at least one table, then click Generate.";
+    }
+    if (btnCopyOrder) {
+      btnCopyOrder.disabled = true;
+    }
+  }
+
+  function resetDatapackagePanel() {
+    if (dpText) {
+      dpText.value = "";
+    }
+    if (dpStatus) {
+      dpStatus.textContent = "Select at least one table, then click Generate.";
+    }
+    btnCopyDP = btnCopyDP || document.getElementById("btnCopyDP");
+    if (btnCopyDP) {
+      btnCopyDP.disabled = true;
+    }
+    btnDownloadDP = btnDownloadDP || document.getElementById("btnDownloadDP");
+    if (btnDownloadDP) {
+      btnDownloadDP.disabled = true;
+    }
+  }
+
+
+  if (btnGenerateOrder) {
+    btnGenerateOrder.addEventListener("click", generateMappingOrder);
+  }
+
+  if (btnCopyOrder) {
+    btnCopyOrder.addEventListener("click", copyMappingOrder);
+  }
 
 
   // -----------------------------
@@ -1255,11 +1501,15 @@
 
       // Dependencies and derived measures
       buildDirectRequiredDependencies();
+
+      buildAllForeignKeyDependencies();
       computeTransitiveDependencies();
       computeMaximumDepth();
 
       // Render final UI
       renderUI();
+
+      orderPanel.style.display = "block";
 
       dpPanel.style.display = "block";
       dpStatus.textContent = "Click Generate to build datapackage.json from the selected tables.";
