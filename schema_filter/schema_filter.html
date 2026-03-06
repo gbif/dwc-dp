@@ -163,7 +163,24 @@
 </head>
 
 <body>
-  <h1>DwC-DP Table Filter</h1>
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+        <h1 style="margin:0;">DwC-DP Table Filter</h1>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <button id="btnCopyLink" class="btn" type="button" title="Copy a shareable link for this selection">Copy link</button>
+        </div>
+      </div>
+      <div id="linkNotice" class="panel" style="display:none; margin: 12px 0; border-left: 4px solid #d39e00;">
+        <div class="panel-head">
+          <div>
+            <h2 style="margin:0;">Link reconciliation</h2>
+            <div id="linkNoticeText" class="small" style="margin-top:8px;"></div>
+          </div>
+          <div class="actions">
+            <button id="btnDismissLinkNotice" class="btn" type="button">Dismiss</button>
+          </div>
+        </div>
+      </div>
+
 
   <div class="subtle">
     Select the tables required to capture the full richness of your dataset. Start with at least one table from the column of tables with no required dependencies. Only tables with all required dependencies selected will be enabled. Each table lists all of its required dependencies. Click on an Information icon to see the metadata, examples, and fields for a given table.
@@ -1650,6 +1667,8 @@ if (loadErrors.length > 0) {
 
   fieldQueryInput = document.getElementById("fieldQuery");
   btnClearFieldQuery = document.getElementById("btnClearFieldQuery");
+  var btnCopyLink;
+  btnCopyLink = document.getElementById("btnCopyLink");
   fieldResultsDiv = document.getElementById("fieldResults");
   var fieldGuidanceDiv;
   fieldGuidanceDiv = document.getElementById("fieldGuidance");
@@ -1894,11 +1913,210 @@ setFieldGuidance(matches.length, "Showing results.");
     });
   }
 
+  if (btnCopyLink) {
+    btnCopyLink.addEventListener("click", copyShareLink);
+  }
+
+
+  // -----------------------------
+  // Deep link support: persist checked tables in URL
+  // -----------------------------
+  var URL_TABLES_PARAM;
+  var initialTablesFromUrl;
+
+  URL_TABLES_PARAM = "tables";
+  initialTablesFromUrl = null;
+
+  function parseTablesFromUrl() {
+    var params;
+    var raw;
+    var list;
+
+    params = new URLSearchParams(window.location.search);
+    raw = params.get(URL_TABLES_PARAM);
+
+    if (!raw) {
+      return null;
+    }
+
+    list = raw.split(",")
+      .map(function (s) { return s.trim(); })
+      .filter(function (s) { return s.length > 0; });
+
+    if (list.length === 0) {
+      return null;
+    }
+
+    return list;
+  }
+
+  function serializeCheckedTables() {
+    var list;
+
+    list = [];
+
+    checked.forEach(function (isChecked, tableName) {
+      if (isChecked) {
+        list.push(tableName);
+      }
+    });
+
+    list.sort();
+    return list;
+  }
+
+  function updateUrlFromState() {
+    var list;
+    var params;
+    var url;
+
+    list = serializeCheckedTables();
+    params = new URLSearchParams(window.location.search);
+
+    if (list.length === 0) {
+      params.delete(URL_TABLES_PARAM);
+    } else {
+      params.set(URL_TABLES_PARAM, list.join(","));
+    }
+
+    url = window.location.pathname;
+
+    if ([...params.keys()].length > 0) {
+      url += "?" + params.toString();
+    }
+
+    url += window.location.hash || "";
+
+    window.history.replaceState({}, "", url);
+  }
+
+  function applyTablesFromUrl() {
+    if (!initialTablesFromUrl || initialTablesFromUrl.length === 0) {
+      return;
+    }
+
+    var requested;
+    var unknown;
+    var known;
+    var toCheck;
+    var addedPrereqs;
+
+    requested = initialTablesFromUrl.slice();
+    unknown = [];
+    known = [];
+    toCheck = new Set();
+    addedPrereqs = new Set();
+
+    requested.forEach(function (t) {
+      if (!schemas.has(t)) {
+        unknown.push(t);
+      } else {
+        known.push(t);
+      }
+    });
+
+    try {
+      known.forEach(function (t) {
+        var deps;
+
+        deps = transitiveDeps.get(t) || new Set();
+
+        deps.forEach(function (d) {
+          toCheck.add(d);
+          if (known.indexOf(d) === -1) {
+            addedPrereqs.add(d);
+          }
+        });
+
+        toCheck.add(t);
+      });
+    } catch (e) {
+      showLinkNotice([
+        "Could not apply the table selection from the link due to an unexpected dependency error.",
+        "The selection was not applied. You can still select tables manually."
+      ]);
+      initialTablesFromUrl = null;
+      return;
+    }
+
+    toCheck.forEach(function (t) {
+      checked.set(t, true);
+    });
+
+    renderUI();
+
+    var lines;
+    lines = [];
+
+    if (unknown.length > 0) {
+      lines.push("Skipped tables not present in the current model: " + unknown.join(", "));
+    }
+
+    if (addedPrereqs.size > 0) {
+      lines.push("Added required prerequisite tables: " + Array.from(addedPrereqs).sort().join(", "));
+    }
+
+    if (lines.length > 0) {
+      showLinkNotice(lines);
+    }
+
+    initialTablesFromUrl = null;
+  }
+
+  function copyShareLink() {
+    updateUrlFromState();
+
+    navigator.clipboard.writeText(window.location.href)
+      .then(function () {
+        // keep feedback minimal; uses the field guidance if present
+        if (typeof setFieldGuidance === "function") {
+          setFieldGuidance(0, "Copied shareable link to clipboard.");
+        }
+      })
+      .catch(function () {
+        // no-op
+      });
+  }
+
+  function showLinkNotice(lines) {
+    var box;
+    var text;
+    var btn;
+
+    box = document.getElementById("linkNotice");
+    text = document.getElementById("linkNoticeText");
+    btn = document.getElementById("btnDismissLinkNotice");
+
+    if (!box || !text) {
+      return;
+    }
+
+    text.innerHTML = lines.map(function (s) {
+      var div;
+      div = document.createElement("div");
+      div.textContent = s;
+      return div.innerHTML;
+    }).join("<br>");
+
+    box.style.display = "block";
+
+    if (btn && !btn.__wired) {
+      btn.__wired = true;
+      btn.addEventListener("click", function () {
+        box.style.display = "none";
+      });
+    }
+  }
+
+
+
 
   // -----------------------------
   // Boot
   // -----------------------------
   function main() {
+    initialTablesFromUrl = parseTablesFromUrl();
+
     renderLoading("Loading DwC-DP profile and index…");
 
     Promise.all([
@@ -2010,6 +2228,8 @@ setFieldGuidance(matches.length, "Showing results.");
 
       buildFieldIndex();
       renderFieldResults();
+
+      applyTablesFromUrl();
 
       // Render final UI
       renderUI();
