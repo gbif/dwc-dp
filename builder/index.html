@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DwC-DP Table Filter</title>
+  <title>Darwin Core Data Package Builder</title>
   <style>
     :root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
     body { margin: 16px; }
-    h1 { font-size: 20px; margin: 0 0 10px 0; }
+    h1 { font-size: 40px; margin: 0 0 10px 0; }
     .subtle { color: #555; font-size: 13px; line-height: 1.4; margin-bottom: 14px; }
 
     .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
@@ -16,6 +16,12 @@
     .panel { border: 1px solid #ddd; border-radius: 10px; padding: 12px; }
     .panel-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
     .panel h2 { font-size: 16px; margin: 0 0 6px 0; }
+    #fieldFinder .panel-head h2,
+    #orderPanel .panel-head h2,
+    #dpPanel .panel-head h2,
+    #appSectionIntro .panel-head h2 {
+      font-size: 22px;
+    }
     .panel .meta { color: #666; font-size: 12px; margin: 0 0 10px 0; display: flex; flex-wrap: wrap; gap: 6px; }
     .panel .actions { display: inline-flex; gap: 8px; }
 
@@ -159,16 +165,78 @@
       background: #fff;
     }
 
+
+    .field-result-card {
+      border: 1px solid #e6e6e6;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 8px 0;
+      background: #fafafa;
+    }
+    .field-result-head {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .field-result-left {
+      flex: 1;
+      min-width: 0;
+    }
+    .field-result-topline {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .field-result-meta {
+      margin-top: 8px;
+      display: grid;
+      gap: 6px;
+    }
+    .field-result-meta-row {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .field-result-meta-label {
+      font-weight: 600;
+    }
+
+
+    .ephemeral-feedback {
+      position: fixed;
+      z-index: 10000;
+      background: rgba(32, 32, 32, 0.96);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      pointer-events: none;
+      transform: translate(-50%, -100%);
+      white-space: nowrap;
+      max-width: 320px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 </head>
 
 <body>
   <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-        <h1 style="margin:0;">DwC-DP Table Filter</h1>
-        <div style="display:flex; gap:8px; align-items:center;">
+        
+        <h1 style="margin:0;">Darwin Core Data Package Builder</h1>
+        <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+          <span id="selectedCount" class="small" style="margin-right:6px;">Tables selected: 0</span>
+          <button id="btnResetWorkspace" class="btn" type="button">Reset workspace</button>
           <button id="btnCopyLink" class="btn" type="button" title="Copy a shareable link for this selection">Copy link</button>
+          <a href="https://gbif.github.io/dwc-dp/dp/" target="_blank" class="btn" style="text-decoration:none;">Documentation</a>
         </div>
       </div>
+
       <div id="linkNotice" class="panel" style="display:none; margin: 12px 0; border-left: 4px solid #d39e00;">
         <div class="panel-head">
           <div>
@@ -182,16 +250,27 @@
       </div>
 
 
+  
   <div class="subtle">
-    Select the tables required to capture the full richness of your dataset. Start with at least one table from the column of tables with no required dependencies. Only tables with all required dependencies selected will be enabled. Each table lists all of its required dependencies. Click on an Information icon to see the metadata, examples, and fields for a given table.
+    This page has four working sections that can be used together or independently:
+    <ol style="margin: 8px 0 0 20px; padding: 0;">
+      <li><a href="#fieldFinder">Find a field</a> — search field names, <span class="mono">isVersionOf</span> terms, and optionally definitions, usage comments, and examples to discover which DwC-DP table contains the information you need.</li>
+      <li><a href="#app">Select tables</a> — choose the tables needed to represent your dataset completely. Table enabling and disabling is driven by required dependencies in the published schemas.</li>
+      <li><a href="#orderPanel">Recommended table mapping order</a> — generate a dependency-aware order in which to map your data into the selected tables.</li>
+      <li><a href="#dpPanel">Generate outputs</a> — inspect and copy a <span class="mono">datapackage.json</span>, and download a bundle containing the <span class="mono">datapackage.json</span> plus empty CSV files with headers for the selected tables.</li>
+    
+      <li><strong>Share your configuration</strong> — the <span class="mono">Copy Link</span> button captures the currently selected tables in the page URL so the exact state of the tool can be shared with others. Opening that link will restore the same table selections (adjusted automatically if the schemas have changed).</li>
+
+    </ol>
   </div>
+
 
 
   <div id="fieldFinder" class="panel" style="margin: 14px 0;">
     <div class="panel-head">
       <div>
         <h2>Find a field</h2>
-        <div class="meta">Type at least 3 characters to search for a field name (or an <span class="mono">isVersionOf</span> terminal segment). Results update while typing.</div>
+        <div class="meta">Use this section when you know a term, part of a term, or only the meaning of the data you have. Search results tell you which table contains a field, and the Enable button will check that table together with all of the required dependency tables it needs. This is often the fastest way to decide what to select in the table section below. Type at least 3 characters to search. Results update while typing.</div>
       </div>
     </div>
 
@@ -202,6 +281,12 @@
              style="flex: 1; min-width: 280px; padding: 10px 12px; border: 1px solid #ddd; border-radius: 10px; font-size: 14px;" />
       <button id="btnClearFieldQuery" class="btn" type="button">Clear</button>
     </div>
+    <div style="margin-top: 10px;">
+      <label style="display: inline-flex; align-items: center; gap: 8px;">
+        <input id="includeFieldMetadata" type="checkbox" />
+        <span>Also include definitions, usage comments, and examples in search</span>
+      </label>
+    </div>
 
     <div id="fieldGuidance" class="small" style="margin-top: 10px;"></div>
 
@@ -209,13 +294,25 @@
   </div>
 
 
+  
+  <div id="appSectionIntro" class="panel" style="margin-bottom: 14px;">
+    <div class="panel-head">
+      <div>
+        <h2 style="margin:0;">Select tables</h2>
+        <div class="meta">Use this section to build the full set of DwC-DP tables needed for your dataset. Start with at least one table from the first column of tables with no required dependencies. Only tables whose required dependencies are already selected can be checked. The field search above can help you identify which tables you need, and selections made here control what appears in the mapping-order and output sections below.</div>
+      </div>
+    </div>
+  </div>
+
   <div id="app" class="loading">Loading DwC-DP profile and schemas…</div>
+
 
 
   <div id="orderPanel" class="panel" style="margin-top: 14px; display: none;">
     <div class="panel-head">
       <div>
         <h2>Recommended table mapping order</h2>
+        <div class="meta">Use this section after selecting tables. It generates a recommended order for mapping data into the selected tables based on all foreign-key relationships among them. This does not change the selected tables, it only helps you plan the sequence of mapping work.</div>
       </div>
       <div class="actions">
         <button id="btnGenerateOrder" class="btn" type="button">Generate</button>
@@ -234,20 +331,20 @@
   <div id="dpPanel" class="panel" style="margin-top: 14px; display: none;">
     <div class="panel-head">
       <div>
-        <h2>datapackage.json</h2>
-        <div class="meta">Generated on demand from the currently selected tables.</div>
+        <h2>Generate outputs</h2>
+        <div class="meta">Use this section after selecting tables. Generate a <span class="mono">datapackage.json</span> for inspection and copying, or download a bundle containing the <span class="mono">datapackage.json</span> plus one empty CSV file with headers for each selected table. The outputs always reflect the current table selection.</div>
       </div>
       <div class="actions">
         <button id="btnGenerateDp" class="btn" type="button">Generate</button>
         <button id="btnCopyDp" class="btn" type="button" disabled>Copy to clipboard</button>
-        <button id="btnDownloadDp" class="btn" type="button" disabled>Download</button>
+        <button id="btnDownloadDp" class="btn" type="button" disabled>Download bundle</button>
       </div>
     </div>
 <textarea id="dpText" class="mono" readonly style="width: 100%; height: 260px; box-sizing: border-box; padding: 10px; border: 1px solid #eee; border-radius: 8px;"></textarea>
     <div id="dpStatus" class="small" style="margin-top: 8px;"></div>
   </div>
 
-  <div id="uiVersion" class="small" style="margin-top: 10px;">Version: 2026-03-05</div>
+  <div id="uiVersion" class="small" style="margin-top: 10px;">Version: 2026-03-07</div>
 
 
   <div id="backdrop" class="modal-backdrop" role="dialog" aria-modal="true">
@@ -1056,7 +1153,32 @@ transitiveDeps = new Map();
 
       rowClass = enabled.get(tableName) ? "row" : "row disabled";
 
-      panel.appendChild(createEl("div", { class: rowClass }, label, infoBtn));
+      var rowChildren;
+      rowChildren = [label];
+
+      if (enabled.get(tableName)) {
+        var copyHeaderPill;
+        copyHeaderPill = createEl("button", {
+          class: "btn",
+          type: "button",
+          onclick: function () {
+            var csvHeader;
+            csvHeader = buildCsvHeaderContent(tableName);
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(csvHeader)
+                .then(function () {
+                  showEphemeralFeedback(copyHeaderPill, "CSV header copied for " + titleFor(tableName) + ".");
+                })
+                .catch(function () {});
+            }
+          }
+        }, "Copy CSV header");
+        rowChildren.push(copyHeaderPill);
+      }
+
+      rowChildren.push(infoBtn);
+
+      panel.appendChild(createEl("div", { class: rowClass }, ...rowChildren));
     });
 
     return panel;
@@ -1124,7 +1246,13 @@ transitiveDeps = new Map();
     columns.appendChild(renderPanel("Tables with one level of direct required dependency", col2, true, false));
     columns.appendChild(renderPanel("Tables with two or more levels of direct required dependency", col3, true, false));
 
+    
+    var selCount=0;
+    checked.forEach(function(v){ if(v) selCount++; });
+    var sc=document.getElementById("selectedCount");
+    if(sc){ sc.textContent="Tables selected: "+selCount; }
     app.appendChild(columns);
+
 
     
 
@@ -1213,11 +1341,48 @@ if (loadErrors.length > 0) {
     dp = {};
     dp.profile = dwcDpProfileId || "http://rs.tdwg.org/dwc-dp/0.1/dwc-dp-profile.json";
     dp.created = new Date().toISOString();
-    dp.version = "2026-03-02";
+    dp.version = "2026-03-07";
     dp.resources = resources;
 
     return dp;
   }
+
+  function csvEscape(value) {
+    var s;
+
+    s = String(value == null ? "" : value);
+
+    if (s.indexOf('"') !== -1) {
+      s = s.replace(/"/g, '""');
+    }
+
+    if (s.indexOf(",") !== -1 || s.indexOf("\n") !== -1 || s.indexOf("\r") !== -1 || s.indexOf('"') !== -1) {
+      s = '"' + s + '"';
+    }
+
+    return s;
+  }
+
+  function buildCsvHeaderContent(tableName) {
+    var schemaObj;
+    var fields;
+    var headerLine;
+
+    schemaObj = schemas.get(tableName);
+
+    if (!schemaObj) {
+      return "";
+    }
+
+    fields = schemaObj.fields || [];
+
+    headerLine = fields.map(function (fieldObj) {
+      return csvEscape(fieldObj.name || "");
+    }).join(",");
+
+    return headerLine + "\n";
+  }
+
 
   function setDpButtonsEnabled(canCopyDownload) {
     btnCopyDp.disabled = !canCopyDownload;
@@ -1277,28 +1442,56 @@ if (loadErrors.length > 0) {
     }
   }
 
+
   function downloadDatapackage() {
-    var blob;
-    var url;
-    var a;
+    var selectedTables;
+    var zip;
+    var dpObj;
+    var dpJson;
 
     if (!lastGeneratedDp) {
       return;
     }
 
-    blob = new Blob([lastGeneratedDp], { type: "application/json;charset=utf-8" });
-    url = URL.createObjectURL(blob);
+    if (typeof JSZip === "undefined") {
+      dpStatus.textContent = "Bundle download is unavailable because JSZip did not load.";
+      return;
+    }
 
-    a = document.createElement("a");
-    a.href = url;
-    a.download = "datapackage.json";
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    selectedTables = getSelectedTables();
+    dpObj = buildDatapackageObject(selectedTables);
+    dpJson = JSON.stringify(dpObj, null, 2);
 
-    URL.revokeObjectURL(url);
+    zip = new JSZip();
+    zip.file("datapackage.json", dpJson);
 
-    dpStatus.textContent = "Downloaded datapackage.json.";
+    selectedTables.forEach(function (tableName) {
+      var csvContent;
+      csvContent = buildCsvHeaderContent(tableName);
+      zip.file(tableName + ".csv", csvContent);
+    });
+
+    zip.generateAsync({ type: "blob" })
+      .then(function (blob) {
+        var url;
+        var a;
+
+        url = URL.createObjectURL(blob);
+
+        a = document.createElement("a");
+        a.href = url;
+        a.download = "dwc-dp-package.zip";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+
+        dpStatus.textContent = "Downloaded bundle with datapackage.json and " + selectedTables.length + " CSV header file(s).";
+      })
+      .catch(function (err) {
+        dpStatus.textContent = "Bundle download failed: " + String(err);
+      });
   }
 
   btnGenerateDp.addEventListener("click", generateDatapackage);
@@ -1307,6 +1500,139 @@ if (loadErrors.length > 0) {
 
 
   
+  
+
+  var ephemeralFeedbackTimer;
+  var ephemeralFeedbackNode;
+
+  ephemeralFeedbackTimer = null;
+  ephemeralFeedbackNode = null;
+
+  function showEphemeralFeedback(anchorEl, message) {
+    var rect;
+    var x;
+    var y;
+    var alignRight;
+    var pad;
+    var width;
+    var left;
+
+    if (!anchorEl) {
+      return;
+    }
+
+    if (ephemeralFeedbackTimer) {
+      clearTimeout(ephemeralFeedbackTimer);
+      ephemeralFeedbackTimer = null;
+    }
+
+    if (ephemeralFeedbackNode && ephemeralFeedbackNode.parentNode) {
+      ephemeralFeedbackNode.parentNode.removeChild(ephemeralFeedbackNode);
+      ephemeralFeedbackNode = null;
+    }
+
+    rect = anchorEl.getBoundingClientRect();
+    alignRight = anchorEl.textContent && anchorEl.textContent.trim() === "Enable";
+    pad = 12;
+
+    ephemeralFeedbackNode = document.createElement("div");
+    ephemeralFeedbackNode.className = "ephemeral-feedback";
+    ephemeralFeedbackNode.textContent = message;
+    ephemeralFeedbackNode.style.visibility = "hidden";
+    ephemeralFeedbackNode.style.left = "0px";
+    ephemeralFeedbackNode.style.top = "0px";
+    ephemeralFeedbackNode.style.transform = "none";
+
+    document.body.appendChild(ephemeralFeedbackNode);
+
+    width = ephemeralFeedbackNode.offsetWidth || 220;
+
+    if (alignRight) {
+      left = rect.right - width;
+    } else {
+      left = rect.left + (rect.width / 2) - (width / 2);
+    }
+
+    if (left < pad) {
+      left = pad;
+    }
+
+    if (left + width > window.innerWidth - pad) {
+      left = window.innerWidth - pad - width;
+    }
+
+    y = rect.top - ephemeralFeedbackNode.offsetHeight - 8;
+    if (y < pad) {
+      y = rect.bottom + 8;
+    }
+
+    ephemeralFeedbackNode.style.left = left + "px";
+    ephemeralFeedbackNode.style.top = y + "px";
+    ephemeralFeedbackNode.style.visibility = "visible";
+
+    ephemeralFeedbackTimer = setTimeout(function () {
+      if (ephemeralFeedbackNode && ephemeralFeedbackNode.parentNode) {
+        ephemeralFeedbackNode.parentNode.removeChild(ephemeralFeedbackNode);
+      }
+      ephemeralFeedbackNode = null;
+      ephemeralFeedbackTimer = null;
+    }, 1800);
+  }
+
+  function resetWorkspace() {
+    checked.forEach(function (_, k) {
+      checked.set(k, false);
+    });
+
+    if (fieldQueryInput) {
+      fieldQueryInput.value = "";
+    }
+
+    if (includeFieldMetadataCheckbox) {
+      includeFieldMetadataCheckbox.checked = false;
+    }
+
+    if (dpText) {
+      dpText.value = "";
+    }
+
+    if (dpStatus) {
+      dpStatus.textContent = "";
+    }
+
+    if (orderText) {
+      orderText.value = "";
+    }
+
+    if (orderStatus) {
+      orderStatus.textContent = "Select at least one table, then click Generate.";
+    }
+
+    if (btnCopyOrder) {
+      btnCopyOrder.disabled = true;
+    }
+
+    if (lastGeneratedOrder !== undefined) {
+      lastGeneratedOrder = "";
+    }
+
+    if (lastGeneratedDp !== undefined) {
+      lastGeneratedDp = "";
+    }
+
+    if (btnCopyDp) {
+      btnCopyDp.disabled = true;
+    }
+
+    if (btnDownloadDp) {
+      btnDownloadDp.disabled = true;
+    }
+
+    renderUI();
+    renderFieldResults();
+    updateUrlFromState();
+  }
+
   // -----------------------------
   // Recommended Mapping Order (all foreign keys)
   // -----------------------------
@@ -1522,7 +1848,10 @@ if (loadErrors.length > 0) {
           tableTitle: titleFor(tableName),
           fieldName: name,
           isVersionOf: isv,
-          isVersionOfToken: isvToken
+          isVersionOfToken: isvToken,
+          description: f.description || "",
+          comments: f.comments || "",
+          examples: f.examples || ""
         });
       });
 
@@ -1615,6 +1944,17 @@ if (loadErrors.length > 0) {
 
     addKV("Field", fieldObj.name || fieldName);
     addKV("Title", fieldObj.title || "");
+    
+    var copyHeaderBtn = document.createElement("button");
+    copyHeaderBtn.className="btn";
+    copyHeaderBtn.textContent="Copy CSV header";
+    copyHeaderBtn.style.marginTop="8px";
+    copyHeaderBtn.addEventListener("click", function(){
+      var csv = buildCsvHeaderContent(tableName);
+      navigator.clipboard.writeText(csv);
+    });
+    modalContent.appendChild(copyHeaderBtn);
+
     addKV("Description", fieldObj.description || "");
     addKV("Type", fieldObj.type || "");
 
@@ -1653,20 +1993,16 @@ if (loadErrors.length > 0) {
   }
 
   var FIELD_MIN_CHARS;
-  var FIELD_MAX_RESULTS;
-  var FIELD_SHOW_THRESHOLD;
-
-  FIELD_MIN_CHARS = 3;
-  FIELD_MAX_RESULTS = 15;
-  FIELD_SHOW_THRESHOLD = 16;
-
-  var fieldQueryInput;
+FIELD_MIN_CHARS = 3;
+var fieldQueryInput;
   var btnClearFieldQuery;
+  var includeFieldMetadataCheckbox;
   var fieldResultsDiv;
   var fieldSearchTimer;
 
   fieldQueryInput = document.getElementById("fieldQuery");
   btnClearFieldQuery = document.getElementById("btnClearFieldQuery");
+  includeFieldMetadataCheckbox = document.getElementById("includeFieldMetadata");
   var btnCopyLink;
   btnCopyLink = document.getElementById("btnCopyLink");
   fieldResultsDiv = document.getElementById("fieldResults");
@@ -1674,6 +2010,85 @@ if (loadErrors.length > 0) {
   fieldGuidanceDiv = document.getElementById("fieldGuidance");
   fieldSearchTimer = null;
 
+
+
+  function searchIncludesMetadata() {
+    return !!(includeFieldMetadataCheckbox && includeFieldMetadataCheckbox.checked);
+  }
+
+  function rankedMatch(text, queryLower, baseRank) {
+    var r;
+
+    r = matchRank(text, queryLower);
+
+    if (r === 999) {
+      return 999;
+    }
+
+    return baseRank + r;
+  }
+
+  function bestEntryRank(entry, queryLower, includeMetadata) {
+    var ranks;
+    var best;
+
+    ranks = [];
+    ranks.push(rankedMatch(entry.fieldName || "", queryLower, 0));
+    ranks.push(rankedMatch(entry.isVersionOfToken || "", queryLower, 3));
+
+    if (includeMetadata) {
+      ranks.push(rankedMatch(entry.description || "", queryLower, 6));
+      ranks.push(rankedMatch(entry.comments || "", queryLower, 9));
+      ranks.push(rankedMatch(entry.examples || "", queryLower, 12));
+    }
+
+    best = 999;
+    ranks.forEach(function (r) {
+      if (r < best) {
+        best = r;
+      }
+    });
+
+    return best;
+  }
+
+  function textExcerpt(text, queryLower) {
+    var raw;
+    var lower;
+    var idx;
+    var start;
+    var end;
+    var excerpt;
+
+    raw = text || "";
+
+    if (!raw) {
+      return "";
+    }
+
+    lower = raw.toLowerCase();
+    idx = lower.indexOf(queryLower);
+
+    if (idx === -1) {
+      if (raw.length <= 180) {
+        return raw;
+      }
+      return raw.slice(0, 177) + "...";
+    }
+
+    start = Math.max(0, idx - 50);
+    end = Math.min(raw.length, idx + queryLower.length + 90);
+    excerpt = raw.slice(start, end);
+
+    if (start > 0) {
+      excerpt = "..." + excerpt;
+    }
+    if (end < raw.length) {
+      excerpt = excerpt + "...";
+    }
+
+    return excerpt;
+  }
 
   function setFieldGuidance(matchCount, message) {
     if (!fieldGuidanceDiv) {
@@ -1683,6 +2098,7 @@ if (loadErrors.length > 0) {
     fieldGuidanceDiv.textContent = String(matchCount) + " matches: " + message;
   }
 
+
   function renderFieldResults() {
     if (!fieldResultsDiv) {
       return;
@@ -1690,9 +2106,14 @@ if (loadErrors.length > 0) {
 
     var q;
     var qLower;
+    var includeMetadata;
+    var matches;
+var container;
+    var scrollWrap;
 
     q = fieldQueryInput ? fieldQueryInput.value.trim() : "";
     qLower = q.toLowerCase();
+    includeMetadata = searchIncludesMetadata();
 
     if (q.length < FIELD_MIN_CHARS) {
       setFieldGuidance(0, "Type at least " + FIELD_MIN_CHARS + " characters to search.");
@@ -1700,70 +2121,46 @@ if (loadErrors.length > 0) {
       return;
     }
 
-    var matches;
     matches = [];
 
     fieldIndex.forEach(function (entry) {
-      var tokenDirect;
-      var tokenIsv;
-      var rDirect;
-      var rIsv;
       var rank;
-      var displayToken;
-      var isIsv;
+      var directRank;
+      var isVersionOfRank;
+      var matchedIsVersionOf;
 
-      tokenDirect = entry.fieldName || "";
-      tokenIsv = entry.isVersionOfToken || "";
+      rank = bestEntryRank(entry, qLower, includeMetadata);
 
-      rDirect = matchRank(tokenDirect, qLower);
-      rIsv = tokenIsv ? matchRank(tokenIsv, qLower) : 999;
-
-      if (rDirect === 999 && rIsv === 999) {
+      if (rank === 999) {
         return;
       }
 
-      if (rDirect <= rIsv) {
-        rank = rDirect;
-        displayToken = tokenDirect;
-        isIsv = false;
-      } else {
-        rank = rIsv;
-        displayToken = tokenIsv;
-        isIsv = true;
-      }
+      directRank = rankedMatch(entry.fieldName || "", qLower, 0);
+      isVersionOfRank = rankedMatch(entry.isVersionOfToken || "", qLower, 3);
+      matchedIsVersionOf = isVersionOfRank !== 999 && isVersionOfRank === rank;
 
       matches.push({
-          rank: rank,
-          tableName: entry.tableName,
-          tableTitle: entry.tableTitle,
-          fieldName: entry.fieldName,
-          displayToken: displayToken,
-          isVersionOfMatch: isIsv,
-          isVersionOfToken: isIsv ? tokenIsv : ""
-        });
+        rank: rank,
+        tableName: entry.tableName,
+        tableTitle: entry.tableTitle,
+        fieldName: entry.fieldName,
+        isVersionOf: entry.isVersionOf,
+        isVersionOfToken: entry.isVersionOfToken,
+        isVersionOfMatch: matchedIsVersionOf,
+        description: entry.description || "",
+        comments: entry.comments || "",
+        examples: entry.examples || ""
+      });
     });
-
-    
-
-    // Visibility rule:
-    // - If there are any exact matches, show results (all match types, ordered by rank).
-    // - If there are no exact matches, only show results when total matches are <= FIELD_SHOW_THRESHOLD.
-    var hasExact;
-    hasExact = matches.some(function (m) { return m.rank === 0; });
-
-    if (!hasExact && matches.length > FIELD_SHOW_THRESHOLD) {
-      setFieldGuidance(0, "Keep typing to narrow results.");
-      fieldResultsDiv.innerHTML = "";
-      return;
-    }
-
 matches.sort(function (a, b) {
+      var at;
+      var bt;
+      var af;
+      var bf;
+
       if (a.rank !== b.rank) {
         return a.rank - b.rank;
       }
-
-      var at;
-      var bt;
 
       at = (a.tableTitle || a.tableName || "").toLowerCase();
       bt = (b.tableTitle || b.tableName || "").toLowerCase();
@@ -1771,75 +2168,102 @@ matches.sort(function (a, b) {
       if (at < bt) return -1;
       if (at > bt) return 1;
 
-      var af;
-      var bf;
-
       af = (a.fieldName || "").toLowerCase();
       bf = (b.fieldName || "").toLowerCase();
-if (af < bf) return -1;
+
+      if (af < bf) return -1;
       if (af > bf) return 1;
 
       return 0;
     });
-
-    
-    if (!hasExact) {
-      matches = matches.slice(0, FIELD_MAX_RESULTS);
-    }
-setFieldGuidance(matches.length, "Showing results.");
-
-    if (matches.length === 0) {
+if (matches.length === 0) {
       setFieldGuidance(0, "No matches.");
       fieldResultsDiv.innerHTML = "";
       return;
     }
 
-    var container;
+    setFieldGuidance(matches.length, "Showing all results.");
+
     container = document.createElement("div");
 
     matches.forEach(function (m) {
-      var row;
+      var card;
+      var head;
       var left;
       var right;
+      var topline;
+      var tableLabel;
+      var fieldLabel;
+      var badge;
       var infoBtn;
       var enableBtn;
-      var tableLabel;
-      var tokenHtml;
       var isEnabledAlready;
+      var metaWrap;
 
-      row = document.createElement("div");
-      row.className = "row";
+      card = document.createElement("div");
+      card.className = "field-result-card";
+
+      head = document.createElement("div");
+      head.className = "field-result-head";
 
       left = document.createElement("div");
-      left.style.flex = "1";
-      left.style.display = "flex";
-      left.style.alignItems = "center";
-      left.style.gap = "10px";
-      left.style.flexWrap = "wrap";
+      left.className = "field-result-left";
+
+      topline = document.createElement("div");
+      topline.className = "field-result-topline";
 
       tableLabel = document.createElement("span");
       tableLabel.className = "title";
       tableLabel.textContent = m.tableTitle;
 
-      if (m.isVersionOfMatch) {
-        tokenHtml = escapeHtml(m.fieldName);
-      } else {
-        tokenHtml = highlightToken(m.fieldName, qLower);
-      }
+      fieldLabel = document.createElement("span");
+      fieldLabel.className = "mono";
+      fieldLabel.innerHTML = highlightToken(m.fieldName, qLower);
 
-      var tokenSpan = document.createElement("span");
-      tokenSpan.className = "mono";
-      tokenSpan.innerHTML = tokenHtml;
+      topline.appendChild(tableLabel);
+      topline.appendChild(fieldLabel);
 
-      left.appendChild(tableLabel);
-      left.appendChild(tokenSpan);
-
-      if (m.isVersionOfMatch) {
-        var badge = document.createElement("span");
+      if (m.isVersionOf && m.isVersionOfToken) {
+        badge = document.createElement("span");
         badge.className = "badge";
-        badge.innerHTML = "isVersionOf " + highlightToken(m.isVersionOfToken, qLower);
-        left.appendChild(badge);
+        if (m.isVersionOfMatch) {
+          badge.innerHTML = "isVersionOf " + highlightToken(m.isVersionOfToken, qLower);
+        } else {
+          badge.textContent = "isVersionOf " + m.isVersionOfToken;
+        }
+        topline.appendChild(badge);
       }
+
+      left.appendChild(topline);
+
+      metaWrap = document.createElement("div");
+      metaWrap.className = "field-result-meta";
+
+      [
+        ["Definition", m.description],
+        ["Usage comments", m.comments],
+        ["Examples", m.examples]
+      ].forEach(function (pair) {
+        var row;
+        var label;
+        var value;
+
+        row = document.createElement("div");
+        row.className = "field-result-meta-row";
+
+        label = document.createElement("span");
+        label.className = "field-result-meta-label";
+        label.textContent = pair[0] + ": ";
+
+        value = document.createElement("span");
+        value.innerHTML = highlightToken(textExcerpt(pair[1], qLower), qLower);
+
+        row.appendChild(label);
+        row.appendChild(value);
+        metaWrap.appendChild(row);
+      });
+
+      left.appendChild(metaWrap);
 
       right = document.createElement("div");
       right.style.display = "inline-flex";
@@ -1867,7 +2291,8 @@ setFieldGuidance(matches.length, "Showing results.");
         enableBtn.className = "btn btn-enabled";
         enableBtn.textContent = "Enabled";
       } else {
-        enableBtn.addEventListener("click", function () {
+        enableBtn.addEventListener("click", function (ev) {
+          showEphemeralFeedback(ev.currentTarget, "Enabled " + m.tableTitle + " and its required dependencies.");
           checkTableWithRequiredDependencies(m.tableName);
           renderFieldResults();
         });
@@ -1876,21 +2301,20 @@ setFieldGuidance(matches.length, "Showing results.");
       right.appendChild(infoBtn);
       right.appendChild(enableBtn);
 
-      row.appendChild(left);
-      row.appendChild(right);
-
-      container.appendChild(row);
+      head.appendChild(left);
+      head.appendChild(right);
+      card.appendChild(head);
+      container.appendChild(card);
     });
 
     fieldResultsDiv.innerHTML = "";
 
-    var scrollWrap;
     scrollWrap = document.createElement("div");
     scrollWrap.className = "field-results-scroll";
     scrollWrap.appendChild(container);
 
     fieldResultsDiv.appendChild(scrollWrap);
-}
+  }
 
   function scheduleFieldSearch() {
     if (fieldSearchTimer) {
@@ -1913,8 +2337,20 @@ setFieldGuidance(matches.length, "Showing results.");
     });
   }
 
+  if (includeFieldMetadataCheckbox) {
+    includeFieldMetadataCheckbox.addEventListener("change", function () {
+      renderFieldResults();
+    });
+  }
+
   if (btnCopyLink) {
-    btnCopyLink.addEventListener("click", copyShareLink);
+    
+  var btnResetWorkspace = document.getElementById("btnResetWorkspace");
+  if (btnResetWorkspace) {
+    btnResetWorkspace.addEventListener("click", resetWorkspace);
+  }
+
+  btnCopyLink.addEventListener("click", copyShareLink);
   }
 
 
