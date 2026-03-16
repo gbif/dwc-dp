@@ -1,0 +1,44 @@
+{
+  "preserves_behavior_from": "designer_stable_v_06",
+  "runtime_files": [
+    "index.html",
+    "styles.css",
+    "js/app.js"
+  ],
+  "logical_sections_in_js": [
+    "Configuration",
+    "DOM helpers",
+    "Modal",
+    "State",
+    "Network helpers",
+    "Model helpers",
+    "Modal content helpers",
+    "Graph",
+    "Table selection UI",
+    "Design summary",
+    "Output: datapackage.json",
+    "Output: recommended mapping order",
+    "Ephemeral feedback tooltip",
+    "Reset workspace",
+    "Field search",
+    "Deep link support",
+    "Tab system",
+    "Loader / derived model building",
+    "Boot"
+  ],
+  "changes_from_v_06": [
+    "var declarations unified to const/let throughout app.js (ES2015+, consistent with Map/Set/async already in use)",
+    "All constants moved to top of IIFE: FIELD_MIN_CHARS, URL_TABLES_PARAM, URL_STATE_PARAM",
+    "createEl rewritten using rest params and for-of loops instead of arguments[]",
+    "btnCopyDP/btnDownloadDP case inconsistency in resetDatapackagePanel fixed — now uses cached btnCopyDp/btnDownloadDp",
+    "dpSelectedRequiredOnlyCheckbox event listener changed from .onchange= to .addEventListener for consistency",
+    "graphPanel.style.display='block' moved inside the visibleNodeCount>0 branch so the graph container stays hidden until there is content",
+    "Duplicate scroll-margin-top rule in styles.css removed",
+    "Duplicate #graphPanel .panel-head h2 rule in styles.css consolidated",
+    "Inline styles in index.html header extracted into CSS classes: .header-row, .header-actions, .header-version",
+    "Inline style on #linkNotice margin/border-left extracted into CSS class .link-notice-panel",
+    "Whitespace and indentation normalised throughout app.js",
+    "CIRCLE_LAYOUT constant introduced to avoid repeating the layout config object",
+    "h1 margin:0 inline style removed (h1 CSS rule already sets margin to 0)"
+  ]
+}
