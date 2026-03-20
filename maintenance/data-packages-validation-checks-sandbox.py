@@ -4,66 +4,136 @@
 # In the case of a PR is supposed to be run manually.
 # Checks are:
 # 1. Index and table schema files are valid JSON
-# 2. All URLs are resolvable
-# 3. Table schemas declarations are valid, all actual files are present
-# 4. Valid frictionless schema
-# 5. No duplicate nodes in index.json
-# 6. Compares primary properties (identifier, url, name) between index.json and table schema file
-#
+# 2. All URLs are resolvable; if a URL returns 4xx, a local file at the
+#    path-component of the URL is checked as a fallback (supports new
+#    declarations not yet published)
+# 3. Table schema declarations are complete and consistent:
+#    - Required keys present and unique in index.json
+#    - Declared files present on disk; extra files warned
+#    - url, identifier, name, and title agree between index.json and each schema file
+# 4. Each schema descriptor is valid per the Frictionless specification
+# 5. Each field carries required metadata (description, type)
+# 6. Foreign key referential integrity:
+#    - Source fields exist in the declaring schema
+#    - Target schemas exist (empty resource = self-reference)
+#    - Target fields exist in the referenced schema
+#    - Target fields are the primary key of the referenced schema
 
 import json
 import os
-import re
-import requests
 import sys
 from pathlib import Path
+from urllib.parse import urlparse
+
+import requests
 from frictionless import Schema
 
-# Paths to the directories containing index.json files
-#directories_to_scan_sandbox = ['../sandbox/']
-directories_to_scan_sandbox = ['../../rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1']
-directories_to_scan_prod = ['data-packages']
+# ---------------------------------------------------------------------------
+# Paths to scan
+# ---------------------------------------------------------------------------
 
-# Flag to track errors
-error_found = False
+DIRECTORIES_TO_SCAN_SANDBOX = ['../../rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1']
+DIRECTORIES_TO_SCAN_PROD    = ['data-packages']
+
+# Field-level properties that must be present on every field in every schema
+REQUIRED_FIELD_PROPERTIES = ['description', 'type']
+
+# Properties that must match between an index.json tableSchemas entry and
+# the corresponding table schema file
+CROSS_CHECK_PROPERTIES = ['url', 'identifier', 'name', 'title']
 
 
-def check_valid_json(file_path):
-    global error_found
+# ---------------------------------------------------------------------------
+# Validation result collector
+# ---------------------------------------------------------------------------
+
+class ValidationResult:
+    """Accumulates errors and warnings across all validation passes."""
+
+    def __init__(self):
+        self.errors: list[str] = []
+        self.warnings: list[str] = []
+
+    def error(self, msg: str) -> None:
+        print(f"Error: {msg}")
+        self.errors.append(msg)
+
+    def warning(self, msg: str) -> None:
+        print(f"Warning: {msg}")
+        self.warnings.append(msg)
+
+    @property
+    def has_errors(self) -> bool:
+        return bool(self.errors)
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def load_json(file_path: Path, result: ValidationResult) -> dict | None:
+    """
+    Load and return parsed JSON from *file_path*.
+    Records an error and returns None on parse failure or missing file.
+    """
     try:
-        with open(file_path, 'r') as f:
-            json.load(f)
-        return True
-    except (json.JSONDecodeError, FileNotFoundError):
-        print(f"Error: Invalid JSON or missing file: {file_path}")
-        error_found = True
-        return False
+        with open(file_path, 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        result.error(f"File not found: {file_path}")
+    except json.JSONDecodeError as exc:
+        result.error(f"Invalid JSON in {file_path}: {exc}")
+    return None
 
 
-def check_urls_are_resolvable(package_data):
-    global error_found
+def schemas_dir(package_file: Path) -> Path:
+    """Return the table-schemas directory for a given index.json path."""
+    return package_file.parent / 'table-schemas'
 
-    def resolve_url(url):
-        global error_found
+
+def find_package_files(directories: list[str]) -> list[Path]:
+    """Recursively find all index.json package files under each directory."""
+    package_files = []
+    for base_dir in directories:
+        for root, _, files in os.walk(base_dir):
+            if 'index.json' in files:
+                package_files.append(Path(root) / 'index.json')
+    return package_files
+
+
+# ---------------------------------------------------------------------------
+# Validation passes
+# ---------------------------------------------------------------------------
+
+def check_urls_are_resolvable(package_data: dict, result: ValidationResult) -> None:
+    """
+    Recursively find every 'url' value in the package data and verify it is
+    reachable via HTTP HEAD.
+
+    If a URL returns a 4xx response, the URL's path component is checked as a
+    local file path. This supports new declarations that have been committed
+    locally but not yet published to the remote server.
+
+    Non-HTTP errors (network failures, timeouts) are always reported as errors.
+    """
+
+    def resolve_url(url: str) -> None:
         try:
             response = requests.head(url, allow_redirects=True, timeout=5)
             if response.status_code >= 400:
-                # Might be a new declaration, check a directory path too
-                relative_path = re.sub(r'^https?://rs\.gbif\.org/', '', url)
-                if not os.path.exists(relative_path):
-                    print(f"Error: Unreachable URL: {url}")
-                    print(f"Error: File does not exist {relative_path}")
-                    error_found = True
-            # else:
-            #     print(f"URL is valid: {url}")
-        except requests.RequestException:
-            print(f"Error: Error resolving URL: {url}")
-            error_found = True
+                # Fallback: check whether the URL's path exists as a local file.
+                # This handles any domain, not just rs.gbif.org.
+                local_path = urlparse(url).path.lstrip('/')
+                if not os.path.exists(local_path):
+                    result.error(f"Unreachable URL and no local file found: {url} "
+                                 f"(checked local path: {local_path!r})")
+        except requests.RequestException as exc:
+            result.error(f"Network error resolving URL {url}: {exc}")
 
-    def find_and_resolve_urls(data):
+    def find_and_resolve_urls(data) -> None:
         if isinstance(data, dict):
             for key, value in data.items():
-                if key == "url" and isinstance(value, str):
+                if key == 'url' and isinstance(value, str):
                     resolve_url(value)
                 elif isinstance(value, (dict, list)):
                     find_and_resolve_urls(value)
@@ -74,306 +144,298 @@ def check_urls_are_resolvable(package_data):
     find_and_resolve_urls(package_data)
 
 
-def check_table_schemas(package_file_path, package_data):
-    global error_found
+def check_index_json(
+    package_file: Path,
+    package_data: dict,
+    result: ValidationResult,
+) -> list[str]:
+    """
+    Verify tableSchemas entries in index.json for:
+      - Presence of required keys (identifier, name, title, url)
+      - Warning on missing description
+      - Uniqueness of identifier, name, title, and url
+      - Consistency between declared urls and files present on disk
 
-    # Skip a directory with the main index.json file
-    if package_file_path == 'sandbox/data-packages/index.json' or package_file_path == 'data-packages/index.json':
-        return
+    Returns the list of declared schema basenames for use by later passes.
+    """
+    print(f"Checking index: {package_file}")
 
-    print(f"Checking file: {package_file_path}")
+    table_schemas_path = schemas_dir(package_file)
+    if not table_schemas_path.exists():
+        result.error(f"Table schemas directory missing: {table_schemas_path}")
+        return []
 
-    package_dir = os.path.dirname(package_file_path)
-    table_schemas_dir = os.path.join(package_dir, 'table-schemas')
+    declared_basenames: list[str] = []
+    seen: dict[str, set] = {
+        'identifier': set(),
+        'name': set(),
+        'title': set(),
+        'url': set(),
+    }
 
-    if not os.path.exists(table_schemas_dir):
-        print(f"Error: Table schemas directory missing: {table_schemas_dir}")
-        error_found = True
-        return False
-    # else:
-    #     print(f"Table schemas directory present: {table_schemas_dir}")
-
-    declared_schemas = []
-    declared_schemas_map = {}
-    # To check no duplicates in the index file
-    table_schema_identifiers = set()
-    table_schema_urls = set()
-    table_schema_names = set()
-    table_schema_titles = set()
-    table_schema_descriptions = set()
-
-    if "tableSchemas" in package_data:
-        for schema in package_data['tableSchemas']:
-            if 'identifier' in schema:
-                if schema['identifier'] in table_schema_identifiers:
-                    print(f"Error: Duplicate 'identifier' for table schema: {schema}")
-                    error_found = True
-                else:
-                    table_schema_identifiers.add(schema['identifier'])
+    for entry in package_data.get('tableSchemas', []):
+        # Required unique keys
+        for key in ('identifier', 'name', 'title'):
+            value = entry.get(key)
+            if value is None:
+                result.error(f"Missing '{key}' in tableSchemas entry: {entry}")
+            elif value in seen[key]:
+                result.error(f"Duplicate '{key}' value '{value}' in tableSchemas")
             else:
-                print(f"Error: Missing 'identifier' for table schema: {schema}")
-                error_found = True
+                seen[key].add(value)
 
-            if 'name' in schema:
-                if schema['name'] in table_schema_names:
-                    print(f"Error: Duplicate 'name' for table schema: {schema}")
-                    error_found = True
-                else:
-                    table_schema_names.add(schema['name'])
-            else:
-                print(f"Error: Missing 'name' for table schema: {schema}")
-                error_found = True
+        # description: optional, warn if absent (not checked for uniqueness)
+        if 'description' not in entry:
+            result.warning(f"Missing 'description' in tableSchemas entry for "
+                           f"'{entry.get('name', '<unknown>')}'")
 
-            if 'title' in schema:
-                if schema['title'] in table_schema_titles:
-                    print(f"Error: Duplicate 'title' for table schema: {schema}")
-                    error_found = True
-                else:
-                    table_schema_titles.add(schema['title'])
-            else:
-                print(f"Error: Missing 'title' for table schema: {schema}")
-                error_found = True
-
-            if 'description' in schema:
-                if schema['description'] in table_schema_descriptions:
-                    print(f"Warning: Duplicate 'description' for table schema: {schema}")
-                else:
-                    table_schema_descriptions.add(schema['description'])
-            else:
-                print(f"Warning: Missing 'description' for table schema: {schema}")
-
-            if 'url' in schema:
-                if schema['url'] in table_schema_urls:
-                    print(f"Error: Duplicate 'url' for table schema: {schema}")
-                    error_found = True
-                else:
-                    table_schema_urls.add(schema['url'])
-
-                schema_file = os.path.basename(schema['url'])
-                declared_schemas.append(schema_file)
-                declared_schemas_map[schema_file.replace(".json", "")] = schema
-            else:
-                print(f"Error: Missing 'url' for table schema: {schema}")
-                error_found = True
-
-    actual_schemas = [f for f in os.listdir(table_schemas_dir) if f.endswith('.json')]
-
-    missing_files = [schema for schema in declared_schemas if schema not in actual_schemas]
-    extra_files = [schema for schema in actual_schemas if schema not in declared_schemas]
-
-    if missing_files:
-        print(f"Error: Missing table schema files: {missing_files}")
-        error_found = True
-    if extra_files:
-        print(f"Warning: Extra table schema files in directory: {extra_files}")
-
-    for schema_file in actual_schemas:
-        schema_file_path = os.path.join(table_schemas_dir, schema_file)
-        if not check_valid_json(schema_file_path):
-            print(f"Error: Invalid table schema JSON: {schema_file_path}")
-            error_found = True
+        # url: required and unique
+        url = entry.get('url')
+        if url is None:
+            result.error(f"Missing 'url' in tableSchemas entry: {entry}")
+        elif url in seen['url']:
+            result.error(f"Duplicate 'url' value '{url}' in tableSchemas")
         else:
-            # check table schema file properties
-            with open(schema_file_path, 'r') as f:
-                table_schema = json.load(f)
-                table_schema_name = table_schema['name']
+            seen['url'].add(url)
+            declared_basenames.append(Path(url).name)
 
-                # Compare URLs from index.json and table-schema.json
-                if table_schema_name in declared_schemas_map:
-                    declared_table_schema_url = declared_schemas_map[table_schema_name]['url']
-                    actual_table_schema_url = table_schema['url']
-                else:
-                    print(f"Error: couldn't find table schema {table_schema_name}")
-                    error_found = True
-                    return
+    actual_basenames = {f.name for f in table_schemas_path.glob('*.json')}
+    declared_set = set(declared_basenames)
 
-                if declared_table_schema_url != actual_table_schema_url:
-                    print(f"Error: urls do not match for table schema {table_schema_name}. "
-                          f"Declared: {declared_table_schema_url}, actual: {actual_table_schema_url}")
-                    error_found = True
+    for missing in sorted(declared_set - actual_basenames):
+        result.error(f"Declared schema file not found on disk: {missing}")
+    for extra in sorted(actual_basenames - declared_set):
+        result.warning(f"Schema file on disk not declared in index.json: {extra}")
 
-                # Compare identifiers from index.json and table-schema.json
-                declared_table_schema_identifier = declared_schemas_map[table_schema_name]['identifier']
-                actual_table_schema_identifier = table_schema['identifier']
+    return declared_basenames
 
-                if declared_table_schema_identifier != actual_table_schema_identifier:
-                    print(f"Error: identifiers do not match for table schema {table_schema_name}. "
-                          f"Declared: {declared_table_schema_identifier}, actual: {actual_table_schema_identifier}")
-                    error_found = True
 
-                # Compare names from index.json and table-schema.json
-                declared_table_schema_name = declared_schemas_map[table_schema_name]['name']
-                actual_table_schema_name = table_schema['name']
+def check_schema_json(
+    package_file: Path,
+    package_data: dict,
+    declared_basenames: list[str],
+    result: ValidationResult,
+) -> dict[str, dict]:
+    """
+    For each declared schema file:
+      - Verify it is valid JSON
+      - Cross-check url, identifier, name, and title against the index.json entry
+      - Verify each field carries the required metadata properties
 
-                if declared_table_schema_name != actual_table_schema_name:
-                    print(f"Error: names do not match for table schema {table_schema_name}. "
-                          f"Declared: {declared_table_schema_name}, actual: {actual_table_schema_name}")
-                    error_found = True
+    Returns a dict mapping schema name → parsed schema dict for valid files,
+    so later passes can reuse the already-loaded data without re-reading files.
+    """
+    # Build a lookup from basename → index.json entry for cross-checking
+    index_entries: dict[str, dict] = {
+        Path(entry['url']).stem: entry
+        for entry in package_data.get('tableSchemas', [])
+        if 'url' in entry
+    }
 
-def check_valid_frictionless(index_file_str):
-    table_schema_files = find_package_table_schemas(index_file_str)
+    loaded: dict[str, dict] = {}
 
-    for file in table_schema_files:
+    for basename in declared_basenames:
+        file_path = schemas_dir(package_file) / basename
+        data = load_json(file_path, result)
+        if data is None:
+            # load_json already recorded the error; skip further checks
+            continue
+
+        schema_name = file_path.stem
+        loaded[schema_name] = data
+
+        # Cross-check properties between index.json entry and schema file
+        index_entry = index_entries.get(schema_name)
+        if index_entry is None:
+            # Already reported as a missing declaration; nothing more to do
+            continue
+
+        for prop in CROSS_CHECK_PROPERTIES:
+            declared_val = index_entry.get(prop)
+            actual_val = data.get(prop)
+            if declared_val != actual_val:
+                result.error(
+                    f"'{prop}' mismatch for schema '{schema_name}': "
+                    f"index.json has {declared_val!r}, "
+                    f"schema file has {actual_val!r}"
+                )
+
+        # Field-level metadata
+        for field in data.get('fields', []):
+            field_name = field.get('name', '<unnamed>')
+            for prop in REQUIRED_FIELD_PROPERTIES:
+                if prop not in field:
+                    result.error(
+                        f"Field '{field_name}' in '{basename}' "
+                        f"is missing required property '{prop}'"
+                    )
+
+    return loaded
+
+
+def check_frictionless(loaded_schemas: dict[str, dict], result: ValidationResult) -> None:
+    """
+    Validate each schema descriptor against the Frictionless specification.
+    Reports a summary count on success.
+    """
+    valid_count = 0
+    for name, descriptor in loaded_schemas.items():
         try:
-            Schema.from_descriptor(file)
-            # print(f"{file}: Valid frictionless")
-        except Exception as e:
-            print(f"{file}: Error - {str(e)}")
+            Schema.from_descriptor(descriptor)
+            valid_count += 1
+        except Exception as exc:
+            result.error(f"Frictionless validation failed for '{name}': {exc}")
 
-def find_package_files(directories):
-    package_files = []
-    for base_dir in directories:
-        for root, _, files in os.walk(base_dir):
-            if 'index.json' in files:
-                package_file_path = os.path.join(root, 'index.json')
-                package_files.append(package_file_path)
-    return package_files
+    print(f"  Frictionless: {valid_count}/{len(loaded_schemas)} schemas valid")
 
-def find_package_table_schemas(index_file_str):
-    index_path_parent = Path(index_file_str).parent
-    table_schemas_dir = index_path_parent / 'table-schemas'
-    table_schemas = [tsf for tsf in table_schemas_dir.rglob('*') if tsf.is_file()]
 
-    return table_schemas
-	
-def check_foreign_keys(package_file, package_data):
-    global error_found
+def check_foreign_keys(
+    loaded_schemas: dict[str, dict],
+    result: ValidationResult,
+) -> None:
+    """
+    For every foreignKey in every table schema, verify:
+      - All source fields exist in the declaring schema
+      - The target schema exists (empty/missing resource = self-reference)
+      - All target fields exist in the referenced schema
+      - The target field is the primary key of the referenced schema
 
-    # print(f"Checking foreign keys for {package_file}")
+    Supports composite keys (fields as a list) and self-referential FKs.
+    Self-referential FKs additionally require the declaring schema to have
+    a primaryKey defined.
+    """
 
-    if package_file == 'sandbox/data-packages/index.json' or package_file == 'data-packages/index.json':
-        # print("Skipping foreign keys check")
-        return
+    def as_list(value) -> list:
+        if isinstance(value, list):
+            return value
+        return [value] if value is not None else []
 
-    if "tableSchemas" in package_data:
-        for schema in package_data['tableSchemas']:
-            table_schema_name = schema['name']
-            table_schema_file = package_file.replace("index.json", "table-schemas/" + schema['name'] + ".json")
-            # print(f"Checking table schema {table_schema_name}")
-
-    try:
-        with open(table_schema_file, 'r', encoding='utf-8') as f:
-            table_schema_json = json.load(f)
-    
-        # Helper(s)
-        def as_list(v):
-            if isinstance(v, list):
-                return v
-            return [v] if v is not None else []
-    
-        # Current schema field names
-        schema_field_names = {
-            fld.get('name') for fld in table_schema_json.get('fields', [])
+    for schema_name, schema_data in loaded_schemas.items():
+        source_field_names = {
+            fld.get('name')
+            for fld in schema_data.get('fields', [])
             if isinstance(fld, dict) and 'name' in fld
         }
-    
-        if "foreignKeys" in table_schema_json:
-            for foreign_key in table_schema_json['foreignKeys']:
-                fk_fields = as_list(foreign_key.get('fields'))
-                ref = foreign_key.get('reference', {}) or {}
-                fk_reference_resource = ref.get('resource')
-                fk_reference_fields = as_list(ref.get('fields'))
-    
-                # Check FK fields exist in this schema
-                missing_fk_fields = [f for f in fk_fields if f not in schema_field_names]
-                if missing_fk_fields:
-                    print(
-                        f"Error: In {table_schema_name}, FK field(s) {missing_fk_fields} not found "
-                        f"in schema {table_schema_file}"
-                    )
-                    error_found = True
-    
-                # Self-referential FK (Frictionless v1: resource == "")
-                if fk_reference_resource in ("", None):
-                    pk = table_schema_json.get('primaryKey')
-                    pk_list = as_list(pk)
-    
-                    if not pk_list:
-                        print(
-                            f"Error: Self-referential FK {table_schema_name}/{fk_fields} requires a primaryKey "
-                            f"in the same schema."
-                        )
-                        error_found = True
-                    else:
-                        # Must point to the table's primary key (support composite keys)
-                        if set(fk_reference_fields) != set(pk_list):
-                            print(
-                                f"Error: Self-referential FK {table_schema_name}/{fk_fields} must reference the "
-                                f"primaryKey {pk_list}, but references {fk_reference_fields}."
-                            )
-                            error_found = True
-    
-                    # No external file check for self-reference
-                    continue
-    
-                # Referencing another table schema
-                reference_table_schema_file = package_file.replace(
-                    "index.json", f"table-schemas/{fk_reference_resource}.json"
+
+        for fk in schema_data.get('foreignKeys', []):
+            fk_fields = as_list(fk.get('fields'))
+            ref = fk.get('reference') or {}
+            tgt_resource = (ref.get('resource') or '').strip() or None
+            tgt_fields = as_list(ref.get('fields'))
+
+            # Check all source fields exist
+            missing_src = [f for f in fk_fields if f not in source_field_names]
+            if missing_src:
+                result.error(
+                    f"Foreign key in '{schema_name}' references non-existent "
+                    f"source field(s): {missing_src}"
                 )
-                reference_table_schema_file_path = Path(reference_table_schema_file)
-    
-                if reference_table_schema_file_path.exists():
-                    with open(reference_table_schema_file, 'r', encoding='utf-8') as fref:
-                        reference_table_schema_json = json.load(fref)
-    
-                    ref_schema_field_names = {
-                        fld.get('name') for fld in reference_table_schema_json.get('fields', [])
-                        if isinstance(fld, dict) and 'name' in fld
-                    }
-                    missing_ref_fields = [f for f in fk_reference_fields if f not in ref_schema_field_names]
-                    if missing_ref_fields:
-                        print(
-                            f"Error: Foreign key {table_schema_name}/{fk_fields} references non existing "
-                            f"field(s) {fk_reference_resource}/{missing_ref_fields}"
-                        )
-                        error_found = True
-                else:
-                    print(
-                        f"Error: Foreign key {table_schema_name}/{fk_fields} references non existing "
-                        f"table schema {fk_reference_resource}"
+                continue
+
+            # Self-referential FK (resource is empty/missing)
+            if tgt_resource is None:
+                pk = as_list(schema_data.get('primaryKey'))
+                if not pk:
+                    result.error(
+                        f"Self-referential FK in '{schema_name}' "
+                        f"requires a primaryKey in the same schema"
                     )
-                    error_found = True
-    
-    except (json.JSONDecodeError, FileNotFoundError) as e:
-        print(f"Error: {type(e).__name__} occurred. Missing or invalid file: {table_schema_file}")
-        error_found = True
-    
+                elif set(tgt_fields) != set(pk):
+                    result.error(
+                        f"Self-referential FK in '{schema_name}' must reference "
+                        f"the primaryKey {pk}, but references {tgt_fields}"
+                    )
+                continue
 
-# Validation: Check all package files and their schemas
-all_package_files_sandbox = find_package_files(directories_to_scan_sandbox)
-all_package_files_prod = find_package_files(directories_to_scan_prod)
+            # FK referencing another schema
+            if tgt_resource not in loaded_schemas:
+                result.error(
+                    f"Foreign key {schema_name}/{fk_fields} references "
+                    f"non-existent target schema '{tgt_resource}'"
+                )
+                continue
 
-for package_file in all_package_files_sandbox:
-    # First, validate the JSON structure
-    if not check_valid_json(package_file):
-        continue  # Skip further checks for invalid JSON files
+            ref_schema = loaded_schemas[tgt_resource]
+            ref_field_names = {
+                fld.get('name')
+                for fld in ref_schema.get('fields', [])
+                if isinstance(fld, dict) and 'name' in fld
+            }
 
-    # If JSON is valid, load and perform the remaining checks
-    with open(package_file, 'r') as f:
-        package_data = json.load(f)
+            missing_tgt = [f for f in tgt_fields if f not in ref_field_names]
+            if missing_tgt:
+                result.error(
+                    f"Foreign key {schema_name}/{fk_fields} references "
+                    f"non-existent field(s) in '{tgt_resource}': {missing_tgt}"
+                )
+                continue
 
-    check_urls_are_resolvable(package_data)
-    check_table_schemas(package_file, package_data)
-    check_valid_frictionless(package_file)
-    check_foreign_keys(package_file, package_data)
+            # Verify target fields are the primary key of the referenced schema
+            tgt_pk = as_list(ref_schema.get('primaryKey'))
+            if tgt_pk and set(tgt_fields) != set(tgt_pk):
+                result.error(
+                    f"Foreign key {schema_name}/{fk_fields} targets "
+                    f"'{tgt_resource}/{tgt_fields}' which is not the primary key "
+                    f"(primaryKey={tgt_pk})"
+                )
 
-for package_file in all_package_files_prod:
-    # First, validate the JSON structure
-    if not check_valid_json(package_file):
-        continue  # Skip further checks for invalid JSON files
 
-    # If JSON is valid, load and perform the remaining checks
-    with open(package_file, 'r') as f:
-        package_data = json.load(f)
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
 
-    check_urls_are_resolvable(package_data)
-    check_table_schemas(package_file, package_data)
-    check_valid_frictionless(package_file)
-    check_foreign_keys(package_file, package_data)
+def validate_package(package_file: Path, result: ValidationResult) -> None:
+    """Run all validation passes for a single index.json package file."""
+    package_data = load_json(package_file, result)
+    if package_data is None:
+        return
 
-if error_found:
-    print("Validation failed. Please fix the issues above.")
-    sys.exit(1)  # Exit with a non-zero code if errors were found
+    # Pass 1: URL reachability
+    check_urls_are_resolvable(package_data, result)
 
-print("All validations passed.")
-sys.exit(0)  # Exit successfully if no issues were found
+    # Pass 2: index.json structure and file/declaration consistency
+    declared_basenames = check_index_json(package_file, package_data, result)
+    if not declared_basenames:
+        return
+
+    # Pass 3: individual schema JSON validity, cross-checks, and field metadata
+    loaded_schemas = check_schema_json(
+        package_file, package_data, declared_basenames, result
+    )
+
+    # Pass 4: Frictionless descriptor validation (uses already-loaded dicts)
+    check_frictionless(loaded_schemas, result)
+
+    # Pass 5: foreign key referential integrity
+    check_foreign_keys(loaded_schemas, result)
+
+
+def main() -> None:
+    result = ValidationResult()
+
+    all_package_files = (
+        find_package_files(DIRECTORIES_TO_SCAN_SANDBOX)
+        + find_package_files(DIRECTORIES_TO_SCAN_PROD)
+    )
+
+    if not all_package_files:
+        print(f"No index.json files found under: "
+              f"{DIRECTORIES_TO_SCAN_SANDBOX + DIRECTORIES_TO_SCAN_PROD}")
+        sys.exit(1)
+
+    for package_file in sorted(all_package_files):
+        validate_package(package_file, result)
+
+    print()
+    if result.has_errors:
+        print(f"Validation failed: {len(result.errors)} error(s), "
+              f"{len(result.warnings)} warning(s).")
+        sys.exit(1)
+
+    warning_note = f" ({len(result.warnings)} warning(s))" if result.warnings else ""
+    print(f"All validations passed{warning_note}.")
+    sys.exit(0)
+
+
+if __name__ == '__main__':
+    main()
