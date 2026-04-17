@@ -44,23 +44,25 @@ Bibliographic citation
 
 ### 1.1 Purpose (non-normative)
 
-The **Darwin Core Conceptual Model (DwC-CM)** provides a high‑level framework that shows how [Darwin Core](https://dwc.tdwg.org) (DwC) classes relate to one another in typical biodiversity information workflows. Darwin Core formally defines a [set of terms](https://dwc.tdwg.org/list/) grouped by classes; DwC‑CM **clarifies the nature of those classes and the relationships among them** so implementers can make consistent, interoperable design choices across different technologies. 
+The **Darwin Core Conceptual Model (DwC-CM)** provides a high‑level framework that shows how [Darwin Core](https://dwc.tdwg.org) (DwC) classes relate to one another in typical biodiversity information workflows. Darwin Core formally defines a [set of terms](https://dwc.tdwg.org/list/) grouped by classes; DwC‑CM **clarifies the conceptual meaning of those classes and the relationships among them** so implementers can make consistent, interoperable design choices across different technologies. 
 
 The DwC‑CM does not prescribe an ontology of formal predicates for the relationships between classes. Instead, it uses natural‑language labels to convey semantic intent. 
 
-The DwC-CM does not prescribe the implementation of systems based on Darwin Core using any particular technology. The model is not a strict blueprint for system design; instead, it is a **reference framework that can be applied in whole or in part**. Different system architectures may realize the model in different ways—for example:
+The DwC-CM does not prescribe the implementation of systems based on Darwin Core using any particular technology. The model is not a strict blueprint for system design; instead, it is a **reference framework that can be applied in whole or in part**. An implementation can include entities and relationships that are not in the Conceptual Model. This includes using a less strict cardinality than is suggested by a predicate in this document, if warranted. Different system architectures may realize the model in different ways—for example:
 
 * A relational database or tabular data publishing schema may represent relationships through joins across normalized tables.  
-* A document-oriented approach may choose to embed related classes as nested objects within a record.  
-* A graph database may emphasize relationships as explicit links between nodes.
+* A document-oriented approach may choose to embed related classes as nested objects within a record rather than by linking separate records.  
+* A graph database may represent relationships as explicit links between nodes.
 
 The DwC-CM is a synthesis of discussion within the Biodiversity Information Standards (TDWG) community. It accommodates the observed use of DwC to date and accommodates the results of a wide variety of targeted case studies to broaden the scope of Darwin Core. It does not attempt to anticipate every possible use, and it is expected to evolve as the demand for new uses arise.
 
-By clarifying the conceptual relationships between Darwin Core classes, the DwC-CM helps implementers understand which connections are essential and the cardinalities involved, to help ensure they are correctly adapted in specific technical environments.
+By clarifying the conceptual relationships between Darwin Core classes, the DwC-CM helps implementers understand which connections are essential and the minimum cardinalities involved so that implementations are fundamentally consistent and correctly adapted in specific technical environments.
 
 ### 1.2 Audience (non-normative)
 
-This guide is intended for developers, data architects, and system designers who are building applications, databases, or services that rely on Darwin Core. It highlights how the conceptual model can be used as a reference when making design decisions, ensuring both consistency when using the Darwin Core standard and flexibility in implementation.
+This guide is intended for developers, data architects, and system designers who are building applications, databases, or services that rely on Darwin Core. It highlights how the conceptual model can be used as a reference when making design decisions, ensuring both consistency when using the Darwin Core standard and flexibility in implementation. 
+
+This guide is will also play an important role for scientists (in particular scientists dealing with data intensive workflows) to better understand what entities like Occurrence, Event, Location mean, how they are related, and how they are supposed to be used. This matters, for example, when designing analyses, merging datasets, or interpreting integrated data.
 
 ### 1.3 Associated Documents (non-normative)
 
@@ -108,7 +110,7 @@ In Darwin Core, an *Event* is an action, a process, or a set of circumstances oc
 
 #### Description
 
-* An *Event* is expected to include properties that document its nature (e.g., material collection, observation, device deployment) and that document the time period that it spanned.
+* An *Event* is expected to include properties that document its nature (e.g., material collection, observation, device deployment, expedition) and that document the time period that it spanned.
 
 * Special types of *Events* (*Occurrences*, *OrganismInteractions*, and *Surveys*) have distinct special characteristics in addition to those that cover their *Event* nature. 
 
@@ -161,7 +163,7 @@ Figure 3 is a small subset of the DwC-CM focusing on S*urveys*. Additional relat
 
 ### 2.3 Occurrence, Organism, and OrganismInteraction (non-normative)
 
-In Darwin Core, the *Occurrence* class has had a long history of evolving meaning. It originated from the need to capture information about organisms in nature along with the evidence gathered (observations and specimens) to support the use of that information. The original definition of the term, "The category of information pertaining to evidence of an occurrence in nature, in a collection, or in a dataset (specimen, observation, etc.)", betrayed its semantic ambiguity. With the addition of *MaterialSample* in 2013 and *Organism* in 2014, the semantics of Darwin Core became more clearly defined. In 2023, the introduction of *MaterialEntity* gave *Occurrence* its modern definition: “An existence of a dwc:Organism at a particular place at a particular time.” In the DwC-CM, the *Occurrence* class is further refined to mean "A state of a dwc:Organism in a dwc:Event." 
+In Darwin Core, the *Occurrence* class has had a long history of evolving meaning. It originated from the need to capture information about organisms in nature along with the evidence gathered (observations and specimens) to support the use of that information. The original definition of the term, "The category of information pertaining to evidence of an occurrence in nature, in a collection, or in a dataset (specimen, observation, etc.)", betrayed its semantic ambiguity. With the addition of *MaterialSample* in 2013 and *Organism* in 2014, the semantics of Darwin Core became more clearly defined. In 2023, the introduction of *MaterialEntity* gave *Occurrence* its modern definition: “An existence of a dwc:Organism at a particular place at a particular time.” In the DwC-CM, the *Occurrence* class is further refined to mean "A state of a dwc:Organism in a dwc:Event." The "state" of a dwc:Organism covered by the dwc:Occurrence class consists of attributes of a dwc:Organism that can differ between dwc:Occurrences, such as dwc:lifeStage, dwc:sex, dwc:reproductiveCondition, dwc:behavior, etc."
 
 An *Organism* is defined in Darwin Core as "A particular organism or defined group of organisms considered to be taxonomically homogeneous." *Organisms* manifest both permanent and ephemeral characteristics. For example, the date a mammal was born, and the identity of its mother will never change, though its life stage and reproductive condition can. An *Occurrence* can capture the ephemeral state of a particular *Organism* at a place and time or posit that there was some *Organism* there and then based on indirect evidence.
 
@@ -176,7 +178,7 @@ Figure 4 illustrates how the DwC-CM relates *Occurrence*, *Organism*, and *Organ
 
 * Since an *Occurrence* is a type of *Event*, it happens at a *Location*, can be conducted by an *Agent*, and can participate in an *Event* hierarchy, all as described in the *Event* section.
 
-* Being a special type of *Event*, an *Occurrence* has special characteristics in addition to those due to its *Event* nature. Specifically, an *Occurrence* represents an *Event* in which there was a direct observation or indirect inference of an *Organism* existing in a particular state (e.g., exhibiting a behavior) at a particular time and *Location* and potentially recorded by an *Agent*.
+* Being a special type of *Event*, an *Occurrence* has special characteristics in addition to those due to its *Event* nature. Specifically, an *Occurrence* represents an *Event* in which there was one of 1) a direct observation of an *Organism*, 2) or indirect inference of that *Organism* existed, or 3) the absence of detection of any *Organism* of a given *Taxon* in a particular state (e.g., exhibiting a behavior, having a particular trait, etc.) during the given time interval at the given *Location*, potentially recorded by an *Agent*.
 
 * An *Organism* can be present in many *Occurrences*, each time with potentially different characteristics.
 
@@ -234,7 +236,7 @@ In Darwin Core, an *Identification* is defined as "A classification of a resourc
 
 #### Description
 
-* An *Identification* expresses an opinion by an *Agent* (human or otherwise) that an *Organism* or other *MaterialEntity* (whether observed or inferred) was a member of a class within a classification scheme. For example, an Identification registers an opinion that an *Organism* is a member of the set of all *Organisms* that make up a *Taxon*, ideally based on verifiable evidence.
+* An *Identification* expresses an opinion by an *Agent* (human or otherwise) that an *Organism* or other *MaterialEntity* (whether observed or inferred) was a member of a class within a classification scheme. *Organism* example: an *Identification* registers an opinion that an *Organism* is a member of the set of all *Organisms* that make up a *Taxon*, ideally based on verifiable evidence. Non-*Organism* *MaterialEntity* example: an *Identification* registers an opinion that a mineral (*MaterialEntity*) has the characteristics that qualify it to be given a specific mineral name according to a classification scheme.
 
 * A *Taxon* can occupy a rank in a hierarchical classification system.
 
@@ -248,7 +250,7 @@ In Darwin Core, an *Identification* is defined as "A classification of a resourc
   * the inspection or processing of *Media* of an *Occurrence* by an *Agent*,   
   * the inspection or processing of a *MaterialEntity* by an *Agent*,   
   * the inspection or processing of *Media* of a *MaterialEntity* by an *Agent*, or
-  * a *NucleotideAnalysis* that detects a *NucleotideSequence* or confirms the presence of an *Organism* representing a *Taxon*. This may subsequently be used to infer an *Occurrence* (see the *NucleotideAnalysis* section).
+  * a *NucleotideAnalysis* that detects a *NucleotideSequence* or confirms the presence of evidence of an *Organism* representing a *Taxon*. This may subsequently be used to infer an *Occurrence* (see the *NucleotideAnalysis* section).
 
 #### Simplifications
 
