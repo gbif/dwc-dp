@@ -27,7 +27,7 @@ Previous version
 : —
 
 Abstract
-: Specification for creating Darwin Core Data Packages.
+: Specification for creating a Darwin Core Data Package.
 
 Contributors
 : [Peter Desmet](https://orcid.org/0000-0002-8442-8025) ([INBO](https://www.wikidata.org/wiki/Q131900338)), [Tim Robertson](https://orcid.org/0000-0001-6215-3617) ([Global Biodiversity Information Facility](http://www.wikidata.org/entity/Q1531570)), [John Wieczorek](https://orcid.org/0000-0003-1144-0290) (Rauthiflor LLC)
@@ -36,7 +36,7 @@ Creator
 : Darwin Core Maintenance Group
 
 Bibliographic citation
-: Darwin Core Maintenance Group. 2025. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). <http://rs.tdwg.org/dwc/doc/dp/2025-09-10>.
+: Darwin Core Maintenance Group. 2026. Darwin Core Data Package guide. Biodiversity Information Standards (TDWG). <http://rs.tdwg.org/dwc/doc/dp/2026-04-07>.
 
 [dp.v1]: https://specs.frictionlessdata.io/
 [dp.v2]: https://datapackage.org/
@@ -61,7 +61,6 @@ Bibliographic citation
 [resource.encoding]: https://specs.frictionlessdata.io/data-resource/#metadata-properties
 [table-schema]: https://specs.frictionlessdata.io/table-schema/
 [schema.fields]: https://specs.frictionlessdata.io/table-schema/#descriptor
-[schema.fieldMatch]: https://datapackage.org/standard/table-schema/#fieldsMatch
 [schema.primaryKey]: https://specs.frictionlessdata.io/table-schema/#primary-key
 [schema.foreignKeys]: https://specs.frictionlessdata.io/table-schema/#foreign-keys
 [schema.missingValues]: https://specs.frictionlessdata.io/table-schema/#missing-values
@@ -72,12 +71,9 @@ Bibliographic citation
 [field.format]: https://specs.frictionlessdata.io/table-schema/#types-and-formats
 [field.constraints]: https://specs.frictionlessdata.io/table-schema/#constraints
 
-{:.alert .alert-warning}
-This guide references non-production URLs for DwC-DP. Once DwC-DP is released, every link containing `https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/` should be replaced with `http://rs.tdwg.org/dwc-dp/1.0/`.
-
 ## 1 Introduction
 
-Darwin Core Data Package (hereafter referred to as “**DwC-DP**”) is a community-developed container format to exchange biodiversity data. It extends the [Data Package specification][dp.v1] (developed by Frictionless Data) as an implementation for the [Darwin Core Conceptual Model](../cm/). This document specifies the requirements for datasets to comply with DwC-DP.
+Darwin Core Data Package (hereafter referred to as “**DwC-DP**”) is a community-developed container format to exchange biodiversity data. It extends the [Data Package specification][dp.v1] (developed by Frictionless Data) as an implementation for the [Darwin Core Conceptual Model](../cm/). This document specifies the requirements for a dataset to comply with DwC-DP.
 
 ### 1.1 Audience (non-normative)
 
@@ -85,14 +81,14 @@ This guide is intended for biodiversity data providers, curators, aggregators, r
 
 ### 1.2 Status of the content of this document
 
-All sections of this document are normative (define what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understand but are not binding).
+All sections of this document are normative (define what is required to comply with the standard), except for sections that are explicitly marked as non-normative (support understanding, but are not binding).
 
 ### 1.3 RFC 2119 key words
 
 The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.ietf.org/rfc/rfc2119.txt).
 
 {:id="example"}
-## 2 Example (non-normative)
+## 2 DwC-DP Data Package example (non-normative)
 
 Consider a dataset containing four bird Occurrences observed during a single parent Event. It can be described with two CSV files, each representing a DwC-DP table:
 
@@ -117,9 +113,9 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 
 ```json
 {
-  "profile": "https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/dwc-dp-profile.json",
-  "id": "dwc-dp-example-dataset",
-  "created": "2025-09-08T09:52:03Z",
+  "profile": "http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json",
+  "id": "https://doi.org/10.9999/dwc-dp-example-dataset-doi",
+  "created": "2025-09-08T09:52:03-03:00",
   "version": "1.0",
   "resources": [
     {
@@ -232,7 +228,7 @@ This dataset can be described as a DwC-DP with the following **descriptor** (`da
 }
 ```
 
-Together with a `eml.xml` file containing dataset-level **metadata**, the dataset would consists of the following files that may be zipped for easier transfer:
+Together with an `eml.xml` file containing dataset-level **metadata**, the dataset would consist of the following files that may be zipped for easier transfer:
 
 ```text
 datapackage.json
@@ -241,50 +237,57 @@ event.csv
 occurrence.csv
 ```
 
-## 3 Descriptor content
+## 3 DwC-DP content
+ 
+1. A DwC-DP MAY have an EML **metadata** file named `eml.xml`, which describes the scientific meaning, provenance, stewardship, and contextual interpretation of a dataset. A metadata file MUST follow the [Ecological Metadata Language specification](https://eml.ecoinformatics.org/).
 
-A DwC-DP has a **descriptor**: a JSON file named `datapackage.json`, which acts as an entry point to the dataset. It contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata. The requirements for these elements are described below.
+2. A DwC-DP MUST have a JSON **descriptor** file named `datapackage.json`, which describes the structure and relational mechanics of the data in the dataset. A descriptor file MUST follow the [Data Package specification][package.descriptor]. See [section 3.1](#31-descriptor-content). 
 
-All requirements and examples in this guide use [version 1][dp.v1] of the Data Package specification, which is RECOMMENDED for DwC-DPs. Users MAY create descriptors using [version 2][dp.v2] of the Data Package specification, which offers functionality that can relax some of the requirements below (e.g., [`fieldMatch`][schema.fieldMatch]), but which has limited software support at the time of writing.
+3. A DwC-DP MUST have at least one **resource** file that represents a data package table and contains data for a dataset. See [section 3.2](#32-resources). Resource files MAY be at the root level of the data package.
 
-### 3.1 Descriptor file
+4. A DwC-DP MAY have **other resource** files that do not represent data package tables. See [section 3.2.3](#323-other-resources). Other resource files MAY be at the root level of the data package.
 
-1. The descriptor MUST follow the [Data Package specification][package.descriptor] and MUST be named `datapackage.json`.
+The entire contents of a data package MAY be compressed using gzip (only) and if compressed must have a file name that ends with `.gz` (e.g., `example-dwc-dp.gz`). If a compressed data package is unzipped, the metadata (`eml.xml`) and descriptor (`datapackage.json`) files MUST be at the root level of the data package and MUST NOT be individually compressed.
 
-2. Dataset metadata MAY be expressed in an `eml.xml` file. It MUST follow the [Ecological Metadata Language specification](https://eml.ecoinformatics.org/) and MUST be placed at the same level as the `datapackage.json` file.
+Whether the entire contents of a data package is compressed or not, resource files MAY be individually compressed using gzip (only). An individually compressed resource file MUST have a name that appends `.gz` to the name of the compressed file (e.g., `event.csv` becomes `event.csv.gz`).
+ 
+### 3.1 Descriptor content
 
-### 3.2 Package-level properties
+A DwC-DP **descriptor** file (named `datapackage.json`) contains a reference to the profile the dataset conforms to, a list of data files (resources) and (optionally) dataset-level metadata in addition to or instead of the metadata in an `eml.xml` file. The requirements for these elements of a descriptor file are described below.
 
-1. The descriptor MUST have a `resources` property, with an array of data files that are considered part of a dataset. It MUST follow the [Data Package specification][package.resources] and MUST contain at least one resource. See [section 3.3](#33-resources) for details.
+{:.alert .alert-info}
+All requirements and examples in this guide use [version 1][dp.v1] of the Data Package specification, which is RECOMMENDED for DwC-DPs.
 
-2. The descriptor MUST have a `profile` property, with a URL referencing the [profile][package.profile] the dataset conforms to. This MUST be a string representing the URL to a **DwC-DP profile** served from `http://rs.tdwg.org`. The URL MUST include the version of the profile (e.g., `http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json`, where `1.0` is the version).
+1. The descriptor MUST have a `profile` property, with a URL referencing the [profile][package.profile] the dataset conforms to. This MUST be a string representing the URL to a **DwC-DP profile** served from `http://rs.tdwg.org`. The URL MUST include the version of the profile (e.g., `http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json`, where `1.0` is the version).
 
     {:.alert .alert-info}
     (non-normative) The DwC-DP profile imports all [Data Package requirements](https://specs.frictionlessdata.io/schemas/data-package.json). A dataset that conforms to the DwC-DP profile will therefore also conform to the Data Package requirements. In other words: a DwC-DP is also a Data Package.
 
-3. The descriptor SHOULD have an `id` property, with an identifier for the dataset, preferably a DOI. It MUST follow the [Data Package specification][package.id].
+2. The descriptor SHOULD have an `id` property, with an identifier for the dataset, preferably a DOI. It MUST follow the [Data Package specification][package.id].
 
-4. The descriptor SHOULD have a `created` property, with a timestamp indicating when the dataset was created. It MUST follow the [Data Package specification][package.created].
+3. The descriptor SHOULD have a `created` property, with a timestamp indicating when the dataset was created. It MUST follow the [Data Package specification][package.created].
 
-5. The descriptor SHOULD have a `version` property, indicating the version of the dataset. It MUST follow the [Data Package specification][package.version].
+4. The descriptor SHOULD have a `version` property, indicating the version of the dataset. It MUST follow the [Data Package specification][package.version].
+
+5. The descriptor MUST have a `resources` property, with an array of data files that are considered part of a dataset. It MUST follow the [Data Package specification][package.resources] and MUST contain at least one data resource. See [section 3.2](#32-resources) for details.
 
 6. The descriptor MAY have additional package-level properties. This includes dataset-level metadata defined by the [Data Package specification][data-package] (e.g., `title`, `description`, `contributors`, `sources`, `licenses`) or custom properties.
 
-### 3.3 Resources
+#### 3.2 Resources
 
 Each data file included in DwC-DP is a **resource**. Each resource MUST follow the [Data Resource specification][resource].
 
-Of special interest are resources with (biodiversity) data organized in tables that implement the [Darwin Core Conceptual Model (DwC-CM)](../cm/). These resources/tables (hereafter referred to as “**DwC-DP tables**”) have additional requirements.
+Of special interest are resources with data organized in tables that implement the [Darwin Core Conceptual Model (DwC-CM)](../cm/). These resources/tables (hereafter referred to as “**DwC-DP table files**”) have additional requirements.
 
-#### 3.3.1 DwC-DP table file requirements
+##### 3.2.1 DwC-DP table files
 
-Data files representing a DwC-DP table MUST be delimited text files (hereafter referred to as “**CSV files**”, irrespective of the chosen delimiter). CSV files MUST follow [RFC 4180](https://tools.ietf.org/html/rfc4180), with the following exceptions:
+A data file representing a DwC-DP table MUST be a delimited text files (hereafter referred to as “**CSV files**”, irrespective of the chosen delimiter). Table files MUST follow [RFC 4180](https://tools.ietf.org/html/rfc4180), with the following exceptions:
 
-1. A CSV file MUST be encoded as UTF-8 OR, when deviating from that encoding, the DwC-DP table MUST have an `encoding` property that MUST follow the [Data Resource specification][resource.encoding] and the files MUST follow that encoding.
+1. A table file MUST be encoded as UTF-8 OR, when deviating from that encoding, the MUST have an appropriate `encoding` property that MUST follow the [Data Resource specification][resource.encoding].
 
-2. When a CSV file deviates from RFC 4180 regarding dialect (e.g., line terminators, field delimiters, quote characters), the DwC-DP table MUST have a `dialect` property describing the dialect. That property MUST follow the [CSV Dialect specification][csv-dialect]. Only dialect properties deviating from the default SHOULD be provided. If the CSV file follows all defaults, a `dialect` property SHOULD NOT be provided.
+2. When a table file deviates from RFC 4180 regarding dialect (e.g., line terminators, field delimiters, quote characters), the DwC-DP table MUST have a `dialect` property describing the dialect. That property MUST follow the [CSV Dialect specification][csv-dialect]. Only dialect properties deviating from the default SHOULD be provided. If the CSV file follows all defaults, a `dialect` property SHOULD NOT be provided.
 
-#### 3.3.2 DwC-DP table properties
+##### 3.2.2 DwC-DP table properties
 
 1. A DwC-DP table MUST have a `name` property, with the name of the table. It MUST follow the [Data Resource specification][resource.name] and MUST be one of the reserved table names defined in the DwC-DP profile (e.g., `"event"`, `"occurrence"`). See [section 4](#dwc-dp-tables) for an overview.
 
@@ -296,36 +299,36 @@ Data files representing a DwC-DP table MUST be delimited text files (hereafter r
 
 5. A DwC-DP table MUST have a `mediatype` property, indicating the mediatype of the data file (e.g., `"text/csv"`). It MUST follow the [Data Resource specification][resource.mediatype] and MUST be the value `"text/csv"`.
 
-6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Resource specification][resource.schema], but MUST be an object representing the schema (and not a string referencing it). See [section 3.4](#34-table-schemas) for details.
+6. A DwC-DP table MUST have a `schema` property, with a **table schema** describing the fields and relationships of the table. It MUST follow the [Data Resource specification][resource.schema], and MUST be an object representing the schema (not merely a string referencing it). See [section 3.3](#33-table-schemas) for details.
 
     {:.alert .alert-info}
     (non-normative) By verbosely including the `schema`, a descriptor does not rely on externally hosted files (except for the DwC-DP profile) to describe the data it represents.
 
 7. A DwC-DP table MAY have additional properties. This includes those defined by the [Data Resource specification][data-resource] (e.g., `bytes`, `hash`) or custom properties.
 
-#### 3.3.3 Other resources
+##### 3.2.3 Other resources
 
 A DwC-DP MAY include other resources that do not represent a DwC-DP table. They MUST NOT have a `name` that is one of the reserved table names defined in the DwC-DP profile. See [section 4](#dwc-dp-tables) for an overview.
 
-### 3.4 Table Schemas
+#### 3.3 Table Schemas
 
 A **table schema** describes the fields, relationships and missing values of a tabular data file. A table schema MUST follow the [Table Schema specification][table-schema].
 
-Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#dwc-dp-tables) for an overview. These include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
+Table schemas are provided at `rs.tdwg.org` for each DwC-DP table. See [section 4](#dwc-dp-tables). These table schemas include all possible fields, primary keys and foreign key relationships a table can have. Use these to select the fields and keys that are applicable to your data.
 
-1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. It MUST follow the [Table Scheme specification][schema.fields], but the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.5](#3.5-field-descriptors) for details.
+1. A DwC-DP table schema MUST have a `fields` property, with an array of **field descriptors** describing the fields/columns in the data file. The `fields` property MUST follow the [Table Schema specification][schema.fields]. In addition, the order and number of elements in `fields` MUST be the order and number of fields in the CSV file. See [section 3.4](#3.4-field-descriptors) for details.
 
 2. Each field in a DwC-DP table schema MUST be described with the field descriptor of the table schema provided at `rs.tdwg.org` for that table. For example, if you want to describe an `"eventID"` field in an `"event"` table, you MUST use the field descriptor for `"eventID"` in the table schema for `"event"` provided at `rs.tdwg.org`. Fields MUST NOT be misrepresented. Custom fields SHOULD NOT be added.
 
-3. A DwC-DP table schema SHOULD have a `primaryKey` property, indicating the field(s) that act as primary keys. It MUST follow the [Table Schema specification][schema.primaryKey]. The `primaryKey` property is REQUIRED if the field is referenced by another table. `primaryKey` values MUST be one or more of the `primaryKey` values defined in the table schema provided at `rs.tdwg.org` for that table (i.e., do not define primary keys not defined there).
+3. A DwC-DP table schema SHOULD have a `primaryKey` property indicating the field(s) that act as primary keys. A `primaryKey` property MUST follow the [Table Schema specification][schema.primaryKey]. The `primaryKey` property is REQUIRED if the field is referenced by another table. `primaryKey` values MUST be one or more of the `primaryKey` values defined in the table schema provided at `rs.tdwg.org` for that table (i.e., do not define primary keys not defined there). See [section 3.3.1](#331-relationships-example).
 
-4. A DwC-DP table schema SHOULD have a `foreignKeys` property, with an array of relationships the table has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. If the table has foreign key relationships with other tables, then the `foreignKeys` property is REQUIRED and every relationship MUST be expressed. `foreignKeys` values MUST be one or more of the `foreignKeys` values defined in the table schema provided at `rs.tdwg.org` (i.e., do not define foreign key relationships not defined there). `foreignKeys` MAY have a `predicate` property to document relationship semantics.
+4. A DwC-DP table schema SHOULD have a `foreignKeys` property with an array of relationships the table has with other tables. It MUST follow the [Table Schema specification][schema.foreignKeys]. If a table has a foreign key relationship with another table, then the `foreignKeys` property is REQUIRED and every relationship MUST be expressed therein. `foreignKeys` values MUST be one or more of the `foreignKeys` values defined in the table schema provided at `rs.tdwg.org` (i.e., do not define foreign key relationships not defined there). `foreignKeys` MAY have a `predicate` property to document relationship semantics. See [section 3.3.1](#331-relationships-example).
 
-5. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. It MUST follow the [Table Schema specification][schema.missingValues].
+5. A DwC-DP table schema MAY have a `missingValues` property, indicating what values should be interpreted as `null`. A `missingValues` property MUST follow the [Table Schema specification][schema.missingValues].
 
 6. A DwC-DP table schema MAY have custom properties.
 
-#### 3.4.1 Relationships example (non-normative)
+##### 3.3.1 Relationships example (non-normative)
 
 Consider an `"event"` table with the following table schema:
 
@@ -354,41 +357,43 @@ Consider an `"event"` table with the following table schema:
 }
 ```
 
-For brevity, let's name fields as `table_name.field_name` (e.g. `event.eventID` refers to the `"eventID"` field in the `"event"` table). The above schema expresses:
+For brevity, let's name fields as `table_name.field_name` (e.g., `event.eventID` refers to the `"eventID"` field in the `"event"` table). The above schema expresses:
 
-1. A relationship between the `"event"` and `"agent"` tables. For each value in `event.eventConductedBy` a corresponding value is expected in `agent.agentID`, linking those records.
+1. A relationship between the `"event"` and `"agent"` tables. For each value in `event.eventConductedByID` a corresponding value is expected in `agent.agentID`, linking those records.
 
 2. A relationship between the `"event"` table and itself. For each value in `event.parentEventID` a corresponding value is expected in `event.eventID`, linking those records.
 
 3. Since `event.eventID` is the target of a foreign key relationship, it must be a primary key.
 
-### 3.5 Field descriptors
+#### 3.4 Field descriptors
 
-A **field descriptor** describes a single field in a table schema (e.g., name, description, format, constraints).
+A **field descriptor** describes a single field in a table schema (e.g., its name, description, format, constraints).
 
-1. A field descriptor MUST have a `name` property, with the machine-readable name of the field (e.g., `"eventID"`). It MUST follow the [Table schema specification][field.name] and SHOULD correspond to the name of field/column in the data file (if a header is present).
+1. A field descriptor MUST have a `name` property, with the name of the field (e.g., `"eventID"`). A `name` property MUST follow the [Table schema specification][field.name] and SHOULD correspond to the name of field/column in the data file (if a header is present).
 
-2. A field descriptor MUST have a `title` property, with the human-readable label of the field (e.g., `"Event ID"`). It MUST follow the [Table schema specification][field.title].
+2. A field descriptor MUST have a `title` property, with the label of the field (e.g., `"Event ID"`). A `title` property MUST follow the [Table schema specification][field.title].
 
-3. A field descriptor MUST have a `description` property, with a human-readable description of the field, such as the Darwin Core definition. It MUST follow the [Table schema specification][field.description].
+3. A field descriptor MUST have a `description` property, with a human-readable description of the field, such as a Darwin Core definition. A `description` property MUST follow the [Table schema specification][field.description]. The definition of a field may differ (in this context) from the original definition for the corresponding term found in the `dcterms:isVersionOf` property.
 
-4. A field descriptor MAY have a `comments` property, with usage notes.
+4. A field descriptor MAY have a `comments` property, with context-specific usage notes.
 
-5. A field descriptor MUST have a `type` property, indicating the data type of values in the field (e.g., `"string"`, `"number"`). It MUST follow the [Table schema specification][field.type].
+5. A field descriptor MAY have a `examples` property, with context-specific examples of content appropriate for the field.
 
-6. A field descriptor SHOULD have a `format` property, indicating how values should be parsed. It MUST follow the [Table schema specification](field.format).
+6. A field descriptor MUST have a `type` property, indicating the data type of values in the field (e.g., `"string"`, `"number"`). A `type` property MUST follow the [Table schema specification][field.type].
 
-7. A field descriptor MUST have a `dcterms:isVersionOf` property, with the URL of the unversioned source term describing the field (e.g., `"http://rs.tdwg.org/dwc/terms/eventID"`).
+7. A field descriptor SHOULD have a `format` property, indicating how values should be parsed. A `format` property MUST follow the [Table schema specification](field.format).
 
-8. A field descriptor MAY have a `dcterms:references` property, with the URL of the versioned source term describing the field (e.g., `"http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"`).
+8. A field descriptor MAY have a `namespace` property, with an abbreviation of the namespace of the source term (e.g., `"dwc"`, `"dcterms"`).
 
-9. A field descriptor MAY have a `rdfs:comment` property, with the canonical definition of the source term.
+9. A field descriptor MUST have a `dcterms:isVersionOf` property, with the URL of the unversioned source term the field is based on (e.g., `"http://rs.tdwg.org/dwc/terms/eventID"`).
 
-10. A field descriptor MAY have a `namespace` property, with an abbreviation of the namespace of the source term (e.g., `"dwc"`, `"dcterms"`).
+10. A field descriptor MAY have a `dcterms:references` property, with the URL of the version of the source term the field is based on (e.g., `"http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28"`).
 
-11. A field descriptor MAY have a `constraints` property, indicating value requirements that SHOULD be used in validation. It MUST follow the [Table Schema specification][field.constraints].
+11. A field descriptor MAY have an `rdfs:comment` property, with the canonical definition of the source term found in the `dcterms:references` property.
 
-12. A field descriptor MAY have additional properties. This includes those defined by the [Table Schema specification][table-schema] (e.g., `example`) or custom properties.
+12. A field descriptor MAY have a `constraints` property, indicating value requirements that SHOULD be used in validation. A `constraints` property MUST follow the [Table Schema specification][field.constraints].
+
+13. A field descriptor MAY have additional properties, including optional properties defined by the [Table Schema specification][table-schema] or custom properties.
 
 {:.alert .alert-info}
 (non-normative) You will meet the requirements for field descriptors by copying field descriptors from the table schemas provided at `rs.tdwg.org`.
@@ -396,82 +401,5 @@ A **field descriptor** describes a single field in a table schema (e.g., name, d
 {:id="dwc-dp-tables"}
 ## 4. DwC-DP tables (non-normative)
 
-table name | table schema
---- | ---
-`"agent"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/agent.json>
-`"agent-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/agent-agent-role.json>
-`"agent-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/agent-identifier.json>
-`"agent-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/agent-media.json>
-`"bibliographic-resource"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/bibliographic-resource.json>
-`"chronometric-age"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age.json>
-`"chronometric-age-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age-agent-role.json>
-`"chronometric-age-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age-assertion.json>
-`"chronometric-age-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age-media.json>
-`"chronometric-age-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age-protocol.json>
-`"chronometric-age-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/chronometric-age-reference.json>
-`"event"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event.json>
-`"event-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-agent-role.json>
-`"event-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-assertion.json>
-`"event-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-identifier.json>
-`"event-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-media.json>
-`"event-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-protocol.json>
-`"event-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-provenance.json>
-`"event-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/event-reference.json>
-`"geological-context"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/geological-context.json>
-`"geological-context-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/geological-context-media.json>
-`"identification"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/identification.json>
-`"identification-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/identification-agent-role.json>
-`"identification-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/identification-reference.json>
-`"identification-taxon"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/identification-taxon.json>
-`"material"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material.json>
-`"material-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-agent-role.json>
-`"material-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-assertion.json>
-`"material-geological-context"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-geological-context.json>
-`"material-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-identifier.json>
-`"material-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-media.json>
-`"material-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-protocol.json>
-`"material-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-provenance.json>
-`"material-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-reference.json>
-`"material-usage-policy"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/material-usage-policy.json>
-`"media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media.json>
-`"media-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media-agent-role.json>
-`"media-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media-assertion.json>
-`"media-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media-identifier.json>
-`"media-provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media-provenance.json>
-`"media-usage-policy"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/media-usage-policy.json>
-`"molecular-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/molecular-protocol.json>
-`"molecular-protocol-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/molecular-protocol-agent-role.json>
-`"molecular-protocol-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/molecular-protocol-assertion.json>
-`"molecular-protocol-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/molecular-protocol-reference.json>
-`"nucleotide-analysis"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/nucleotide-analysis.json>
-`"nucleotide-analysis-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/nucleotide-analysis-assertion.json>
-`"nucleotide-sequence"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/nucleotide-sequence.json>
-`"occurrence"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence.json>
-`"occurrence-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-agent-role.json>
-`"occurrence-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-assertion.json>
-`"occurrence-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-identifier.json>
-`"occurrence-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-media.json>
-`"occurrence-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-protocol.json>
-`"occurrence-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/occurrence-reference.json>
-`"organism"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism.json>
-`"organism-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-assertion.json>
-`"organism-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-identifier.json>
-`"organism-interaction"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-interaction.json>
-`"organism-interaction-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-interaction-agent-role.json>
-`"organism-interaction-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-interaction-assertion.json>
-`"organism-interaction-media"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-interaction-media.json>
-`"organism-interaction-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-interaction-reference.json>
-`"organism-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-reference.json>
-`"organism-relationship"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/organism-relationship.json>
-`"protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/protocol.json>
-`"protocol-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/protocol-reference.json>
-`"provenance"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/provenance.json>
-`"resource-relationship"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/resource-relationship.json>
-`"survey"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey.json>
-`"survey-agent-role"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-agent-role.json>
-`"survey-assertion"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-assertion.json>
-`"survey-identifier"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-identifier.json>
-`"survey-protocol"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-protocol.json>
-`"survey-reference"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-reference.json>
-`"survey-target"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/survey-target.json>
-`"usage-policy"` | <https://raw.githubusercontent.com/gbif/dwc-dp/0.1/dwc-dp/table-schemas/usage-policy.json>
+- **Reserved table names**: see the `enum` values for `dwc-dp-resource-names` in the Darwin Core Profile at http://rs.tdwg.org/dwc-dp/1.0/dwc-dp-profile.json
+- **Table schemas**: see the `tableSchemas` at http://rs.tdwg.org/dwc-dp/1.0/table-schemas
