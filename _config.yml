@@ -13,7 +13,7 @@ social:
 theme: minima
 remote_theme: tdwg/petridish
 github_edit: master
-logo: /assets/images/under-review.svg
+#logo: /assets/images/under-review.svg
 
 # BUILD SETTINGS
 markdown: kramdown
