@@ -3,6 +3,8 @@ permalink: /dp/
 toc: true
 ---
 
+# Note: This document has been deprecated in favor of the ratified version at https://dwc.tdwg.org/dp/
+
 # Darwin Core Data Package guide
 
 Title

@@ -3,6 +3,8 @@ permalink: /cm/
 toc: true
 ---
 
+# Note: This document has been deprecated in favor of the ratified version at https://dwc.tdwg.org/cm/
+
 # Darwin Core conceptual model
 
 Title
