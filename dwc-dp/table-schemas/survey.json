@@ -8,37 +8,50 @@
   "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
   "namespace": "eco",
   "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/Survey",
-  "dcterms:references": "",
+  "dcterms:references": "http://rs.tdwg.org/eco/terms/Survey-2026-05-26",
   "rdfs:comment": "A biotic survey or inventory.",
   "fields": [
     {
-      "name": "surveyID",
-      "title": "Survey ID",
-      "description": "An identifier for a dwc:Survey.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "survey_pk",
+      "title": "Survey (Primary Key)",
+      "description": "A unique identifier for an eco:Survey.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/surveyID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
+      "rdfs:comment": "An identifier for an eco:Survey.",
       "constraints": {
         "required": true,
         "unique": true
       }
     },
     {
-      "name": "eventID",
-      "title": "Event ID",
+      "name": "surveyID",
+      "title": "Survey ID",
+      "description": "An identifier for an eco:Survey.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
+      "rdfs:comment": "An identifier for an eco:Survey."
+    },
+    {
+      "name": "event_fk",
+      "title": "Event (Foreign Key)",
       "description": "An identifier for a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
@@ -72,7 +85,7 @@
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteNestingDescription",
       "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteNestingDescription-2024-02-28",
-      "rdfs:comment": "Textual description of the hierarchical sampling design."
+      "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
     },
     {
       "name": "verbatimSiteDescriptions",
@@ -134,7 +147,7 @@
       "title": "Total Area Sampled Unit",
       "description": "Units associated with a value in eco:totalAreaSampledValue.",
       "comments": "Recommended best practice is to use a controlled vocabulary. For units containing exponents, use characters from the Unicode Latin-1 Supplement character set (hex 00B2 for squared and 00B3 for cubed). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "examples": "`0.8`",
+      "examples": "`km²`",
       "type": "string",
       "format": "default",
       "namespace": "eco",
@@ -145,9 +158,9 @@
     {
       "name": "totalAreaSampledValue",
       "title": "Total Area Sampled Value",
-      "description": "The numeric value for the total area dwc:Surveyed during a dwc:Event.",
+      "description": "The numeric value for the total arean eco:Surveyed during a dwc:Event.",
       "comments": "This area is always less than or equal to the eco:geospatialScopeAreaValue. An eco:totalAreaSampledValue must have a corresponding eco:totalAreaSampledUnit.",
-      "examples": "`km²`",
+      "examples": "`0.8`",
       "type": "number",
       "format": "default",
       "namespace": "eco",
@@ -243,7 +256,7 @@
       "name": "isAbsenceReported",
       "title": "Is Absence Reported",
       "description": "Taxonomic absences were reported.",
-      "comments": "Absences can be reported at any taxonomic level.",
+      "comments": "Absences can be reported at any taxonomic level. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -269,7 +282,7 @@
       "name": "hasNonTargetTaxa",
       "title": "Has Non Target Taxa",
       "description": "One or more dwc:Organisms of taxa outside the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) were detected and reported for this dwc:Event.",
-      "comments": "This term is meant to alert users to the presence of non-target taxa (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Examination of the taxonomic scope is needed in order to identify the non-target taxa. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available) or by exploring eco:nonTargetTaxa for this dwc:Event (if populated). The value of this term should be 'true' if dwc:Occurrences of taxa outside the taxonomic scope as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
+      "comments": "This term is meant to alert users to the presence of non-target taxa (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Examination of the taxonomic scope is needed in order to identify the non-target taxa. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available) or by exploring eco:nonTargetTaxa for this dwc:Event (if populated). Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/. The value of this term should be 'true' if dwc:Occurrences of taxa outside the taxonomic scope as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -295,7 +308,7 @@
       "name": "areNonTargetTaxaFullyReported",
       "title": "Are Non Target Taxa Fully Reported",
       "description": "Every dwc:Organism that was outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) and detected during a dwc:Event, and that was detectable using the given protocol (given in eco:protocolDescriptions and dwc:samplingProtocol), was reported.",
-      "comments": "This term is meant to inform a user of the data whether there were non-target taxa that were detected, but left unreported. This term is only relevant if a dwc:Event used restricted search or open search methods and if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Within dwc:Events that used either a restricted search or an open search method and declared a taxonomic scope, if all dwc:Organisms that are not included within the target taxonomic scope and that were detected during a dwc:Event were reported, the value of this term should be 'true', otherwise the value of this term should be ‘false'.",
+      "comments": "This term is meant to inform a user of the data whether there were non-target taxa that were detected, but left unreported. This term is only relevant if a dwc:Event used restricted search or open search methods and if a target taxonomic scope is declared. Taxonomic scope is based on the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/. Within dwc:Events that used either a restricted search or an open search method and declared a taxonomic scope, if all dwc:Organisms that are not included within the target taxonomic scope and that were detected during a dwc:Event were reported, the value of this term should be 'true', otherwise the value of this term should be ‘false'.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -308,7 +321,7 @@
       "name": "hasNonTargetOrganisms",
       "title": "Has Non Target Organisms",
       "description": "One or more dwc:Organisms outside the target organismal scopes (eco:targetDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:targetLifeStageScope) were detected and reported for this dwc:Event.",
-      "comments": "This term is meant to alert users to the presence of non-target organisms (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target organismal scope is declared. Organismal scope is based on the combination of all of the following terms: eco:targetLifeStageScope, eco:excludedLifeStageScope, eco:targetDegreeOfEstablishmentScope, eco:excludedDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:excludedGrowthFormScope. Examination of the organismal scope is needed in order to identify the non-target dwc:Organisms. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available). The value of this term should be 'true' if dwc:Occurrences of dwc:Organisms outside the organismal scope(s) as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
+      "comments": "This term is meant to alert users to the presence of non-target organisms (in some disciplines called “bycatch”) reported in this dwc:Event. This term is relevant only if a target organismal scope is declared. Organismal scope is based on the combination of all of the following terms: eco:targetLifeStageScope, eco:excludedLifeStageScope, eco:targetDegreeOfEstablishmentScope, eco:excludedDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:excludedGrowthFormScope. Examination of the organismal scope is needed in order to identify the non-target dwc:Organisms. It should be possible to confirm the expectations by investigating a dwc:Occurrences in this dwc:Event and in its child dwc:Events (if available). Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/. The value of this term should be 'true' if dwc:Occurrences of dwc:Organisms outside the organismal scope(s) as defined at the time of a dwc:Event are reported, otherwise the value of this term should be 'false'.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -333,28 +346,28 @@
     {
       "name": "identifiedBy",
       "title": "Identified By",
-      "description": "A list (concatenated and separated) of names of dcterms:Agents responsible for making a taxonomic determination of a dwc:Organism.",
+      "description": "A name for a dcterms:Agent responsible for making a dwc:Identification.",
       "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Event. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
       "examples": "`James L. Patton`; `Theodore Pappenfuss | Robert Macey`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2025-06-12",
-      "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations who assigned the dwc:Taxon to the subject."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
+      "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
     },
     {
       "name": "identifiedByID",
       "title": "Identified By ID",
-      "description": "An identifier for a dcterms:Agent responsible for making a taxonomic determination of a dwc:Organism.",
-      "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Survey. Recommended best practice is to provide a single identifier that disambiguates the details of the identifying dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "description": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Survey. Recommended best practice is to provide a single identifier that disambiguates the details of the identifying dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `). The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identifiedBy-2025-06-12",
-      "rdfs:comment": "A list (concatenated and separated) of the globally unique identifier for the person, people, groups, or organizations responsible for assigning the dwc:Taxon to the subject.",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -370,8 +383,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2025-06-12",
-      "rdfs:comment": "A list (concatenated and separated) of references (publication, global unique identifier, URI) used in the dwc:Identification."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
+      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
     },
     {
       "name": "compilationTypes",
@@ -428,7 +441,7 @@
     {
       "name": "protocolDescriptions",
       "title": "Protocol Descriptions",
-      "description": "A detailed description of the dwc:Protocols used during a dwc:Survey.",
+      "description": "A detailed description of the dwc:Protocols used during an eco:Survey.",
       "comments": "This description should be associated with protocols provided in eco:protocolNames. The description may include deviations from a protocol referred to in eco:protocolReferences. Recommended good practice is to provide information about instruments used, calibration, etc. Recommended best practice is to separate multiple values in a list with space vertical bar space (` | `).",
       "examples": "`Three conventional harp traps (3.2m ht x 2.2m w) were established in flight path zones for a period of 4 hrs at dawn and dusk for a total of 10 trap nights. Traps were visited on an hourly basis during each deployment period and the trap catch recorded for species, size, weight, sex, age and maternal status.`",
       "type": "string",
@@ -449,13 +462,13 @@
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences",
       "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolReferences-2024-02-28",
-      "rdfs:comment": "The references to the methods used during the dwc:Event."
+      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Protocol."
     },
     {
       "name": "isAbundanceReported",
       "title": "Is Abundance Reported",
       "description": "The number of dwc:Organisms collected or observed was reported.",
-      "comments": "Typically the abundance values would be reported in a dwc:organismQuantity and dwc:organismQuantityType terms for the child dwc:Occurrence records for this dwc:Event.",
+      "comments": "Typically the abundance values would be reported in a dwc:organismQuantity and dwc:organismQuantityType terms for the child dwc:Occurrence records for this dwc:Event. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -468,7 +481,7 @@
       "name": "isAbundanceCapReported",
       "title": "Is Abundance Cap Reported",
       "description": "A maximum number of dwc:Organisms was reported, as specified or restricted by the dwc:Protocol used.",
-      "comments": "Values of abundance cap should be captured under the term eco:abundanceCap.",
+      "comments": "Values of abundance cap should be captured under the term eco:abundanceCap. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -497,7 +510,7 @@
       "name": "isVegetationCoverReported",
       "title": "Is Vegetation Cover Reported",
       "description": "A vegetation cover metric was reported.",
-      "comments": "Typically values or descriptions of vegetation cover would be captured under the term eco:verbatimSiteDescriptions.",
+      "comments": "Typically values or descriptions of vegetation cover would be captured under the term eco:verbatimSiteDescriptions. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -510,7 +523,7 @@
       "name": "isLeastSpecificTargetCategoryQuantityInclusive",
       "title": "Is Least Specific Target Category Quantity Inclusive",
       "description": "The total detected quantity for a dwc:Taxon (including subcategories thereof) in a dwc:Event is given explicitly in a single record (dwc:organismQuantity value) for that dwc:Taxon.",
-      "comments": "Recommended values are 'true' and 'false'. This term is only relevant if dwc:organismQuantity is a number. For a detailed explanation, see http://rs.tdwg.org/dwc/doc/inclusive/.",
+      "comments": "Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/. This term is only relevant if dwc:organismQuantity is a number. For a detailed explanation, see http://rs.tdwg.org/dwc/doc/inclusive/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -523,7 +536,7 @@
       "name": "hasVouchers",
       "title": "Has Vouchers",
       "description": "Specimen vouchers were collected during a dwc:Event.",
-      "comments": "",
+      "comments": "Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -549,7 +562,7 @@
       "name": "hasMaterialSamples",
       "title": "Has Material Samples",
       "description": "Material samples were collected during a dwc:Event.",
-      "comments": "",
+      "comments": "Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -570,6 +583,36 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/materialSampleTypes",
       "dcterms:references": "http://rs.tdwg.org/eco/terms/version/materialSampleTypes-2025-07-10",
       "rdfs:comment": "A list (concatenated and separated) of material sample types collected during the dwc:Event."
+    },
+    {
+      "name": "samplingProtocol",
+      "title": "Sampling Protocol",
+      "description": "The names of, references to, or descriptions of the methods or protocols used during an eco:Survey.",
+      "comments": "Recommended best practice is describe an eco:Survey with no more than one sampling protocol. In the case of a summary eco:Survey with multiple protocols, in which a specific protocol can not be attributed to specific dwc:Occurrences, the recommended best practice is to separate the values in a list with space vertical bar space ( | ). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+      "examples": "`UV light trap`; `mist net`; `bottom trawl`; `ad hoc observation | point count`; `Penguins from space: faecal stains reveal the location of emperor penguin colonies, https://doi.org/10.1111/j.1466-8238.2009.00467.x`; `Takats et al. 2001. Guidelines for Nocturnal Owl Monitoring in North America. Beaverhill Bird Observatory and Bird Studies Canada, Edmonton, Alberta. 32 pp., http://www.bsc-eoc.org/download/Owl.pdf`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingProtocol",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/samplingProtocol-2026-05-26",
+      "rdfs:comment": "The names of, references to, or descriptions of the methods or protocols used during a dwc:Event."
+    },
+    {
+      "name": "samplingProtocol_fk",
+      "title": "Sampling Protocol (Foreign Key)",
+      "description": "An identifier for a dwc:Protocol used as a sampling protocol.",
+      "comments": "The value in this field MAY refer to a dwc:Protocol within or external to the dataset in which this record originated.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "sampleSizeValue",
@@ -614,14 +657,14 @@
       "name": "samplingPerformedByID",
       "title": "Sampling Performed By ID",
       "description": "An identifier for a dcterms:Agent responsible for sampling.",
-      "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the sampling dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "comments": "Recommended best practice is to provide a single identifier that disambiguates the details of the sampling dcterms:Agent. If a list is used, the order of the identifiers on the list should not be assumed to convey any semantics. Recommended best practice is to separate the values in a list with space vertical bar space (` | `). The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/samplingPerformedByID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -631,7 +674,7 @@
       "name": "isSamplingEffortReported",
       "title": "Is Sampling Effort Reported",
       "description": "The sampling effort associated with a dwc:Event was reported.",
-      "comments": "Typically values of effort would be captured under the terms eco:samplingEffortValue and eco:samplingEffortUnit.",
+      "comments": "Typically values of effort would be captured under the terms eco:samplingEffortValue and eco:samplingEffortUnit. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
       "examples": "`true`; `false`",
       "type": "boolean",
       "format": "default",
@@ -654,17 +697,17 @@
       "rdfs:comment": "A description of or reference (publication or URL) to the methods used to determine the sampling effort."
     },
     {
-      "name": "samplingEffortProtocolID",
-      "title": "Sampling Effort Protocol ID",
-      "description": "An identifier for a dwc:Protocol used to determine a eco:samplingEffortValue.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "samplingEffortProtocol_fk",
+      "title": "Sampling Effort Protocol (Foreign Key)",
+      "description": "An identifier for a dwc:Protocol used to determine an eco:samplingEffortValue.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "ecoiri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/iri/samplingEffortProtocol",
-      "dcterms:references": "http://rs.tdwg.org/eco/iri/version/samplingEffortProtocol-2025-07-10",
-      "rdfs:comment": "A method or protocol used to determine the sampling effort, denoted by an IRI.",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -702,15 +745,15 @@
     {
       "name": "informationWithheld",
       "title": "Information Withheld",
-      "description": "Additional information that exists about a resource, but that is not shared publicly.",
+      "description": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request.",
       "comments": "",
       "examples": "`location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2023-06-28",
-      "rdfs:comment": "Additional information that exists, but that has not been shared in the given record."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
+      "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
     },
     {
       "name": "dataGeneralizations",
@@ -739,16 +782,35 @@
       "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
     }
   ],
-  "primaryKey": "surveyID",
+  "primaryKey": "survey_pk",
+  "weakPrimaryKey": "surveyID",
   "foreignKeys": [
     {
-      "fields": "eventID",
+      "fields": "event_fk",
       "predicate": "happened during",
       "reference": {
         "resource": "event",
-        "fields": "eventID"
+        "fields": "event_pk"
       }
     },
+    {
+      "fields": "samplingProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
+      }
+    },
+    {
+      "fields": "samplingEffortProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
+      }
+    }
+  ],
+  "weakForeignKeys": [
     {
       "fields": "identifiedByID",
       "predicate": "identifications by",
@@ -763,14 +825,6 @@
       "reference": {
         "resource": "agent",
         "fields": "agentID"
-      }
-    },
-    {
-      "fields": "samplingEffortProtocolID",
-      "predicate": "followed",
-      "reference": {
-        "resource": "protocol",
-        "fields": "protocolID"
       }
     }
   ]

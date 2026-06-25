@@ -15,18 +15,14 @@
       "name": "resourceRelationshipID",
       "title": "Resource Relationship ID",
       "description": "An identifier for a dwc:ResourceRelationship.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2023-06-28",
-      "rdfs:comment": "An identifier for an instance of relationship between one resource (the subject) and another (dwc:relatedResource, the object).",
-      "constraints": {
-        "required": true,
-        "unique": true
-      }
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:ResourceRelationship."
     },
     {
       "name": "subjectResourceID",
@@ -55,7 +51,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -68,7 +63,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -81,7 +75,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -99,7 +92,7 @@
     },
     {
       "name": "relationshipTypeIRI",
-      "title": "Relationship Type (IRI)",
+      "title": "Relationship Type IRI",
       "description": "An IRI of a controlled vocabulary value for the type of a dwc:ResourceRelationship.",
       "comments": "Recommended best practice is to use an IRI for a term in a controlled vocabulary.",
       "examples": "`http://purl.obolibrary.org/obo/RO_0002456` (for the relation pollinated by); `http://purl.obolibrary.org/obo/RO_0002455` (for the relation pollinates); `https://www.inaturalist.org/observation_fields/879` (for the relation eaten by)",
@@ -120,7 +113,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -133,8 +125,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relatedResourceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relatedResourceID-2018-09-06",
-      "rdfs:comment": "An identifier for a related resource (the object, rather than the subject of the relationship)."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relatedResourceID-2026-05-26",
+      "rdfs:comment": "An identifier for the related resource (the object) of a dwc:ResourceRelationship."
     },
     {
       "name": "externalRelatedResourceID",
@@ -146,7 +138,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "dcterms:references": "",
       "rdfs:comment": "An unambiguous reference to the resource within a given context."
     },
     {
@@ -159,8 +150,7 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles."
     },
     {
       "name": "relatedResourceType",
@@ -172,7 +162,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -185,7 +174,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -198,7 +186,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -210,9 +197,9 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/relationshipOrder",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOrder",
+      "dcterms:references": "pending",
+      "rdfs:comment": "A numerical position of a dwc:ResourceRelationship in a set of dwc:ResourceRelationships that have the same combination of dwc:subjectResourceID, dwc:relatedResourceID, dwc:relationshipType, dwc:relationshipTypeIRI, and dwc:relationshipTypeSource.",
       "constraints": {
         "minimum": 1
       }
@@ -239,9 +226,9 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/relationshipAccordingToID",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent."
     },
     {
       "name": "relationshipEstablishedDate",
@@ -270,5 +257,5 @@
       "rdfs:comment": "Comments or notes about the relationship between the two resources."
     }
   ],
-  "primaryKey": "resourceRelationshipID"
+  "weakPrimaryKey": "resourceRelationshipID"
 }

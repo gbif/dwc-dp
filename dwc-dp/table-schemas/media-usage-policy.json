@@ -8,38 +8,34 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//media-usage-policy",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "usagePolicyID",
-      "title": "Usage Policy ID",
-      "description": "An identifier for a dwc:UsagePolicy.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "media_fk",
+      "title": "Media (Foreign Key)",
+      "description": "An identifier for an ac:Media resource.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/usagePolicyID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
       }
     },
     {
-      "name": "mediaID",
-      "title": "Media ID",
-      "description": "An identifier for an ac:Media resource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "usagePolicy_fk",
+      "title": "Usage Policy (Foreign Key)",
+      "description": "An identifier for a dwc:UsagePolicy.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/mediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
@@ -48,19 +44,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "usagePolicyID",
-      "predicate": "has",
-      "reference": {
-        "resource": "usage-policy",
-        "fields": "usagePolicyID"
-      }
-    },
-    {
-      "fields": "mediaID",
+      "fields": "media_fk",
       "predicate": "for",
       "reference": {
         "resource": "media",
-        "fields": "mediaID"
+        "fields": "media_pk"
+      }
+    },
+    {
+      "fields": "usagePolicy_fk",
+      "predicate": "has",
+      "reference": {
+        "resource": "usage-policy",
+        "fields": "usagePolicy_pk"
       }
     }
   ]

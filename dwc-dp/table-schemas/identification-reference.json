@@ -8,38 +8,36 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//identification-reference",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "identificationID",
-      "title": "Identification ID",
+      "name": "reference_fk",
+      "title": "Reference (Foreign Key)",
+      "description": "An identifier for a dcterms:BibliographicResource.",
+      "comments": "The value in this field MAY refer to a dcterms:BibliographicResource within or external to the dataset in which this record originated.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "identification_fk",
+      "title": "Identification (Foreign Key)",
       "description": "An identifier for a dwc:Protocol.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Identification (the body of information associated with the assignment of a scientific name). May be a global unique identifier or an identifier specific to the data set.",
-      "constraints": {
-        "required": true,
-        "unique": false
-      }
-    },
-    {
-      "name": "referenceID",
-      "title": "Reference ID",
-      "description": "An identifier for a dcterms:BibliographicResource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/referenceID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Identification.",
       "constraints": {
         "required": true,
         "unique": false
@@ -61,19 +59,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "identificationID",
-      "predicate": "used for",
-      "reference": {
-        "resource": "identification",
-        "fields": "identificationID"
-      }
-    },
-    {
-      "fields": "referenceID",
+      "fields": "reference_fk",
       "predicate": "used",
       "reference": {
         "resource": "bibliographic-resource",
-        "fields": "referenceID"
+        "fields": "reference_pk"
+      }
+    },
+    {
+      "fields": "identification_fk",
+      "predicate": "used for",
+      "reference": {
+        "resource": "identification",
+        "fields": "identification_pk"
       }
     }
   ]

@@ -8,51 +8,64 @@
   "examples": "`a particular lithostratigraphic layer`; `a specific chronostratigraphic unit`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/GeologicalContext",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/GeologicalContext-2023-09-18",
-  "rdfs:comment": "Geological information, such as stratigraphy, that qualifies a region or place.",
+  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/GeologicalContext-2026-05-26",
+  "rdfs:comment": "A set of geological designations, such as stratigraphy, that qualifies a dcterms:Location or source of a dwc:MaterialEntity.",
   "fields": [
     {
-      "name": "geologicalContextID",
-      "title": "Geological Context ID",
-      "description": "An identifier for a dwc:GeologicalContext.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "geologicalContext_pk",
+      "title": "Geological Context (Primary Key)",
+      "description": "A unique identifier for a dwc:GeologicalContext.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "`https://opencontext.org/subjects/e54377f7-4452-4315-b676-40679b10c4d9`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a globally unique identifier or an identifier specific to the data set.",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": true
       }
     },
     {
+      "name": "geologicalContextID",
+      "title": "Geological Context ID",
+      "description": "An identifier for a dwc:GeologicalContext.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+      "examples": "`https://opencontext.org/subjects/e54377f7-4452-4315-b676-40679b10c4d9`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set."
+    },
+    {
       "name": "earliestEonOrLowestEonothem",
       "title": "Earliest Eon Or Lowest Eonothem",
-      "description": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
+      "description": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "examples": "`Phanerozoic`; `Proterozoic`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEonOrLowestEonothem",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestEonOrLowestEonothem-2023-09-13",
-      "rdfs:comment": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestEonOrLowestEonothem-2026-05-26",
+      "rdfs:comment": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
     },
     {
       "name": "latestEonOrHighestEonothem",
       "title": "Latest Eon Or Highest Eonothem",
-      "description": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
+      "description": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected.",
       "comments": "",
       "examples": "`Phanerozoic`; `Proterozoic`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEonOrHighestEonothem",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestEonOrHighestEonothem-2025-06-12",
-      "rdfs:comment": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name (Precambrian) attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestEonOrHighestEonothem-2026-05-26",
+      "rdfs:comment": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
     },
     {
       "name": "earliestEraOrLowestErathem",
@@ -250,5 +263,6 @@
       "rdfs:comment": "The full name of the lithostratigraphic bed from which the dwc:MaterialEntity was collected."
     }
   ],
-  "primaryKey": "geologicalContextID"
+  "primaryKey": "geologicalContext_pk",
+  "weakPrimaryKey": "geologicalContextID"
 }

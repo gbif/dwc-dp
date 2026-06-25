@@ -51,7 +51,6 @@ EXPECTED_HEADERS = {
         "title", "description", "comments", "example", "type", "format",
         "unique", "required", "minimum", "maximum", "namespace",
         "dcterms:isVersionOf", "dcterms:references", "rdfs:comment", "status",
-        "new", "ignore",
     },
 }
 
@@ -378,6 +377,7 @@ def build_fields_for_table(
     rows = fields_by_table.get(table_name, [])
     fields = []
     pk_names = []
+    weak_pk_names = []
     foreign_keys = []
     weak_foreign_keys = []
 
@@ -399,6 +399,8 @@ def build_fields_for_table(
         key_val = (row.get("key", "") or "").strip().lower()
         if key_val == "pk":
             pk_names.append(name)
+        elif key_val == "wpk":
+            weak_pk_names.append(name)
         elif key_val in {"fk", "wfk"}:
             predicate = (row.get("predicate", "") or "").strip()
             related_table = (row.get("related_table", "") or "").strip()
@@ -445,7 +447,7 @@ def build_fields_for_table(
 
         fields.append(field_obj)
 
-    return fields, pk_names, foreign_keys, weak_foreign_keys
+    return fields, pk_names, weak_pk_names, foreign_keys, weak_foreign_keys
 
 
 def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
@@ -472,7 +474,7 @@ def write_table_schema_files(
 
     for ts in table_schemas:
         name = ts.get("name", "")
-        fields, pk_names, foreign_keys, weak_foreign_keys = build_fields_for_table(
+        fields, pk_names, weak_pk_names, foreign_keys, weak_foreign_keys = build_fields_for_table(
             fields_by_table, name
         )
 
@@ -481,6 +483,8 @@ def write_table_schema_files(
 
         if pk_names:
             payload["primaryKey"] = pk_names[0] if len(pk_names) == 1 else pk_names
+        if weak_pk_names:
+            payload["weakPrimaryKey"] = weak_pk_names[0] if len(weak_pk_names) == 1 else weak_pk_names
         if foreign_keys:
             payload["foreignKeys"] = foreign_keys
         if weak_foreign_keys:
@@ -564,6 +568,23 @@ def load_template(template_path: Path) -> str:
 def build_foreign_key_summary(table_schema: dict, current_table_name: str = None) -> str:
     relationships = []
 
+    # Add primary key row(s) first.
+    primary_key = table_schema.get("primaryKey")
+    if primary_key:
+        pk_fields = primary_key if isinstance(primary_key, list) else [primary_key]
+        for pk in pk_fields:
+            relationships.append(
+                (pk, "", "", "", "primary key", "Yes")
+            )
+
+    weak_primary_key = table_schema.get("weakPrimaryKey")
+    if weak_primary_key:
+        wpk_fields = weak_primary_key if isinstance(weak_primary_key, list) else [weak_primary_key]
+        for wpk in wpk_fields:
+            relationships.append(
+                (wpk, "", "", "", "weak primary key", "No")
+            )
+                
     for rel_name, rel_type, enforced in [
         ("foreignKeys", "foreign key", "Yes"),
         ("weakForeignKeys", "weak foreign key", "No"),

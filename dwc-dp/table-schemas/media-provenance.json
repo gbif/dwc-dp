@@ -8,38 +8,34 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//media-provenance",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "provenanceID",
-      "title": "Provenance ID",
+      "name": "provenance_fk",
+      "title": "Provenance (Foreign Key)",
       "description": "An identifier for a dwc:Provenance.",
-      "comments": "",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/provenanceID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
       }
     },
     {
-      "name": "mediaID",
-      "title": "Media ID",
+      "name": "media_fk",
+      "title": "Media (Foreign Key)",
       "description": "An identifier for an ac:Media resource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/mediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
@@ -48,19 +44,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "provenanceID",
+      "fields": "provenance_fk",
       "predicate": "has",
       "reference": {
         "resource": "provenance",
-        "fields": "provenanceID"
+        "fields": "provenance_pk"
       }
     },
     {
-      "fields": "mediaID",
+      "fields": "media_fk",
       "predicate": "for",
       "reference": {
         "resource": "media",
-        "fields": "mediaID"
+        "fields": "media_pk"
       }
     }
   ]

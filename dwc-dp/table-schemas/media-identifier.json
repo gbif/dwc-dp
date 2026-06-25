@@ -8,21 +8,19 @@
   "examples": "",
   "namespace": "adms",
   "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-  "dcterms:references": "",
   "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
   "fields": [
     {
-      "name": "mediaID",
-      "title": "Media ID",
+      "name": "media_fk",
+      "title": "Media (Foreign Key)",
       "description": "An identifier for an ac:Media resource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/mediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
@@ -55,7 +53,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -68,7 +65,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -81,7 +77,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -92,19 +87,18 @@
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/language",
-      "dcterms:references": "",
+      "namespace": "dc",
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
       "rdfs:comment": "A language of the resource."
     }
   ],
   "foreignKeys": [
     {
-      "fields": "mediaID",
+      "fields": "media_fk",
       "predicate": "for",
       "reference": {
         "resource": "media",
-        "fields": "mediaID"
+        "fields": "media_pk"
       }
     }
   ]

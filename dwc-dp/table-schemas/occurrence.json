@@ -3,42 +3,55 @@
   "url": "table-schemas/occurrence.json",
   "name": "occurrence",
   "title": "Occurrence",
-  "description": "A state of a dwc:Organism in a dwc:Event.",
+  "description": "A dwc:Event that establishes the state of a dwc:Organism at a particular place and time.",
   "comments": "",
   "examples": "`a wolf pack on the shore of Kluane Lake in 1988`; `a virus in a plant leaf in the New York Botanical Garden at 15:29 on 2014-10-23`; `a fungus in Central Park in the summer of 1929`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Occurrence",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Occurrence-2023-09-18",
-  "rdfs:comment": "An existence of a dwc:Organism at a particular place at a particular time.",
+  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Occurrence-2026-05-26",
+  "rdfs:comment": "A dwc:Event that establishes the state of a dwc:Organism at a particular place and time.",
   "fields": [
     {
-      "name": "occurrenceID",
-      "title": "Occurrence ID",
-      "description": "An identifier for a dwc:Occurrence.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "occurrence_pk",
+      "title": "Occurrence (Primary Key)",
+      "description": "A unique identifier for a dwc:Occurrence.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "`http://arctos.database.museum/guid/MSB:Mamm:233627`; `000866d2-c177-4648-a200-ead4007051b9`; `urn:catalog:UWBM:Bird:89776`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Occurrence (as opposed to a particular digital record of the dwc:Occurrence). In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make the dwc:occurrenceID globally unique.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": true,
         "unique": true
       }
     },
     {
-      "name": "eventID",
-      "title": "Event ID",
+      "name": "occurrenceID",
+      "title": "Occurrence ID",
+      "description": "An identifier for a dwc:Occurrence.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+      "examples": "`http://arctos.database.museum/guid/MSB:Mamm:233627`; `000866d2-c177-4648-a200-ead4007051b9`; `urn:catalog:UWBM:Bird:89776`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence)."
+    },
+    {
+      "name": "event_fk",
+      "title": "Event (Foreign Key)",
       "description": "An identifier for a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
@@ -46,34 +59,51 @@
       }
     },
     {
-      "name": "isPartOfOccurrenceID",
-      "title": "Is Part Of Occurrence ID",
+      "name": "isPartOfOccurrence_fk",
+      "title": "Is Part Of Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence of which this dwc:Occurrence is a part.",
-      "comments": "Used to define a subset of a dwc:Occurrence for which there may be distinct characteristics.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Occurrence (as opposed to a particular digital record of the dwc:Occurrence). In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make the dwc:occurrenceID globally unique.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": false,
         "unique": false
       }
     },
     {
-      "name": "surveyTargetID",
-      "title": "Survey Target ID",
-      "description": "An identifier for a dwc:SurveyTarget.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "occurrenceProtocol_fk",
+      "title": "Occurrence Protocol (Foreign Key)",
+      "description": "An identifier for a dwc:Protocol used for a dwc:Occurrence.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/surveyTargetID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "surveyTarget_fk",
+      "title": "Survey Target (Foreign Key)",
+      "description": "An identifier for an eco:SurveyTarget.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
+      "rdfs:comment": "An identifier for an eco:SurveyTarget.",
       "constraints": {
         "required": false,
         "unique": false
@@ -82,28 +112,28 @@
     {
       "name": "recordedBy",
       "title": "Recorded By",
-      "description": "A list (concatenated and separated) of names of dcterms:Agents responsible for recording a dwc:Occurrence.",
+      "description": "A name for a dcterms:Agent responsible for recording a dwc:Occurrence.",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "examples": "`José E. Crespo`; `Oliver P. Pearson | Anita K. Pearson` (where the value in dwc:collectorNumber `OPP 7101` corresponds to the collector number for the specimen in the field catalog of Oliver P. Pearson)",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations responsible for recording the original dwc:Occurrence. The primary collector or observer, especially one who applies a personal identifier (dwc:recordNumber), should be listed first."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2026-05-26",
+      "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Occurrence."
     },
     {
       "name": "recordedByID",
       "title": "Recorded By ID",
       "description": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097`; `https://ror.org/00mh9zx15`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of the globally unique identifier for the person, people, groups, or organizations responsible for recording the original dwc:Occurrence.",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
       "constraints": {
         "required": false,
         "unique": false
@@ -145,8 +175,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sex",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sex-2023-06-28",
-      "rdfs:comment": "The sex of the biological individual(s) represented in the dwc:Occurrence."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sex-2026-05-26",
+      "rdfs:comment": "A sex of a dwc:Organism."
     },
     {
       "name": "lifeStage",
@@ -158,8 +188,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lifeStage",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lifeStage-2023-06-28",
-      "rdfs:comment": "The age class or life stage of the dwc:Organism(s) at the time the dwc:Occurrence was recorded."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lifeStage-2026-05-26",
+      "rdfs:comment": "An age class or life stage of a dwc:Organism."
     },
     {
       "name": "reproductiveCondition",
@@ -171,8 +201,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/reproductiveCondition",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/reproductiveCondition-2023-06-28",
-      "rdfs:comment": "The reproductive condition of the biological individual(s) represented in the dwc:Occurrence."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/reproductiveCondition-2026-05-26",
+      "rdfs:comment": "A reproductive condition of a dwc:Organism."
     },
     {
       "name": "caste",
@@ -184,8 +214,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/caste",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/caste-2023-06-28",
-      "rdfs:comment": "Categorisation of individuals for eusocial species (including some mammals and arthropods)."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/caste-2026-05-26",
+      "rdfs:comment": "A social caste of a dwc:Organism."
     },
     {
       "name": "behavior",
@@ -197,8 +227,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/behavior",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/behavior-2023-06-28",
-      "rdfs:comment": "The behavior shown by the subject at the time the dwc:Occurrence was recorded."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/behavior-2026-05-26",
+      "rdfs:comment": "A behavior shown by a dwc:Organism."
     },
     {
       "name": "vitality",
@@ -210,7 +240,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vitality",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vitality-2023-09-13",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vitality-2026-05-26",
       "rdfs:comment": "An indication of whether a dwc:Organism was alive or dead at the time of collection or observation."
     },
     {
@@ -223,7 +253,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/establishmentMeans",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/establishmentMeans-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/establishmentMeans-2026-05-26",
       "rdfs:comment": "Statement about whether a dwc:Organism has been introduced to a given place and time through the direct or indirect activity of modern humans."
     },
     {
@@ -253,35 +283,25 @@
       "rdfs:comment": "The process by which a dwc:Organism came to be in a given place at a given time."
     },
     {
-      "name": "substrate",
-      "title": "Substrate",
-      "description": "A biotic or abiotic material to which an dwc:Organism is attached when a dwc:Event occurs.",
-      "comments": "This may or may not imply that the organism influenced/took resources from the substrate (such as during parasitization or decomposition). Declaration of a host-parasite relationship is better expressed as an organism interaction.",
-      "examples": "`stone; wall`; `decaying wood`; `wooden board fence`; `animal bones`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/substrate",
-      "dcterms:references": "",
-      "rdfs:comment": ""
-    },
-    {
       "name": "occurrenceStatus",
       "title": "Occurrence Status",
-      "description": "A statement about the detection or non-detection of a dwc:Organism.",
+      "description": "A statement about the detection or non-detection of a dwc:Organism during a dwc:Event.",
       "comments": "For dwc:Occurrences, the default vocabulary is recommended to consist of 'detected' and 'notDetected', but can be extended by implementers with good justification. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "examples": "`detected`; `notDetected`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceStatus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceStatus-2023-06-28",
-      "rdfs:comment": "A statement about the presence or absence of a dwc:Taxon at a dcterms:Location."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceStatus-2026-05-26",
+      "rdfs:comment": "A statement about the detection or non-detection of a dwc:Organism during a dwc:Event.",
+      "constraints": {
+        "required": true
+      }
     },
     {
       "name": "occurrenceReferences",
       "title": "Occurrence References",
-      "description": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Occurrence.",
+      "description": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the dwc:Occurrence.",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
       "examples": "`Christopher J. Conroy, Jennifer L. Neuwald. 2008. Phylogeographic study of the California vole, Microtus californicus Journal of Mammalogy, 89(3):755-767.`; `Steven R. Hoofer and Ronald A. Van Den Bussche. 2001. Phylogenetic Relationships of Plecotine Bats and Allies Based on Mitochondrial Ribosomal Sequences. Journal of Mammalogy 82(1):131-137. | Walker, Faith M., Jeffrey T. Foster, Kevin P. Drees, Carol L. Chambers. 2014. Spotted bat (Euderma maculatum) microsatellite discovery using illumina sequencing. Conservation Genetics Resources.`",
       "type": "string",
@@ -294,15 +314,15 @@
     {
       "name": "informationWithheld",
       "title": "Information Withheld",
-      "description": "Additional information that exists about a resource, but that is not shared publicly.",
+      "description": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request.",
       "comments": "",
       "examples": "`location information not given for endangered species`; `collector identities withheld | ask about tissue samples`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2023-06-28",
-      "rdfs:comment": "Additional information that exists, but that has not been shared in the given record."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
+      "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
     },
     {
       "name": "dataGeneralizations",
@@ -334,7 +354,7 @@
       "name": "organismID",
       "title": "Organism ID",
       "description": "An identifier for a dwc:Organism.",
-      "comments": "",
+      "comments": "The value in this field MAY refer to a dwc:Organism within or external to the dataset in which this record originated.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -350,7 +370,7 @@
     {
       "name": "organismScope",
       "title": "Organism Scope",
-      "description": "A description of the type of a dwc:Organism instance.",
+      "description": "A description of the kind of dwc:Organism instance. Can be used to indicate whether the dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation.",
       "comments": "Recommended best practice is to use a controlled vocabulary. Can be used to indicate whether a dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation.",
       "examples": "`multicellular organism`; `virus`; `clone`; `pack`; `colony`",
       "type": "string",
@@ -363,7 +383,7 @@
     {
       "name": "organismName",
       "title": "Organism Name",
-      "description": "A name or label assigned to a dwc:Organism.",
+      "description": "A textual name or label assigned to a dwc:Organism instance.",
       "comments": "",
       "examples": "`Huberta`; `Boab Prison Tree`; `J pod`",
       "type": "string",
@@ -389,7 +409,7 @@
     {
       "name": "organismRemarks",
       "title": "Organism Remarks",
-      "description": "Comments or notes about a dwc:Organism.",
+      "description": "Comments or notes about the dwc:Organism instance.",
       "comments": "`One of a litter of six`",
       "examples": "",
       "type": "string",
@@ -402,7 +422,7 @@
     {
       "name": "verbatimIdentification",
       "title": "Verbatim Identification",
-      "description": "A string representing a taxonomic identification as it appeared in the original record.",
+      "description": "A string representing the taxonomic identification as it appeared in the original record.",
       "comments": "",
       "examples": "`Peromyscus sp.`; `Ministrymon sp. nov. 1`; `Anser anser × Branta canadensis`; `Pachyporidae?`, `Potentilla × pantotricha Soják`; `Aconitum pilipes × A. variegatum; `Lepomis auritus x cyanellus`",
       "type": "string",
@@ -415,28 +435,28 @@
     {
       "name": "identifiedBy",
       "title": "Identified By",
-      "description": "A list (concatenated and separated) of names of dcterms:Agents responsible for making a taxonomic determination of a dwc:Organism.",
+      "description": "A name for a dcterms:Agent responsible for making a dwc:Identification.",
       "comments": "When used in the context of a Survey, the subject consists of all of the dwc:Identifications related to the Event. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
       "examples": "`James L. Patton`; `Theodore Pappenfuss | Robert Macey`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations who assigned the dwc:Taxon to the subject."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
+      "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
     },
     {
       "name": "identifiedByID",
       "title": "Identified By ID",
-      "description": "An identifier for a dcterms:Agent responsible for making a taxonomic determination of a dwc:Organism.",
-      "comments": "",
+      "description": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "comments": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097` (for an individual); `https://orcid.org/0000-0002-1825-0097 | https://orcid.org/0000-0002-1825-0098` (for a list of people)",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identifiedBy-2025-06-12",
-      "rdfs:comment": "A person, group, or organization who assigned the dwc:Taxon to the subject.",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -445,7 +465,7 @@
     {
       "name": "dateIdentified",
       "title": "Date Identified",
-      "description": "A date on which the subject was determined as representing a dwc:Taxon.",
+      "description": "The date on which the subject was determined as representing the dwc:Taxon.",
       "comments": "Recommended best practice is to use a date that conforms to ISO 8601-1:2019.",
       "examples": "`1963-03-08T14:07-06:00` (8 Mar 1963 at or after 2:07pm and before 2:08pm in the time zone six hours earlier than UTC); `2009-02-20T08:40Z` (20 February 2009 at or after 8:40am and before 8:41 UTC); `2018-08-29T15:19` (29 August 2018 at or after 3:19pm and before 3:20pm local time); `1809-02-12` (within the day 12 February 1809); `1906-06` (in the month of June 1906); `1971` (in the year 1971); `2007-03-01T13:00:00Z/2008-05-11T15:30:00Z` (some time within the interval beginning 1 March 2007 at 1pm UTC and before 11 May 2008 at 3:30pm UTC); `1900/1909` (some time within the interval between the beginning of the year 1900 and before the year 1909); `2007-11-13/15` (some time in the interval between the beginning of 13 November 2007 and before 15 November 2007)",
       "type": "string",
@@ -465,8 +485,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2025-06-12",
-      "rdfs:comment": "A list (concatenated and separated) of references (publication, global unique identifier, URI) used in the dwc:Identification."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
+      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
     },
     {
       "name": "identificationVerificationStatus",
@@ -478,13 +498,13 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identificationVerificationStatus-2015-03-27",
-      "rdfs:comment": "A categorical indicator of the extent to which the taxonomic identification has been verified to be correct."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationVerificationStatus-2026-05-26",
+      "rdfs:comment": "A categorical indicator of the extent to which a taxonomic determination has been verified to be correct."
     },
     {
       "name": "identificationRemarks",
       "title": "Identification Remarks",
-      "description": "Comments or notes about a dwc:Identification.",
+      "description": "Comments or notes about the dwc:Identification.",
       "comments": "",
       "examples": "`Distinguished between Anthus correndera and Anthus hellmayri based on the comparative lengths of the uñas.`",
       "type": "string",
@@ -504,8 +524,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2023-06-28",
-      "rdfs:comment": "An identifier for the set of dwc:Taxon information. May be a global unique identifier or an identifier specific to the data set."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Taxon."
     },
     {
       "name": "scientificNameID",
@@ -530,8 +550,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2023-06-28",
-      "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined. This term should not contain identification qualifications, which should instead be supplied in the dwc:identificationQualifier term."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
+      "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
     },
     {
       "name": "scientificNameAuthorship",
@@ -556,20 +576,20 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
       "rdfs:comment": "A common or vernacular name."
     },
     {
       "name": "taxonRank",
       "title": "Taxon Rank",
       "description": "A taxonomic rank of the most specific name in a dwc:scientificName.",
-      "comments": "Recommended best practice is to use a controlled vocabulary. The taxon ranks of algae, fungi and plants are defined in the International Code of Nomenclature for algae, fungi, and plants (Schenzhen Code Articles H3.2, H4.4 and H.3.1).",
+      "comments": "Recommended best practice is to use a controlled vocabulary. The taxon ranks of algae, fungi and plants are defined in the International Code of Nomenclature for algae, fungi, and plants (Shenzhen Code Articles H3.2, H4.4 and H.3.1).",
       "examples": "`subspecies`; `varietas`; `forma`; `species`; `genus`; `nothogenus`; `nothospecies`; `nothosubspecies`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
       "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
     },
     {
@@ -582,7 +602,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -599,32 +618,43 @@
       "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
     }
   ],
-  "primaryKey": "occurrenceID",
+  "primaryKey": "occurrence_pk",
+  "weakPrimaryKey": "occurrenceID",
   "foreignKeys": [
     {
-      "fields": "eventID",
+      "fields": "event_fk",
       "predicate": "happened during",
       "reference": {
         "resource": "event",
-        "fields": "eventID"
+        "fields": "event_pk"
       }
     },
     {
-      "fields": "isPartOfOccurrenceID",
+      "fields": "isPartOfOccurrence_fk",
       "predicate": "part of",
       "reference": {
         "resource": "",
-        "fields": "occurrenceID"
+        "fields": "occurrence_pk"
       }
     },
     {
-      "fields": "surveyTargetID",
+      "fields": "occurrenceProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
+      }
+    },
+    {
+      "fields": "surveyTarget_fk",
       "predicate": "satisfied",
       "reference": {
         "resource": "survey-target",
-        "fields": "surveyTargetID"
+        "fields": "surveyTarget_pk"
       }
-    },
+    }
+  ],
+  "weakForeignKeys": [
     {
       "fields": "recordedByID",
       "predicate": "recorded by",

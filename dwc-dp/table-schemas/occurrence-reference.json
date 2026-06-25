@@ -8,38 +8,36 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//occurrence-reference",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "occurrenceID",
-      "title": "Occurrence ID",
+      "name": "reference_fk",
+      "title": "Reference (Foreign Key)",
+      "description": "An identifier for a dcterms:BibliographicResource.",
+      "comments": "The value in this field MAY refer to a dcterms:BibliographicResource within or external to the dataset in which this record originated.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "occurrence_fk",
+      "title": "Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence.",
-      "comments": "Recommended best practice is to use a persistent, globally unique identifier. In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make a dwc:occurrenceID globally unique.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Occurrence (as opposed to a particular digital record of the dwc:Occurrence). In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make the dwc:occurrenceID globally unique.",
-      "constraints": {
-        "required": true,
-        "unique": false
-      }
-    },
-    {
-      "name": "referenceID",
-      "title": "Reference ID",
-      "description": "An identifier for a dcterms:BibliographicResource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/referenceID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": true,
         "unique": false
@@ -61,19 +59,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "occurrenceID",
-      "predicate": "mentioned",
-      "reference": {
-        "resource": "occurrence",
-        "fields": "occurrenceID"
-      }
-    },
-    {
-      "fields": "referenceID",
+      "fields": "reference_fk",
       "predicate": "mentioned in",
       "reference": {
         "resource": "bibliographic-resource",
-        "fields": "referenceID"
+        "fields": "reference_pk"
+      }
+    },
+    {
+      "fields": "occurrence_fk",
+      "predicate": "mentioned",
+      "reference": {
+        "resource": "occurrence",
+        "fields": "occurrence_pk"
       }
     }
   ]

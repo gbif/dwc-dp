@@ -8,21 +8,20 @@
   "examples": "",
   "namespace": "adms",
   "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-  "dcterms:references": "",
   "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
   "fields": [
     {
-      "name": "occurrenceID",
-      "title": "Occurrence ID",
+      "name": "occurrence_fk",
+      "title": "Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence.",
-      "comments": "Recommended best practice is to use a persistent, globally unique identifier. In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make a dwc:occurrenceID globally unique.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Occurrence (as opposed to a particular digital record of the dwc:Occurrence). In the absence of a persistent global unique identifier, construct one from a combination of identifiers in the record that will most closely make the dwc:occurrenceID globally unique.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": true,
         "unique": false
@@ -55,7 +54,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -68,7 +66,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -81,7 +78,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -92,19 +88,18 @@
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/language",
-      "dcterms:references": "",
+      "namespace": "dc",
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
       "rdfs:comment": "A language of the resource."
     }
   ],
   "foreignKeys": [
     {
-      "fields": "occurrenceID",
+      "fields": "occurrence_fk",
       "predicate": "for",
       "reference": {
         "resource": "occurrence",
-        "fields": "occurrenceID"
+        "fields": "occurrence_pk"
       }
     }
   ]

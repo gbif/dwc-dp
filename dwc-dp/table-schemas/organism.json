@@ -12,10 +12,10 @@
   "rdfs:comment": "A particular organism or defined group of organisms considered to be taxonomically homogeneous.",
   "fields": [
     {
-      "name": "organismID",
-      "title": "Organism ID",
-      "description": "An identifier for a dwc:Organism.",
-      "comments": "Recommended best practice is to use a persistent, globally unique identifier.",
+      "name": "organism_pk",
+      "title": "Organism (Primary Key)",
+      "description": "A unique identifier for a dwc:Organism.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -29,9 +29,22 @@
       }
     },
     {
+      "name": "organismID",
+      "title": "Organism ID",
+      "description": "An identifier for a dwc:Organism.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
+      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set."
+    },
+    {
       "name": "organismScope",
       "title": "Organism Scope",
-      "description": "A description of the type of a dwc:Organism instance.",
+      "description": "A description of the kind of dwc:Organism instance. Can be used to indicate whether the dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation.",
       "comments": "Recommended best practice is to use a controlled vocabulary. Can be used to indicate whether a dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation.",
       "examples": "`multicellular organism`; `virus`; `clone`; `pack`; `colony`",
       "type": "string",
@@ -44,7 +57,7 @@
     {
       "name": "organismName",
       "title": "Organism Name",
-      "description": "A name or label assigned to a dwc:Organism.",
+      "description": "A textual name or label assigned to a dwc:Organism instance.",
       "comments": "",
       "examples": "`Huberta`; `Boab Prison Tree`; `J pod`",
       "type": "string",
@@ -83,7 +96,7 @@
     {
       "name": "organismRemarks",
       "title": "Organism Remarks",
-      "description": "Comments or notes about a dwc:Organism.",
+      "description": "Comments or notes about the dwc:Organism instance.",
       "comments": "",
       "examples": "`One of a litter of six`",
       "type": "string",
@@ -94,5 +107,6 @@
       "rdfs:comment": "Comments or notes about the dwc:Organism instance."
     }
   ],
-  "primaryKey": "organismID"
+  "primaryKey": "organism_pk",
+  "weakPrimaryKey": "organismID"
 }

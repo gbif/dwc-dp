@@ -3,43 +3,53 @@
   "url": "table-schemas/media.json",
   "name": "media",
   "title": "Media",
-  "description": "A dcmi:MediaType or other media type with other entities as subject matter.",
+  "description": "A digital or physical media resource.",
   "comments": "An instance of digital textual media may be better represented as a dcterms:BibliographicResource.",
-  "examples": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`",
+  "examples": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`; `dcmi:InteractiveResource`; `ac:Digital3DResource`",
   "namespace": "ac",
   "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/Media",
-  "dcterms:references": "",
-  "rdfs:comment": "",
+  "dcterms:references": "http://rs.tdwg.org/ac/terms/version/Media-2026-02-24",
+  "rdfs:comment": "A digital or physical media resource.",
   "fields": [
     {
-      "name": "mediaID",
-      "title": "Media ID",
-      "description": "An identifier for an ac:Media resource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "media_pk",
+      "title": "Media (Primary Key)",
+      "description": "A unique identifier for an ac:Media resource.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/mediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": true
       }
     },
     {
-      "name": "derivedFromMediaID",
-      "title": "Derived From Media ID",
-      "description": "An identifier for an ac:Media resource from which this ac:Media resource was derived.",
-      "comments": "This term can be used when an ac:Media resource has been separated from its source ac:Media resource. Recommended best practice is to use a globally unique identifier.",
+      "name": "mediaID",
+      "title": "Media ID",
+      "description": "An identifier for an ac:Media resource.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/derivedFromMediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context."
+    },
+    {
+      "name": "derivedFromMediaID",
+      "title": "Derived From Media ID",
+      "description": "An identifier for an ac:Media resource from which this ac:Media resource was derived.",
+      "comments": "This term can be used when an ac:Media resource has been separated from its source ac:Media resource. Recommended best practice is to use a globally unique identifier. The value in this field MAY refer to an ac:Media instance within or external to the dataset in which this record originated.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -49,14 +59,18 @@
       "name": "isPartOfMediaID",
       "title": "Is Part Of Media ID",
       "description": "An identifier for an ac:Media resource of which this ac:Media resource is a part.",
-      "comments": "This term can be used to define an ac:RegionOfInterest within an ac:Media resource. Recommended best practice is to use a globally unique identifier.",
+      "comments": "This term can be used to define an ac:RegionOfInterest within an ac:Media resource. Recommended best practice is to use a globally unique identifier. The value in this field MAY refer to an ac:Media instance within or external to the dataset in which this record originated.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/isROIOf",
       "dcterms:references": "http://rs.tdwg.org/ac/terms/version/isROIOf-2021-10-05",
-      "rdfs:comment": "The media item within which a region of interest is located."
+      "rdfs:comment": "The media item within which a region of interest is located.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "mediaType",
@@ -68,20 +82,18 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
       "name": "title",
       "title": "Title",
-      "description": "A name given to a resource.",
-      "comments": "Concise title, name, or brief descriptive label of institution, resource collection, or individual resource. This field SHOULD include the complete title with all the subtitles, if any. It is strongly suggested to provide a title. The title facilitates interactions with humans: e.g., it could be used as display text of hyperlinks or to provide a choice of images in a pick list. The title is therefore highly useful and an effort should be made to provide it where it is not already available. When the resource is a collection without an institutional or official name, but with a thematic content, a descriptive title, e. g. \"Urban Ants of New England,\" would be suitable. In individual media resources depicting taxa, the scientific name or names of taxa often form a good title. Common names in addition to or instead of scientific names are also acceptable. Indications of action or roles captured by the media resource, such as predatory acts, are desirable (\"Rattlesnake eating deer mouse\", \"Pollinators of California Native Plants\").",
+      "description": "A name given to the resource.",
+      "comments": "Concise title, name, or brief descriptive label of institution, resource collection, or individual resource. This field SHOULD include the complete title with all the subtitles, if any. It is strongly suggested to provide a title. The title facilitates interactions with humans: e.g., it could be used as display text of hyperlinks or to provide a choice of images in a pick list. The title is therefore highly useful and an effort should be made to provide it where it is not already available. When the resource is a collection without an institutional or official name, but with a thematic content, a descriptive title, e.g., \"Urban Ants of New England,\" would be suitable. In individual media resources depicting taxa, the scientific name or names of taxa often form a good title. Common names in addition to or instead of scientific names are also acceptable. Indications of action or roles captured by the media resource, such as predatory acts, are desirable (\"Rattlesnake eating deer mouse\", \"Pollinators of California Native Plants\").",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-      "dcterms:references": "",
       "rdfs:comment": "A name given to the resource."
     },
     {
@@ -94,7 +106,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/description",
-      "dcterms:references": "",
       "rdfs:comment": "An account of the resource."
     },
     {
@@ -146,8 +157,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionCode",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionCode-2023-06-28",
-      "rdfs:comment": "The name, acronym, coden, or initialism identifying the collection or data set from which the record was derived."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionCode-2026-05-26",
+      "rdfs:comment": "A name, acronym, coden, or initialism identifying a collection."
     },
     {
       "name": "collectionID",
@@ -159,20 +170,19 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionID-2025-06-12",
-      "rdfs:comment": "An identifier for the collection or dataset from which the record was derived."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionID-2026-05-26",
+      "rdfs:comment": "An identifier for a collection."
     },
     {
-      "name": "CreateDate",
+      "name": "createDate",
       "title": "Original Date and Time",
-      "description": "The date and time a resource was created. For a digital file, this need not match a file-system creation time. For a freshly created resource, it should be close to that time, modulo the time taken to write the file. Later file transfer, copying, and so on, can make the file-system time arbitrarily different.",
-      "comments": "The date of the creation of the original resource from which the digital media was derived or created. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two IS0 8601 datetime fields by a solidus (\"forward slash\", '/'). When applied to a media resource with temporal extent such as audio or video, this property indicates the startTime of the recording. What constitutes \"original\" is determined by the metadata author. Example: Digitization of a photographic slide of a map would normally give the date at which the map was created; however a photographic work of art including the same map as its content may give the date of the original photographic exposure. Imprecise or unknown dates can be represented as ISO dates or ranges. Compare also Date and Time Digitized in the Resource Creation Vocabulary. See also the wikipedia IS0 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
+      "description": "The date and time the resource was created. For a digital file, this need not match a file-system creation time. For a freshly created resource, it should be close to that time, modulo the time taken to write the file. Later file transfer, copying, and so on, can make the file-system time arbitrarily different.",
+      "comments": "The date of the creation of the original resource from which the digital media was derived or created. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two ISO 8601 datetime fields by a solidus (\"forward slash\", '/'). When applied to a media resource with temporal extent such as audio or video, this property indicates the startTime of the recording. What constitutes \"original\" is determined by the metadata author. Example: Digitization of a photographic slide of a map would normally give the date at which the map was created; however a photographic work of art including the same map as its content may give the date of the original photographic exposure. Imprecise or unknown dates can be represented as ISO dates or ranges. Compare also Date and Time Digitized in the Resource Creation Vocabulary. See also the Wikipedia ISO 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "xmp",
       "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/CreateDate",
-      "dcterms:references": "",
       "rdfs:comment": "The date and time the resource was created. For a digital file, this need not match a file-system creation time. For a freshly created resource, it should be close to that time, modulo the time taken to write the file. Later file transfer, copying, and so on, can make the file-system time arbitrarily different."
     },
     {
@@ -192,13 +202,13 @@
       "name": "digitizationDate",
       "title": "Digitization Date",
       "description": "A date on which the first digital version of a resource was created, if different from xmp:CreateDate.",
-      "comments": "The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two IS0 8601 datetime fields by a solidus (\"forward slash\", '/'). Use the international (ISO/xml) format yyyy-mm-ddThh:mm (e. g. \"2007-12-31\" or \"2007-12-31T14:59\"). Where available, timezone information SHOULD be added. This is often not the media creation or modification date. For example, if photographic prints have been scanned, the date of that scanning is what this term carries, but Original Date and Time is that depicted in the print. In the case of digital images containing EXIF, whereas the EXIF capture date does not contain time zone information, but EXIF GPSDateStamp and GPSTimeStamp may be relevant as these include time-zone information. See also Metadata Working Group Guidelines for Handling Image Metadata, Version 2.0 (November 2010), https://web.archive.org/web/20180919181934/http://www.metadataworkinggroup.org/pdf/mwg_guidance.pdf, which has best practice advice on handling time-zone-less EXIF date/time data. See also the Wikipedia IS0 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
+      "comments": "The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two ISO 8601 datetime fields by a solidus (\"forward slash\", '/'). Use the international (ISO/xml) format yyyy-mm-ddThh:mm (e.g., \"2007-12-31\" or \"2007-12-31T14:59\"). Where available, timezone information SHOULD be added. This is often not the media creation or modification date. For example, if photographic prints have been scanned, the date of that scanning is what this term carries, but Original Date and Time is that depicted in the print. In the case of digital images containing EXIF, whereas the EXIF capture date does not contain time zone information, but EXIF GPSDateStamp and GPSTimeStamp may be relevant as these include time-zone information. See also Metadata Working Group Guidelines for Handling Image Metadata, Version 2.0 (November 2010), https://web.archive.org/web/20180919181934/http://www.metadataworkinggroup.org/pdf/mwg_guidance.pdf, which has best practice advice on handling time-zone-less EXIF date/time data. See also the Wikipedia ISO 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/digitizationDate",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/digitizationDate-2020-01-27",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/digitizationDate-2026-02-24",
       "rdfs:comment": "Date the first digital version was created, if different from Original Date and Time found in the Temporal Coverage Vocabulary."
     },
     {
@@ -250,20 +260,18 @@
       "format": "default",
       "namespace": "mo",
       "dcterms:isVersionOf": "http://purl.org/ontology/mo/sample_rate",
-      "dcterms:references": "",
       "rdfs:comment": "Associates a digital signal to its sample rate. It might be easier to express it this way instead of defining a timeline map:-) Range is xsd:float."
     },
     {
       "name": "modified",
       "title": "Modified",
       "description": "Date on which the resource was changed.",
-      "comments": "Date that the media resource was altered. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, https://www.iso.org/standard/40874.html, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004. AC datetime values MAY also follow 8601:2004 for ranges by separating two IS0 8601 datetime fields by a solidus (\"forward slash\", '/'). dcterms:modified permits all modification dates to be recorded, or if only one is recorded, it is assumed to be the latest. See also the wikipedia IS0 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
+      "comments": "Date that the media resource was altered. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, https://www.iso.org/standard/40874.html, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004. AC datetime values MAY also follow 8601:2004 for ranges by separating two ISO 8601 datetime fields by a solidus (\"forward slash\", '/'). dcterms:modified permits all modification dates to be recorded, or if only one is recorded, it is assumed to be the latest. See also the Wikipedia ISO 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/modified",
-      "dcterms:references": "",
       "rdfs:comment": "Date on which the resource was changed."
     },
     {
@@ -276,7 +284,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-      "dcterms:references": "",
       "rdfs:comment": "A language of the resource."
     },
     {
@@ -289,46 +296,44 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/language",
-      "dcterms:references": "",
       "rdfs:comment": "A language of the resource."
     },
     {
-      "name": "MetadataDate",
+      "name": "metadataDate",
       "title": "Metadata Date",
       "description": "The date and time that any metadata for this resource was last changed. It should be the same as or more recent than dcterms:modified.",
-      "comments": "Point in time recording when the last modification to metadata (not necessarily the media object itself) occurred. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two IS0 8601 datetime fields by a solidus (\"forward slash\", '/'). This is not dcterms:modified, which refers to the resource itself rather than its metadata. See also the wikipedia IS0 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
+      "comments": "Point in time recording when the last modification to metadata (not necessarily the media object itself) occurred. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two ISO 8601 datetime fields by a solidus (\"forward slash\", '/'). This is not dcterms:modified, which refers to the resource itself rather than its metadata. See also the Wikipedia ISO 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "xmp",
       "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/MetadataDate",
-      "dcterms:references": "",
       "rdfs:comment": "The date and time that any metadata for this resource was last changed. It should be the same as or more recent than xmp:ModifyDate."
     },
     {
       "name": "metadataLanguageLiteral",
       "title": "Metadata Language Literal",
       "description": "Language of description and other metadata (but not necessarily of the image itself) represented as an ISO639-2 three letter language code.",
-      "comments": "ISO639-1 two-letter codes are permitted but deprecated. At least one of ac:metadataLanguage and ac:metadataLanguageLiteral MUST be supplied but, when feasible, supplying both might make the metadata more widely useful. They MUST specify the same language. In case of ambiguity, ac:metadataLanguage prevails. This is NOT dc:language, which is about the resource, not the metadata. Metadata Language is deliberately single-valued, imposing on unstructured serializations a requirement that multi-lingual metadata be represented as separate, complete, metadata records. Audiovisual Core requires that each record also contains the language-neutral terms. In the absence of this requirement, metadata consumers would need to know which terms are language-neutral and merge these terms from all provided metadataLanguages into a single record. Metadata consumers may re-combine the information based on the dcterms:identifier that identifies the multimedia resource. Nothing in this document would, however, prevent an implementer, e. g. of an XML-Schema representation, from providing a fully hierarchical schema in which language neutral terms occur only a single time, and only the language-specific terms are repeated in a way that unambigously relates them to a metadata language. In RDF it may be a simple repetition of plain literals associated with a language (e.g., xml:lang attribute in RDF/XML). The language attribute would then be required in Audiovisual Core and would replace ac:metadataLanguage.",
+      "comments": "ISO639-1 two-letter codes are permitted but deprecated. At least one of ac:metadataLanguage and ac:metadataLanguageLiteral MUST be supplied but, when feasible, supplying both might make the metadata more widely useful. They MUST specify the same language. In case of ambiguity, ac:metadataLanguage prevails. This is NOT dc:language, which is about the resource, not the metadata. Metadata Language is deliberately single-valued, imposing on unstructured serializations a requirement that multi-lingual metadata be represented as separate, complete, metadata records. Audiovisual Core requires that each record also contains the language-neutral terms. In the absence of this requirement, metadata consumers would need to know which terms are language-neutral and merge these terms from all provided metadataLanguages into a single record. Metadata consumers may re-combine the information based on the dcterms:identifier that identifies the multimedia resource. Nothing in this document would, however, prevent an implementer, e.g., of an XML-Schema representation, from providing a fully hierarchical schema in which language neutral terms occur only a single time, and only the language-specific terms are repeated in a way that unambiguously relates them to a metadata language. In RDF it may be a simple repetition of plain literals associated with a language (e.g., xml:lang attribute in RDF/XML). The language attribute would then be required in Audiovisual Core and would replace ac:metadataLanguage.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguageLiteral",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguageLiteral-2023-09-05",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguageLiteral-2026-02-24",
       "rdfs:comment": "Language of description and other metadata (but not necessarily of the image itself) represented as an ISO639-2 three letter language code."
     },
     {
       "name": "metadataLanguageIRI",
       "title": "Metadata Language IRI",
       "description": "The URI of the language of description and other metadata (but not necessarily of the image itself).",
-      "comments": "Recommended best practice is to use the ISO639-2 list of URIs for ISO 3-letter language codes, http://id.loc.gov/vocabulary/iso639-2. At least one of ac:metadataLanguage and ac:metadataLanguageLiteral should be supplied but, when feasible, supplying both might make the metadata more widely useful. They must specify the same language. In case of ambiguity, ac:metadataLanguage prevails. This is NOT dcterms:language, which is about the resource, not the metadata. Metadata Language is deliberately single-valued, imposing on unstructured serializations a requirement that multi-lingual metadata be represented as separate, complete, metadata records. Audiovisual Core requires that each record also contains the language-neutral terms. In the absence of this requirement, metadata consumers would need to know which terms are language-neutral and merge these terms from all provided metadataLanguages into a single record. Metadata consumers may re-combine the information based on the dcterms:identifier that identifies the multimedia resource. Nothing in this document would, however, prevent an implementer, e. g. of an XML-Schema representation, from providing a fully hierarchical schema in which language neutral terms occur only a single time, and only the language-specific terms are repeated in a way that unambigously relates them to a metadata language. In RDF it may be a simple repetition of plain literals associated with a language (e.g., xml:lang attribute in RDF/XML). The language attribute would then be required in Audiovisual Core and would replace ac:metadataLanguage.",
+      "comments": "Recommended best practice is to use the ISO639-2 list of URIs for ISO 3-letter language codes, http://id.loc.gov/vocabulary/iso639-2. At least one of ac:metadataLanguage and ac:metadataLanguageLiteral should be supplied but, when feasible, supplying both might make the metadata more widely useful. They must specify the same language. In case of ambiguity, ac:metadataLanguage prevails. This is NOT dcterms:language, which is about the resource, not the metadata. Metadata Language is deliberately single-valued, imposing on unstructured serializations a requirement that multi-lingual metadata be represented as separate, complete, metadata records. Audiovisual Core requires that each record also contains the language-neutral terms. In the absence of this requirement, metadata consumers would need to know which terms are language-neutral and merge these terms from all provided metadataLanguages into a single record. Metadata consumers may re-combine the information based on the dcterms:identifier that identifies the multimedia resource. Nothing in this document would, however, prevent an implementer, e.g., of an XML-Schema representation, from providing a fully hierarchical schema in which language neutral terms occur only a single time, and only the language-specific terms are repeated in a way that unambiguously relates them to a metadata language. In RDF it may be a simple repetition of plain literals associated with a language (e.g., xml:lang attribute in RDF/XML). The language attribute would then be required in Audiovisual Core and would replace ac:metadataLanguage.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguage",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguage-2023-09-05",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguage-2026-02-24",
       "rdfs:comment": "The URI of the language of description and other metadata (but not necessarily of the image itself) , from the ISO639-2 list of URIs for ISO 3-letter language codes, http://id.loc.gov/vocabulary/iso639-2."
     },
     {
@@ -348,13 +353,12 @@
       "name": "available",
       "title": "Available",
       "description": "Date (often a range) that the resource became or will become available.",
-      "comments": "The date (often a range) that the resource became or will become available. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two IS0 8601 datetime fields by a solidus (\"forward slash\", '/'). A use case is the harvesting of metadata published before the media are available, which are pending a formal publication elsewhere. One important example is the case of metadata that documents an occurrence, which metadata harvesters might exploit without use of the media. See also the wikipedia IS0 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
+      "comments": "The date (often a range) that the resource became or will become available. The date and time MUST comply with the World Wide Web Consortium (W3C) datetime practice, https://www.w3.org/TR/NOTE-datetime, which requires that date and time representation correspond to ISO 8601:1998, but with year fields always comprising 4 digits. This makes datetime records compliant with 8601:2004, https://www.iso.org/standard/40874.html. AC datetime values MAY also follow 8601:2004 for ranges by separating two ISO 8601 datetime fields by a solidus (\"forward slash\", '/'). A use case is the harvesting of metadata published before the media are available, which are pending a formal publication elsewhere. One important example is the case of metadata that documents an occurrence, which metadata harvesters might exploit without use of the media. See also the Wikipedia ISO 8601 entry, https://en.wikipedia.org/wiki/ISO_8601, for further explanation and examples.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/available",
-      "dcterms:references": "",
       "rdfs:comment": "Date (often a range) that the resource became or will become available."
     },
     {
@@ -419,7 +423,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/format",
-      "dcterms:references": "",
       "rdfs:comment": "The file format, physical medium, or dimensions of the resource."
     },
     {
@@ -462,32 +465,30 @@
       "rdfs:comment": "Text that describes this Service Access Point variant"
     },
     {
-      "name": "PixelXDimension",
+      "name": "pixelXDimension",
       "title": "Image Width",
-      "description": "Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker.",
+      "description": "Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
       "comments": "The width in pixels of the media specified by the access point. Contrary to the definition, in Audiovisual Core, this term MAY be used with uncompressed files. Audiovisual Core uses this term for any image type, including those to which EXIF does not apply and those that are not a compressed file type like JPEG.",
       "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "exif",
       "dcterms:isVersionOf": "http://ns.adobe.com/exif/1.0/PixelXDimension",
-      "dcterms:references": "",
       "rdfs:comment": "Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
       "constraints": {
         "minimum": 1
       }
     },
     {
-      "name": "PixelYDimension",
+      "name": "pixelYDimension",
       "title": "Image Height",
-      "description": "Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker.",
+      "description": "Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
       "comments": "The height in pixels of the media specified by the access point. Contrary to the definition, in Audiovisual Core, this term MAY be used with uncompressed files. Audiovisual Core uses this term for any image type, including those to which EXIF does not apply and those that are not a compressed file type like JPEG.",
       "examples": "",
       "type": "integer",
       "format": "default",
       "namespace": "exif",
       "dcterms:isVersionOf": "http://ns.adobe.com/exif/1.0/PixelYDimension",
-      "dcterms:references": "",
       "rdfs:comment": "Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
       "constraints": {
         "minimum": 1
@@ -549,39 +550,42 @@
       "name": "commenterID",
       "title": "Commenter ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:comments.",
-      "comments": "Implementers and communities of practice MAY produce restrictions or recommendations on the choice of vocabularies. See also ac:reviewerComments for the distinction between ac:comments and ac:reviewerComments. See also the entry for ac:commenterLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
+      "comments": "Implementers and communities of practice MAY produce restrictions or recommendations on the choice of vocabularies. See also ac:reviewerComments for the distinction between ac:comments and ac:reviewerComments. See also the entry for ac:commenterLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions. The value in this field MAY refer to a dcterms:BibliographicResource within or external to the dataset in which this record originated. The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/commenter",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/commenter-2023-09-05",
-      "rdfs:comment": "A URI denoting a person who created a comment."
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "comments",
       "title": "Comments",
       "description": "Any comment provided on the ac:Media resource, as free-form text.",
-      "comments": "Best practice would also identify the ac:commenter. Comments may refer to the resource itself (e. g., asserting a taxon name or location of a biological subject in an image), or to the relation between resource and associated metadata (e. g., asserting that the taxon name given in the metadata is wrong, without asserting a positive identification). There is a separate item from ac:reviewerComments, which is defined more as an expert-level review. Implementers or communities of practice might establish conventions about the meaning of the absence of an ac:commenter, but this specification is silent on that matter.",
+      "comments": "Best practice would also identify the ac:commenter. Comments may refer to the resource itself (e.g., asserting a taxon name or location of a biological subject in an image), or to the relation between resource and associated metadata (e.g., asserting that the taxon name given in the metadata is wrong, without asserting a positive identification). There is a separate item from ac:reviewerComments, which is defined more as an expert-level review. Implementers or communities of practice might establish conventions about the meaning of the absence of an ac:commenter, but this specification is silent on that matter.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/comments",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/comments-2020-01-27",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/comments-2026-02-24",
       "rdfs:comment": "Any comment provided on the media resource, as free-form text."
     },
     {
-      "name": "Rating",
+      "name": "rating",
       "title": "Rating",
       "description": "A user-assigned rating for this file. The value shall be -1 or in the range [0..5], where -1 indicates \"rejected\" and 0 indicates \"unrated\". If xmp:Rating is not present, a value of 0 should be assumed.",
-      "comments": "A rating for an ac:Media resource, provided by record originators or editors, with '1' (worst) to '5' (best). Anticipated usage is for a typical 'star rating' UI, with the addition of a notion of rejection. Values MAY be decimal numbers in the permitted range. The origin of the rating is not communicated. It may, e. g., be based on user feedback or on editorial ratings. By \"user-assigned\" is meant assigned by the originator or editor of the record using the term.",
+      "comments": "A rating for an ac:Media resource, provided by record originators or editors, with '1' (worst) to '5' (best). Anticipated usage is for a typical 'star rating' UI, with the addition of a notion of rejection. Values MAY be decimal numbers in the permitted range. The origin of the rating is not communicated. It may, e.g., be based on user feedback or on editorial ratings. By \"user-assigned\" is meant assigned by the originator or editor of the record using the term.",
       "examples": "`1`; `5`",
       "type": "string",
       "format": "default",
       "namespace": "xmp",
       "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/Rating",
-      "dcterms:references": "",
       "rdfs:comment": "A user-assigned rating for this file. The value shall be -1 or in the range [0..5], where -1 indicates \"rejected\" and 0 indicates \"unrated\". If xmp:Rating is not present, a value of 0 should be assumed."
     },
     {
@@ -601,26 +605,30 @@
       "name": "reviewerID",
       "title": "Reviewer ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:reviewerComments",
-      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed an ac:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewerLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions.",
+      "comments": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed an ac:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewerLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions. The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewer",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/reviewer-2023-09-05",
-      "rdfs:comment": "URI for a reviewer."
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "reviewerComments",
       "title": "Reviewer Comments",
       "description": "Any comment provided by a reviewer with expertise in the subject, as free-form text.",
-      "comments": "Reviewer Comments may refer to the resource itself (e. g., asserting a taxon name or location of a biological subject in an image), or to the relation between resource and associated metadata (e. g., asserting that the taxon name given in the metadata is wrong, without asserting a positive identification). There is a separate item \"Comments\" for text from commenters of unrecorded expertise.",
+      "comments": "Reviewer Comments may refer to the resource itself (e.g., asserting a taxon name or location of a biological subject in an image), or to the relation between resource and associated metadata (e.g., asserting that the taxon name given in the metadata is wrong, without asserting a positive identification). There is a separate item \"Comments\" for text from commenters of unrecorded expertise.",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewerComments",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/reviewerComments-2020-01-27",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/reviewerComments-2026-02-24",
       "rdfs:comment": "Any comment provided by a reviewer with expertise in the subject, as free-form text."
     },
     {
@@ -633,21 +641,21 @@
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2020-01-27",
-      "rdfs:comment": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant. Constrained vocabulary of: `Natural` = Object in its natural setting of the object (e. g. living organisms in their natural environment); `Artificial` = Object in an artificial environment (e. g. living organisms in an artificial environment such as a zoo, garden, greenhouse, or laboratory); `Edited` = Human media editing of a natural setting or media acquisition with a separate media background such as a photographic backdrop."
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
+      "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
     },
     {
       "name": "subjectCategory",
       "title": "Subject Category",
-      "description": "A category for the content of an ac:Media resource.",
+      "description": "A term to describe the content of a image or a region of interest within an image using a controlled value string.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/subjectCategory",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "namespace": "ac",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
+      "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
     },
     {
       "name": "subjectCategoryIRI",
@@ -657,13 +665,13 @@
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwciri/subjectCategoryIRI",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "namespace": "ac",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVterm",
+      "dcterms:references": "pending",
+      "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
     },
     {
-      "name": "subjectCategorySource",
+      "name": "subjectCategoryVocabulary",
       "title": "Subject Category Source",
       "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:subjectCategory is given.",
       "comments": "The Audiovisual Core recommended vocabularies do not need to be cited here. There is no required linkage between individual Subject Category terms and the vocabulary; the mechanism is intended to support discovery of the normative URI for a term, but not guarantee it.",
@@ -671,9 +679,9 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategorySource",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategorySource-2020-01-27",
-      "rdfs:comment": "Any vocabulary or formal classification from which terms in the Subject Category have been drawn."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
+      "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
     },
     {
       "name": "tag",
@@ -864,7 +872,7 @@
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/xFrac",
       "dcterms:references": "http://rs.tdwg.org/ac/terms/version/xFrac-2021-10-05",
-      "rdfs:comment": "The horizontal position of a reference point, measured from the left side of the media item and expressed as a decimal fraction of the width of the media item.",
+      "rdfs:comment": "The horizontal position of a reference point, measured from the left side of an ac:Media resource and expressed as a decimal fraction of the width of an ac:Media resource.",
       "constraints": {
         "minimum": 0,
         "maximum": 1
@@ -936,10 +944,61 @@
       "constraints": {
         "minimum": 0
       }
+    },
+    {
+      "name": "provenance_fk",
+      "title": "Provenance (Foreign Key)",
+      "description": "An identifier for a dwc:Provenance of an ac:Media.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "usagePolicy_fk",
+      "title": "Usage Policy (Foreign Key)",
+      "description": "An identifier for a dwc:UsagePolicy for an ac:Media.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     }
   ],
-  "primaryKey": "mediaID",
+  "primaryKey": "media_pk",
+  "weakPrimaryKey": "mediaID",
   "foreignKeys": [
+    {
+      "fields": "provenance_fk",
+      "predicate": "has",
+      "reference": {
+        "resource": "provenance",
+        "fields": "provenance_pk"
+      }
+    },
+    {
+      "fields": "usagePolicy_fk",
+      "predicate": "has",
+      "reference": {
+        "resource": "usage-policy",
+        "fields": "usagePolicy_pk"
+      }
+    }
+  ],
+  "weakForeignKeys": [
     {
       "fields": "derivedFromMediaID",
       "predicate": "derived from",

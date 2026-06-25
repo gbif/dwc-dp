@@ -81,7 +81,9 @@
         "survey-identifier",
         "survey-protocol",
         "survey-reference",
+        "survey-survey-target",
         "survey-target",
+        "survey-target-descriptor",
         "usage-policy"
       ]
     }

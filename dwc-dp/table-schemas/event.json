@@ -8,20 +8,20 @@
   "examples": "`a material collecting event`; `a bird observation`; `a camera trap image capture`; `an organism occurrence`; `a biotic survey`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Event",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Event-2023-09-18",
-  "rdfs:comment": "An action that occurs at some location during some time.",
+  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Event-2026-05-26",
+  "rdfs:comment": "An action, process, or set of circumstances occurring at a dcterms:Location during a period of time.",
   "fields": [
     {
-      "name": "eventID",
-      "title": "Event ID",
-      "description": "An identifier for a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "name": "event_pk",
+      "title": "Event (Primary Key)",
+      "description": "A unique identifier for a dwc:Event.",
+      "comments": "The value in this field MAY be changed in aggregation to guarantee uniqueness.",
       "examples": "`INBO:VIS:Ev:00009375`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
@@ -29,17 +29,63 @@
       }
     },
     {
-      "name": "parentEventID",
-      "title": "Parent Event ID",
+      "name": "eventID",
+      "title": "Event ID",
+      "description": "An identifier for a dwc:Event.",
+      "comments": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+      "examples": "`INBO:VIS:Ev:00009375`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set."
+    },
+    {
+      "name": "parentEvent_fk",
+      "title": "Parent Event (Foreign Key)",
       "description": "An identifier for a broader dwc:Event that contains this and potentially other dwc:Events.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "`A1` (parentEventID to identify the main Whittaker Plot in nested samples, each with its own eventID - `A1:1`, `A1:2`).",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/parentEventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/parentEventID-2023-06-28",
-      "rdfs:comment": "An identifier for the broader dwc:Event that groups this and potentially other dwc:Events.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/parentEventID-2026-05-26",
+      "rdfs:comment": "An identifier for a broader dwc:Event that contains this and potentially other dwc:Events.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "eventProtocol_fk",
+      "title": "Event Protocol (Foreign Key)",
+      "description": "An identifier for a dwc:Protocol used during a dwc:Event.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "provenance_fk",
+      "title": "Provenance (Foreign Key)",
+      "description": "An identifier for a dwc:Provenance of a dwc:Event.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -55,7 +101,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-      "dcterms:references": "",
       "rdfs:comment": "A name given to the resource."
     },
     {
@@ -63,13 +108,17 @@
       "title": "Event Category",
       "description": "A broad category that best matches the nature of a dwc:Event.",
       "comments": "Recommended best practice is to use a limited, tightly controlled vocabulary.",
-      "examples": "`material gathering`; `nucleotide analysis`; `occurrence`; `organism interaction`; `survey`; `varied`",
+      "examples": "`material collection`; `nucleotide analysis`; `occurrence`; `organism interaction`; `survey`; `context`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/eventCategory",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventCategory",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventCategory-2026-05-26",
+      "rdfs:comment": "A broad category that best matches the nature of a dwc:Event.",
+      "constraints": {
+        "required": true,
+        "unique": false
+      }
     },
     {
       "name": "eventType",
@@ -81,8 +130,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventType-2023-06-28",
-      "rdfs:comment": "The nature of the dwc:Event."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventType-2026-05-26",
+      "rdfs:comment": "A narrow category that best matches the nature of a dwc:Event."
     },
     {
       "name": "datasetName",
@@ -94,8 +143,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetName-2023-06-28",
-      "rdfs:comment": "The name identifying the data set from which the record was derived."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetName-2026-05-26",
+      "rdfs:comment": "A name of a source dataset."
     },
     {
       "name": "datasetID",
@@ -120,8 +169,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNumber",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNumber-2023-06-28",
-      "rdfs:comment": "An identifier given to the dwc:Event in the field. Often serves as a link between field notes and the dwc:Event."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNumber-2026-05-26",
+      "rdfs:comment": "An identifier given to a dwc:Event in the field."
     },
     {
       "name": "eventConductedBy",
@@ -133,21 +182,21 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations responsible for recording the original dwc:Occurrence. The primary collector or observer, especially one who applies a personal identifier (dwc:recordNumber), should be listed first."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2026-05-26",
+      "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Occurrence."
     },
     {
       "name": "eventConductedByID",
       "title": "Event Conducted By ID",
       "description": "An identifier for a dcterms:Agent responsible for conducting or recording a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097`; `https://ror.org/00mh9zx15`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of the globally unique identifier for the person, people, groups, or organizations responsible for recording the original dwc:Occurrence.",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
       "constraints": {
         "required": false,
         "unique": false
@@ -163,8 +212,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2025-06-12",
-      "rdfs:comment": "The date-time or interval during which a dwc:Event occurred. For occurrences, this is the date-time when the dwc:Event was recorded. Not suitable for a time in a geological context."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2026-05-26",
+      "rdfs:comment": "A date-time or time interval during which a dwc:Event occurred."
     },
     {
       "name": "eventTime",
@@ -189,8 +238,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/startDayOfYear",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/startDayOfYear-2023-06-28",
-      "rdfs:comment": "The earliest integer day of the year on which the dwc:Event occurred (1 for January 1, 365 for December 31, except in a leap year, in which case it is 366).",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/startDayOfYear-2026-05-26",
+      "rdfs:comment": "The earliest integer day of the year on which a dwc:Event occurred.",
       "constraints": {
         "minimum": 1,
         "maximum": 366
@@ -206,8 +255,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/endDayOfYear",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/endDayOfYear-2023-06-28",
-      "rdfs:comment": "The latest integer day of the year on which the dwc:Event occurred (1 for January 1, 365 for December 31, except in a leap year, in which case it is 366).",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/endDayOfYear-2026-05-26",
+      "rdfs:comment": "The latest integer day of the year on which a dwc:Event occurred.",
       "constraints": {
         "minimum": 1,
         "maximum": 366
@@ -236,7 +285,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/month",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/month-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/month-2026-05-26",
       "rdfs:comment": "The integer month in which the dwc:Event occurred.",
       "constraints": {
         "minimum": 1,
@@ -253,7 +302,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/day",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/day-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/day-2026-05-26",
       "rdfs:comment": "The integer day of the month on which the dwc:Event occurred.",
       "constraints": {
         "minimum": 1,
@@ -270,7 +319,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimEventDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimEventDate-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimEventDate-2026-05-26",
       "rdfs:comment": "The verbatim original representation of the date and time information for a dwc:Event."
     },
     {
@@ -283,8 +332,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLocality",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLocality-2021-07-15",
-      "rdfs:comment": "The original textual description of the place."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLocality-2026-05-26",
+      "rdfs:comment": "An original textual description of a dcterms:Location."
     },
     {
       "name": "verbatimElevation",
@@ -296,8 +345,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimElevation",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimElevation-2017-10-06",
-      "rdfs:comment": "The original description of the elevation (altitude, usually above sea level) of the Location."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimElevation-2026-05-26",
+      "rdfs:comment": "An original description of the elevation of a dcterms:Location."
     },
     {
       "name": "verbatimDepth",
@@ -323,7 +372,7 @@
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinates",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimCoordinates-2023-06-28",
-      "rdfs:comment": "The verbatim original spatial coordinates of the dcterms:Location. The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in dwc:verbatimSRS and the coordinate system should be stored in dwc:verbatimCoordinateSystem."
+      "rdfs:comment": "Verbatim original spatial coordinates of a dcterms:Location."
     },
     {
       "name": "verbatimLatitude",
@@ -335,8 +384,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLatitude",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLatitude-2023-06-28",
-      "rdfs:comment": "The verbatim original latitude of the dcterms:Location. The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in dwc:verbatimSRS and the coordinate system should be stored in dwc:verbatimCoordinateSystem."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLatitude-2026-05-26",
+      "rdfs:comment": "A verbatim original latitude of a dcterms:Location."
     },
     {
       "name": "verbatimLongitude",
@@ -348,8 +397,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLongitude",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLongitude-2023-06-28",
-      "rdfs:comment": "The verbatim original longitude of the dcterms:Location. The coordinate ellipsoid, geodeticDatum, or full Spatial Reference System (SRS) for these coordinates should be stored in dwc:verbatimSRS and the coordinate system should be stored in dwc:verbatimCoordinateSystem."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLongitude-2026-05-26",
+      "rdfs:comment": "A verbatim original longitude of a dcterms:Location."
     },
     {
       "name": "verbatimCoordinateSystem",
@@ -361,8 +410,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinateSystem",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimCoordinateSystem-2023-06-28",
-      "rdfs:comment": "The coordinate format for the dwc:verbatimLatitude and dwc:verbatimLongitude or the dwc:verbatimCoordinates of the dcterms:Location."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimCoordinateSystem-2026-05-26",
+      "rdfs:comment": "A coordinate format for dwc:verbatimLatitude and dwc:verbatimLongitude or dwc:verbatimCoordinates."
     },
     {
       "name": "verbatimSRS",
@@ -404,17 +453,30 @@
       "rdfs:comment": "A category or description of the habitat in which the dwc:Event occurred."
     },
     {
-      "name": "eventEffort",
-      "title": "Event Effort",
-      "description": "An amount of effort expended during a dwc:Event.",
-      "comments": "",
-      "examples": "`40 trap-nights`; `10 observer-hours`; `10 km by foot`; `30 km by car`",
+      "name": "sampledSubstrateCategory",
+      "title": "Sampled Substrate Category",
+      "description": "A category or type of substrate sampled during a dwc:Event.",
+      "comments": "Recommended best practice is to use a controlled vocabulary and separate the values in a list with space vertical bar space ( | ).",
+      "examples": "`vegetation`; `soil`; `ocean`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingEffort",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/samplingEffort-2023-06-28",
-      "rdfs:comment": "The amount of effort expended during a dwc:Event."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateCategory",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampledSubstrateCategory-2026-05-26",
+      "rdfs:comment": "A category or type of substrate sampled during a dwc:Event."
+    },
+    {
+      "name": "sampledSubstrateLayer",
+      "title": "Sampled Substrate Layer",
+      "description": "A list (concatenated and separated) of substrate layers sampled during a dwc:Event.",
+      "comments": "Recommended best practice is to use a controlled vocabulary and separate the values in a list with space vertical bar space ( | ).",
+      "examples": "`forest floor`; `herbaceous | shrub`; `understory`; `canopy`; `organic (O)`; `surface (A)`; `eluviated (E)`; `subsoil (B)`; `parent material (C)`; `bedrock (R)`; `epipelagic | mesopelagic`; `bathypelagic`; `abysopelagic`; `hadalpelagic`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateLayer",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/sampledSubstrateLayer-2026-05-26",
+      "rdfs:comment": "A list (concatenated and separated) of substrate layers sampled during a dwc:Event."
     },
     {
       "name": "fieldNotes",
@@ -426,7 +488,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNotes",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNotes-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNotes-2026-05-26",
       "rdfs:comment": "One of a) an indicator of the existence of, b) a reference to (publication, URI), or c) the text of notes taken in the field about the dwc:Event."
     },
     {
@@ -439,7 +501,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedReferences-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedReferences-2026-05-26",
       "rdfs:comment": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the dwc:Occurrence."
     },
     {
@@ -456,6 +518,23 @@
       "rdfs:comment": "Comments or notes about the dwc:Event."
     },
     {
+      "name": "geologicalContextID",
+      "title": "Geological Context ID",
+      "description": "An identifier for a dwc:GeologicalContext.",
+      "comments": "The value in this field MAY refer to a dwc:GeologicalContext within or external to the dataset in which this record originated.",
+      "examples": "`https://opencontext.org/subjects/e54377f7-4452-4315-b676-40679b10c4d9`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "locationID",
       "title": "Location ID",
       "description": "An identifier for a dcterms:Location.",
@@ -465,8 +544,21 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationID-2023-06-28",
-      "rdfs:comment": "An identifier for the set of dcterms:Location information. May be a global unique identifier or an identifier specific to the data set."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Location."
+    },
+    {
+      "name": "siteNumber",
+      "title": "Site Number",
+      "description": "An identifier (preferably globally unambiguous) for a named site.",
+      "comments": "",
+      "examples": "`USGS CENO LOC 21387`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/siteNumber",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/siteNumber-2026-05-26",
+      "rdfs:comment": "An identifier for a named site."
     },
     {
       "name": "higherGeographyID",
@@ -569,7 +661,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/countryCode",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/countryCode-2025-06-12",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/countryCode-2026-05-26",
       "rdfs:comment": "The standard code for the country in which the dcterms:Location occurs."
     },
     {
@@ -625,51 +717,30 @@
       "rdfs:comment": "The specific description of the place."
     },
     {
-      "name": "siteNumber",
-      "title": "Site Number",
-      "description": "An identifier (preferably globally unambiguous) for a named site.",
-      "comments": "",
-      "examples": "`USGS CENO LOC 21387`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/siteNumber",
-      "dcterms:references": "",
-      "rdfs:comment": ""
-    },
-    {
       "name": "minimumElevationInMeters",
       "title": "Minimum Elevation In Meters",
-      "description": "A lower limit of a range of elevation in meters above a dwc:verticalDatum.",
+      "description": "The least elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "examples": "`-100`; `802`",
       "type": "number",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumElevationInMeters",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumElevationInMeters-2023-06-28",
-      "rdfs:comment": "The lower limit of the range of elevation (altitude, usually above sea level), in meters.",
-      "constraints": {
-        "minimum": -430,
-        "maximum": 8850
-      }
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumElevationInMeters-2026-05-26",
+      "rdfs:comment": "The least elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum."
     },
     {
       "name": "maximumElevationInMeters",
       "title": "Maximum Elevation In Meters",
-      "description": "An upper limit of a range of elevation in meters above a dwc:verticalDatum.",
+      "description": "The greatest elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "examples": "`-205`; `1236`",
       "type": "number",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumElevationInMeters",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumElevationInMeters-2023-06-28",
-      "rdfs:comment": "The upper limit of the range of elevation (altitude, usually above sea level), in meters.",
-      "constraints": {
-        "minimum": -430,
-        "maximum": 8850
-      }
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumElevationInMeters-2026-05-26",
+      "rdfs:comment": "The greatest elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum."
     },
     {
       "name": "verticalDatum",
@@ -687,15 +758,15 @@
     {
       "name": "minimumDepthInMeters",
       "title": "Minimum Depth In Meters",
-      "description": "The lesser depth of a range of depth below a dwc:verticalDatum.",
+      "description": "The least depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "examples": "`0`; `100`",
       "type": "number",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumDepthInMeters",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumDepthInMeters-2023-06-28",
-      "rdfs:comment": "The lesser depth of a range of depth below the local surface, in meters.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumDepthInMeters-2026-05-26",
+      "rdfs:comment": "The least depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "constraints": {
         "minimum": 0,
         "maximum": 11000
@@ -704,15 +775,15 @@
     {
       "name": "maximumDepthInMeters",
       "title": "Maximum Depth In Meters",
-      "description": "The greater depth of a range of depth below a dwc:verticalDatum.",
+      "description": "The greatest depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "comments": "See https://docs.gbif.org/georeferencing-best-practices/1.0/en/#img-depth-elevation-distance-above-surface.",
       "examples": "`0`; `200`",
       "type": "number",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumDepthInMeters",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumDepthInMeters-2023-06-28",
-      "rdfs:comment": "The greater depth of a range of depth below the local surface, in meters.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumDepthInMeters-2026-05-26",
+      "rdfs:comment": "The greatest depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
       "constraints": {
         "minimum": 0,
         "maximum": 11000
@@ -745,6 +816,19 @@
       "rdfs:comment": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation."
     },
     {
+      "name": "locationAccordingTo",
+      "title": "Location According To",
+      "description": "Information about the source of this dcterms:Location information. Could be a publication (gazetteer), institution, or team of individuals.",
+      "comments": "This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+      "examples": "`Getty Thesaurus of Geographic Names`; `GADM`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationAccordingTo",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationAccordingTo-2023-06-28",
+      "rdfs:comment": "Information about the source of this dcterms:Location information. Could be a publication (gazetteer), institution, or team of individuals."
+    },
+    {
       "name": "locationRemarks",
       "title": "Location Remarks",
       "description": "Comments or notes about the dcterms:Location.",
@@ -767,8 +851,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/decimalLatitude",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLatitude-2023-06-28",
-      "rdfs:comment": "The geographic latitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location. Positive values are north of the Equator, negative values are south of it. Legal values lie between -90 and 90, inclusive.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLatitude-2026-05-26",
+      "rdfs:comment": "A geographic latitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of a dcterms:Location.",
       "constraints": {
         "minimum": -90,
         "maximum": 90
@@ -784,8 +868,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/decimalLongitude",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLongitude-2023-06-28",
-      "rdfs:comment": "The geographic longitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of the geographic center of a dcterms:Location. Positive values are east of the Greenwich Meridian, negative values are west of it. Legal values lie between -180 and 180, inclusive.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLongitude-2026-05-26",
+      "rdfs:comment": "A geographic longitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of a dcterms:Location.",
       "constraints": {
         "minimum": -180,
         "maximum": 180
@@ -801,7 +885,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geodeticDatum",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geodeticDatum-2025-06-12",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geodeticDatum-2026-05-26",
       "rdfs:comment": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given in dwc:decimalLatitude and dwc:decimalLongitude are based."
     },
     {
@@ -814,8 +898,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/coordinateUncertaintyInMeters-2023-06-28",
-      "rdfs:comment": "The horizontal distance (in meters) from the given dwc:decimalLatitude and dwc:decimalLongitude describing the smallest circle containing the whole of the dcterms:Location. Leave the value empty if the uncertainty is unknown, cannot be estimated, or is not applicable (because there are no coordinates). Zero is not a valid value for this term.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/coordinateUncertaintyInMeters-2026-05-26",
+      "rdfs:comment": "A horizontal distance (in meters) from a given dwc:decimalLatitude and dwc:decimalLongitude describing the smallest circle containing the whole of the dcterms:Location. Zero is not a valid value for this term.",
       "constraints": {
         "minimum": 1,
         "maximum": 20037509
@@ -844,8 +928,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/pointRadiusSpatialFit",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/pointRadiusSpatialFit-2023-06-28",
-      "rdfs:comment": "The ratio of the area of the point-radius (dwc:decimalLatitude, dwc:decimalLongitude, dwc:coordinateUncertaintyInMeters) to the area of the true (original, or most specific) spatial representation of the dcterms:Location. Legal values are 0, greater than or equal to 1, or undefined. A value of 1 is an exact match or 100% overlap. A value of 0 should be used if the given point-radius does not completely contain the original representation. The dwc:pointRadiusSpatialFit is undefined (and should be left empty) if the original representation is any geometry without area (e.g., a point or polyline) and without uncertainty and the given georeference is not that same geometry (without uncertainty). If both the original and the given georeference are the same point, the dwc:pointRadiusSpatialFit is 1.",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/pointRadiusSpatialFit-2026-05-26",
+      "rdfs:comment": "A ratio of the area of a point-radius (dwc:decimalLatitude, dwc:decimalLongitude, dwc:coordinateUncertaintyInMeters) to the area of a true (original, or most specific) spatial representation of a dcterms:Location.",
       "constraints": {
         "minimum": 0
       }
@@ -860,8 +944,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintWKT",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintWKT-2023-06-28",
-      "rdfs:comment": "A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines the dcterms:Location. A dcterms:Location may have both a point-radius representation (see dwc:decimalLatitude) and a footprint representation, and they may differ from each other."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintWKT-2026-05-26",
+      "rdfs:comment": "A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines a dcterms:Location."
     },
     {
       "name": "footprintSRS",
@@ -886,34 +970,34 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintSpatialFit",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintSpatialFit-2023-06-28",
-      "rdfs:comment": "The ratio of the area of the dwc:footprintWKT to the area of the true (original, or most specific) spatial representation of the dcterms:Location. Legal values are 0, greater than or equal to 1, or undefined. A value of 1 is an exact match or 100% overlap. A value of 0 should be used if the given dwc:footprintWKT does not completely contain the original representation. The dwc:footprintSpatialFit is undefined (and should be left empty) if the original representation is any geometry without area (e.g., a point or polyline) and without uncertainty and the given georeference is not that same geometry (without uncertainty). If both the original and the given georeference are the same point, the dwc:footprintSpatialFit is 1."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintSpatialFit-2026-05-26",
+      "rdfs:comment": "A ratio of the area of a footprint (dwc:footprintWKT) to the area of a true (original, or most specific) spatial representation of a dcterms:Location."
     },
     {
       "name": "georeferencedBy",
       "title": "Georeferenced By",
-      "description": "A list (concatenated and separated) of names of dcterms:Agents responsible for determining a georeference (spatial representation) for a dcterms:Location.",
+      "description": "A name for a dcterms:Agent responsible for providing a georeference.",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "examples": "`Brad Millen (ROM)`; `Kristina Yamamoto | Janet Fang`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedBy-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations who determined the georeference (spatial representation) for the dcterms:Location."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedBy-2026-05-26",
+      "rdfs:comment": "A name for a dcterms:Agent responsible for providing a georeference."
     },
     {
       "name": "georeferencedByID",
       "title": "Georeferenced By ID",
       "description": "An identifier for a dcterms:Agent responsible for determining a georeference for a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
       "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/georeferencedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/georeferencedBy-2023-06-28",
-      "rdfs:comment": "A person, group, or organization who determined the georeference (spatial representation) for the dcterms:Location.",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -929,7 +1013,7 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedDate-2025-06-12",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedDate-2026-05-26",
       "rdfs:comment": "The date on which the dcterms:Location was georeferenced."
     },
     {
@@ -942,21 +1026,21 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceProtocol",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceProtocol-2023-06-28",
-      "rdfs:comment": "A description or reference to the methods used to determine the spatial footprint, coordinates, and uncertainties."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceProtocol-2026-05-26",
+      "rdfs:comment": "A description or reference to a dwc:Protocol used to determine a spatial footprint, coordinates, and uncertainties."
     },
     {
-      "name": "georeferenceProtocolID",
-      "title": "Georeference Protocol ID",
+      "name": "georeferenceProtocol_fk",
+      "title": "Georeference Protocol (Foreign Key)",
       "description": "An identifier for a dwc:Protocol used to determine a spatial footprint, coordinates, and uncertainties.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "`https://doi.org/10.35035/e09p-h128`",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/georeferenceProtocol",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/georeferenceProtocol-2015-03-27",
-      "rdfs:comment": "A description or reference to the methods used to determine the spatial footprint, coordinates, and uncertainties.",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -972,8 +1056,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceSources",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceSources-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference the dcterms:Location, described specifically enough to allow anyone in the future to use the same resources."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceSources-2026-05-26",
+      "rdfs:comment": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference a dcterms:Location, described specifically enough to allow anyone in the future to use the same resources."
     },
     {
       "name": "georeferenceRemarks",
@@ -992,31 +1076,14 @@
       "name": "preferredSpatialRepresentation",
       "title": "Preferred Spatial Representation",
       "description": "An indication of which spatial representation best represents the dcterms:Location.",
-      "comments": "",
+      "comments": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
       "examples": "`point-radius`; `footprint`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/preferredSpatialRepresentation",
-      "dcterms:references": "",
-      "rdfs:comment": ""
-    },
-    {
-      "name": "geologicalContextID",
-      "title": "Geological Context ID",
-      "description": "An identifier for a dwc:GeologicalContext.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "`https://opencontext.org/subjects/e54377f7-4452-4315-b676-40679b10c4d9`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
-      "constraints": {
-        "required": false,
-        "unique": false
-      }
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/preferredSpatialRepresentation",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/preferredSpatialRepresentation-2026-05-26",
+      "rdfs:comment": "An indication of which spatial representation best represents the dcterms:Location."
     },
     {
       "name": "feedbackURL",
@@ -1041,8 +1108,8 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2023-06-28",
-      "rdfs:comment": "Additional information that exists, but that has not been shared in the given record."
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
+      "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
     },
     {
       "name": "dataGeneralizations",
@@ -1058,16 +1125,43 @@
       "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
     }
   ],
-  "primaryKey": "eventID",
+  "primaryKey": "event_pk",
+  "weakPrimaryKey": "eventID",
   "foreignKeys": [
     {
-      "fields": "parentEventID",
+      "fields": "parentEvent_fk",
       "predicate": "happened during",
       "reference": {
         "resource": "",
-        "fields": "eventID"
+        "fields": "event_pk"
       }
     },
+    {
+      "fields": "eventProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
+      }
+    },
+    {
+      "fields": "provenance_fk",
+      "predicate": "has",
+      "reference": {
+        "resource": "provenance",
+        "fields": "provenance_pk"
+      }
+    },
+    {
+      "fields": "georeferenceProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
+      }
+    }
+  ],
+  "weakForeignKeys": [
     {
       "fields": "eventConductedByID",
       "predicate": "conducted by",
@@ -1077,27 +1171,19 @@
       }
     },
     {
-      "fields": "georeferencedByID",
-      "predicate": "georeferenced by",
-      "reference": {
-        "resource": "agent",
-        "fields": "agentID"
-      }
-    },
-    {
-      "fields": "georeferenceProtocolID",
-      "predicate": "followed",
-      "reference": {
-        "resource": "protocol",
-        "fields": "protocolID"
-      }
-    },
-    {
       "fields": "geologicalContextID",
       "predicate": "within",
       "reference": {
         "resource": "geological-context",
         "fields": "geologicalContextID"
+      }
+    },
+    {
+      "fields": "georeferencedByID",
+      "predicate": "georeferenced by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agentID"
       }
     }
   ]

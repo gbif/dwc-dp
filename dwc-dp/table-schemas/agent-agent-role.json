@@ -8,38 +8,36 @@
   "examples": "`an instance of a dcterms:Agent that is a person is the director of another instance of a dcterms:Agent that is an organization`; `an instance of a dcterms:Agent that is a person is a member of another instance of a dcterms:Agent that is a group`; `an instance of a dcterms:Agent that is a person is the author of another instance of a dcterms:Agent that is software`",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//agent-agent-role",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "agentID",
-      "title": "Agent ID",
+      "name": "agent_fk",
+      "title": "Agent (Foreign Key)",
       "description": "An identifier for a dcterms:Agent.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": true,
         "unique": false
       }
     },
     {
-      "name": "relatedAgentID",
-      "title": "Related Agent ID",
+      "name": "relatedAgent_fk",
+      "title": "Related Agent (Foreign Key)",
       "description": "An identifier for a related dcterms:Agent.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/relatedAgentID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": true,
         "unique": false
@@ -67,9 +65,9 @@
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwciri/agentRoleIRI",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
+      "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
     },
     {
       "name": "agentRoleSource",
@@ -81,7 +79,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -93,10 +90,11 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentRoleOrder",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
+      "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
       "constraints": {
+        "required": true,
         "minimum": 1
       }
     },
@@ -116,19 +114,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "agentID",
+      "fields": "agent_fk",
       "predicate": "role holder",
       "reference": {
         "resource": "agent",
-        "fields": "agentID"
+        "fields": "agent_pk"
       }
     },
     {
-      "fields": "relatedAgentID",
+      "fields": "relatedAgent_fk",
       "predicate": "role for",
       "reference": {
         "resource": "agent",
-        "fields": "agentID"
+        "fields": "agent_pk"
       }
     }
   ]

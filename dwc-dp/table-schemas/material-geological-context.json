@@ -8,14 +8,29 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//material-geological-context",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "materialEntityID",
-      "title": "Material Entity ID",
+      "name": "geologicalContext_fk",
+      "title": "Geological Context (Foreign Key)",
+      "description": "An identifier for a dwc:GeologicalContext.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
+      "constraints": {
+        "required": true,
+        "unique": false
+      }
+    },
+    {
+      "name": "materialEntity_fk",
+      "title": "Material Entity (Foreign Key)",
       "description": "An identifier for a dwc:MaterialEntity.",
-      "comments": "Values of dwc:materialEntityID are intended to uniquely and persistently identify a particular dwc:MaterialEntity within some context. Examples of context include a particular sample collection, an organization, or the worldwide scale. Recommended best practice is to use a persistent, globally unique identifier. The identifier is bound to a physical object (a dwc:MaterialEntity) as opposed to a particular digital record (representation) of that physical object.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -27,40 +42,23 @@
         "required": true,
         "unique": false
       }
-    },
-    {
-      "name": "geologicalContextID",
-      "title": "Geological Context ID",
-      "description": "An identifier for a dwc:GeologicalContext.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a globally unique identifier or an identifier specific to the data set.",
-      "constraints": {
-        "required": true,
-        "unique": false
-      }
     }
   ],
   "foreignKeys": [
     {
-      "fields": "materialEntityID",
-      "predicate": "for",
-      "reference": {
-        "resource": "material",
-        "fields": "materialEntityID"
-      }
-    },
-    {
-      "fields": "geologicalContextID",
+      "fields": "geologicalContext_fk",
       "predicate": "within",
       "reference": {
         "resource": "geological-context",
-        "fields": "geologicalContextID"
+        "fields": "geologicalContext_pk"
+      }
+    },
+    {
+      "fields": "materialEntity_fk",
+      "predicate": "for",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntity_pk"
       }
     }
   ]

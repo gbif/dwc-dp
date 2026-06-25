@@ -8,38 +8,35 @@
   "examples": "`a person shown in a photograph`; `a group of people in a video`",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//agent-media",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "mediaID",
-      "title": "Media ID",
+      "name": "media_fk",
+      "title": "Media (Foreign Key)",
       "description": "An identifier for an ac:Media resource.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/mediaID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
       }
     },
     {
-      "name": "agentID",
-      "title": "Agent ID",
+      "name": "agent_fk",
+      "title": "Agent (Foreign Key)",
       "description": "An identifier for a dcterms:Agent.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": true,
         "unique": false
@@ -48,15 +45,15 @@
     {
       "name": "subjectCategory",
       "title": "Subject Category",
-      "description": "A category for the content of an ac:Media resource.",
+      "description": "A term to describe the content of a image or a region of interest within an image using a controlled value string.",
       "comments": "Recommended best practice is to use a controlled vocabulary.",
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/subjectCategory",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "namespace": "ac",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
+      "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
     },
     {
       "name": "subjectCategoryIRI",
@@ -66,13 +63,13 @@
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwciri/subjectCategoryIRI",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "namespace": "ac",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVterm",
+      "dcterms:references": "pending",
+      "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
     },
     {
-      "name": "subjectCategorySource",
+      "name": "subjectCategoryVocabulary",
       "title": "Subject Category Source",
       "description": "A reference to a controlled vocabulary in which the definition of a value in dwc:subjectCategory is given.",
       "comments": "The Audiovisual Core recommended vocabularies do not need to be cited here. There is no required linkage between individual Subject Category terms and the vocabulary; the mechanism is intended to support discovery of the normative URI for a term, but not guarantee it.",
@@ -80,9 +77,9 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategorySource",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategorySource-2020-01-27",
-      "rdfs:comment": "Any vocabulary or formal classification from which terms in the Subject Category have been drawn."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
+      "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
     },
     {
       "name": "subjectPartLiteral",
@@ -146,25 +143,25 @@
       "format": "default",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2020-01-27",
-      "rdfs:comment": "The setting of the content represented in an ac:Media resource, such as images, sounds, and movies if the provider deems them relevant. Constrained vocabulary of: `Natural` = Object in its natural setting of the object (e. g. living organisms in their natural environment); `Artificial` = Object in an artificial environment (e. g. living organisms in an artificial environment such as a zoo, garden, greenhouse, or laboratory); `Edited` = Human media editing of a natural setting or media acquisition with a separate media background such as a photographic backdrop."
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
+      "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
     }
   ],
   "foreignKeys": [
     {
-      "fields": "mediaID",
+      "fields": "media_fk",
       "predicate": "this media instance",
       "reference": {
         "resource": "media",
-        "fields": "mediaID"
+        "fields": "media_pk"
       }
     },
     {
-      "fields": "agentID",
+      "fields": "agent_fk",
       "predicate": "about",
       "reference": {
         "resource": "agent",
-        "fields": "agentID"
+        "fields": "agent_pk"
       }
     }
   ]

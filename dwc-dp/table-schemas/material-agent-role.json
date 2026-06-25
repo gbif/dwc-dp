@@ -8,31 +8,12 @@
   "examples": "",
   "namespace": "",
   "dcterms:isVersionOf": "http://example.com/term-pending//material-agent-role",
-  "dcterms:references": "",
-  "rdfs:comment": "",
   "fields": [
     {
-      "name": "agentID",
-      "title": "Agent ID",
-      "description": "An identifier for a dcterms:Agent.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentID",
-      "dcterms:references": "",
-      "rdfs:comment": "",
-      "constraints": {
-        "required": true,
-        "unique": false
-      }
-    },
-    {
-      "name": "materialEntityID",
-      "title": "Material Entity ID",
+      "name": "materialEntity_fk",
+      "title": "Material Entity (Foreign Key)",
       "description": "An identifier for a dwc:MaterialEntity.",
-      "comments": "Values of dwc:materialEntityID are intended to uniquely and persistently identify a particular dwc:MaterialEntity within some context. Examples of context include a particular sample collection, an organization, or the worldwide scale. Recommended best practice is to use a persistent, globally unique identifier. The identifier is bound to a physical object (a dwc:MaterialEntity) as opposed to a particular digital record (representation) of that physical object.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -40,6 +21,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
       "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
+      "constraints": {
+        "required": true,
+        "unique": false
+      }
+    },
+    {
+      "name": "agent_fk",
+      "title": "Agent (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": true,
         "unique": false
@@ -54,9 +52,9 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentRole",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
+      "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
     },
     {
       "name": "agentRoleIRI",
@@ -67,9 +65,9 @@
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwciri/agentRoleIRI",
-      "dcterms:references": "",
-      "rdfs:comment": ""
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
+      "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
     },
     {
       "name": "agentRoleSource",
@@ -81,7 +79,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -93,10 +90,11 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://example.com/term-pending/dwc/agentRoleOrder",
-      "dcterms:references": "",
-      "rdfs:comment": "",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
+      "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
       "constraints": {
+        "required": true,
         "minimum": 1
       }
     },
@@ -116,19 +114,19 @@
   ],
   "foreignKeys": [
     {
-      "fields": "agentID",
-      "predicate": "role holder",
-      "reference": {
-        "resource": "agent",
-        "fields": "agentID"
-      }
-    },
-    {
-      "fields": "materialEntityID",
+      "fields": "materialEntity_fk",
       "predicate": "role for",
       "reference": {
         "resource": "material",
-        "fields": "materialEntityID"
+        "fields": "materialEntity_pk"
+      }
+    },
+    {
+      "fields": "agent_fk",
+      "predicate": "role holder",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ]

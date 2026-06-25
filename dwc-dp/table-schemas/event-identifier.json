@@ -8,20 +8,19 @@
   "examples": "",
   "namespace": "adms",
   "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-  "dcterms:references": "",
   "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
   "fields": [
     {
-      "name": "eventID",
-      "title": "Event ID",
+      "name": "event_fk",
+      "title": "Event (Foreign Key)",
       "description": "An identifier for a dwc:Event.",
-      "comments": "Recommended best practice is to use a globally unique identifier.",
+      "comments": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2023-06-28",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
       "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
@@ -55,7 +54,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -68,7 +66,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-      "dcterms:references": "",
       "rdfs:comment": "The nature or genre of the resource."
     },
     {
@@ -81,7 +78,6 @@
       "format": "default",
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "dcterms:references": "",
       "rdfs:comment": "A related resource from which the described resource is derived."
     },
     {
@@ -92,19 +88,18 @@
       "examples": "",
       "type": "string",
       "format": "default",
-      "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/language",
-      "dcterms:references": "",
+      "namespace": "dc",
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
       "rdfs:comment": "A language of the resource."
     }
   ],
   "foreignKeys": [
     {
-      "fields": "eventID",
+      "fields": "event_fk",
       "predicate": "for",
       "reference": {
         "resource": "event",
-        "fields": "eventID"
+        "fields": "event_pk"
       }
     }
   ]
