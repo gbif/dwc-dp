@@ -298,6 +298,7 @@
       "rdfs:comment": "Comments or notes about a dwc:Assertion."
     }
   ],
+  "weakPrimaryKey": "assertionID",
   "foreignKeys": [
     {
       "fields": "materialEntity_fk",
