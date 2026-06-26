@@ -370,6 +370,27 @@
     return fk.relationship || fk.predicate || fk.predicateLabel || fk.title || fk.description || fk.comments || "";
   }
 
+  function isWeakPrimaryKeyField(schemaObj, fieldName) {
+    return arrayify(schemaObj.weakPrimaryKey).indexOf(fieldName) !== -1;
+  }
+
+
+  function allRelationshipKeys(schemaObj) {
+    const normal = (schemaObj.foreignKeys || []).map(function (fk) {
+      const copy = Object.assign({}, fk);
+      copy._keyKind = "foreignKey";
+      return copy;
+    });
+
+    const weak = (schemaObj.weakForeignKeys || []).map(function (fk) {
+      const copy = Object.assign({}, fk);
+      copy._keyKind = "weakForeignKey";
+      return copy;
+    });
+
+    return normal.concat(weak);
+  }
+
   function showInfo(tableName) {
     const schemaObj = schemas.get(tableName);
     const meta      = tableMeta.get(tableName);
@@ -459,8 +480,9 @@
     (schemaObj.fields || []).forEach(function (fieldObj) {
       const isRequired  = !!(fieldObj.constraints && fieldObj.constraints.required === true);
       const isPk        = arrayify(schemaObj.primaryKey).indexOf(fieldObj.name) !== -1;
+      const isWeakPk    = isWeakPrimaryKeyField(schemaObj, fieldObj.name);
 
-      const fkEntries = (schemaObj.foreignKeys || [])
+      const fkEntries = allRelationshipKeys(schemaObj)
         .filter(function (fk) { return arrayify(fk.fields).indexOf(fieldObj.name) !== -1; })
         .map(function (fk) {
           const refFields   = arrayify(fk.reference ? fk.reference.fields : []);
@@ -469,13 +491,15 @@
           const fkFields    = arrayify(fk.fields);
           const idx         = fkFields.indexOf(fieldObj.name);
           return {
-            keyType:   isRequiredFK(schemaObj, fk) ? "foreign key" : "weak foreign key",
+            keyType:   fk._keyKind === "weakForeignKey" ? "weak foreign key" : "foreign key",
             predicate: fkPhrase(fk),
             ref:       refResource + "." + (refFields[idx] || refFields[0] || "?")
           };
         });
 
-      const keyTypes   = (isPk ? ["primary key"] : []).concat(fkEntries.map(function (e) { return e.keyType; }));
+      const keyTypes   = (isPk ? ["primary key"] : [])
+        .concat(isWeakPk ? ["weak primary key"] : [])
+        .concat(fkEntries.map(function (e) { return e.keyType; }));
       const predicates = fkEntries.map(function (e) { return e.predicate; });
       const refs       = fkEntries.map(function (e) { return e.ref; });
 
@@ -581,14 +605,15 @@
     });
 
     schemas.forEach(function (schemaObj, tableName) {
-      (schemaObj.foreignKeys || []).forEach(function (fk, idx) {
-        const ref = fk && fk.reference ? fk.reference.resource : "";
+      allRelationshipKeys(schemaObj).forEach(function (fk, idx) {
+        let ref = fk && fk.reference ? fk.reference.resource : "";
+        if (!ref) { ref = tableName; }
         if (!visibleTables.has(tableName) || !visibleTables.has(ref)) { return; }
 
         const fkFields  = Array.isArray(fk.fields) ? fk.fields : [fk.fields];
         const refFields = Array.isArray(fk.reference && fk.reference.fields ? fk.reference.fields : [])
           ? fk.reference.fields : [fk.reference ? fk.reference.fields : ""];
-        const keyType   = isRequiredFK(schemaObj, fk) ? "foreignKey" : "weakForeignKey";
+        const keyType   = fk._keyKind === "weakForeignKey" ? "weakForeignKey" : "foreignKey";
         const label     = fk.relationship || fk.predicate || fk.predicateLabel || "relates to";
 
         elements.push({
@@ -952,6 +977,7 @@
       : (schemaClone.primaryKey ? [schemaClone.primaryKey] : []);
 
     pkValues.forEach(function (n) { requiredFieldNames.add(n); });
+    arrayify(schemaClone.weakPrimaryKey).forEach(function (n) { requiredFieldNames.add(n); });
     (schemaClone.fields || []).forEach(function (f) {
       if (f && f.constraints && f.constraints.required === true) { requiredFieldNames.add(f.name); }
     });
@@ -962,12 +988,22 @@
     schemaClone.foreignKeys = (schemaClone.foreignKeys || []).filter(function (fk) {
       return (Array.isArray(fk.fields) ? fk.fields : [fk.fields]).every(function (n) { return allowedFieldNames.has(n); });
     });
+    schemaClone.weakForeignKeys = (schemaClone.weakForeignKeys || []).filter(function (fk) {
+      return (Array.isArray(fk.fields) ? fk.fields : [fk.fields]).every(function (n) { return allowedFieldNames.has(n); });
+    });
 
     if (Array.isArray(schemaClone.primaryKey)) {
       schemaClone.primaryKey = schemaClone.primaryKey.filter(function (n) { return allowedFieldNames.has(n); });
       if (schemaClone.primaryKey.length === 0) { delete schemaClone.primaryKey; }
     } else if (schemaClone.primaryKey && !allowedFieldNames.has(schemaClone.primaryKey)) {
       delete schemaClone.primaryKey;
+    }
+
+    if (Array.isArray(schemaClone.weakPrimaryKey)) {
+      schemaClone.weakPrimaryKey = schemaClone.weakPrimaryKey.filter(function (n) { return allowedFieldNames.has(n); });
+      if (schemaClone.weakPrimaryKey.length === 0) { delete schemaClone.weakPrimaryKey; }
+    } else if (schemaClone.weakPrimaryKey && !allowedFieldNames.has(schemaClone.weakPrimaryKey)) {
+      delete schemaClone.weakPrimaryKey;
     }
     return schemaClone;
   }
