@@ -1,11 +1,12 @@
 metadata:
   title: Darwin Core Data Package PostgreSQL schema
-  version: '2026-03-19'
+  version: '2026-06-26'
   source_table_schemas: table-schemas/
   generated_by: generate_sql.py
   notes:
   - Generated from DwC-DP table schemas plus PostgreSQL sidecar configuration.
   - foreignKeys are rendered as PostgreSQL FOREIGN KEY constraints.
+  - weakPrimaryKeys are rendered as plain columns with indexes but without REFERENCES.
   - weakForeignKeys are rendered as plain columns with indexes but without REFERENCES.
   example_run: |
     python generate_sql.py \

@@ -84,7 +84,7 @@
     {
       "name": "agentRoleOrder",
       "title": "Agent Role Order",
-      "description": "A numerical position of a dcterms:AgentRole in a set of dcterms:AgentRoles that have the same combination of dwc:agentRole, dwc:agentRoleIRI, dwc:agentRoleSource and related target.",
+      "description": "A numerical position of an AgentRole in a set of AgentRoles that have the same combination of agentRole, agentRoleIRI, agentRoleSource and related target identifier.",
       "comments": "One could use dwc:agentRoleOrder to create an ordered list of collectors (dwc:agentRole = 'collector') for a dwc:MaterialEntity, for example. The first would have dwc:agentRoleOrder=1, the second would have dwc:agentRoleOrder=2.",
       "examples": "",
       "type": "integer",

@@ -731,45 +731,6 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
       "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
-    },
-    {
-      "name": "superfamily",
-      "title": "Superfamily",
-      "description": "The full scientific name of the superfamily in which the dwc:Taxon is classified.",
-      "comments": "A taxonomic category subordinate to an order and superior to a family. According to ICZN article 29.2, the suffix -oidea is used for a superfamily name.",
-      "examples": "`Achatinoidea`; `Cerithioidea`; `Helicoidea`; `Hypsibioidea`; `Valvatoidea`; `Zonitoidea`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/superfamily",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/superfamily-2023-07-07",
-      "rdfs:comment": "The full scientific name of the superfamily in which the dwc:Taxon is classified."
-    },
-    {
-      "name": "tribe",
-      "title": "Tribe",
-      "description": "The full scientific name of the tribe in which the dwc:Taxon is classified.",
-      "comments": "",
-      "examples": "`Ortaliini`; `Arethuseae`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tribe",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/tribe-2023-06-28",
-      "rdfs:comment": "The full scientific name of the tribe in which the dwc:Taxon is classified."
-    },
-    {
-      "name": "subtribe",
-      "title": "Subtribe",
-      "description": "The full scientific name of the subtribe in which the dwc:Taxon is classified.",
-      "comments": "",
-      "examples": "`Plotinini`; `Typhaeini`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subtribe",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subtribe-2023-06-28",
-      "rdfs:comment": "The full scientific name of the subtribe in which the dwc:Taxon is classified."
     }
   ],
   "primaryKey": "identification_pk",

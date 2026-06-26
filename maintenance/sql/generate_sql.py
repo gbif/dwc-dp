@@ -77,6 +77,7 @@ class Table:
     sql_name: str
     columns: list[Column]
     primary_key: list[str] = field(default_factory=list)
+    weak_primary_key: list[str] = field(default_factory=list)
     foreign_keys: list[ForeignKey] = field(default_factory=list)
     weak_foreign_keys: list[ForeignKey] = field(default_factory=list)
     title: str | None = None
@@ -210,6 +211,7 @@ def read_schema_file(path: Path) -> Table:
         sql_name=sql_name,
         columns=columns,
         primary_key=normalize_listish(data.get("primaryKey")),
+        weak_primary_key=normalize_listish(data.get("weakPrimaryKey")),
         foreign_keys=parse_fk_items(data.get("foreignKeys", []), weak=False),
         weak_foreign_keys=parse_fk_items(data.get("weakForeignKeys", []), weak=True),
         title=data.get("title"),
@@ -297,13 +299,15 @@ class SqlGenerator:
                 # Check that target fields form a key (primary key or unique) on the target table.
                 target_fields_set = set(fk.target_fields)
                 is_pk = target_fields_set == set(target_table.primary_key)
+                is_weak_pk = target_fields_set == set(target_table.weak_primary_key)
+                
                 unique_cols = {
                     col.logical_name
                     for col in target_table.columns
                     if (col.constraints or {}).get("unique")
                 }
                 is_unique = len(fk.target_fields) == 1 and fk.target_fields[0] in unique_cols
-                if not (is_pk or is_unique):
+                if not (is_pk or is_weak_pk or is_unique):
                     msg = (
                         f"Table {table.logical_name}: FK target fields {fk.target_fields} "
                         f"on {target_table_name} are not a primary key or unique column"

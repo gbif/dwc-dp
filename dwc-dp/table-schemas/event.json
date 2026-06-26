@@ -1051,7 +1051,7 @@
       "title": "Georeference Sources",
       "description": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference a dcterms:Location, described specifically enough to allow anyone in the future to use the same resources.",
       "comments": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `). This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
-      "examples": "`GeoLocate`, `GeoPick`; `https://www.geonames.org/`; `USGS 1:24000 Florence Montana Quad 1967 | Terrametrics 2008 on Google Earth`",
+      "examples": "`GeoLocate`; `GeoPick`; `https://www.geonames.org/`; `USGS 1:24000 Florence Montana Quad 1967 | Terrametrics 2008 on Google Earth`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
