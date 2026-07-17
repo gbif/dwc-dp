@@ -3,7 +3,7 @@
 # Script to validate the table schemas locally to the extent possible - no calls to
 # non-local resources
 #
-# find all local data package index.json files under ../dwc-dp
+# find all local data package index.json files under ../../dwc-dp
 # verify package JSON validity
 # verify tableSchemas metadata completeness and uniqueness
 # compare declared schema files with actual files in table-schemas
@@ -21,7 +21,7 @@ from pathlib import Path
 from frictionless import Schema
 
 # Paths to scan
-DIRECTORIES_TO_SCAN = ['../dwc-dp']
+DIRECTORIES_TO_SCAN = ['../../dwc-dp']
 
 # Field-level properties that must be present on every field in every schema
 REQUIRED_FIELD_PROPERTIES = ['description', 'type']
