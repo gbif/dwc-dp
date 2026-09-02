@@ -1,27 +1,27 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0_DEV/material-usage-policy",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0_DEV/event-usage-policy",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
-  "url": "table-schemas/material-usage-policy.json",
-  "name": "material-usage-policy",
-  "title": "Material Usage Policy",
+  "url": "table-schemas/event-usage-policy.json",
+  "name": "event-usage-policy",
+  "title": "Event Usage Policy",
   "description": "Rights, usage, and attribution statements applicable to a dwc:MaterialEntity.",
   "notes": "",
   "examples": "",
   "namespace": "",
-  "dcterms:isVersionOf": "http://example.com/term-pending//material-usage-policy",
+  "dcterms:isVersionOf": "http://example.com/term-pending//event-usage-policy",
   "fields": [
     {
-      "name": "materialEntity_fk",
-      "title": "Material Entity (Foreign Key)",
-      "description": "An identifier for a dwc:MaterialEntity.",
+      "name": "event_fk",
+      "title": "Event (Foreign Key)",
+      "description": "An identifier for a dwc:Event.",
       "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
       "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-      "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -40,18 +40,18 @@
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
       "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
       "constraints": {
-        "required": true,
+        "required": false,
         "unique": false
       }
     }
   ],
   "foreignKeys": [
     {
-      "fields": "materialEntity_fk",
+      "fields": "event_fk",
       "predicate": "for",
       "reference": {
-        "resource": "material",
-        "fields": "materialEntity_pk"
+        "resource": "event",
+        "fields": "event_pk"
       }
     },
     {

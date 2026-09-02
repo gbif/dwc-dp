@@ -4,6 +4,7 @@
 Stage 1) read the csv files in ../vocabulary and generate:
   ../dwc-dp/index.json
   ../dwc-dp/version.json
+  ../dwc-dp/dwc-dp-profile.json
   ../dwc-dp/table-schemas/*.json
 
 Stage 2) renders the
@@ -13,12 +14,13 @@ Usage:
   python generate_qrg.py <version>
 
 Examples:
-  python generate_qrg.py 0.1
+  python generate_qrg.py http://rs.tdwg.org/dwc-dp/1.0_DEV
 """
 
 import sys
 import os
 import argparse
+import copy
 import json
 import csv
 import logging
@@ -42,13 +44,12 @@ logger = logging.getLogger(__name__)
 # Expected headers for each source CSV.  Order is NOT enforced; presence is.
 EXPECTED_HEADERS = {
     "dwc-dp-tables.csv": {
-        "name", "title", "description", "comments", "example", "namespace",
+        "name", "title", "description", "notes", "example", "namespace",
         "dcterms:isVersionOf", "dcterms:references", "rdfs:comment", "status",
-        "new", "ignore",
     },
     "dwc-dp-fields.csv": {
         "table", "name", "key", "predicate", "related_table", "related_field",
-        "title", "description", "comments", "example", "type", "format",
+        "title", "description", "notes", "example", "type", "format",
         "unique", "required", "minimum", "maximum", "namespace",
         "dcterms:isVersionOf", "dcterms:references", "rdfs:comment", "status",
     },
@@ -57,6 +58,32 @@ EXPECTED_HEADERS = {
 # Columns that carry genuine boolean semantics; "no" / "yes" are coerced only here.
 BOOLEAN_COLUMNS = {"required", "unique"}
 
+# ---------------------------------------------------------------------------
+# Profile generation constants
+# ---------------------------------------------------------------------------
+
+# Name of the profile template, which lives alongside this script in maintenance/.
+PROFILE_TEMPLATE_FILENAME = "dwc-dp-profile_template.json"
+
+# Name of the generated profile, written beside index.json.
+PROFILE_OUTPUT_FILENAME = "dwc-dp-profile.json"
+
+# Location, within the profile template, of the enum listing the resource names
+# that belong to a version.  Every key except the last must resolve to an object.
+PROFILE_ENUM_PATH = ("$defs", "dwc-dp-resource-names", "enum")
+
+# The template must carry exactly this one-item enum at PROFILE_ENUM_PATH.  The
+# placeholder is replaced with the recommended table names for the version.
+PROFILE_ENUM_PLACEHOLDER = "{{DWC_DP_RESOURCE_NAMES}}"
+
+# Location, within the profile template, of the version string.  Every key
+# except the last must resolve to an object.
+PROFILE_VERSION_PATH = ("version",)
+
+# The template must carry exactly this string at PROFILE_VERSION_PATH.  The
+# placeholder is replaced with the version given on the command line.
+PROFILE_VERSION_PLACEHOLDER = "{{DWC_DP_VERSION}}"
+
 # Ordered display groups for the QRG.  Every recommended table name must appear
 # exactly once; validate_ordered_groups() enforces this at runtime.
 ORDERED_GROUPS = [
@@ -64,7 +91,7 @@ ORDERED_GROUPS = [
      'organism-interaction'],
     ['survey', 'survey-survey-target', 'survey-target', 'survey-target-descriptor'],
     ['identification', 'identification-taxon'],
-    ['material', 'material-geological-context'],
+    ['material', 'geological-material', 'material-geological-context'],
     ['nucleotide-analysis', 'molecular-protocol', 'nucleotide-sequence'],
     ['agent', 'agent-agent-role', 'chronometric-age-agent-role', 'event-agent-role',
      'identification-agent-role', 'material-agent-role', 'media-agent-role',
@@ -86,7 +113,7 @@ ORDERED_GROUPS = [
     ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier',
      'occurrence-identifier', 'organism-identifier', 'survey-identifier'],
     ['provenance', 'event-provenance', 'material-provenance', 'media-provenance'],
-    ['usage-policy', 'material-usage-policy', 'media-usage-policy'],
+    ['usage-policy', 'event-usage-policy', 'material-usage-policy', 'media-usage-policy'],
     ['organism-relationship', 'resource-relationship'],
 ]
 
@@ -100,15 +127,25 @@ def repo_root_from_script() -> Path:
 
 
 def _derive_paths(version: str):
-    """Return (index_json_path, table_schemas_dir, output_html_path, template_path)
-    all anchored to the repository root so they are independent of cwd."""
+    """Return (index_json_path, table_schemas_dir, output_html_path, template_path,
+    profile_json_path, profile_template_path) all anchored to the repository root
+    so they are independent of cwd."""
     root = repo_root_from_script()
     index_json_path = root / "dwc-dp" / "index.json"
     table_schemas_dir = root / "dwc-dp" / "table-schemas"
     output_html_path = root / "qrg" / "index.html"
-    # Template lives alongside this script in maintenance/
+    profile_json_path = root / "dwc-dp" / PROFILE_OUTPUT_FILENAME
+    # Templates live alongside this script in maintenance/
     template_path = Path(__file__).resolve().parent / "qrg_template.html"
-    return index_json_path, table_schemas_dir, output_html_path, template_path
+    profile_template_path = Path(__file__).resolve().parent / PROFILE_TEMPLATE_FILENAME
+    return (
+        index_json_path,
+        table_schemas_dir,
+        output_html_path,
+        template_path,
+        profile_json_path,
+        profile_template_path,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -339,7 +376,7 @@ def build_table_schemas(vocabulary_dir: Path, version: str) -> list:
             name = (row.get("name", "") or "").strip()
             title = (row.get("title", "") or "").strip()
             description = (row.get("description", "") or "").strip()
-            comments = (row.get("comments", "") or "").strip()
+            notes = (row.get("notes", "") or "").strip()
             example = (row.get("example", "") or "").strip()
             namespace = (row.get("namespace", "") or "").strip()
             iri = (row.get("dcterms:isVersionOf", "") or "").strip()
@@ -349,12 +386,13 @@ def build_table_schemas(vocabulary_dir: Path, version: str) -> list:
             rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
 
             ts = {
-                "identifier": f"http://rs.tdwg.org/dwc/dwc-dp/{name}",
+                "identifier": f"{version}/{name}",
+                "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
                 "url": f"table-schemas/{name}.json",
                 "name": name,
                 "title": title,
                 "description": description,
-                "comments": comments,
+                "notes": notes,
                 "examples": example,
                 "namespace": namespace,
                 "dcterms:isVersionOf": iri,
@@ -385,7 +423,7 @@ def build_fields_for_table(
         name = (row.get("name", "") or "").strip()
         title = (row.get("title", "") or "").strip()
         description = (row.get("description", "") or "").strip()
-        comments = (row.get("comments", "") or "").strip()
+        notes = (row.get("notes", "") or "").strip()
         example = (row.get("example", "") or "").strip()
         ftype = (row.get("type", "") or "").strip()
         fmt = (row.get("format", "") or "").strip()
@@ -431,7 +469,7 @@ def build_fields_for_table(
             "name": name,
             "title": title,
             "description": description,
-            "comments": comments,
+            "notes": notes,
             "examples": example,
             "type": ftype,
             "format": fmt,
@@ -452,7 +490,7 @@ def build_fields_for_table(
 
 def build_index_payload(version: str, vocabulary_dir: Path) -> dict:
     return {
-        "identifier": "http://rs.tdwg.org/dwc/dwc-dp",
+        "identifier": f"{version}",
         "url": "",
         "name": "dwc-dp",
         "version": version,
@@ -497,6 +535,118 @@ def write_table_schema_files(
         logger.info("Wrote %s", dest)
 
 
+# ---------------------------------------------------------------------------
+# Profile generation
+# ---------------------------------------------------------------------------
+
+def load_profile_template(profile_template_path: Path) -> dict:
+    """Load and parse the DwC-DP profile template from disk."""
+    if not profile_template_path.is_file():
+        raise FileNotFoundError(
+            f"Profile template not found: {profile_template_path}\n"
+            f"Expected {PROFILE_TEMPLATE_FILENAME} alongside this script in the "
+            "maintenance/ directory."
+        )
+    with profile_template_path.open("r", encoding="utf-8") as fh:
+        try:
+            template = json.load(fh)
+        except json.JSONDecodeError as exc:
+            raise ValueError(
+                f"Profile template is not valid JSON: {profile_template_path}\n  {exc}"
+            ) from exc
+
+    if not isinstance(template, dict):
+        raise ValueError(
+            f"Profile template must be a JSON object: {profile_template_path}"
+        )
+    return template
+
+
+def _locate_profile_container(profile: dict, path: tuple) -> tuple:
+    """Return (container_object, final_key) for path within profile.
+
+    Raises ValueError if the path does not resolve, so a drifted template fails
+    loudly rather than producing a profile with an unfilled placeholder.
+    """
+    container = profile
+    for depth, key in enumerate(path[:-1]):
+        nxt = container.get(key) if isinstance(container, dict) else None
+        if not isinstance(nxt, dict):
+            traversed = "/".join(path[: depth + 1])
+            raise ValueError(
+                "Profile template does not contain the expected object at "
+                f"'{traversed}'.  Expected path: {'/'.join(path)}"
+            )
+        container = nxt
+    return container, path[-1]
+
+
+def build_profile_payload(template: dict, recommended_table_names, version: str) -> dict:
+    """Return a copy of the template with both placeholders filled in.
+
+    The enum at PROFILE_ENUM_PATH is populated with the sorted names of the
+    recommended tables, which are exactly the tables that make up the version.
+    The string at PROFILE_VERSION_PATH is replaced with the version given on the
+    command line, used verbatim.  Nothing else in the template is altered.
+    """
+    if not recommended_table_names:
+        raise ValueError(
+            "Cannot build the profile: no recommended tables were found in "
+            "dwc-dp-tables.csv"
+        )
+    if not str(version or "").strip():
+        raise ValueError("Cannot build the profile: version is empty")
+
+    payload = copy.deepcopy(template)
+
+    # Resource-name enum.
+    container, enum_key = _locate_profile_container(payload, PROFILE_ENUM_PATH)
+    current = container.get(enum_key)
+    if current != [PROFILE_ENUM_PLACEHOLDER]:
+        raise ValueError(
+            f"Profile template placeholder not found at "
+            f"{'/'.join(PROFILE_ENUM_PATH)}.  Expected exactly "
+            f'["{PROFILE_ENUM_PLACEHOLDER}"], found: '
+            f"{json.dumps(current, ensure_ascii=False)}"
+        )
+    container[enum_key] = sorted(recommended_table_names)
+
+    # Version string.
+    container, version_key = _locate_profile_container(payload, PROFILE_VERSION_PATH)
+    current = container.get(version_key)
+    if current != PROFILE_VERSION_PLACEHOLDER:
+        raise ValueError(
+            f"Profile template placeholder not found at "
+            f"{'/'.join(PROFILE_VERSION_PATH)}.  Expected exactly "
+            f'"{PROFILE_VERSION_PLACEHOLDER}", found: '
+            f"{json.dumps(current, ensure_ascii=False)}"
+        )
+    container[version_key] = version
+
+    return payload
+
+
+def write_profile_json(
+    profile_json_path: Path,
+    profile_template_path: Path,
+    recommended_table_names,
+    version: str,
+) -> None:
+    """Render the profile from its template and write it to disk."""
+    template = load_profile_template(profile_template_path)
+    payload = build_profile_payload(template, recommended_table_names, version)
+
+    profile_json_path.parent.mkdir(parents=True, exist_ok=True)
+    with profile_json_path.open("w", encoding="utf-8") as fh:
+        json.dump(payload, fh, ensure_ascii=False, indent=2)
+        fh.write("\n")
+    logger.info(
+        "Wrote %s (%d resource names)",
+        profile_json_path,
+        len(sorted(recommended_table_names)),
+    )
+
+
 def write_version_json(out_dir: Path, version: str) -> None:
     payload = {
         "version": version,
@@ -513,8 +663,15 @@ def write_version_json(out_dir: Path, version: str) -> None:
 # Stage 1 entry point
 # ---------------------------------------------------------------------------
 
-def make_index_stage(index_json_path: Path, table_schemas_dir: Path, version: str) -> None:
-    """Validate CSVs, build JSON schemas, write index.json and version.json."""
+def make_index_stage(
+    index_json_path: Path,
+    table_schemas_dir: Path,
+    version: str,
+    profile_json_path: Path,
+    profile_template_path: Path,
+) -> None:
+    """Validate CSVs, build JSON schemas, write index.json, version.json and the
+    DwC-DP profile."""
     out_dir = index_json_path.parent
     out_dir.mkdir(parents=True, exist_ok=True)
     table_schemas_dir.mkdir(parents=True, exist_ok=True)
@@ -544,6 +701,14 @@ def make_index_stage(index_json_path: Path, table_schemas_dir: Path, version: st
 
     # Write version.json.
     write_version_json(out_dir, version)
+
+    # Write the profile, whose resource-name enum lists the tables of this version.
+    write_profile_json(
+        profile_json_path,
+        profile_template_path,
+        set(recommended_tables.keys()),
+        version,
+    )
 
     # Write per-table schema files using the already-loaded fields map.
     write_table_schema_files(out_dir, payload["tableSchemas"], recommended_fields)
@@ -659,7 +824,7 @@ def build_term_section(field: dict, class_name: str) -> str:
         return ""
 
     order = [
-        "title", "namespace", "class", "description", "comments", "examples",
+        "title", "namespace", "class", "description", "notes", "examples",
         "type", "default", "constraints", "format", "dcterms:isVersionOf",
         "dcterms:references",
     ]
@@ -669,7 +834,7 @@ def build_term_section(field: dict, class_name: str) -> str:
         "namespace": "Namespace",
         "dcterms:isVersionOf": "dcterms:isVersionOf",
         "description": "Description",
-        "comments": "Comments",
+        "notes": "Notes",
         "examples": "Examples",
         "type": "Type",
         "default": "Default",
@@ -804,9 +969,9 @@ def generate_qrg(
                 f'{table.get("description", "No description.")}</p>'
             )
 
-            if table.get("comments"):
+            if table.get("notes"):
                 content_parts.append(
-                    f'<p><strong>Comments:</strong> {table["comments"]}</p>'
+                    f'<p><strong>Notes:</strong> {table["notes"]}</p>'
                 )
 
             ex_val = table.get("examples") or table.get("example")
@@ -881,17 +1046,30 @@ def parse_args(argv=None):
 def main(argv=None):
     args = parse_args(argv)
 
-    index_json_path, table_schemas_dir, output_html_path, template_path = (
-        _derive_paths(args.version)
-    )
+    (
+        index_json_path,
+        table_schemas_dir,
+        output_html_path,
+        template_path,
+        profile_json_path,
+        profile_template_path,
+    ) = _derive_paths(args.version)
 
-    logger.info("index.json    -> %s", index_json_path)
-    logger.info("table-schemas -> %s", table_schemas_dir)
-    logger.info("QRG output    -> %s", output_html_path)
-    logger.info("HTML template <- %s", template_path)
+    logger.info("index.json       -> %s", index_json_path)
+    logger.info("table-schemas    -> %s", table_schemas_dir)
+    logger.info("profile          -> %s", profile_json_path)
+    logger.info("QRG output       -> %s", output_html_path)
+    logger.info("HTML template    <- %s", template_path)
+    logger.info("profile template <- %s", profile_template_path)
 
     # Stage 1: build JSON artefacts.
-    make_index_stage(index_json_path, table_schemas_dir, args.version)
+    make_index_stage(
+        index_json_path,
+        table_schemas_dir,
+        args.version,
+        profile_json_path,
+        profile_template_path,
+    )
 
     # Stage 2: render the QRG.
     generate_qrg(
