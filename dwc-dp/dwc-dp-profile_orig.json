@@ -1,7 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Darwin Core Data Package (DwC-DP) profile",
-  "version": "http://rs.tdwg.org/dwc-dp/1.0_DEV",
   "description": "Profile for organizing biodiversity data as a Data Package (https://specs.frictionlessdata.io/).",
   "type": "object",
   "$defs": {
@@ -26,10 +25,8 @@
         "event-protocol",
         "event-provenance",
         "event-reference",
-        "event-usage-policy",
         "geological-context",
         "geological-context-media",
-        "geological-material",
         "identification",
         "identification-agent-role",
         "identification-reference",
