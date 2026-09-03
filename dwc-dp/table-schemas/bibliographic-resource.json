@@ -42,6 +42,23 @@
       "rdfs:comment": "An identifier for a dcterms:BibliographicResource."
     },
     {
+      "name": "isPartOfReference_fk",
+      "title": "Is Part Of Reference (Foreign Key)",
+      "description": "An identifier for a dcterms:BibliographicResource that this dcterms:BibliographicResource is a part of.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "isPartOfReferenceID",
       "title": "Is Part Of Reference ID",
       "description": "An identifier for a dcterms:BibliographicResource that this dcterms:BibliographicResource is a part of.",
@@ -134,11 +151,28 @@
       "rdfs:comment": "An entity primarily responsible for making the resource."
     },
     {
+      "name": "author_fk",
+      "title": "Author (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent primarily responsible for making a dcterms:BibliographicResource.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "authorID",
       "title": "Author ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for making a dcterms:BibliographicResource.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -163,11 +197,28 @@
       "rdfs:comment": "A person having managerial and sometimes policy-making responsibility for the editorial part of a publishing firm or of a newspaper, magazine, or other publication."
     },
     {
+      "name": "editor_fk",
+      "title": "Editor (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent having managerial and sometimes policy-making responsibility for the editorial part of a publishing firm or of a newspaper, magazine, or other publication.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "editorID",
       "title": "Editor ID",
       "description": "An identifier for a dcterms:Agent having managerial and sometimes policy-making responsibility for the editorial part of a publishing firm or of a newspaper, magazine, or other publication.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -192,11 +243,28 @@
       "rdfs:comment": "An entity responsible for making the resource available."
     },
     {
+      "name": "publisher_fk",
+      "title": "Publisher (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for making a Reference available.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "publisherID",
       "title": "Publisher ID",
       "description": "An identifier for a dcterms:Agent responsible for making a Reference available.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -320,6 +388,40 @@
   ],
   "primaryKey": "reference_pk",
   "weakPrimaryKey": "referenceID",
+  "foreignKeys": [
+    {
+      "fields": "isPartOfReference_fk",
+      "predicate": "part of",
+      "reference": {
+        "resource": "",
+        "fields": "reference_pk"
+      }
+    },
+    {
+      "fields": "author_fk",
+      "predicate": "authored by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
+      "fields": "editor_fk",
+      "predicate": "edited by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
+      "fields": "publisher_fk",
+      "predicate": "published by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    }
+  ],
   "weakForeignKeys": [
     {
       "fields": "isPartOfReferenceID",

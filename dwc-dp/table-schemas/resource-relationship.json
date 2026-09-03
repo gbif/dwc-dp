@@ -207,7 +207,7 @@
       "title": "Relationship According To ID",
       "description": "An identifier for a dcterms:Agent responsible for asserting a dwc:ResourceRelationship.",
       "notes": "Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",

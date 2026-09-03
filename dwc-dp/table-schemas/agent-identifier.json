@@ -15,7 +15,7 @@
       "name": "agent_fk",
       "title": "Agent (Foreign Key)",
       "description": "An identifier for a dcterms:Agent.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",

@@ -59,7 +59,7 @@
       "name": "collectionEvent_fk",
       "title": "Collection Event (Foreign Key)",
       "description": "An identifier for a dwc:Event during which a dwc:MaterialEntity was collected.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -76,7 +76,7 @@
       "name": "evidenceForOccurrence_fk",
       "title": "Evidence For Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence for which a dwc:MaterialEntity provides evidence.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -93,7 +93,7 @@
       "name": "derivedFromMaterialEntity_fk",
       "title": "Derived From Material Entity (Foreign Key)",
       "description": "An identifier for a dwc:MaterialEntity from which this dwc:MaterialEntity was derived.",
-      "notes": "This dwc:MaterialEntity is separate from a dwc:MaterialEntity from which it was derived (cf. dwc:isPartOfMaterialEntityID). The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -127,7 +127,7 @@
       "name": "derivationEvent_fk",
       "title": "Derivation Event (Foreign Key)",
       "description": "An identifier for a dwc:Event during which a dwc:MaterialEntity was derived from another dwc:MaterialEntity.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -144,7 +144,7 @@
       "name": "isPartOfMaterialEntity_fk",
       "title": "Is Part Of Material Entity (Foreign Key)",
       "description": "An identifier for a dwc:MaterialEntity of which this dwc:MaterialEntity is a part.",
-      "notes": "This dwc:MaterialEntity was not taken from a dwc:MaterialEntity of which it is a part. The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -300,7 +300,7 @@
       "title": "Owner Institution ID",
       "description": "An identifier for an institution that owns a dwc:MaterialEntity.",
       "notes": "For physical specimens, the recommended best practice is to use a globally unique and resolvable identifier from a collections registry such as the Research Organization Registry (ROR) or the Global Registry of Scientific Collections (https://scientific-collections.gbif.org/). The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "`https://ror.org/015hz7p22`; `http://grscicoll.org/institution/museum-southwestern-biology`; `https://scientific-collections.gbif.org/institution/e3d4dcc4-81e2-444c-8a5c-41d1044b5381`",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -389,6 +389,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2026-05-26",
       "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Occurrence."
+    },
+    {
+      "name": "collectedBy_fk",
+      "title": "Collected By (Foreign Key)",
+      "description": "An identifier for the dcterms:Agent responsible for collecting a dwc:MaterialEntity.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "collectedByID",
@@ -697,12 +714,12 @@
       "name": "identifiedBy_fk",
       "title": "Identified By (Foreign Key)",
       "description": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`https://orcid.org/0000-0002-1825-0097` (for an individual); `https://orcid.org/0000-0002-1825-0097 | https://orcid.org/0000-0002-1825-0098` (for a list of people)",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy_fk",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
       "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
@@ -858,16 +875,17 @@
       "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
     },
     {
-      "name": "externalClassificationSource",
-      "title": "External Classification Source",
-      "description": "A reference to a source outside the dataset where the identifying name, code, or taxon concept can be found.",
-      "notes": "The external source applies to whichever of dwc:taxonID, dwc:scientificNameID, minext:geoClassificationCode, minext:geoName, dwc:scientificName, or dwc:vernacularName is populated.",
-      "examples": "`http://www.catalogueoflife.org/data/taxon/`; `https://avibase.bsc-eoc.org/`; `Dana, J. D., Dana, E. S., & Gaines, R. V. (1997). Dana's new mineralogy: The system of mineralogy of James Dwight Dana and Edward Salisbury Dana.`; `Strunz H, Nickel EH (2001) Strunz Mineralogical Tables, 9th Edition. Berlin and Stuttgart 870 pp.`",
+      "name": "classificationSystem",
+      "title": "Classification System",
+      "description": "A reference to the classification system in which an authoritative name or formal classification belongs.",
+      "notes": "Recommended best practice is to provide a formal citation or IRI. This term should not be confused with dwc:namePublishedIn as a classification system is not equivalent to a publication in which a taxon is first described. This term should not be confused with dwc:nameAccordingTo as a classification system is not equivalent to a publication or other source in which a specific taxon concept circumscription is defined or implied. This term should not be confused with dwc:nomenclaturalCode as a classification system is not equivalent to code of nomenclature, which states the rules for naming rather than an organized source of names. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+      "examples": "`Strunz, H., Nickel, E.H. (2001): Strunz Mineralogical Tables. Chemical-Structural Mineral Classification System. 9th edition. E. Schweizerbart’sche Verlagsbuchhandlung, Stuttgart, ix + 870 p. (ISBN 3-510-65188-X)`; `Gaines, R.V., Skinner, H.C.W., Foord, E.E., Mason, B., Rosenzweig, A. (1997): Dana's New Mineralogy: The System of Mineralogy of James Dwight Dana and Edward Salisbury Dana. 8th edition. John Wiley & Sons, New York, xlv + 1819 p. (ISBN 0-471-19310-0).`; `https://kos.geospecimens.org/vocab/meteorite-classification`; `Mammal Diversity Database. (2026). Mammal Diversity Database (Version 2.5) [Data set]. [Zenodo](https://zenodo.org/records/10595931). https://doi.org/10.5281/zenodo.17033774`; `Index Fungorum. (2026). Index Fungorum electronic database. Royal Botanic Gardens, Kew. Retrieved August 17, 2026, from indexfungorum.org.`",
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
+      "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
     },
     {
       "name": "modified",
@@ -885,7 +903,7 @@
       "name": "provenance_fk",
       "title": "Provenance (Foreign Key)",
       "description": "An identifier for a dwc:Provenance.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -902,7 +920,7 @@
       "name": "usagePolicy_fk",
       "title": "Usage Policy (Foreign Key)",
       "description": "An identifier for a dwc:UsagePolicy.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -926,6 +944,23 @@
       "namespace": "xmprights",
       "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner",
       "rdfs:comment": "A list of legal owners of the resource."
+    },
+    {
+      "name": "owner_fk",
+      "title": "Owner (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent that is the owner of the ac:Media resource.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "license",
@@ -1023,6 +1058,14 @@
       }
     },
     {
+      "fields": "collectedBy_fk",
+      "predicate": "collected by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
       "fields": "identifiedBy_fk",
       "predicate": "identified by",
       "reference": {
@@ -1044,6 +1087,14 @@
       "reference": {
         "resource": "usage-policy",
         "fields": "usagePolicy_pk"
+      }
+    },
+    {
+      "fields": "owner_fk",
+      "predicate": "owned by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ],

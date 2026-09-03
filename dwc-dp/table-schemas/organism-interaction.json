@@ -46,7 +46,7 @@
       "name": "event_fk",
       "title": "Event (Foreign Key)",
       "description": "An identifier for a dwc:Event.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -76,7 +76,7 @@
       "name": "subjectOccurrence_fk",
       "title": "Subject Occurrence (Foreign Key)",
       "description": "An identifier for a subject dwc:Occurrence in a dwc:OrganismInteraction.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -114,6 +114,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionType",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionType-2026-05-26",
       "rdfs:comment": "A category that best matches the nature of a dwc:OrganismInteraction."
+    },
+    {
+      "name": "relatedOccurrence_fk",
+      "title": "Related Occurrence (Foreign Key)",
+      "description": "An identifier for a related dwc:Occurrence in a dwc:OrganismInteraction.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "relatedOccurrenceID",
@@ -198,6 +215,14 @@
     {
       "fields": "subjectOccurrence_fk",
       "predicate": "by",
+      "reference": {
+        "resource": "occurrence",
+        "fields": "occurrence_pk"
+      }
+    },
+    {
+      "fields": "relatedOccurrence_fk",
+      "predicate": "with",
       "reference": {
         "resource": "occurrence",
         "fields": "occurrence_pk"

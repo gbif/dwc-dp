@@ -14,8 +14,8 @@
       "name": "identification_fk",
       "title": "Identification (Foreign Key)",
       "description": "An identifier for a dwc:Identification.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`9992`",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -69,6 +69,32 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
       "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+    },
+    {
+      "name": "geologicalClassificationCodes",
+      "title": "Geological Classification Codes",
+      "description": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial.",
+      "notes": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "examples": "`71.02.02a.01` (\"muscovite\" in the Dana classification system); `9.AD.25` (\"garnet group\" in the Nickel-Strunz classification system); `75.01.03.01 | 4.DA.05` (\"quartz\" the Dana classification system and \"quartz group\" in the Nickel-Strunz classification system)",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
+      "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
+    },
+    {
+      "name": "geologicalMaterialNames",
+      "title": "Geological Material Names",
+      "description": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial.",
+      "notes": "May includes both informal (e.g., variety, synonym) and formal (classification) names. The first name in the list should be considered the preferred name. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
+      "examples": "`quartz | smoky quartz`; `muscovite`; `garnet group`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
+      "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
     },
     {
       "name": "scientificName",

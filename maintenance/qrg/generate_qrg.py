@@ -731,14 +731,21 @@ def load_template(template_path: Path) -> str:
 
 
 def build_foreign_key_summary(table_schema: dict, current_table_name: str = None) -> str:
-    relationships = []
+    """Build the relationship summary in the same order as key fields occur.
 
-    # Add primary key row(s) first.
+    The table schema's ``fields`` array preserves the row order from
+    dwc-dp-fields.csv.  Relationship metadata is stored separately as primaryKey,
+    weakPrimaryKey, foreignKeys, and weakForeignKeys, so iterating those structures
+    directly groups rows by relationship type.  Instead, collect relationship rows
+    by source field and then emit them while walking ``fields`` in schema order.
+    """
+    relationships_by_field = defaultdict(list)
+
     primary_key = table_schema.get("primaryKey")
     if primary_key:
         pk_fields = primary_key if isinstance(primary_key, list) else [primary_key]
         for pk in pk_fields:
-            relationships.append(
+            relationships_by_field[pk].append(
                 (pk, "", "", "", "primary key", "Yes")
             )
 
@@ -746,10 +753,10 @@ def build_foreign_key_summary(table_schema: dict, current_table_name: str = None
     if weak_primary_key:
         wpk_fields = weak_primary_key if isinstance(weak_primary_key, list) else [weak_primary_key]
         for wpk in wpk_fields:
-            relationships.append(
+            relationships_by_field[wpk].append(
                 (wpk, "", "", "", "weak primary key", "No")
             )
-                
+
     for rel_name, rel_type, enforced in [
         ("foreignKeys", "foreign key", "Yes"),
         ("weakForeignKeys", "weak foreign key", "No"),
@@ -772,9 +779,28 @@ def build_foreign_key_summary(table_schema: dict, current_table_name: str = None
             )
 
             for src, tgt in zip(src_fields or [], tgt_fields or []):
-                relationships.append(
+                relationships_by_field[src].append(
                     (src, predicate, tgt_table_display, tgt, rel_type, enforced)
                 )
+
+    # Emit relationship rows in exactly the order their source fields occur in the
+    # schema fields array, which preserves dwc-dp-fields.csv order for this table.
+    relationships = []
+    emitted_fields = set()
+    for field in (table_schema.get("fields") or []):
+        if not isinstance(field, dict):
+            continue
+        field_name = (field.get("name") or "").strip()
+        if not field_name:
+            continue
+        relationships.extend(relationships_by_field.get(field_name, []))
+        emitted_fields.add(field_name)
+
+    # Defensive fallback: retain any relationship whose source field was not found
+    # in the fields array rather than silently dropping it.
+    for field_name, field_relationships in relationships_by_field.items():
+        if field_name not in emitted_fields:
+            relationships.extend(field_relationships)
 
     if not relationships:
         return ""

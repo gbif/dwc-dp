@@ -6,7 +6,7 @@
   "title": "Darwin Core Data Package",
   "shortTitle": "dwc-dp",
   "description": "A data package for sharing biodiversity data using Darwin Core.",
-  "issued": "2026-09-02",
+  "issued": "2026-09-03",
   "isLatest": true,
   "tableSchemas": [
     {

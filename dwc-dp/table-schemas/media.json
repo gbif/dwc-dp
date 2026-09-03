@@ -41,6 +41,22 @@
       "rdfs:comment": "An unambiguous reference to the resource within a given context."
     },
     {
+      "name": "derivedFromMedia_fk",
+      "title": "Derived From Media (Foreign Key)",
+      "description": "An identifier for an ac:Media resource from which this ac:Media resource was derived.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
+      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "derivedFromMediaID",
       "title": "Derived From Media ID",
       "description": "An identifier for an ac:Media resource from which this ac:Media resource was derived.",
@@ -51,6 +67,23 @@
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
       "rdfs:comment": "An unambiguous reference to the resource within a given context.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
+      "name": "isPartOfMedia_fk",
+      "title": "Is Part Of Media (Foreign Key)",
+      "description": "An identifier for an ac:Media resource of which this ac:Media resource is a part.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dcterms",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/isROIOf",
+      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/isROIOf-2021-10-05",
+      "rdfs:comment": "The media item within which a region of interest is located.",
       "constraints": {
         "required": false,
         "unique": false
@@ -548,11 +581,28 @@
       "rdfs:comment": "The name of a person who created a comment, or the literal \"anonymous\" (= anonymously commented)."
     },
     {
+      "name": "commenter_fk",
+      "title": "Commenter (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:comments.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "commenterID",
       "title": "Commenter ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:comments.",
       "notes": "Implementers and communities of practice MAY produce restrictions or recommendations on the choice of vocabularies. See also ac:reviewerComments for the distinction between ac:comments and ac:reviewerComments. See also the entry for ac:commenterLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions. The value in this field MAY refer to a dcterms:BibliographicResource within or external to the dataset in which this record originated. The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -603,11 +653,28 @@
       "rdfs:comment": "String providing the name of a reviewer."
     },
     {
+      "name": "reviewer_fk",
+      "title": "Reviewer (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:reviewerComments.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "reviewerID",
       "title": "Reviewer ID",
       "description": "An identifier for a dcterms:Agent primarily responsible for providing the ac:reviewerComments",
       "notes": "If present, then resource is peer-reviewed, even if ac:reviewerComments is absent or empty. Its presence tells whether an expert in the subject featured in the media has reviewed an ac:Media resource or collection and approved its metadata description; MUST display a name or the literal \"anonymous\" (= anonymously reviewed). Provider is asserting they accept this review as competent. See also ac:reviewerLiteral and the section Namespaces, Prefixes and Term Names in the Audiovisual Core Term List document for discussion of the rationale for separate terms taking URI values from those taking Literal values where both are possible. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions. The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -950,7 +1017,7 @@
       "name": "provenance_fk",
       "title": "Provenance (Foreign Key)",
       "description": "An identifier for a dwc:Provenance.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -967,7 +1034,7 @@
       "name": "usagePolicy_fk",
       "title": "Usage Policy (Foreign Key)",
       "description": "An identifier for a dwc:UsagePolicy for an ac:Media.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -993,6 +1060,23 @@
       "rdfs:comment": "A list of legal owners of the resource."
     },
     {
+      "name": "owner_fk",
+      "title": "Owner (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent that is the owner of the ac:Media resource.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "license",
       "title": "License",
       "description": "A legal document giving official permission to do something with the resource.",
@@ -1009,6 +1093,38 @@
   "weakPrimaryKey": "mediaID",
   "foreignKeys": [
     {
+      "fields": "derivedFromMedia_fk",
+      "predicate": "derived from",
+      "reference": {
+        "resource": "",
+        "fields": "media_pk"
+      }
+    },
+    {
+      "fields": "isPartOfMedia_fk",
+      "predicate": "part of",
+      "reference": {
+        "resource": "",
+        "fields": "media_pk"
+      }
+    },
+    {
+      "fields": "commenter_fk",
+      "predicate": "comment by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
+      "fields": "reviewer_fk",
+      "predicate": "reviewed by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
       "fields": "provenance_fk",
       "predicate": "has",
       "reference": {
@@ -1022,6 +1138,14 @@
       "reference": {
         "resource": "usage-policy",
         "fields": "usagePolicy_pk"
+      }
+    },
+    {
+      "fields": "owner_fk",
+      "predicate": "owned by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ],

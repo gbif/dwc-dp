@@ -236,6 +236,23 @@
       "rdfs:comment": "Primary publication if isolated before genome publication; otherwise, primary genome report."
     },
     {
+      "name": "source_mat_fk",
+      "title": "Source Material (Primary Key)",
+      "description": "A unique identifier assigned to a material sample (as defined by http://rs.tdwg.org/dwc/terms/materialEntityID, and as opposed to a particular digital record of a material sample) used for extracting nucleic acids, and subsequent sequencing. The identifier can refer either to the original material collected or to any derived sub-samples. The INSDC qualifiers /specimen_voucher, /bio_material, or /culture_collection may or may not share the same value as the source_mat_id field. For instance, the /specimen_voucher qualifier and source_mat_id may both contain ´UAM:Herps:14´, referring to both the specimen voucher and sampled tissue with the same identifier. However, the /culture_collection qualifier may refer to a value from an initial culture (e.g., ATCC:11775) while source_mat_id would refer to an identifier from some derived culture from which the nucleic acids were extracted (e.g., xatc123 or ark:/2154/R2).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
+      "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "source_mat_id",
       "title": "source_mat_id",
       "description": "A unique identifier assigned to a material sample (as defined by http://rs.tdwg.org/dwc/terms/materialEntityID, and as opposed to a particular digital record of a material sample) used for extracting nucleic acids, and subsequent sequencing. The identifier can refer either to the original material collected or to any derived sub-samples. The INSDC qualifiers /specimen_voucher, /bio_material, or /culture_collection may or may not share the same value as the source_mat_id field. For instance, the /specimen_voucher qualifier and source_mat_id may both contain ´UAM:Herps:14´, referring to both the specimen voucher and sampled tissue with the same identifier. However, the /culture_collection qualifier may refer to a value from an initial culture (e.g., ATCC:11775) while source_mat_id would refer to an identifier from some derived culture from which the nucleic acids were extracted (e.g., xatc123 or ark:/2154/R2).",
@@ -1547,6 +1564,16 @@
   ],
   "primaryKey": "molecularProtocol_pk",
   "weakPrimaryKey": "molecularProtocolID",
+  "foreignKeys": [
+    {
+      "fields": "source_mat_fk",
+      "predicate": "has source",
+      "reference": {
+        "resource": "material",
+        "fields": "materialEntity_pk"
+      }
+    }
+  ],
   "weakForeignKeys": [
     {
       "fields": "source_mat_id",

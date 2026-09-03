@@ -33,7 +33,7 @@
       "title": "Agent ID",
       "description": "An identifier for a dcterms:Agent.",
       "notes": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
