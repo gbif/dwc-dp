@@ -29,7 +29,7 @@
       "name": "subjectOrganism_fk",
       "title": "Subject Organism (Foreign Key)",
       "description": "An identifier for the dwc:Organism that is the subject of a dwc:ResourceRelationship.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -79,6 +79,23 @@
       "namespace": "dc",
       "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
       "rdfs:comment": "A related resource from which the described resource is derived."
+    },
+    {
+      "name": "relatedOrganism_fk",
+      "title": "Related Organism (Foreign Key)",
+      "description": "An identifier for the related dwc:Organism (the object) of a dwc:ResourceRelationship.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
+      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "relatedOrganismID",
@@ -136,11 +153,28 @@
       "rdfs:comment": "The source (person, organization, publication, reference) establishing the relationship between the two resources."
     },
     {
+      "name": "relationshipAccordingTo_fk",
+      "title": "Relationship According To (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for asserting a dwc:ResourceRelationship.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "relationshipAccordingToID",
       "title": "Relationship According To ID",
       "description": "An identifier for a dcterms:Agent responsible for asserting a dwc:ResourceRelationship.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -187,6 +221,22 @@
       "reference": {
         "resource": "organism",
         "fields": "organism_pk"
+      }
+    },
+    {
+      "fields": "relatedOrganism_fk",
+      "predicate": "to",
+      "reference": {
+        "resource": "organism",
+        "fields": "organism_pk"
+      }
+    },
+    {
+      "fields": "relationshipAccordingTo_fk",
+      "predicate": "according to",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ],

@@ -16,8 +16,8 @@
       "name": "materialEntity_fk",
       "title": "Material Entity (Foreign Key)",
       "description": "A unique identifier for a dwc:MaterialEntity.",
-      "notes": "MUST have a corresponding materialEntity_pk in the material table. The value in this field MAY be changed in aggregation to guarantee uniqueness.",
-      "examples": "`06809dc5-f143-459a-be1a-6f03e63fc083`",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -147,6 +147,23 @@
       "rdfs:comment": "A technique used to determine the chemical composition or crystallography of a mineral."
     },
     {
+      "name": "mineralogicalAnalysisProtocol_fk",
+      "title": "Mineralogical Analysis Protocol (Foreign Key)",
+      "description": "An identifier for a dwc:Protocol used for a mineralogical analysis.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
+      "rdfs:comment": "An identifier for a dwc:Protocol.",
+      "constraints": {
+        "required": true,
+        "unique": false
+      }
+    },
+    {
       "name": "chemistryRemarks",
       "title": "Chemistry Remarks",
       "description": "General remarks about the chemical and isotopic composition of a dwc:GeologicalMaterial.",
@@ -168,6 +185,14 @@
       "reference": {
         "resource": "material",
         "fields": "materialEntity_pk"
+      }
+    },
+    {
+      "fields": "mineralogicalAnalysisProtocol_fk",
+      "predicate": "followed",
+      "reference": {
+        "resource": "protocol",
+        "fields": "protocol_pk"
       }
     }
   ]

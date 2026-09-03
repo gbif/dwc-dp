@@ -46,7 +46,7 @@
       "name": "event_fk",
       "title": "Event (Foreign Key)",
       "description": "An identifier for a dwc:Event.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -63,7 +63,7 @@
       "name": "isPartOfOccurrence_fk",
       "title": "Is Part Of Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence of which this dwc:Occurrence is a part.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -80,7 +80,7 @@
       "name": "occurrenceProtocol_fk",
       "title": "Occurrence Protocol (Foreign Key)",
       "description": "An identifier for a dwc:Protocol used for a dwc:Occurrence.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -97,7 +97,7 @@
       "name": "surveyTarget_fk",
       "title": "Survey Target (Foreign Key)",
       "description": "An identifier for an eco:SurveyTarget.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -322,6 +322,23 @@
       "rdfs:comment": "Comments or notes about the dwc:Occurrence."
     },
     {
+      "name": "organism_fk",
+      "title": "Organism (Foreign Key)",
+      "description": "An identifier for a dwc:Organism.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
+      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "organismID",
       "title": "Organism ID",
       "description": "An identifier for a dwc:Organism.",
@@ -415,6 +432,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
       "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+    },
+    {
+      "name": "identifiedBy_fk",
+      "title": "Identified By (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "identifiedByID",
@@ -564,16 +598,17 @@
       "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
     },
     {
-      "name": "externalClassificationSource",
-      "title": "External Classification Source",
-      "description": "A reference to a source outside the dataset where the identifying name, code, or taxon concept can be found.",
-      "notes": "The external source applies to whichever of dwc:taxonID, dwc:scientificNameID, minext:geoClassificationCode, minext:geoName, dwc:scientificName, or dwc:vernacularName is populated.",
-      "examples": "`http://www.catalogueoflife.org/data/taxon/`; `https://avibase.bsc-eoc.org/`; `Dana, J. D., Dana, E. S., & Gaines, R. V. (1997). Dana's new mineralogy: The system of mineralogy of James Dwight Dana and Edward Salisbury Dana.`; `Strunz H, Nickel EH (2001) Strunz Mineralogical Tables, 9th Edition. Berlin and Stuttgart 870 pp.`",
+      "name": "classificationSystem",
+      "title": "Classification System",
+      "description": "A reference to the classification system in which an authoritative name or formal classification belongs.",
+      "notes": "Recommended best practice is to provide a formal citation or IRI. This term should not be confused with dwc:namePublishedIn as a classification system is not equivalent to a publication in which a taxon is first described. This term should not be confused with dwc:nameAccordingTo as a classification system is not equivalent to a publication or other source in which a specific taxon concept circumscription is defined or implied. This term should not be confused with dwc:nomenclaturalCode as a classification system is not equivalent to code of nomenclature, which states the rules for naming rather than an organized source of names. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+      "examples": "`Strunz, H., Nickel, E.H. (2001): Strunz Mineralogical Tables. Chemical-Structural Mineral Classification System. 9th edition. E. Schweizerbart’sche Verlagsbuchhandlung, Stuttgart, ix + 870 p. (ISBN 3-510-65188-X)`; `Gaines, R.V., Skinner, H.C.W., Foord, E.E., Mason, B., Rosenzweig, A. (1997): Dana's New Mineralogy: The System of Mineralogy of James Dwight Dana and Edward Salisbury Dana. 8th edition. John Wiley & Sons, New York, xlv + 1819 p. (ISBN 0-471-19310-0).`; `https://kos.geospecimens.org/vocab/meteorite-classification`; `Mammal Diversity Database. (2026). Mammal Diversity Database (Version 2.5) [Data set]. [Zenodo](https://zenodo.org/records/10595931). https://doi.org/10.5281/zenodo.17033774`; `Index Fungorum. (2026). Index Fungorum electronic database. Royal Botanic Gardens, Kew. Retrieved August 17, 2026, from indexfungorum.org.`",
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
+      "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
     },
     {
       "name": "informationWithheld",
@@ -648,6 +683,22 @@
       "reference": {
         "resource": "survey-target",
         "fields": "surveyTarget_pk"
+      }
+    },
+    {
+      "fields": "organism_fk",
+      "predicate": "of an",
+      "reference": {
+        "resource": "organism",
+        "fields": "organism_pk"
+      }
+    },
+    {
+      "fields": "identifiedBy_fk",
+      "predicate": "identified by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ],

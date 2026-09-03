@@ -78,11 +78,28 @@
       "rdfs:comment": "A person or organization owning or managing rights over the resource."
     },
     {
+      "name": "rightsHolder_fk",
+      "title": "Rights Holder (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent that owns or manages rights over a resource.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "rightsHolderID",
       "title": "Rights Holder ID",
       "description": "An identifier for a dcterms:Agent that owns or manages rights over a resource.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -107,11 +124,28 @@
       "rdfs:comment": "A list of legal owners of the resource."
     },
     {
+      "name": "owner_fk",
+      "title": "Owner (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent that is the owner of the resource.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "ownerID",
       "title": "Owner ID",
       "description": "An identifier for a dcterms:Agent that owns the copyright for a resource.",
       "notes": "The value in this field MAY refer to a dcterms:Agent within or external to the dataset in which this record originated.",
-      "examples": "",
+      "examples": "`https://orcid.org/0000-0002-1825-0097`",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -238,6 +272,24 @@
   ],
   "primaryKey": "usagePolicy_pk",
   "weakPrimaryKey": "usagePolicyID",
+  "foreignKeys": [
+    {
+      "fields": "rightsHolder_fk",
+      "predicate": "rights held by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
+      "fields": "owner_fk",
+      "predicate": "owned by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    }
+  ],
   "weakForeignKeys": [
     {
       "fields": "rightsHolderID",

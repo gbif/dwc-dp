@@ -46,8 +46,8 @@
       "name": "parentEvent_fk",
       "title": "Parent Event (Foreign Key)",
       "description": "An identifier for a broader dwc:Event that contains this and potentially other dwc:Events.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`A1` (parentEventID to identify the main Whittaker Plot in nested samples, each with its own eventID - `A1:1`, `A1:2`).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -63,7 +63,7 @@
       "name": "eventProtocol_fk",
       "title": "Event Protocol (Foreign Key)",
       "description": "An identifier for a dwc:Protocol used during a dwc:Event.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -80,7 +80,7 @@
       "name": "provenance_fk",
       "title": "Provenance (Foreign Key)",
       "description": "An identifier for a dwc:Provenance.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -188,6 +188,23 @@
       "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Event."
     },
     {
+      "name": "recordedBy_fk",
+      "title": "Recorded By (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for recording a dwc:Event.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "recordedByID",
       "title": "Recorded By ID",
       "description": "An identifier for a dcterms:Agent responsible for recording a dwc:Event.",
@@ -203,6 +220,35 @@
         "required": false,
         "unique": false
       }
+    },
+    {
+      "name": "eventDurationValue",
+      "title": "Event Duration Value",
+      "description": "The numeric value for the duration of a dwc:Event.",
+      "notes": "`An eco:eventDurationValue must have a corresponding eco:eventDurationUnit.`",
+      "examples": "`1`; `30`",
+      "type": "number",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/eventDurationValue",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/eventDurationValue-2024-02-28",
+      "rdfs:comment": "The numeric value for the duration of the dwc:Event.",
+      "constraints": {
+        "minimum": 0
+      }
+    },
+    {
+      "name": "eventDurationUnit",
+      "title": "Event Duration Unit",
+      "description": "Units associated with a value in eco:eventDurationValue.",
+      "notes": "Recommended best practice is to use a controlled vocabulary. This term has an equivalent in the dwciri: namespace that allows only an IRI as a value, whereas this term allows for any string literal value.",
+      "examples": "`minutes`; `hours`; `days`; `months`; `years`",
+      "type": "string",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/eventDurationUnit",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/eventDurationUnit-2025-07-10",
+      "rdfs:comment": "The units associated with the eco:eventDurationValue."
     },
     {
       "name": "eventDate",
@@ -455,6 +501,19 @@
       "rdfs:comment": "A category or description of the habitat in which the dwc:Event occurred."
     },
     {
+      "name": "isVegetationCoverReported",
+      "title": "Is Vegetation Cover Reported",
+      "description": "A vegetation cover metric was reported.",
+      "notes": "Typically values or descriptions of vegetation cover would be captured under the term eco:verbatimSiteDescriptions. Recommended best practice is to follow the TDWG Boolean Controlled Vocabulary http://rs.tdwg.org/tag/doc/boolean/.",
+      "examples": "`true`; `false`",
+      "type": "boolean",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isVegetationCoverReported",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isVegetationCoverReported-2024-02-28",
+      "rdfs:comment": "A vegetation cover metric was reported."
+    },
+    {
       "name": "sampledSubstrateCategory",
       "title": "Sampled Substrate Category",
       "description": "A category or type of substrate sampled during a dwc:Event.",
@@ -494,6 +553,32 @@
       "rdfs:comment": "One of a) an indicator of the existence of, b) a reference to (publication, URI), or c) the text of notes taken in the field about the dwc:Event."
     },
     {
+      "name": "reportedExtremeConditions",
+      "title": "Reported Extreme Conditions",
+      "description": "A description of any extreme weather or environmental conditions that may have affected a dwc:Event.",
+      "notes": "",
+      "examples": "`{\"minimumTemperatureInDegreesFahrenheit\": 18, \"maximumTemperatureInDegreesFahrenheit\": 32}`",
+      "type": "string",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedExtremeConditions",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/reportedExtremeConditions-2024-02-28",
+      "rdfs:comment": "A description of any extreme weather or environmental conditions that may have affected the dwc:Event."
+    },
+    {
+      "name": "reportedWeather",
+      "title": "Reported Weather",
+      "description": "A list of weather or climatic conditions present during a dwc:Event.",
+      "notes": "Recommended best practice is to use a key:value encoding schema for a data interchange format such as JSON.",
+      "examples": "`flooding during week 3 of surveys`; `rockslide at site 2`",
+      "type": "string",
+      "format": "default",
+      "namespace": "eco",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedWeather",
+      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/reportedWeather-2024-02-28",
+      "rdfs:comment": "A list of weather or climatic conditions present during the dwc:Event."
+    },
+    {
       "name": "eventReferences",
       "title": "Event References",
       "description": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Event.",
@@ -518,6 +603,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventRemarks",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventRemarks-2023-06-28",
       "rdfs:comment": "Comments or notes about the dwc:Event."
+    },
+    {
+      "name": "geologicalContext_fk",
+      "title": "Geological Context (Foreign Key)",
+      "description": "An identifier for a dwc:GeologicalContext.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
+      "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "geologicalContextID",
@@ -1002,6 +1104,23 @@
       "rdfs:comment": "A name for a dcterms:Agent responsible for providing a georeference."
     },
     {
+      "name": "georeferencedBy_fk",
+      "title": "Georeferenced By (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for determining a georeference for a dwc:Event.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
+    },
+    {
       "name": "georeferencedByID",
       "title": "Georeferenced By ID",
       "description": "An identifier for a dcterms:Agent responsible for determining a georeference for a dwc:Event.",
@@ -1048,8 +1167,8 @@
       "name": "georeferenceProtocol_fk",
       "title": "Georeference Protocol (Foreign Key)",
       "description": "An identifier for a dwc:Protocol used to determine a spatial footprint, coordinates, and uncertainties.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`https://doi.org/10.35035/e09p-h128`",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -1101,19 +1220,6 @@
       "rdfs:comment": "An indication of which spatial representation best represents the dcterms:Location."
     },
     {
-      "name": "feedbackURL",
-      "title": "Feedback URL",
-      "description": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record.",
-      "notes": "Recommended best practice is to optionally include query strings that act to pre-populate web page form elements and communicate the context.",
-      "examples": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-      "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
-    },
-    {
       "name": "informationWithheld",
       "title": "Information Withheld",
       "description": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request.",
@@ -1138,6 +1244,19 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
       "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+    },
+    {
+      "name": "feedbackURL",
+      "title": "Feedback URL",
+      "description": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record.",
+      "notes": "Recommended best practice is to optionally include query strings that act to pre-populate web page form elements and communicate the context.",
+      "examples": "`https://example.com/new?title=New+issue&body=This+comment+is+about+CAN12345`",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
+      "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
     }
   ],
   "primaryKey": "event_pk",
@@ -1165,6 +1284,30 @@
       "reference": {
         "resource": "provenance",
         "fields": "provenance_pk"
+      }
+    },
+    {
+      "fields": "recordedBy_fk",
+      "predicate": "recorded by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
+      }
+    },
+    {
+      "fields": "geologicalContext_fk",
+      "predicate": "within",
+      "reference": {
+        "resource": "geological-context",
+        "fields": "geologicalContext_pk"
+      }
+    },
+    {
+      "fields": "georeferencedBy_fk",
+      "predicate": "georeferenced by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     },
     {

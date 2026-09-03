@@ -59,7 +59,7 @@
       "name": "identificationProtocol_fk",
       "title": "Identification Protocol (Foreign Key)",
       "description": "An identifier for a dwc:Protocol used for a dwc:Identification.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -76,8 +76,8 @@
       "name": "materialEntity_fk",
       "title": "Material Entity (Foreign Key)",
       "description": "An identifier for a dwc:MaterialEntity based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`06809dc5-f143-459a-be1a-6f03e63fc083`",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -93,7 +93,7 @@
       "name": "media_fk",
       "title": "Media (Foreign Key)",
       "description": "An identifier for an ac:Media resource based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -109,7 +109,7 @@
       "name": "nucleotideAnalysis_fk",
       "title": "Nucleotide Analysis (Foreign Key)",
       "description": "An identifier for a dwc:NucleotideAnalysis based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -125,7 +125,7 @@
       "name": "nucleotideSequence_fk",
       "title": "Nucleotide Sequence (Foreign Key)",
       "description": "An identifier for a dwc:NucleotideSequence based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -141,8 +141,8 @@
       "name": "occurrence_fk",
       "title": "Occurrence (Foreign Key)",
       "description": "An identifier for a dwc:Occurrence based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
-      "examples": "`http://arctos.database.museum/guid/MSB:Mamm:233627`; `000866d2-c177-4648-a200-ead4007051b9`; `urn:catalog:UWBM:Bird:89776`",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
       "type": "string",
       "format": "default",
       "namespace": "dwc",
@@ -158,7 +158,7 @@
       "name": "organism_fk",
       "title": "Organism (Foreign Key)",
       "description": "An identifier for a dwc:Organism based on which a dwc:Identification was made.",
-      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the (Primary Key).",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
       "examples": "",
       "type": "string",
       "format": "default",
@@ -248,6 +248,23 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
       "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+    },
+    {
+      "name": "identifiedBy_fk",
+      "title": "Identified By (Foreign Key)",
+      "description": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "notes": "The value in this field MAY be changed in aggregation to preserve the relationship to the related primary key.",
+      "examples": "",
+      "type": "string",
+      "format": "default",
+      "namespace": "dwc",
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
+      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
+      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
+      "constraints": {
+        "required": false,
+        "unique": false
+      }
     },
     {
       "name": "identifiedByID",
@@ -733,32 +750,6 @@
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
       "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
       "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
-    },
-    {
-      "name": "geologicalClassificationCodes",
-      "title": "Geological Classification Codes",
-      "description": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial.",
-      "notes": "Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "examples": "`71.02.02a.01` (\"muscovite\" in the Dana classification system); `9.AD.25` (\"garnet group\" in the Nickel-Strunz classification system); `75.01.03.01 | 4.DA.05` (\"quartz\" the Dana classification system and \"quartz group\" in the Nickel-Strunz classification system)",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
-      "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
-    },
-    {
-      "name": "geologicalMaterialNames",
-      "title": "Geological Material Names",
-      "description": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial.",
-      "notes": "May includes both informal (e.g., variety, synonym) and formal (classification) names. The first name in the list should be considered the preferred name. Recommended best practice is to separate the values in a list with space vertical bar space (` | `).",
-      "examples": "`quartz | smoky quartz`; `muscovite`; `garnet group`",
-      "type": "string",
-      "format": "default",
-      "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
-      "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
     }
   ],
   "primaryKey": "identification_pk",
@@ -774,7 +765,7 @@
     },
     {
       "fields": "materialEntity_fk",
-      "predicate": "based on/of a",
+      "predicate": "of a",
       "reference": {
         "resource": "material",
         "fields": "materialEntity_pk"
@@ -806,7 +797,7 @@
     },
     {
       "fields": "occurrence_fk",
-      "predicate": "based on",
+      "predicate": "of an",
       "reference": {
         "resource": "occurrence",
         "fields": "occurrence_pk"
@@ -818,6 +809,14 @@
       "reference": {
         "resource": "organism",
         "fields": "organism_pk"
+      }
+    },
+    {
+      "fields": "identifiedBy_fk",
+      "predicate": "identified by",
+      "reference": {
+        "resource": "agent",
+        "fields": "agent_pk"
       }
     }
   ],
