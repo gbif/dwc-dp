@@ -1,8 +1,0 @@
-#!/bin/bash
-# Shell Script to make a copy of the local data package changing the schema url locations 
-# from the gbif/dwc-dp GitHub repository to the sandbox in the rs.gbif.org repository.
-
-# sh local_to_sandbox.sh
-# From maintenance/: 
-
-python data-package-migration.py -s ../dwc-dp -d ./sandbox -U https://rs.gbif.org/sandbox/experimental/data-packages/dwc-dp/0.1 -I http://rs.tdwg.org/dwc/dwc-dp

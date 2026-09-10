@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0_DEV/identification",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/identification.json",
   "name": "identification",
@@ -233,7 +233,7 @@
       "format": "default",
       "namespace": "gbif",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/1.0/typeDesignationType",
       "rdfs:comment": "The reason why this specimen or name is designated as a type."
     },
     {

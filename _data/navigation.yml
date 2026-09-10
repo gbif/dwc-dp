@@ -5,17 +5,15 @@
 - text: Resources
   menu:
   - text: Darwin Core Conceptual Model
-    href: /cm/
+    href: https://dwc.tdwg.org/cm/
   - text: Darwin Core Data Package Guide
-    href: /dp/
-  - text: Term change proposals
-    href: https://github.com/tdwg/dwc/milestone/20
-  - text: "---"
+    href: https://dwc.tdwg.org/dp/
   - text: DwC-DP Quick Reference Guide
     href: /qrg/
-  - text: DwC-DP Relationship Explorer
-    href: /explorer/
-#  - text: Data Mapping Guide
-#    href: /data-mapping-guide/
+  - text: "---"
+  - text: DwC-DP Designer
+    href: /designer/
+  - text: DwC-DP Data Mapping Guide
+    href: /dmg/
 #  - text: Webinar introducing DwC-DP
 #    href: https://www.gbif.org/event/7oJVaWQZ2wlknRfM7w4OXE/introducing-the-darwin-core-data-package

@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0_DEV/material",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/material.json",
   "name": "material",
@@ -668,7 +668,7 @@
       "format": "default",
       "namespace": "gbif",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/1.0/typeDesignationType",
       "rdfs:comment": "The reason why this specimen or name is designated as a type."
     },
     {

@@ -1,6 +1,4 @@
-# Darwin Core Review
-## Proposed Conceptual Model, Data Package Guide, and Term Changes
+# Darwin Core Data Package Working Repository
 
-This repository contains material to support a proposal for a [Vocabulary Enhancement](https://github.com/tdwg/vocab/blob/master/vms/maintenance-specification.md#4-vocabulary-enhancements) to the [Darwin Core](https://dwc.tdwg.org/) standard.
+This repository is used  for the development of the Darwin Core Data Package and related artifacts. Releases of versions developed here must be pushed to to the appropriate directory in rs.tdwg.org/dwc-dp for use in production.
 
-For more info, see <https://gbif.github.io/dwc-dp>.

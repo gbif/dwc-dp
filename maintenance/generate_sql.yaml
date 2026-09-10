@@ -1,18 +1,12 @@
 metadata:
   title: Darwin Core Data Package PostgreSQL schema
-  version: '2026-06-26'
   source_table_schemas: table-schemas/
-  generated_by: generate_sql.py
+  generated_by: ../process_dwcdp.py
   notes:
-  - Generated from DwC-DP table schemas plus PostgreSQL sidecar configuration.
+  - Generated from DwC-DP table schemas plus PostgreSQL YAML configuration.
   - foreignKeys are rendered as PostgreSQL FOREIGN KEY constraints.
   - weakPrimaryKeys are rendered as plain columns with indexes but without REFERENCES.
   - weakForeignKeys are rendered as plain columns with indexes but without REFERENCES.
-  example_run: |
-    python generate_sql.py \
-      --schemas ../../dwc-dp/table-schemas \
-      --config generate_sql.yaml \
-      --output generated_from_schemas.sql
 enums:
   degree_of_establishment:
     vocabulary_url: https://raw.githubusercontent.com/tdwg/rs.tdwg.org/refs/heads/master/degreeOfEstablishment/degreeOfEstablishment.csv
