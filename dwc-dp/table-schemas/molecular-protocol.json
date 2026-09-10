@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0_DEV/molecular-protocol",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/molecular-protocol",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/molecular-protocol.json",
   "name": "molecular-protocol",
@@ -1311,7 +1311,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTemp",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/annealingTemp",
       "rdfs:comment": "The reaction temperature during the annealing phase of PCR."
     },
     {
@@ -1324,7 +1324,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTempUnit",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/annealingTempUnit",
       "rdfs:comment": "Measurement unit of the reaction temperature during the annealing phase of PCR."
     },
     {
@@ -1337,7 +1337,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeReporter",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/probeReporter",
       "rdfs:comment": "Type of fluorophore (reporter) used. Probe anneals within amplified target DNA. Polymerase activity degrades the probe that has annealed to the template, and the probe releases the fluorophore from it and breaks the proximity to the quencher, thus allowing fluorescence of the fluorophore."
     },
     {
@@ -1350,7 +1350,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeQuencher",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/probeQuencher",
       "rdfs:comment": "Type of quencher used. The quencher molecule quenches the fluorescence emitted by the fluorophore when excited by the cycler’s light source As long as fluorophore and the quencher are in proximity, quenching inhibits any fluorescence signals."
     },
     {
@@ -1363,7 +1363,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/ampliconSize",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/ampliconSize",
       "rdfs:comment": "The length of the amplicon in basepairs."
     },
     {
@@ -1376,7 +1376,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/thresholdQuantificationCycle",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/thresholdQuantificationCycle",
       "rdfs:comment": "Threshold for change in fluorescence signal between cycles."
     },
     {
@@ -1389,7 +1389,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/baselineValue",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/baselineValue",
       "rdfs:comment": "The number of cycles when fluorescence signal from the target amplification is below background fluorescence not originated from the real target amplification."
     },
     {
@@ -1402,7 +1402,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/quantificationCycle",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/quantificationCycle",
       "rdfs:comment": "The number of cycles required for the fluorescent signal to cross a given value threshold above the baseline. Quantification cycle (Cq), threshold cycle (Ct), crossing point (Cp), and take-off point (TOP) refer to the same value from the real-time instrument. Use of quantification cycle (Cq), is preferable according to the RDML (Real-Time PCR Data Markup Language) data standard (http://www.rdml.org)."
     },
     {
@@ -1415,7 +1415,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticThresholdQuantificationCycle",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/automaticThresholdQuantificationCycle",
       "rdfs:comment": "Whether the threshold was set by the instrument or manually."
     },
     {
@@ -1428,7 +1428,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticBaselineValue",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/automaticBaselineValue",
       "rdfs:comment": "Whether the baseline value was set by the instrument or manually."
     },
     {
@@ -1441,7 +1441,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/contaminationAssessment",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/contaminationAssessment",
       "rdfs:comment": "Whether DNA or RNA contamination assessment was done or not."
     },
     {
@@ -1454,7 +1454,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolume",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/partitionVolume",
       "rdfs:comment": "An accurate estimation of partition volume. The sum of the partitions multiplied by the partition volume will enable the total volume of the reaction to be calculated."
     },
     {
@@ -1467,7 +1467,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolumeUnit",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/partitionVolumeUnit",
       "rdfs:comment": "Unit used for partition volume."
     },
     {
@@ -1480,7 +1480,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/estimatedNumberOfCopies",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/estimatedNumberOfCopies",
       "rdfs:comment": "Number of target molecules per µl. Mean copies per partition (?) can be calculated using the number of partitions (n) and the estimated copy number in the total volume of all partitions (m) with a formula ?=m/n."
     },
     {
@@ -1493,7 +1493,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolume",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/amplificationReactionVolume",
       "rdfs:comment": "PCR reaction volume."
     },
     {
@@ -1506,7 +1506,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolumeUnit",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/amplificationReactionVolumeUnit",
       "rdfs:comment": "Unit used for PCR reaction volume. Many of the instruments require preparation of a much larger initial sample volume than is actually analyzed."
     },
     {
@@ -1519,7 +1519,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_analysis_software",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_analysis_software",
       "rdfs:comment": "The program used to analyse the d(d)PCR runs."
     },
     {
@@ -1532,7 +1532,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/experimentalVariance",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/experimentalVariance",
       "rdfs:comment": "Multiple biological replicates are encouraged to assess total experimental variation. When single dPCR experiments are performed, a minimal estimate of variance due to counting error alone must be calculated from the binomial (or suitable equivalent) distribution."
     },
     {
@@ -1545,7 +1545,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_lod",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_primer_lod",
       "rdfs:comment": "The assay’s ability to detect the target at low levels."
     },
     {
@@ -1558,7 +1558,7 @@
       "format": "default",
       "namespace": "miqe",
       "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_loq",
-      "dcterms:references": "pending",
+      "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_primer_loq",
       "rdfs:comment": "The assay’s ability to quantify copy number at low levels."
     }
   ],

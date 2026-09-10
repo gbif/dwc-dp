@@ -6,7 +6,7 @@ permalink: /
 toc: true
 ---
 
-NOTE: This Darwin Core public review was completed on 30 March 2026 and ratified on 26 May 2026. 
+**NOTE: This Darwin Core public review was completed on 30 March 2026 and ratified on 26 May 2026.**
 
 ## Introduction
 

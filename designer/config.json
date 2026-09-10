@@ -1,0 +1,6 @@
+{
+  "dwcDpVersion": "http://rs.tdwg.org/dwc-dp/1.0-RC.1test",
+  "profileUrl": "../dwc-dp/dwc-dp-profile.json",
+  "profileIdentifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1test/dwc-dp-profile.json",
+  "tableSchemasBaseUrl": "../dwc-dp/table-schemas/"
+}

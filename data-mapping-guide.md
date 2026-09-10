@@ -1,6 +1,6 @@
 ---
-title: Data Mapping Guide
-permalink: /data-mapping-guide/
+title: DwC-DP Data Mapping Guide
+permalink: /dmg/
 toc: true
 ---
 

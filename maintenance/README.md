@@ -1,72 +1,39 @@
 # DwC-DP Maintenance
-## Preparing new release
-To prepare a new release of the Darwin Core Data Package
-- Pull from master. Create a new release branch
-- [Update the canonical source files](#canonical_source_files)
-- [Generate the table schemas](#generate_table_schemas)
-- [Validate the table schemas](#validate_table_schemas)
-- [Generate Quick Reference Guide](#generate_quick_reference_guide)
-- [Generate PostgreSQL script](#generate_postgresql_script)
-- [Prepare sandbox](#prepare_sandbox)
-- [Push release](#push_release)
+## Preparing a new version of the Darwin Core Data Package
+- Pull the latest changes from this repository.
+- From the latest version of the master branch, create a new working branch in which to capture all of the changes for a new version of the Data Package.
+- [Update the canonical source files](#canonical_source_files).
+- [Update Quick Reference template](#update_quick_reference_template).
+- [Update SQL template](#update_sql_template).
+- [Run process_dwcdp.py](#run_process_dwcdp_py).
+- [Push version](#push_release).
 
 ## Canonical source files
-The source files to generate the Darwin Core Data Package artifacts are 
- - **vocabulary/dwc-dp-tables.csv** and
- - **vocabulary/dwc-dp-fields.csv**.
+The source files to generate the Darwin Core Data Package artifacts are as follow:
+ - **vocabulary/dwc-dp-tables.csv**
+ - **vocabulary/dwc-dp-fields.csv**
 
-These two files are the canonical form of the table and field definitions, comments and examples for the Darwin Core Data Package. These are maintained manually.
+These two files are the canonical form of the table and field definitions, contextual usage notes and examples for the Darwin Core Data Package. These are maintained manually and updated here.
 
-## Generate table schemas
-Use the script 
- - **maintenance/qrg/generate_qrg.py**
+# Update Quick Reference Template
+The file qrg_template.html is a configuration template for the Darwin Core Data Package Quick Reference Guide. Make any needed updates to this file before you [Run process_dwcdp.py](#run_process_dwcdp_py).
 
-to generate the table schemas (**dwc-dp/table_schemas**) from the canonical source files. Run the script from the **maintenance/qrg** folder with a version parameter:
-```
-cd maintenance/qrg
-python generate_qrg.py 0.1
-```
+# Update SQL Template
+The file generate_sql.yaml is a configuration template for the Darwin Core Data Package PostgreSQL Data Definition Language database schema generator. Make any needed updates to this file before you [Run process_dwcdp.py](#run_process_dwcdp_py).
 
-## Validate table schemas
-Use the script 
- - **maintenance/data-packages-validation-checks-local.py**
+## Run process_dwcdp.py
+In the maintenance directory run the script process_dwcdp.py with a target version. For example:
+ ```process_dwcdp.py http://rs.tdwg.org/dwc-dp/1.0-RC.1```
 
-to validate the table schemas locally to the extent possible. This validation makes no calls to non-local resources.
+This generates and validates:
+ - ../dwc-dp/dwc-dp-profile.json - the Darwin Core Data Package Profile
+ - ../dwc-dp/table-schemas/*.json - the Darwin Core Data Package table schemas
+ - ../qrg/index.html - the Darwin Core Data Package Quick Reference Guide
+ - ../sql/dwc-dp.sql - a Darwin Core Data Package PostgreSQL DDL schema
 
-## Generate Quick Reference Guide
-Use the script 
- - **maintenance/qrg/generate_qrg.py**
+## Push version
+Commit and push changes in the new working branch to the remote repository.
 
-to generate the Darwin Core Data Package Quick Reference Guide (**qrg/index.html**) in addition to the table schemas.
+Make a pull request for the new working branch on the remote repository.
 
-## Generate PostgreSQL script
-Use the script 
- - **maintenance/sql/generate_sql.py**
-
-to create an SQL script that generates a PostgreSQL database compliant with the table schemas. Additional configuration for the build is in  
-- **maintenance/sql/generate_sql.yaml**
-
-Run the script from the **maintenance/sql** folder:
-```
-python generate_sql.py --schemas ../../dwc-dp/table-schemas --config generate_sql.yaml --output generated_from_schemas.sql
-```
-## Prepare sandbox folder
-Clone the **rs.gbif.org** repository or pull the lastest into an existing local copy. Make a release branch (e.g., `git checkout -b dwcdp-n.x`). Structural changes (tables and their relationships) should initiate a major release (e.g., 2.0), otherwise the release can be a minor one (e.g., 2.1).
-
-Use the script 
- - **maintenance/local_to_sandbox.sh**
-
-to make artifacts needed by GBIF in the **maintenance/sandbox** folder. 
-
-Use the script 
- - **maintenance/data-packages-validation-checks-sandbox.py**
-
-to validate the validate the sandbox artifacts locally.
-
-Copy the validated artifacts in **maintenance/sandbox** to the new branch in the local copy of the **rs.gbif.org** repository.
-
-## Push release
-Commit, push and make a pull request for the changes in the new branch in the **rs.gbif.org** repository.
-Commit, push and make a pull request for the release branch in this repository.
-
-Once the pull request has been merged, test all published artifacts. When satisfied, create a release in GitHub.
+Once the pull request has been merged, test all published artifacts.
