@@ -18,6 +18,9 @@ Stage 3) Render:
 Stage 4) Generate:
   ../sql/dwc-dp.sql (PostgreSQL DDL)
 
+Stage 5) Generate:
+  ../designer/ (DwC-DP Designer)
+
 Validation is performed before QRG and SQL generation.  Validation errors cause a
 non-zero exit and prevent the QRG from being rendered.
 
@@ -36,6 +39,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError
 import sys
 import re
+import shutil
 import io
 import hashlib
 import copy
@@ -172,6 +176,8 @@ def _derive_paths(version: str):
 
     # SQL output is always written under ../sql relative to this script.
     sql_output_path = root / "sql" / SQL_OUTPUT_FILENAME
+    designer_template_dir = script_dir / DESIGNER_TEMPLATE_DIRNAME
+    designer_output_dir = root / "designer"
 
     return (
         table_schemas_dir,
@@ -181,6 +187,8 @@ def _derive_paths(version: str):
         profile_template_path,
         sql_config_path,
         sql_output_path,
+        designer_template_dir,
+        designer_output_dir,
     )
 
 # ---------------------------------------------------------------------------
@@ -1856,6 +1864,9 @@ class SqlGenerator:
 SQL_CONFIG_FILENAME = "generate_sql.yaml"
 SQL_OUTPUT_FILENAME = "dwc-dp.sql"
 
+DESIGNER_TEMPLATE_DIRNAME = "designer_template"
+DESIGNER_DATA_FILENAME = "data.js"
+
 
 def generate_postgresql_ddl(
     table_schemas_dir: Path,
@@ -1881,6 +1892,83 @@ def generate_postgresql_ddl(
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(sql, encoding="utf-8")
+
+
+
+# ---------------------------------------------------------------------------
+# Stage 5: DwC-DP Designer generation
+# ---------------------------------------------------------------------------
+
+def generate_designer(
+    designer_template_dir: Path,
+    designer_output_dir: Path,
+    version: str,
+    profile_json_path: Path,
+    table_schemas_dir: Path,
+) -> None:
+    """Publish the Designer and embed the current DwC-DP model in data.js."""
+    required_files = (
+        Path("index.html"),
+        Path("styles.css"),
+        Path("js") / "app.js",
+    )
+
+    missing = [
+        str(designer_template_dir / rel)
+        for rel in required_files
+        if not (designer_template_dir / rel).is_file()
+    ]
+    if missing:
+        raise FileNotFoundError(
+            "Designer template is incomplete. Missing:\n  " + "\n  ".join(missing)
+        )
+
+    profile = load_json_for_validation(profile_json_path, ValidationResult())
+    if profile is None:
+        raise FileNotFoundError(
+            f"Could not load generated DwC-DP profile: {profile_json_path}"
+        )
+
+    table_names = (
+        profile.get("$defs", {})
+        .get("dwc-dp-resource-names", {})
+        .get("enum", [])
+    )
+    if not isinstance(table_names, list) or not table_names:
+        raise ValueError(
+            "Generated DwC-DP profile does not contain "
+            "$defs.dwc-dp-resource-names.enum"
+        )
+
+    schemas = {}
+    for table_name in table_names:
+        schema_path = table_schemas_dir / f"{table_name}.json"
+        if not schema_path.is_file():
+            raise FileNotFoundError(
+                f"Designer source schema not found: {schema_path}"
+            )
+        with schema_path.open("r", encoding="utf-8") as fh:
+            schemas[table_name] = json.load(fh)
+
+    designer_output_dir.mkdir(parents=True, exist_ok=True)
+    (designer_output_dir / "js").mkdir(parents=True, exist_ok=True)
+
+    for rel in required_files:
+        shutil.copy2(designer_template_dir / rel, designer_output_dir / rel)
+
+    normalized_version = str(version).rstrip("/")
+    designer_data = {
+        "dwcDpVersion": version,
+        "profileIdentifier": normalized_version + "/dwc-dp-profile.json",
+        "profile": profile,
+        "schemas": schemas,
+    }
+
+    data_path = designer_output_dir / DESIGNER_DATA_FILENAME
+    with data_path.open("w", encoding="utf-8") as fh:
+        fh.write("window.DWC_DP_DESIGNER_DATA = ")
+        json.dump(designer_data, fh, ensure_ascii=False, indent=2)
+        fh.write(";\n")
 
 
 # ---------------------------------------------------------------------------
@@ -1909,6 +1997,8 @@ def main(argv=None) -> int:
         profile_template_path,
         sql_config_path,
         sql_output_path,
+        designer_template_dir,
+        designer_output_dir,
     ) = _derive_paths(args.version)
 
     # Stage 1: generate profile and standalone table schemas.
@@ -1959,6 +2049,23 @@ def main(argv=None) -> int:
         return 1
 
     print(f"PostgreSQL DDL generation complete: {sql_output_path}")
+
+    # Stage 5: publish Designer runtime files and embedded build-specific data.
+    print(f"Generating DwC-DP Designer in {designer_output_dir}...")
+    try:
+        generate_designer(
+            designer_template_dir,
+            designer_output_dir,
+            args.version,
+            profile_json_path,
+            table_schemas_dir,
+        )
+    except (FileNotFoundError, OSError) as exc:
+        print(f"Error: {exc}")
+        print("Processing stopped because Designer generation failed.")
+        return 1
+
+    print(f"Designer generation complete: {designer_output_dir / 'index.html'}")
     print("DwC-DP processing completed successfully.")
     return 0
 
