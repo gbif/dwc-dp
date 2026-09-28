@@ -22,8 +22,8 @@ The file qrg_template.html is a configuration template for the Darwin Core Data 
 The file generate_sql.yaml is a configuration template for the Darwin Core Data Package PostgreSQL Data Definition Language database schema generator. Make any needed updates to this file before you [Run process_dwcdp.py](#run_process_dwcdp_py).
 
 ## Run process_dwcdp.py
-In the maintenance directory run the script process_dwcdp.py with a target version. For example:
- ```process_dwcdp.py http://rs.tdwg.org/dwc-dp/1.0-RC.1```
+In the maintenance directory run the script process_dwcdp.py. The target version is set in the file `process_dwcdp.yaml`. For example:
+ ```process_dwcdp.py```
 
 This generates and validates:
  - ../dwc-dp/dwc-dp-profile.json - the Darwin Core Data Package Profile

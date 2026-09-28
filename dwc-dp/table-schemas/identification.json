@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/identification",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/identification.json",
   "name": "identification",
@@ -9,8 +9,6 @@
   "examples": "`a subspecies determination of an organism`; `a nomenclatural act designating a specimen as a holotype`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Identification",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Identification-2026-05-26",
-  "rdfs:comment": "A classification of a resource according to a classification scheme.",
   "fields": [
     {
       "name": "identification_pk",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Identification.",
       "constraints": {
         "required": true,
         "unique": true
@@ -38,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID"
     },
     {
       "name": "identificationType",
@@ -51,9 +45,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationType-2026-05-26",
-      "rdfs:comment": "A category that best matches the nature of a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationType"
     },
     {
       "name": "identificationProtocol_fk",
@@ -65,8 +57,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -82,8 +72,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-      "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
       "constraints": {
         "required": false,
         "unique": false
@@ -99,7 +87,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -115,7 +102,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -131,7 +117,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -147,8 +132,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": false,
         "unique": false
@@ -164,8 +147,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": false,
         "unique": false
@@ -180,9 +161,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimIdentification-2023-06-28",
-      "rdfs:comment": "A string representing the classification as it appeared in the original record."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification"
     },
     {
       "name": "isAcceptedIdentification",
@@ -193,9 +172,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification-2026-05-26",
-      "rdfs:comment": "An indicator that a dwc:Identification of a dwc:Organism is a currently an accepted or preferred one."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification"
     },
     {
       "name": "taxonFormula",
@@ -206,9 +183,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonFormula",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonFormula-2026-05-26",
-      "rdfs:comment": "A string representing the pattern to use to construct a dwc:Identification from dwc:Taxon names and identification qualifiers."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonFormula"
     },
     {
       "name": "typeStatus",
@@ -219,9 +194,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/typeStatus-2023-06-28",
-      "rdfs:comment": "A list (concatenated and separated) of nomenclatural types (type status, typified scientific name, publication) applied to the subject."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus"
     },
     {
       "name": "typeDesignationType",
@@ -232,9 +205,7 @@
       "type": "string",
       "format": "default",
       "namespace": "gbif",
-      "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-      "dcterms:references": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-      "rdfs:comment": "The reason why this specimen or name is designated as a type."
+      "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType"
     },
     {
       "name": "identifiedBy",
@@ -245,9 +216,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-      "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
     },
     {
       "name": "identifiedBy_fk",
@@ -259,8 +228,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -276,8 +243,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -292,9 +257,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dateIdentified-2025-06-12",
-      "rdfs:comment": "The date on which the dwc:Identification was made."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified"
     },
     {
       "name": "identificationReferences",
@@ -305,9 +268,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
     },
     {
       "name": "identificationVerificationStatus",
@@ -318,9 +279,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identificationVerificationStatus-2026-05-26",
-      "rdfs:comment": "A categorical indicator of the extent to which a dwc:Identification has been verified to be correct."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus"
     },
     {
       "name": "identificationRemarks",
@@ -331,9 +290,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationRemarks-2023-06-28",
-      "rdfs:comment": "Comments or notes about the dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks"
     },
     {
       "name": "taxonID",
@@ -344,9 +301,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Taxon."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID"
     },
     {
       "name": "scientificNameID",
@@ -357,9 +312,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
-      "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID"
     },
     {
       "name": "geologicalClassificationCodes",
@@ -370,9 +323,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
-      "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes"
     },
     {
       "name": "geologicalMaterialNames",
@@ -383,9 +334,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
-      "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames"
     },
     {
       "name": "scientificName",
@@ -396,9 +345,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
-      "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName"
     },
     {
       "name": "scientificNameAuthorship",
@@ -409,9 +356,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameAuthorship-2023-06-28",
-      "rdfs:comment": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship"
     },
     {
       "name": "vernacularName",
@@ -422,9 +367,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
-      "rdfs:comment": "A common or vernacular name."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName"
     },
     {
       "name": "taxonRank",
@@ -435,9 +378,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
-      "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank"
     },
     {
       "name": "classificationSystem",
@@ -448,9 +389,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
-      "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem"
     },
     {
       "name": "kingdom",
@@ -461,9 +400,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/kingdom-2023-06-28",
-      "rdfs:comment": "The full scientific name of the kingdom in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom"
     },
     {
       "name": "phylum",
@@ -474,9 +411,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/phylum-2023-06-28",
-      "rdfs:comment": "The full scientific name of the phylum or division in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum"
     },
     {
       "name": "class",
@@ -487,9 +422,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/class-2023-06-28",
-      "rdfs:comment": "The full scientific name of the class in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class"
     },
     {
       "name": "order",
@@ -500,9 +433,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/order-2023-06-28",
-      "rdfs:comment": "The full scientific name of the order in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order"
     },
     {
       "name": "superfamily",
@@ -513,9 +444,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/superfamily",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/superfamily-2023-07-07",
-      "rdfs:comment": "The full scientific name of the superfamily in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/superfamily"
     },
     {
       "name": "family",
@@ -526,9 +455,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/family-2023-06-28",
-      "rdfs:comment": "The full scientific name of the family in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family"
     },
     {
       "name": "subfamily",
@@ -539,9 +466,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subfamily-2023-06-28",
-      "rdfs:comment": "The full scientific name of the subfamily in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily"
     },
     {
       "name": "tribe",
@@ -552,9 +477,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tribe",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/tribe-2023-06-28",
-      "rdfs:comment": "The full scientific name of the tribe in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tribe"
     },
     {
       "name": "subtribe",
@@ -565,9 +488,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subtribe",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subtribe-2023-06-28",
-      "rdfs:comment": "The full scientific name of the subtribe in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subtribe"
     },
     {
       "name": "genus",
@@ -578,9 +499,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genus-2023-06-28",
-      "rdfs:comment": "The full scientific name of the genus in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus"
     },
     {
       "name": "genericName",
@@ -591,9 +510,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genericName-2023-06-28",
-      "rdfs:comment": "The genus part of the dwc:scientificName without authorship."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName"
     },
     {
       "name": "subgenus",
@@ -604,9 +521,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subgenus-2025-06-12",
-      "rdfs:comment": "The full scientific name of the subgenus in which the dwc:Taxon is classified."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus"
     },
     {
       "name": "infragenericEpithet",
@@ -617,9 +532,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infragenericEpithet-2023-06-28",
-      "rdfs:comment": "The infrageneric part of a binomial name at ranks above species but below genus."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet"
     },
     {
       "name": "specificEpithet",
@@ -630,9 +543,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/specificEpithet-2023-06-28",
-      "rdfs:comment": "The name of the first or species epithet of the dwc:scientificName."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet"
     },
     {
       "name": "infraspecificEpithet",
@@ -643,9 +554,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infraspecificEpithet-2026-05-26",
-      "rdfs:comment": "The name of the lowest or terminal infraspecific of the dwc:scientificName."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet"
     },
     {
       "name": "cultivarEpithet",
@@ -656,9 +565,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/cultivarEpithet-2026-05-26",
-      "rdfs:comment": "Part of the name of a cultivar, cultivar group or grex that follows the dwc:scientificName."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet"
     },
     {
       "name": "nameAccordingTo",
@@ -669,9 +576,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nameAccordingTo-2026-05-26",
-      "rdfs:comment": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo"
     },
     {
       "name": "nomenclaturalCode",
@@ -682,9 +587,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalCode-2023-06-28",
-      "rdfs:comment": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the dwc:scientificName is constructed."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode"
     },
     {
       "name": "nomenclaturalStatus",
@@ -695,9 +598,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalStatus-2023-06-28",
-      "rdfs:comment": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus"
     },
     {
       "name": "namePublishedIn",
@@ -708,9 +609,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedIn-2023-06-28",
-      "rdfs:comment": "A reference for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn"
     },
     {
       "name": "namePublishedInYear",
@@ -721,9 +620,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedInYear-2023-06-28",
-      "rdfs:comment": "The four-digit year in which the dwc:scientificName was published."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear"
     },
     {
       "name": "taxonRemarks",
@@ -734,9 +631,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRemarks-2017-10-06",
-      "rdfs:comment": "Comments or notes about the taxon or name."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRemarks"
     },
     {
       "name": "feedbackURL",
@@ -747,9 +642,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-      "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
     }
   ],
   "primaryKey": "identification_pk",

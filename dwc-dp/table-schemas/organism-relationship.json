@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-relationship",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-relationship",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/organism-relationship.json",
   "name": "organism-relationship",
@@ -9,8 +9,6 @@
   "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
-  "rdfs:comment": "A relationship of one rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource) to another.",
   "fields": [
     {
       "name": "organismRelationshipID",
@@ -21,9 +19,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:ResourceRelationship."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID"
     },
     {
       "name": "subjectOrganism_fk",
@@ -35,8 +31,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -51,9 +45,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-      "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
     },
     {
       "name": "relationshipTypeIRI",
@@ -64,9 +56,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-      "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
     },
     {
       "name": "relationshipTypeSource",
@@ -77,8 +67,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "relatedOrganism_fk",
@@ -90,8 +79,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": false,
         "unique": false
@@ -107,8 +94,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": false,
         "unique": false
@@ -123,9 +108,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-      "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID"
     },
     {
       "name": "externalRelatedOrganismSource",
@@ -136,8 +119,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "relationshipAccordingTo",
@@ -148,9 +130,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipAccordingTo-2018-09-06",
-      "rdfs:comment": "The source (person, organization, publication, reference) establishing the relationship between the two resources."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo"
     },
     {
       "name": "relationshipAccordingTo_fk",
@@ -162,8 +142,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -179,8 +157,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -195,9 +171,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipEstablishedDate-2025-06-12",
-      "rdfs:comment": "The date-time on which the relationship between the two resources was established."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate"
     },
     {
       "name": "relationshipRemarks",
@@ -208,9 +182,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipRemarks-2023-06-28",
-      "rdfs:comment": "Comments or notes about the relationship between the two resources."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks"
     }
   ],
   "weakPrimaryKey": "organismRelationshipID",

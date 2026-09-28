@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-assertion",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-assertion",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/event-assertion.json",
   "name": "event-assertion",
@@ -9,8 +9,6 @@
   "examples": "",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-  "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
   "fields": [
     {
       "name": "assertionID",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Assertion.",
       "constraints": {
         "required": false,
         "unique": true
@@ -39,8 +35,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -55,9 +49,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-      "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
     },
     {
       "name": "assertionType",
@@ -68,9 +60,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-      "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
     },
     {
       "name": "assertionTypeIRI",
@@ -81,9 +71,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-      "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
     },
     {
       "name": "assertionTypeSource",
@@ -94,8 +82,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "assertionMadeDate",
@@ -106,9 +93,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-      "rdfs:comment": "A date on which a dwc:Assertion was created."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
     },
     {
       "name": "assertionEffectiveDate",
@@ -119,9 +104,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-      "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
     },
     {
       "name": "assertionValue",
@@ -132,9 +115,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-      "rdfs:comment": "An asserted value."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
     },
     {
       "name": "assertionValueIRI",
@@ -145,9 +126,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-      "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
     },
     {
       "name": "assertionValueSource",
@@ -158,8 +137,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "assertionUnit",
@@ -170,9 +148,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-      "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
     },
     {
       "name": "assertionUnitIRI",
@@ -183,9 +159,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwciri",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-      "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-      "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
     },
     {
       "name": "assertionUnitSource",
@@ -196,8 +170,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "assertionError",
@@ -208,9 +181,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-      "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
     },
     {
       "name": "assertionBy",
@@ -221,9 +192,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-      "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
     },
     {
       "name": "assertionBy_fk",
@@ -235,8 +204,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -252,8 +219,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -268,9 +233,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-      "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
     },
     {
       "name": "assertionProtocol_fk",
@@ -282,8 +245,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -298,9 +259,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
     },
     {
       "name": "assertionRemarks",
@@ -311,9 +270,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-      "rdfs:comment": "Comments or notes about a dwc:Assertion."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
     }
   ],
   "weakPrimaryKey": "assertionID",

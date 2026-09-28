@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-target",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-target",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/survey-target.json",
   "name": "survey-target",
@@ -9,8 +9,6 @@
   "examples": "`all bird species`; `all bird species except Larus gulls, fulmars and kittiwakes`; `reproductive female Ctenomys sociabilis (only)`; `Oncorhynchus mykiss and Oncorhynchus clarkii (only)`, `all total lengths except < 12 inches`",
   "namespace": "eco",
   "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/SurveyTarget",
-  "dcterms:references": "http://rs.tdwg.org/eco/terms/SurveyTarget-2026-05-26",
-  "rdfs:comment": "A specification of characteristics of dwc:Occurrences that were included or excluded in an eco:Survey.",
   "fields": [
     {
       "name": "surveyTarget_pk",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-      "rdfs:comment": "An identifier for an eco:SurveyTarget.",
       "constraints": {
         "required": true,
         "unique": true
@@ -38,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-      "rdfs:comment": "An identifier for an eco:SurveyTarget."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID"
     },
     {
       "name": "surveyTargetDescription",
@@ -51,9 +45,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetDescription",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetDescription-pending",
-      "rdfs:comment": "A verbatim description of an eco:SurveyTarget."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetDescription"
     },
     {
       "name": "isSurveyTargetFullyReported",
@@ -65,8 +57,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSurveyTargetFullyReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/isSurveyTargetFullyReported-2026-05-26",
-      "rdfs:comment": "Whether an eco:SurveyTarget can be used to infer absence of detection because all counts of detected dwc:Occurrences matching an eco:SurveyTarget were fully reported.",
       "constraints": {
         "required": true,
         "unique": false
@@ -82,8 +72,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/abundanceCap",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/abundanceCap-2024-02-28",
-      "rdfs:comment": "The reported maximum number of dwc:Occurrences matching an eco:SurveyTarget.",
       "constraints": {
         "minimum": 0
       }
@@ -97,9 +85,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks-pending",
-      "rdfs:comment": "Comments or notes about an eco:SurveyTarget."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks"
     }
   ],
   "primaryKey": "surveyTarget_pk",

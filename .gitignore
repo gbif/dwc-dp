@@ -11,3 +11,4 @@ _site/
 
 # Mac OS X
 .DS_Store
+._*

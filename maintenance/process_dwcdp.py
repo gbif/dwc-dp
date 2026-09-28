@@ -25,10 +25,9 @@ Validation is performed before QRG and SQL generation.  Validation errors cause 
 non-zero exit and prevent the QRG from being rendered.
 
 Usage:
-  python process_dwcdp.py <version>
+  python process_dwcdp.py [--config PATH] [--dry-run]
 
-Example:
-  python process_dwcdp.py http://rs.tdwg.org/dwc-dp/1.0_DEV
+The DwC-DP version and build paths are configured in process_dwcdp.yaml.
 """
 
 import os
@@ -66,13 +65,13 @@ except ImportError as exc:  # pragma: no cover
 EXPECTED_HEADERS = {
     "dwc-dp-tables.csv": {
         "name", "title", "description", "notes", "example", "namespace",
-        "dcterms:isVersionOf", "dcterms:references", "rdfs:comment", "status",
+        "dcterms:isVersionOf", "status",
     },
     "dwc-dp-fields.csv": {
         "table", "name", "key", "predicate", "related_table", "related_field",
         "title", "description", "notes", "example", "type", "format",
         "unique", "required", "minimum", "maximum", "namespace",
-        "dcterms:isVersionOf", "dcterms:references", "rdfs:comment", "status",
+        "dcterms:isVersionOf", "status",
     },
 }
 
@@ -102,6 +101,9 @@ PROFILE_TEMPLATE_FILENAME = "dwc-dp-profile_template.json"
 # Name of the generated profile, written in ../dwc-dp/.
 PROFILE_OUTPUT_FILENAME = "dwc-dp-profile.json"
 
+# Build-wide configuration, including the single authoritative DwC-DP version.
+PROCESS_CONFIG_FILENAME = "process_dwcdp.yaml"
+
 # Location, within the profile template, of the enum listing the resource names
 # that belong to a version.  Every key except the last must resolve to an object.
 PROFILE_ENUM_PATH = ("$defs", "dwc-dp-resource-names", "enum")
@@ -115,81 +117,58 @@ PROFILE_ENUM_PLACEHOLDER = "{{DWC_DP_RESOURCE_NAMES}}"
 PROFILE_VERSION_PATH = ("version",)
 
 # The template must carry exactly this string at PROFILE_VERSION_PATH.  The
-# placeholder is replaced with the version given on the command line.
+# placeholder is replaced with the version declared in process_dwcdp.yaml.
 PROFILE_VERSION_PLACEHOLDER = "{{DWC_DP_VERSION}}"
-
-# Ordered display groups for the QRG.  Every recommended table name must appear
-# exactly once; validate_ordered_groups() enforces this at runtime.
-ORDERED_GROUPS = [
-    ['event', 'chronometric-age', 'geological-context', 'occurrence', 'organism',
-     'organism-interaction'],
-    ['survey', 'survey-survey-target', 'survey-target', 'survey-target-descriptor'],
-    ['identification', 'identification-taxon'],
-    ['material', 'geological-material', 'material-geological-context'],
-    ['nucleotide-analysis', 'molecular-protocol', 'nucleotide-sequence'],
-    ['agent', 'agent-agent-role', 'chronometric-age-agent-role', 'event-agent-role',
-     'identification-agent-role', 'material-agent-role', 'media-agent-role',
-     'molecular-protocol-agent-role', 'occurrence-agent-role',
-     'organism-interaction-agent-role', 'survey-agent-role'],
-    ['media', 'agent-media', 'chronometric-age-media', 'event-media',
-     'geological-context-media', 'material-media', 'occurrence-media',
-     'organism-interaction-media'],
-    ['protocol', 'chronometric-age-protocol', 'event-protocol', 'material-protocol',
-     'occurrence-protocol', 'survey-protocol'],
-    ['bibliographic-resource', 'chronometric-age-reference', 'event-reference',
-     'identification-reference', 'material-reference', 'molecular-protocol-reference',
-     'occurrence-reference', 'organism-reference', 'organism-interaction-reference',
-     'protocol-reference', 'survey-reference'],
-    ['chronometric-age-assertion', 'event-assertion', 'material-assertion',
-     'media-assertion', 'molecular-protocol-assertion', 'nucleotide-analysis-assertion',
-     'occurrence-assertion', 'organism-assertion', 'organism-interaction-assertion',
-     'survey-assertion'],
-    ['agent-identifier', 'event-identifier', 'material-identifier', 'media-identifier',
-     'occurrence-identifier', 'organism-identifier', 'survey-identifier'],
-    ['provenance', 'event-provenance', 'material-provenance', 'media-provenance'],
-    ['usage-policy', 'event-usage-policy', 'material-usage-policy', 'media-usage-policy'],
-    ['organism-relationship', 'resource-relationship'],
-]
 
 # ---------------------------------------------------------------------------
 # Path helpers
 # ---------------------------------------------------------------------------
 
-def repo_root_from_script() -> Path:
-    """Return the repository root, assuming this script lives one level below it."""
-    return Path(__file__).resolve().parent.parent
+def _resolve_config_path(repository_root: Path, value: str, property_name: str) -> Path:
+    """Resolve a repository-relative path declared in process_dwcdp.yaml."""
+    if not isinstance(value, str) or not value.strip():
+        raise ValueError(f"Configuration property '{property_name}' must be a non-empty path string")
+    path = Path(value.strip())
+    return path if path.is_absolute() else (repository_root / path).resolve()
 
 
-def _derive_paths(version: str):
-    """Return all paths used by DwC-DP generation, validation, QRG, and SQL output."""
-    root = repo_root_from_script()
-    script_dir = Path(__file__).resolve().parent
-
-    table_schemas_dir = root / "dwc-dp" / "table-schemas"
-    output_html_path = root / "qrg" / "index.html"
-    profile_json_path = root / "dwc-dp" / PROFILE_OUTPUT_FILENAME
-
-    # Templates and SQL configuration live alongside this script.
-    template_path = script_dir / "qrg_template.html"
-    profile_template_path = script_dir / PROFILE_TEMPLATE_FILENAME
-    sql_config_path = script_dir / SQL_CONFIG_FILENAME
-
-    # SQL output is always written under ../sql relative to this script.
-    sql_output_path = root / "sql" / SQL_OUTPUT_FILENAME
-    designer_template_dir = script_dir / DESIGNER_TEMPLATE_DIRNAME
-    designer_output_dir = root / "designer"
-
-    return (
-        table_schemas_dir,
-        output_html_path,
-        template_path,
-        profile_json_path,
-        profile_template_path,
-        sql_config_path,
-        sql_output_path,
-        designer_template_dir,
-        designer_output_dir,
-    )
+def _derive_paths(config: dict[str, Any], config_path: Path) -> dict[str, Any]:
+    """Resolve all declared DwC-DP inputs and outputs from configuration."""
+    config_dir = config_path.resolve().parent
+    root_value = config.get("repository_root", "..")
+    if not isinstance(root_value, str) or not root_value.strip():
+        raise ValueError("Configuration property 'repository_root' must be a non-empty path string")
+    root_candidate = Path(root_value.strip())
+    repository_root = root_candidate if root_candidate.is_absolute() else (config_dir / root_candidate).resolve()
+    required = {
+        "sources.tables": ("sources", "tables"),
+        "sources.fields": ("sources", "fields"),
+        "profile.template": ("profile", "template"),
+        "profile.output": ("profile", "output"),
+        "profile.table_schemas": ("profile", "table_schemas"),
+        "qrg.template": ("qrg", "template"),
+        "qrg.output": ("qrg", "output"),
+        "sql.config": ("sql", "config"),
+        "sql.output": ("sql", "output"),
+        "designer.template": ("designer", "template"),
+        "designer.output": ("designer", "output"),
+    }
+    values = {}
+    for label, keys in required.items():
+        node = config
+        for key in keys:
+            if not isinstance(node, dict) or key not in node:
+                raise ValueError(f"Missing required configuration property '{label}'")
+            node = node[key]
+        values[label] = _resolve_config_path(repository_root, node, label)
+    groups = config.get("qrg", {}).get("table_groups")
+    if not isinstance(groups, list) or not groups or any(not isinstance(g, list) or not g for g in groups):
+        raise ValueError("Configuration property 'qrg.table_groups' must be a non-empty list of non-empty lists")
+    if any(not isinstance(n, str) or not n.strip() for g in groups for n in g):
+        raise ValueError("Every entry in 'qrg.table_groups' must be a non-empty table name")
+    values["qrg.table_groups"] = groups
+    values["repository_root"] = repository_root
+    return values
 
 # ---------------------------------------------------------------------------
 # CSV scalar parsing
@@ -263,15 +242,11 @@ def validate_csv_headers(vocabulary_dir: Path) -> None:
             )
 
 
-def validate_ordered_groups(recommended_table_names: set) -> None:
-    """Ensure every recommended table appears in ORDERED_GROUPS exactly once.
+def validate_ordered_groups(recommended_table_names: set, ordered_groups: list[list[str]]) -> None:
+    """Ensure every recommended table appears in configured QRG groups exactly once."""
+    grouped = [name for group in ordered_groups for name in group]
 
-    Raises ValueError listing any tables that are absent from ORDERED_GROUPS,
-    and logs warnings for any names in ORDERED_GROUPS that are not recommended.
-    """
-    grouped = [name for group in ORDERED_GROUPS for name in group]
-
-    # Check for duplicates within ORDERED_GROUPS itself.
+    # Check for duplicates within the configured QRG groups.
     seen = set()
     duplicates = []
     for name in grouped:
@@ -280,22 +255,22 @@ def validate_ordered_groups(recommended_table_names: set) -> None:
         seen.add(name)
     if duplicates:
         raise ValueError(
-            f"ORDERED_GROUPS contains duplicate table names: {duplicates}"
+            f"qrg.table_groups contains duplicate table names: {duplicates}"
         )
 
     grouped_set = set(grouped)
     missing_from_groups = recommended_table_names - grouped_set
     if missing_from_groups:
         raise ValueError(
-            "The following recommended tables are not listed in ORDERED_GROUPS "
+            "The following recommended tables are not listed in qrg.table_groups "
             "and would be silently omitted from the QRG.  Add them to "
-            f"ORDERED_GROUPS:\n  {sorted(missing_from_groups)}"
+            f"qrg.table_groups:\n  {sorted(missing_from_groups)}"
         )
 
     unknown_in_groups = grouped_set - recommended_table_names
     if unknown_in_groups:
         print(
-            "Warning: ORDERED_GROUPS references table names that are not recommended "
+            "Warning: qrg.table_groups references table names that are not recommended "
             "in dwc-dp-tables.csv (they will be skipped): "
             f"{sorted(unknown_in_groups)}"
         )
@@ -426,8 +401,6 @@ def build_table_schemas(vocabulary_dir: Path, version: str) -> list:
             iri = (row.get("dcterms:isVersionOf", "") or "").strip()
             if not iri:
                 iri = f"http://example.com/term-pending/{namespace}/{name}"
-            iri_version = (row.get("dcterms:references", "") or "").strip()
-            rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
 
             ts = {
                 "identifier": f"{version}/{name}",
@@ -441,10 +414,6 @@ def build_table_schemas(vocabulary_dir: Path, version: str) -> list:
                 "namespace": namespace,
                 "dcterms:isVersionOf": iri,
             }
-            if iri_version:
-                ts["dcterms:references"] = iri_version
-            if rdfs_comment:
-                ts["rdfs:comment"] = rdfs_comment
             table_schemas.append(ts)
     return table_schemas
 
@@ -475,8 +444,6 @@ def build_fields_for_table(
         iri = (row.get("dcterms:isVersionOf", "") or "").strip()
         if not iri:
             iri = f"http://example.com/term-pending/{namespace}/{name}"
-        iri_version = (row.get("dcterms:references", "") or "").strip()
-        rdfs_comment = (row.get("rdfs:comment", "") or "").strip()
 
         key_val = (row.get("key", "") or "").strip().lower()
         if key_val == "pk":
@@ -520,10 +487,6 @@ def build_fields_for_table(
             "namespace": namespace,
             "dcterms:isVersionOf": iri,
         }
-        if iri_version:
-            field_obj["dcterms:references"] = iri_version
-        if rdfs_comment:
-            field_obj["rdfs:comment"] = rdfs_comment
         if constraints:
             field_obj["constraints"] = constraints
 
@@ -681,20 +644,26 @@ def make_schema_stage(
     version: str,
     profile_json_path: Path,
     profile_template_path: Path,
+    tables_csv: Path,
+    fields_csv: Path,
+    ordered_groups: list[list[str]],
 ) -> None:
     """Validate CSVs, build table schemas, and write the DwC-DP profile."""
     out_dir = table_schemas_dir.parent
     out_dir.mkdir(parents=True, exist_ok=True)
     table_schemas_dir.mkdir(parents=True, exist_ok=True)
 
-    root = repo_root_from_script()
-    vocabulary_dir = root / "vocabulary"
+    if tables_csv.parent != fields_csv.parent:
+        raise ValueError("Configured table and field CSV files must currently share one directory")
+    if tables_csv.name != "dwc-dp-tables.csv" or fields_csv.name != "dwc-dp-fields.csv":
+        raise ValueError("Configured source filenames must be dwc-dp-tables.csv and dwc-dp-fields.csv")
+    vocabulary_dir = tables_csv.parent
 
     validate_csv_headers(vocabulary_dir)
     recommended_tables = load_recommended_tables_map(vocabulary_dir)
     recommended_fields = load_recommended_fields_map(vocabulary_dir)
     validate_field_relationship_metadata(recommended_tables, recommended_fields)
-    validate_ordered_groups(set(recommended_tables.keys()))
+    validate_ordered_groups(set(recommended_tables.keys()), ordered_groups)
 
     table_schemas = build_table_schemas(vocabulary_dir, version)
 
@@ -1131,7 +1100,6 @@ def build_term_section(field: dict, class_name: str) -> str:
     order = [
         "title", "namespace", "class", "description", "notes", "examples",
         "type", "default", "constraints", "format", "dcterms:isVersionOf",
-        "dcterms:references",
     ]
     labels = {
         "title": "Title (Label)",
@@ -1145,7 +1113,6 @@ def build_term_section(field: dict, class_name: str) -> str:
         "default": "Default",
         "constraints": "Constraints",
         "format": "Format",
-        "dcterms:references": "dcterms:references",
     }
 
     rows = []
@@ -1170,7 +1137,7 @@ def build_term_section(field: dict, class_name: str) -> str:
         if not value:
             continue
 
-        if key in ("dcterms:isVersionOf", "dcterms:references"):
+        if key == "dcterms:isVersionOf":
             if not (
                 value.startswith("http://example.com/term-pending/")
                 or value.startswith("https://example.com/term-pending/")
@@ -1223,12 +1190,13 @@ def generate_qrg(
     output_html_path: Path,
     template_path: Path,
     version: str,
+    ordered_groups: list[list[str]],
 ) -> None:
     """Read the standalone table schemas and render the QRG HTML."""
     content_parts = []
     class_links_parts = []
 
-    for group in ORDERED_GROUPS:
+    for group in ordered_groups:
         for table_name in group:
             schema_file = table_schemas_dir / f"{table_name}.json"
             if not schema_file.is_file():
@@ -1972,102 +1940,135 @@ def generate_designer(
 
 
 # ---------------------------------------------------------------------------
-# CLI and main
+# Configuration and main
 # ---------------------------------------------------------------------------
 
+def load_process_configuration(config_path: Path) -> dict[str, Any]:
+    """Load and validate build-wide DwC-DP processing configuration."""
+    if not config_path.is_file():
+        raise FileNotFoundError(f"DwC-DP processing configuration not found: {config_path}")
+    with config_path.open("r", encoding="utf-8") as fh:
+        config = yaml.safe_load(fh) or {}
+    if not isinstance(config, dict):
+        raise ValueError(f"DwC-DP processing configuration must be a mapping: {config_path}")
+    version = config.get("version")
+    if not isinstance(version, str) or not version.strip():
+        raise ValueError(f"DwC-DP processing configuration must define a non-empty 'version': {config_path}")
+    config["version"] = version.strip()
+    return config
+
+
+def preflight(config: dict[str, Any], config_path: Path) -> dict[str, Any]:
+    """Validate configuration, declared inputs, and QRG coverage without writing outputs."""
+    paths = _derive_paths(config, config_path)
+    for label in ("sources.tables", "sources.fields", "profile.template", "qrg.template", "sql.config"):
+        if not paths[label].is_file():
+            raise FileNotFoundError(f"Configured input '{label}' not found: {paths[label]}")
+    if not paths["designer.template"].is_dir():
+        raise FileNotFoundError(f"Configured Designer template directory not found: {paths['designer.template']}")
+    designer_required_files = (Path("index.html"), Path("styles.css"), Path("js") / "app.js")
+    for rel in designer_required_files:
+        if not (paths["designer.template"] / rel).is_file():
+            raise FileNotFoundError(f"Required Designer template file not found: {paths['designer.template'] / rel}")
+    tables_csv, fields_csv = paths["sources.tables"], paths["sources.fields"]
+    if tables_csv.parent != fields_csv.parent:
+        raise ValueError("Configured table and field CSV files must currently share one directory")
+    validate_csv_headers(tables_csv.parent)
+    tables = load_recommended_tables_map(tables_csv.parent)
+    fields = load_recommended_fields_map(fields_csv.parent)
+    validate_field_relationship_metadata(tables, fields)
+    validate_ordered_groups(set(tables), paths["qrg.table_groups"])
+    paths["recommended_table_count"] = len(tables)
+    paths["recommended_field_count"] = sum(len(v) for v in fields.values())
+    return paths
+
+
+def owned_outputs(paths: dict[str, Any]) -> list[Path]:
+    """Return the complete set of build-owned output roots."""
+    return [paths["profile.output"], paths["profile.table_schemas"], paths["qrg.output"], paths["sql.output"], paths["designer.output"]]
+
+
+def _clean_owned_directories(paths: dict[str, Any]) -> None:
+    """Remove generated directory trees whose contents are wholly build-owned."""
+    for key in ("profile.table_schemas", "designer.output"):
+        target = paths[key]
+        if target.exists():
+            shutil.rmtree(target)
+
+
+def build(config_path: Path, *, dry_run: bool = False) -> int:
+    """Build all DwC-DP artifacts described by config_path."""
+    try:
+        config = load_process_configuration(config_path)
+        paths = preflight(config, config_path)
+    except (FileNotFoundError, OSError, ValueError, yaml.YAMLError) as exc:
+        print(f"Error: {exc}")
+        return 1
+
+    print(f"DwC-DP version: {config['version']}")
+    print(f"Preflight successful: {paths['recommended_table_count']} recommended tables; "
+          f"{paths['recommended_field_count']} recommended fields.")
+    print("Build-owned outputs:")
+    for path in owned_outputs(paths):
+        print(f"  {path}")
+    if dry_run:
+        print("Dry run complete; no files were modified.")
+        return 0
+
+    _clean_owned_directories(paths)
+    version = config["version"]
+    table_schemas_dir = paths["profile.table_schemas"]
+    profile_json_path = paths["profile.output"]
+
+    print(f"Generating DwC-DP profile and table schemas in {table_schemas_dir.parent}...")
+    make_schema_stage(table_schemas_dir, version, profile_json_path, paths["profile.template"],
+                      paths["sources.tables"], paths["sources.fields"], paths["qrg.table_groups"])
+    print(f"Generation complete: profile -> {profile_json_path}; table schemas -> {table_schemas_dir}")
+
+    print(f"Validating generated DwC-DP artifacts in {table_schemas_dir}...")
+    validation = validate_generated_artifacts(table_schemas_dir, profile_json_path)
+    if validation.has_errors:
+        print("Processing stopped because validation failed.")
+        return 1
+
+    print(f"Rendering DwC-DP Quick Reference Guide to {paths['qrg.output']}...")
+    generate_qrg(table_schemas_dir, paths["qrg.output"], paths["qrg.template"], version, paths["qrg.table_groups"])
+    print(f"QRG rendering complete: {paths['qrg.output']}")
+
+    print(f"Generating PostgreSQL DDL to {paths['sql.output']}...")
+    try:
+        generate_postgresql_ddl(table_schemas_dir, paths["sql.config"], paths["sql.output"], version)
+    except GeneratorError as exc:
+        print(f"Error: {exc}")
+        print("Processing stopped because PostgreSQL DDL generation failed.")
+        return 1
+    print(f"PostgreSQL DDL generation complete: {paths['sql.output']}")
+
+    print(f"Generating DwC-DP Designer in {paths['designer.output']}...")
+    try:
+        generate_designer(paths["designer.template"], paths["designer.output"], version,
+                          profile_json_path, table_schemas_dir)
+    except (FileNotFoundError, OSError) as exc:
+        print(f"Error: {exc}")
+        print("Processing stopped because Designer generation failed.")
+        return 1
+    print(f"Designer generation complete: {paths['designer.output'] / 'index.html'}")
+    print("DwC-DP processing completed successfully.")
+    return 0
+
+
 def parse_args(argv=None):
-    parser = argparse.ArgumentParser(
-        description="Generate, validate, and render DwC-DP artifacts and PostgreSQL DDL"
-    )
-    parser.add_argument(
-        "version",
-        help="DwC-DP version (e.g., http://rs.tdwg.org/dwc-dp/1.0_DEV)",
-    )
+    parser = argparse.ArgumentParser(description="Generate and validate Darwin Core Data Package artifacts.")
+    parser.add_argument("--config", type=Path, default=Path(__file__).resolve().parent / PROCESS_CONFIG_FILENAME,
+                        help="Path to process_dwcdp.yaml (default: alongside this script).")
+    parser.add_argument("--dry-run", action="store_true",
+                        help="Validate configuration and inputs and report owned outputs without modifying files.")
     return parser.parse_args(argv)
 
 
 def main(argv=None) -> int:
     args = parse_args(argv)
-
-    (
-        table_schemas_dir,
-        output_html_path,
-        template_path,
-        profile_json_path,
-        profile_template_path,
-        sql_config_path,
-        sql_output_path,
-        designer_template_dir,
-        designer_output_dir,
-    ) = _derive_paths(args.version)
-
-    # Stage 1: generate profile and standalone table schemas.
-    print(f"Generating DwC-DP profile and table schemas in {table_schemas_dir.parent}...")
-    make_schema_stage(
-        table_schemas_dir,
-        args.version,
-        profile_json_path,
-        profile_template_path,
-    )
-    print(
-        f"Generation complete: profile -> {profile_json_path}; "
-        f"table schemas -> {table_schemas_dir}"
-    )
-
-    # Stage 2: validate exactly the artifacts just generated.
-    print(f"Validating generated DwC-DP artifacts in {table_schemas_dir}...")
-    validation = validate_generated_artifacts(
-        table_schemas_dir,
-        profile_json_path,
-    )
-    if validation.has_errors:
-        print("Processing stopped because validation failed.")
-        return 1
-
-    # Stage 3: render the QRG only from validated table schemas.
-    print(f"Rendering DwC-DP Quick Reference Guide to {output_html_path}...")
-    generate_qrg(
-        table_schemas_dir,
-        output_html_path,
-        template_path,
-        args.version,
-    )
-    print(f"QRG rendering complete: {output_html_path}")
-
-    # Stage 4: generate PostgreSQL DDL from the validated table schemas.
-    print(f"Generating PostgreSQL DDL to {sql_output_path}...")
-    try:
-        generate_postgresql_ddl(
-            table_schemas_dir,
-            sql_config_path,
-            sql_output_path,
-            args.version,
-        )
-    except GeneratorError as exc:
-        print(f"Error: {exc}")
-        print("Processing stopped because PostgreSQL DDL generation failed.")
-        return 1
-
-    print(f"PostgreSQL DDL generation complete: {sql_output_path}")
-
-    # Stage 5: publish Designer runtime files and embedded build-specific data.
-    print(f"Generating DwC-DP Designer in {designer_output_dir}...")
-    try:
-        generate_designer(
-            designer_template_dir,
-            designer_output_dir,
-            args.version,
-            profile_json_path,
-            table_schemas_dir,
-        )
-    except (FileNotFoundError, OSError) as exc:
-        print(f"Error: {exc}")
-        print("Processing stopped because Designer generation failed.")
-        return 1
-
-    print(f"Designer generation complete: {designer_output_dir / 'index.html'}")
-    print("DwC-DP processing completed successfully.")
-    return 0
+    return build(args.config, dry_run=args.dry_run)
 
 if __name__ == "__main__":
     raise SystemExit(main())

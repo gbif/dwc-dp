@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-media",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-media",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/event-media.json",
   "name": "event-media",
@@ -20,7 +20,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": false
@@ -36,8 +35,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -52,9 +49,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-      "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
     },
     {
       "name": "subjectCategoryIRI",
@@ -65,9 +60,7 @@
       "type": "string",
       "format": "default",
       "namespace": "Iptc4xmpExt",
-      "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-      "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-      "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+      "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
     },
     {
       "name": "subjectCategoryVocabulary",
@@ -78,9 +71,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-      "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
     },
     {
       "name": "subjectPartLiteral",
@@ -91,9 +82,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-      "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
     },
     {
       "name": "subjectPart",
@@ -104,9 +93,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-      "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
     },
     {
       "name": "subjectOrientationLiteral",
@@ -117,9 +104,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-      "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
     },
     {
       "name": "subjectOrientation",
@@ -130,9 +115,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-      "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
     },
     {
       "name": "physicalSetting",
@@ -143,9 +126,7 @@
       "type": "string",
       "format": "default",
       "namespace": "ac",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-      "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
     }
   ],
   "foreignKeys": [

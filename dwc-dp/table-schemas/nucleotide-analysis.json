@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/nucleotide-analysis",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/nucleotide-analysis",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/nucleotide-analysis.json",
   "name": "nucleotide-analysis",
@@ -9,8 +9,6 @@
   "examples": "",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis-2026-05-26",
-  "rdfs:comment": "A link between a dwc:NucleotideSequence and a dwc:Event and a dwc:MaterialEntity from which it was derived, using a specified dwc:Protocol.",
   "fields": [
     {
       "name": "nucleotideAnalysis_pk",
@@ -22,7 +20,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": true,
         "unique": true
@@ -37,8 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context."
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
     },
     {
       "name": "event_fk",
@@ -50,8 +46,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": false,
         "unique": false
@@ -67,8 +61,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
       "constraints": {
         "required": true,
         "unique": false
@@ -84,7 +76,6 @@
       "format": "default",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-      "rdfs:comment": "An unambiguous reference to the resource within a given context.",
       "constraints": {
         "required": false,
         "unique": false
@@ -100,8 +91,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-      "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
       "constraints": {
         "required": false,
         "unique": false
@@ -116,9 +105,7 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/readCount",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/readCount-2026-05-26",
-      "rdfs:comment": "The number of reads obtained for a processed dwc:NucleotideSequence during a dwc:NucleotideAnalysis."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/readCount"
     },
     {
       "name": "processedTotalReadCount",
@@ -129,9 +116,7 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/processedTotalReadCount",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/processedTotalReadCount-2026-05-26",
-      "rdfs:comment": "The total number of reads obtained for a processed dwc:NucleotideSequence during a dwc:NucleotideAnalysis."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/processedTotalReadCount"
     },
     {
       "name": "rawTotalReadCount",
@@ -142,9 +127,7 @@
       "type": "integer",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/rawTotalReadCount",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/rawTotalReadCount-pending",
-      "rdfs:comment": "A total number of raw, unprocessed reads from a dwc:NucleotideAnalysis."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/rawTotalReadCount"
     }
   ],
   "primaryKey": "nucleotideAnalysis_pk",

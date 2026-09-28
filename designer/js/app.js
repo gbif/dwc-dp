@@ -412,7 +412,7 @@
     }
 
     addKV("Description", schemaObj.description || "");
-    if (schemaObj.comments) { addKV("Comments", schemaObj.comments); }
+    if (schemaObj.notes) { addKV("Usage notes", schemaObj.notes); }
     if (schemaObj.examples) {
       modalContent.appendChild(createEl("div", { class: "kv" },
         createEl("span", { class: "k", text: "Examples: " }),
@@ -1310,7 +1310,7 @@
         fieldIndex.push({
           tableName, tableTitle: titleFor(tableName),
           fieldName: name, isVersionOf: isv, isVersionOfToken: isvToken,
-          description: f.description || "", comments: f.comments || "", examples: f.examples || ""
+          description: f.description || "", notes: f.notes || "", examples: f.examples || ""
         });
       });
 
@@ -1350,7 +1350,7 @@
     ];
     if (includeMetadata) {
       ranks.push(rankedMatch(entry.description || "", queryLower, 6));
-      ranks.push(rankedMatch(entry.comments || "",    queryLower, 9));
+      ranks.push(rankedMatch(entry.notes || "",    queryLower, 9));
       ranks.push(rankedMatch(entry.examples || "",    queryLower, 12));
     }
     return Math.min(...ranks);
@@ -1398,7 +1398,7 @@
     }
     if (fieldObj.constraints) { addKV("Constraints", JSON.stringify(fieldObj.constraints)); }
     if (fieldObj.examples)    { addKV("Examples", fieldObj.examples); }
-    if (fieldObj.comments)    { addKV("Comments", fieldObj.comments); }
+    if (fieldObj.notes)    { addKV("Usage notes", fieldObj.notes); }
     openModal();
   }
 
@@ -1431,7 +1431,7 @@
         rank, tableName: entry.tableName, tableTitle: entry.tableTitle,
         fieldName: entry.fieldName, isVersionOf: entry.isVersionOf,
         isVersionOfToken: entry.isVersionOfToken, isVersionOfMatch: matchedIsVersionOf,
-        description: entry.description || "", comments: entry.comments || "", examples: entry.examples || ""
+        description: entry.description || "", notes: entry.notes || "", examples: entry.examples || ""
       });
     });
 
@@ -1472,7 +1472,7 @@
       left.appendChild(topline);
 
       const metaWrap = document.createElement("div"); metaWrap.className = "field-result-meta";
-      [["Definition", m.description], ["Usage comments", m.comments], ["Examples", m.examples]].forEach(function (pair) {
+      [["Definition", m.description], ["Usage notes", m.notes], ["Examples", m.examples]].forEach(function (pair) {
         const row   = document.createElement("div"); row.className = "field-result-meta-row";
         const label = document.createElement("span"); label.className = "field-result-meta-label"; label.textContent = pair[0] + ": ";
         const value = document.createElement("span"); value.innerHTML = highlightToken(textExcerpt(pair[1], qLower), qLower);
@@ -1548,7 +1548,7 @@
     btnFieldSearchInfo.addEventListener("click", function () {
       modalTitle.textContent = "About field search";
       modalContent.innerHTML = "";
-      modalContent.appendChild(createEl("p", { text: "Type to search for field names. Check the box below to also include definitions, usage comments, and examples in your search. Results will allow you to select individual fields. Selecting a field will also select the table it is in. Use the '/' keyboard shortcut to begin a new search." }));
+      modalContent.appendChild(createEl("p", { text: "Type to search for field names. Check the box below to also include definitions, usage notes, and examples in your search. Results will allow you to select individual fields. Selecting a field will also select the table it is in. Use the '/' keyboard shortcut to begin a new search." }));
       openModal();
     });
   }

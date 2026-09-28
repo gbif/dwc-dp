@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/bibliographic-resource",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/bibliographic-resource",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/bibliographic-resource.json",
   "name": "bibliographic-resource",
@@ -9,7 +9,6 @@
   "examples": "",
   "namespace": "dcterms",
   "dcterms:isVersionOf": "http://purl.org/dc/terms/BibliographicResource",
-  "rdfs:comment": "A book, article, or other documentary resource.",
   "fields": [
     {
       "name": "reference_pk",
@@ -21,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
       "constraints": {
         "required": true,
         "unique": true
@@ -37,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:BibliographicResource."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID"
     },
     {
       "name": "isPartOfReference_fk",
@@ -51,8 +46,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
       "constraints": {
         "required": false,
         "unique": false
@@ -68,8 +61,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
       "constraints": {
         "required": false,
         "unique": false
@@ -84,9 +75,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceType-2026-05-26",
-      "rdfs:comment": "A category that best matches the nature of a dcterms:BibliographicResource."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceType"
     },
     {
       "name": "bibliographicCitation",
@@ -97,8 +86,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation",
-      "rdfs:comment": "A bibliographic reference for the resource."
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation"
     },
     {
       "name": "bibliographicIdentifier",
@@ -109,9 +97,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifier",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/bibliographicIdentifier-pending",
-      "rdfs:comment": "A number or symbol to uniquely identify a dcterms:BibliographicResource."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifier"
     },
     {
       "name": "bibliographicIdentifierType",
@@ -122,9 +108,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifierType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/bibliographicIdentifierType-pending",
-      "rdfs:comment": "A code that best matches the nature of an identifier for a dcterms:BibliographicResource."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifierType"
     },
     {
       "name": "title",
@@ -135,8 +119,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-      "rdfs:comment": "A name given to the resource."
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
     },
     {
       "name": "author",
@@ -147,8 +130,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator",
-      "rdfs:comment": "An entity primarily responsible for making the resource."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator"
     },
     {
       "name": "author_fk",
@@ -160,8 +142,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -177,8 +157,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -193,8 +171,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/editor",
-      "rdfs:comment": "A person having managerial and sometimes policy-making responsibility for the editorial part of a publishing firm or of a newspaper, magazine, or other publication."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/editor"
     },
     {
       "name": "editor_fk",
@@ -206,8 +183,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -223,8 +198,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -239,8 +212,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/publisher",
-      "rdfs:comment": "An entity responsible for making the resource available."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/publisher"
     },
     {
       "name": "publisher_fk",
@@ -252,8 +224,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -269,8 +239,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -285,8 +253,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/volume",
-      "rdfs:comment": "A volume number."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/volume"
     },
     {
       "name": "issue",
@@ -297,8 +264,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/issue",
-      "rdfs:comment": "An issue number."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/issue"
     },
     {
       "name": "edition",
@@ -309,8 +275,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/edition",
-      "rdfs:comment": "The name defining a special edition of a document."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/edition"
     },
     {
       "name": "pages",
@@ -321,8 +286,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/pages",
-      "rdfs:comment": "A string of non-contiguous page spans that locate a Document within a Collection. Example: 23-25, 34, 54-56. For continuous page ranges, use the pageStart and pageEnd properties."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/pages"
     },
     {
       "name": "version",
@@ -333,8 +297,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/pav/version",
-      "rdfs:comment": "The version number of a resource. This is a freetext string, typical values are \"1.5\" or \"21\". The URI identifying the previous version can be provided using prov:previousVersion."
+      "dcterms:isVersionOf": "http://purl.org/pav/version"
     },
     {
       "name": "issued",
@@ -345,8 +308,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/issued",
-      "rdfs:comment": "Date of formal issuance of the resource."
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/issued"
     },
     {
       "name": "accessed",
@@ -357,8 +319,7 @@
       "type": "string",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/pav/sourceAccessedOn",
-      "rdfs:comment": "The resource is related to a source which was originally accessed or consulted on the given date as part of creating or authoring the resource. The source(s) should be specified using pav:sourceAccessedAt."
+      "dcterms:isVersionOf": "http://purl.org/pav/sourceAccessedOn"
     },
     {
       "name": "peerReviewStatus",
@@ -369,8 +330,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "bibo",
-      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/status",
-      "rdfs:comment": "The publication status of (typically academic) content."
+      "dcterms:isVersionOf": "http://purl.org/ontology/bibo/status"
     },
     {
       "name": "referenceRemarks",
@@ -381,9 +341,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceRemarks-2026-05-26",
-      "rdfs:comment": "Comments or notes about a dcterms:BibliographicResource."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceRemarks"
     }
   ],
   "primaryKey": "reference_pk",

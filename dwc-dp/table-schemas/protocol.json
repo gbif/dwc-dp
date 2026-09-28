@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/protocol",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/protocol",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/protocol.json",
   "name": "protocol",
@@ -9,8 +9,6 @@
   "examples": "`a pitfall trap method for sampling ground-dwelling arthropods`; `a point-radius georeferencing method`; `a linear regression model to estimate body mass from skeletal measurements`; `a Bayesian phylogenetic inference method`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Protocol",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/Protocol-2026-05-26",
-  "rdfs:comment": "A method used during an action.",
   "fields": [
     {
       "name": "protocol_pk",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": true,
         "unique": true
@@ -38,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID"
     },
     {
       "name": "protocolType",
@@ -51,9 +45,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolType-2026-05-26",
-      "rdfs:comment": "A category that best matches the nature of a dwc:Protocol."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolType"
     },
     {
       "name": "protocolName",
@@ -64,8 +56,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dcterms",
-      "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-      "rdfs:comment": "A name given to the resource."
+      "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
     },
     {
       "name": "protocolDescription",
@@ -76,9 +67,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolDescription",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolDescription-2026-05-26",
-      "rdfs:comment": "A detailed description of a dwc:Protocol."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolDescription"
     },
     {
       "name": "protocolReferences",
@@ -89,9 +78,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolReferences-2024-02-28",
-      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Protocol."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences"
     },
     {
       "name": "protocolRemarks",
@@ -102,9 +89,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolRemarks",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolRemarks-2026-05-26",
-      "rdfs:comment": "Comments or notes about a dwc:Protocol."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolRemarks"
     }
   ],
   "primaryKey": "protocol_pk",

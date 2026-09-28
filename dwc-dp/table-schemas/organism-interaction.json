@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/organism-interaction.json",
   "name": "organism-interaction",
@@ -9,8 +9,6 @@
   "examples": "`a bee visiting a flower`; `a Mallophora ruficauda hunting an Apis mellifera in flight`; `a viral infection in a plant`; `a female spider mating with a male spider`; `a lion cub nursing from its mother`; `a mosquito sucking blood from a chimpanzee's arm`; `a slug eating a fungus growing on decomposing stump (2 interactions)`",
   "namespace": "dwc",
   "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/OrganismInteraction",
-  "dcterms:references": "http://rs.tdwg.org/dwc/terms/OrganismInteraction-2026-05-26",
-  "rdfs:comment": "An interaction between two dwc:Organisms during a dwc:Event.",
   "fields": [
     {
       "name": "organismInteraction_pk",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
       "constraints": {
         "required": true,
         "unique": true
@@ -38,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:OrganismInteraction."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID"
     },
     {
       "name": "event_fk",
@@ -52,8 +46,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -68,9 +60,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionDescription",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionDescription-2026-05-26",
-      "rdfs:comment": "A verbatim description of a dwc:OrganismInteraction."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionDescription"
     },
     {
       "name": "subjectOccurrence_fk",
@@ -82,8 +72,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": true,
         "unique": false
@@ -98,9 +86,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/organismPart-pending",
-      "rdfs:comment": "An anatomical part of a dwc:Organism."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart"
     },
     {
       "name": "organismInteractionType",
@@ -111,9 +97,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionType",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionType-2026-05-26",
-      "rdfs:comment": "A category that best matches the nature of a dwc:OrganismInteraction."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionType"
     },
     {
       "name": "relatedOccurrence_fk",
@@ -125,8 +109,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": false,
         "unique": false
@@ -142,8 +124,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
       "constraints": {
         "required": false,
         "unique": false
@@ -158,9 +138,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence)."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID"
     },
     {
       "name": "externalRelatedOccurrenceSource",
@@ -171,8 +149,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dc",
-      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-      "rdfs:comment": "A related resource from which the described resource is derived."
+      "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
     },
     {
       "name": "relatedOrganismPart",
@@ -183,9 +160,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/organismPart-pending",
-      "rdfs:comment": "An anatomical part of a dwc:Organism."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart"
     },
     {
       "name": "feedbackURL",
@@ -196,9 +171,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-      "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
     }
   ],
   "primaryKey": "organismInteraction_pk",

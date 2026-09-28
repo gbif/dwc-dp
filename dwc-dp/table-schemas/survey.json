@@ -1,5 +1,5 @@
 {
-  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey",
+  "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey",
   "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
   "url": "table-schemas/survey.json",
   "name": "survey",
@@ -9,8 +9,6 @@
   "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
   "namespace": "eco",
   "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/Survey",
-  "dcterms:references": "http://rs.tdwg.org/eco/terms/Survey-2026-05-26",
-  "rdfs:comment": "A dwc:Event intentionally designed to characterize a defined biotic target or domain in such a way that the resulting dwc:Occurrences can be interpreted collectively to support ecological and monitoring inference (such as detectability, abundance, species co-occurence, spatial distribution, or temporal trends), rather than merely documenting individual observations or gathered material.",
   "fields": [
     {
       "name": "survey_pk",
@@ -22,8 +20,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-      "rdfs:comment": "An identifier for an eco:Survey.",
       "constraints": {
         "required": true,
         "unique": true
@@ -38,9 +34,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-      "rdfs:comment": "An identifier for an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID"
     },
     {
       "name": "event_fk",
@@ -52,8 +46,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-      "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
       "constraints": {
         "required": true,
         "unique": false
@@ -68,9 +60,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteSurveyType",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteSurveyType-pending",
-      "rdfs:comment": "A spatial category of a sampling location for an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteSurveyType"
     },
     {
       "name": "siteCount",
@@ -82,8 +72,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteCount",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteCount-2024-02-28",
-      "rdfs:comment": "Total number of individual sites surveyed during an eco:Survey.",
       "constraints": {
         "minimum": 1
       }
@@ -97,9 +85,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteNestingDescription",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteNestingDescription-2024-02-28",
-      "rdfs:comment": "Textual description of the hierarchical sampling design."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteNestingDescription"
     },
     {
       "name": "verbatimSiteDescriptions",
@@ -110,9 +96,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteDescriptions",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimSiteDescriptions-2024-02-28",
-      "rdfs:comment": "Original textual description of the site(s)."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteDescriptions"
     },
     {
       "name": "verbatimSiteNames",
@@ -123,9 +107,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteNames",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimSiteNames-2024-02-28",
-      "rdfs:comment": "A list (concatenated and separated) of original site names."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteNames"
     },
     {
       "name": "geospatialScopeAreaValue",
@@ -137,8 +119,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaValue",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/geospatialScopeAreaValue-2024-02-28",
-      "rdfs:comment": "The numeric value for the total area of the geospatial scope of an eco:Survey.",
       "constraints": {
         "minimum": 0
       }
@@ -152,9 +132,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaUnit",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/geospatialScopeAreaUnit-2025-07-10",
-      "rdfs:comment": "The units associated with eco:geospatialScopeAreaValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaUnit"
     },
     {
       "name": "totalAreaSampledUnit",
@@ -165,9 +143,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledUnit",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/totalAreaSampledUnit-2025-07-10",
-      "rdfs:comment": "The units associated with eco:totalAreaSampledValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledUnit"
     },
     {
       "name": "totalAreaSampledValue",
@@ -179,8 +155,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledValue",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/totalAreaSampledValue-2024-02-28",
-      "rdfs:comment": "A numeric value for the total area, volume or distance surveyed during the dwc:Survey.",
       "constraints": {
         "minimum": 0
       }
@@ -194,9 +168,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/taxonCompletenessReported-2025-07-10",
-      "rdfs:comment": "Statement about whether the taxonomic completeness of an eco:Survey was assessed."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessReported"
     },
     {
       "name": "taxonCompletenessProtocols",
@@ -207,9 +179,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessProtocols",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/taxonCompletenessProtocols-2025-07-10",
-      "rdfs:comment": "A description of or reference (publication, URL) to the methods used to determine eco:taxonCompletenessReported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessProtocols"
     },
     {
       "name": "isAbsenceReported",
@@ -220,9 +190,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbsenceReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbsenceReported-2024-02-28",
-      "rdfs:comment": "Taxonomic absences were reported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbsenceReported"
     },
     {
       "name": "absentTaxa",
@@ -233,9 +201,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/absentTaxa",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/absentTaxa-2025-07-10",
-      "rdfs:comment": "A list (concatenated and separated) of taxa reported absent during an eco:Survey"
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/absentTaxa"
     },
     {
       "name": "hasNonTargetTaxa",
@@ -246,9 +212,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetTaxa",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasNonTargetTaxa-2024-02-28",
-      "rdfs:comment": "One or more dwc:Occurrences of taxa outside the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) were detected and reported for an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetTaxa"
     },
     {
       "name": "nonTargetTaxa",
@@ -259,9 +223,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/nonTargetTaxa",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/nonTargetTaxa-2025-07-10",
-      "rdfs:comment": "A list (concatenated and separated) of taxa reported during an eco:Survey that are outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope)."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/nonTargetTaxa"
     },
     {
       "name": "areNonTargetTaxaFullyReported",
@@ -272,9 +234,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/areNonTargetTaxaFullyReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/areNonTargetTaxaFullyReported-2025-06-12",
-      "rdfs:comment": "Every dwc:Occurrence that was outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) and detected during an eco:Survey, and that was detectable using the given protocol (given in eco:protocolDescriptions and dwc:samplingProtocol), was reported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/areNonTargetTaxaFullyReported"
     },
     {
       "name": "hasNonTargetOrganisms",
@@ -285,9 +245,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetOrganisms",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasNonTargetOrganisms-2024-02-28",
-      "rdfs:comment": "One or more dwc:Occurrences outside the target organismal scopes (eco:targetDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:targetLifeStageScope) were detected and reported for an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetOrganisms"
     },
     {
       "name": "verbatimTargetScope",
@@ -298,9 +256,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimTargetScope",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimTargetScope-2024-02-28",
-      "rdfs:comment": "The verbatim original description of an eco:Survey scope."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimTargetScope"
     },
     {
       "name": "identifiedBy",
@@ -311,9 +267,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-      "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
     },
     {
       "name": "identifiedBy_fk",
@@ -325,8 +279,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -342,8 +294,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
       "constraints": {
         "required": false,
         "unique": false
@@ -358,9 +308,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-      "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
     },
     {
       "name": "compilationTypes",
@@ -371,9 +319,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationTypes",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/compilationTypes-2025-07-10",
-      "rdfs:comment": "A statement specifying whether data reported are derived from sampling events, ancillary data compiled from other sources, or a combination of both."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationTypes"
     },
     {
       "name": "compilationSourceTypes",
@@ -384,9 +330,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationSourceTypes",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/compilationSourceTypes-2025-07-10",
-      "rdfs:comment": "The types of data sources contributing to the compilation reported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationSourceTypes"
     },
     {
       "name": "inventoryTypes",
@@ -397,9 +341,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/inventoryTypes",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/inventoryTypes-2025-07-10",
-      "rdfs:comment": "The types of search processes used to conduct an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/inventoryTypes"
     },
     {
       "name": "protocolNames",
@@ -410,9 +352,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolNames",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolNames-2025-07-10",
-      "rdfs:comment": "Categorical descriptive names for the methods used during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolNames"
     },
     {
       "name": "protocolDescriptions",
@@ -423,9 +363,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolDescriptions",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolDescriptions-2024-02-28",
-      "rdfs:comment": "A detailed description of the methods used during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolDescriptions"
     },
     {
       "name": "protocolReferences",
@@ -436,9 +374,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolReferences-2024-02-28",
-      "rdfs:comment": "The references to the methods used during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences"
     },
     {
       "name": "isAbundanceReported",
@@ -449,9 +385,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbundanceReported-2024-02-28",
-      "rdfs:comment": "The number of dwc:Organisms collected or observed was reported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceReported"
     },
     {
       "name": "isAbundanceCapReported",
@@ -462,9 +396,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceCapReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbundanceCapReported-2024-02-28",
-      "rdfs:comment": "A maximum number of dwc:Organisms was reported, as specified or restricted by the protocol used."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceCapReported"
     },
     {
       "name": "isLeastSpecificTargetCategoryQuantityInclusive",
@@ -475,9 +407,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isLeastSpecificTargetCategoryQuantityInclusive",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isLeastSpecificTargetCategoryQuantityInclusive-2025-06-12",
-      "rdfs:comment": "The total detected quantity for a dwc:Taxon (including subcategories thereof) in an eco:Survey is given explicitly in a single record (dwc:organismQuantity value) for that dwc:Taxon."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isLeastSpecificTargetCategoryQuantityInclusive"
     },
     {
       "name": "hasVouchers",
@@ -488,9 +418,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasVouchers",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasVouchers-2024-02-28",
-      "rdfs:comment": "One or more specimen vouchers were collected during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasVouchers"
     },
     {
       "name": "voucherInstitutions",
@@ -501,9 +429,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/voucherInstitutions",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/voucherInstitutions-2024-02-28",
-      "rdfs:comment": "A list (concatenated and separated) of the names or acronyms of the institutions where vouchers collected during an eco:Survey were deposited."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/voucherInstitutions"
     },
     {
       "name": "hasMaterialSamples",
@@ -514,9 +440,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasMaterialSamples",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasMaterialSamples-2024-02-28",
-      "rdfs:comment": "One or more dwc:MaterialEntities were collected during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasMaterialSamples"
     },
     {
       "name": "materialSampleTypes",
@@ -527,9 +451,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/materialSampleTypes",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/materialSampleTypes-2025-07-10",
-      "rdfs:comment": "A list (concatenated and separated) of material sample types collected during an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/materialSampleTypes"
     },
     {
       "name": "samplingProtocol",
@@ -540,9 +462,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingProtocol",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/samplingProtocol-2026-05-26",
-      "rdfs:comment": "The names of, references to, or descriptions of the methods or protocols used during a dwc:Event."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingProtocol"
     },
     {
       "name": "samplingProtocol_fk",
@@ -554,8 +474,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -570,9 +488,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeValue",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampleSizeValue-2023-06-28",
-      "rdfs:comment": "A numeric value for a measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeValue"
     },
     {
       "name": "sampleSizeUnit",
@@ -583,9 +499,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeUnit",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampleSizeUnit-2023-06-28",
-      "rdfs:comment": "The unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeUnit"
     },
     {
       "name": "samplingPerformedBy",
@@ -596,9 +510,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingPerformedBy",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingPerformedBy-2025-07-10",
-      "rdfs:comment": "A person, group, or organization responsible for recording an eco:Survey."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingPerformedBy"
     },
     {
       "name": "samplingPerformedBy_fk",
@@ -610,8 +522,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -627,8 +537,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-      "rdfs:comment": "An identifier for a dcterms:Agent.",
       "constraints": {
         "required": false,
         "unique": false
@@ -643,9 +551,7 @@
       "type": "boolean",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSamplingEffortReported",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isSamplingEffortReported-2024-02-28",
-      "rdfs:comment": "The sampling effort associated with an eco:Survey was reported."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSamplingEffortReported"
     },
     {
       "name": "samplingEffortProtocol",
@@ -656,9 +562,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortProtocol",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortProtocol-2025-07-10",
-      "rdfs:comment": "A description of or reference (publication or URL) to the methods used to determine the sampling effort."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortProtocol"
     },
     {
       "name": "samplingEffortProtocol_fk",
@@ -670,8 +574,6 @@
       "format": "default",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-      "rdfs:comment": "An identifier for a dwc:Protocol.",
       "constraints": {
         "required": false,
         "unique": false
@@ -687,8 +589,6 @@
       "format": "default",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortValue",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortValue-2024-02-28",
-      "rdfs:comment": "The numeric value for the sampling effort expended during an eco:Survey.",
       "constraints": {
         "minimum": 0
       }
@@ -702,9 +602,7 @@
       "type": "string",
       "format": "default",
       "namespace": "eco",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortUnit",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortUnit-2025-07-10",
-      "rdfs:comment": "The units associated with an eco:samplingEffortValue."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortUnit"
     },
     {
       "name": "informationWithheld",
@@ -715,9 +613,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
-      "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld"
     },
     {
       "name": "dataGeneralizations",
@@ -728,9 +624,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
-      "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations"
     },
     {
       "name": "feedbackURL",
@@ -741,9 +635,7 @@
       "type": "string",
       "format": "default",
       "namespace": "dwc",
-      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-      "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+      "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
     }
   ],
   "primaryKey": "survey_pk",

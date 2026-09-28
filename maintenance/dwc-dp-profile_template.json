@@ -64,11 +64,6 @@
                               "type": "string",
                               "format": "uri",
                               "pattern": "^http.*$"
-                            },
-                            "dcterms:references": {
-                              "type": "string",
-                              "format": "uri",
-                              "pattern": "^http.*$"
                             }
                           }
                         }

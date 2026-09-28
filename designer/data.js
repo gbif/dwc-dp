@@ -1,10 +1,10 @@
 window.DWC_DP_DESIGNER_DATA = {
-  "dwcDpVersion": "http://rs.tdwg.org/dwc-dp/1.0-RC.1",
-  "profileIdentifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/dwc-dp-profile.json",
+  "dwcDpVersion": "http://rs.tdwg.org/dwc-dp/1.0-DEV",
+  "profileIdentifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/dwc-dp-profile.json",
   "profile": {
     "$schema": "http://json-schema.org/draft-04/schema#",
     "title": "Darwin Core Data Package (DwC-DP) profile",
-    "version": "http://rs.tdwg.org/dwc-dp/1.0-RC.1",
+    "version": "http://rs.tdwg.org/dwc-dp/1.0-DEV",
     "description": "Profile for organizing biodiversity data as a Data Package (https://specs.frictionlessdata.io/).",
     "type": "object",
     "$defs": {
@@ -147,11 +147,6 @@ window.DWC_DP_DESIGNER_DATA = {
                                 "type": "string",
                                 "format": "uri",
                                 "pattern": "^http.*$"
-                              },
-                              "dcterms:references": {
-                                "type": "string",
-                                "format": "uri",
-                                "pattern": "^http.*$"
                               }
                             }
                           }
@@ -169,7 +164,7 @@ window.DWC_DP_DESIGNER_DATA = {
   },
   "schemas": {
     "agent": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/agent",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/agent",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/agent.json",
       "name": "agent",
@@ -179,7 +174,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`Carl Linnaeus`; `The Terra Nova Expedition`; `The National Science Foundation`; `The El Yunque National Forest ARBIMON System`; `ChatGPT`",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/Agent",
-      "rdfs:comment": "A resource that acts or has the power to act.",
       "fields": [
         {
           "name": "agent_pk",
@@ -191,8 +185,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": true
@@ -207,9 +199,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID"
         },
         {
           "name": "agentType",
@@ -220,9 +210,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dcterms:Agent."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentType"
         },
         {
           "name": "preferredAgentName",
@@ -233,8 +221,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-          "rdfs:comment": "A name given to the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
         },
         {
           "name": "agentRemarks",
@@ -245,16 +232,14 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dcterms:Agent."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRemarks"
         }
       ],
       "primaryKey": "agent_pk",
       "weakPrimaryKey": "agentID"
     },
     "agent-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/agent-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/agent-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/agent-agent-role.json",
       "name": "agent-agent-role",
@@ -275,8 +260,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -292,8 +275,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -308,9 +289,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -321,9 +300,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -334,8 +311,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -347,8 +323,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -363,9 +337,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -388,7 +360,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "agent-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/agent-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/agent-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/agent-identifier.json",
       "name": "agent-identifier",
@@ -398,7 +370,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`an ORCID`; `a Wikidata Q-number`; `an Index Herbariorum Institution Code`; `an International Standard Name Identifier`",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "agent_fk",
@@ -410,8 +381,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -427,8 +396,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -443,8 +410,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -455,8 +421,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -467,8 +432,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -479,8 +443,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -495,7 +458,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "agent-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/agent-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/agent-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/agent-media.json",
       "name": "agent-media",
@@ -516,7 +479,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -532,8 +494,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -548,9 +508,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -561,9 +519,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -574,9 +530,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -587,9 +541,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -600,9 +552,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -613,9 +563,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -626,9 +574,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -639,9 +585,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -664,7 +608,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "bibliographic-resource": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/bibliographic-resource",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/bibliographic-resource",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/bibliographic-resource.json",
       "name": "bibliographic-resource",
@@ -674,7 +618,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dcterms",
       "dcterms:isVersionOf": "http://purl.org/dc/terms/BibliographicResource",
-      "rdfs:comment": "A book, article, or other documentary resource.",
       "fields": [
         {
           "name": "reference_pk",
@@ -686,8 +629,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": true,
             "unique": true
@@ -702,9 +643,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID"
         },
         {
           "name": "isPartOfReference_fk",
@@ -716,8 +655,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -733,8 +670,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -749,9 +684,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dcterms:BibliographicResource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceType"
         },
         {
           "name": "bibliographicCitation",
@@ -762,8 +695,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation",
-          "rdfs:comment": "A bibliographic reference for the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation"
         },
         {
           "name": "bibliographicIdentifier",
@@ -774,9 +706,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifier",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/bibliographicIdentifier-pending",
-          "rdfs:comment": "A number or symbol to uniquely identify a dcterms:BibliographicResource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifier"
         },
         {
           "name": "bibliographicIdentifierType",
@@ -787,9 +717,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifierType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/bibliographicIdentifierType-pending",
-          "rdfs:comment": "A code that best matches the nature of an identifier for a dcterms:BibliographicResource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bibliographicIdentifierType"
         },
         {
           "name": "title",
@@ -800,8 +728,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-          "rdfs:comment": "A name given to the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
         },
         {
           "name": "author",
@@ -812,8 +739,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator",
-          "rdfs:comment": "An entity primarily responsible for making the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator"
         },
         {
           "name": "author_fk",
@@ -825,8 +751,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -842,8 +766,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -858,8 +780,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/editor",
-          "rdfs:comment": "A person having managerial and sometimes policy-making responsibility for the editorial part of a publishing firm or of a newspaper, magazine, or other publication."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/editor"
         },
         {
           "name": "editor_fk",
@@ -871,8 +792,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -888,8 +807,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -904,8 +821,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/publisher",
-          "rdfs:comment": "An entity responsible for making the resource available."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/publisher"
         },
         {
           "name": "publisher_fk",
@@ -917,8 +833,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -934,8 +848,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -950,8 +862,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/volume",
-          "rdfs:comment": "A volume number."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/volume"
         },
         {
           "name": "issue",
@@ -962,8 +873,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/issue",
-          "rdfs:comment": "An issue number."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/issue"
         },
         {
           "name": "edition",
@@ -974,8 +884,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/edition",
-          "rdfs:comment": "The name defining a special edition of a document."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/edition"
         },
         {
           "name": "pages",
@@ -986,8 +895,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/pages",
-          "rdfs:comment": "A string of non-contiguous page spans that locate a Document within a Collection. Example: 23-25, 34, 54-56. For continuous page ranges, use the pageStart and pageEnd properties."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/pages"
         },
         {
           "name": "version",
@@ -998,8 +906,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/pav/version",
-          "rdfs:comment": "The version number of a resource. This is a freetext string, typical values are \"1.5\" or \"21\". The URI identifying the previous version can be provided using prov:previousVersion."
+          "dcterms:isVersionOf": "http://purl.org/pav/version"
         },
         {
           "name": "issued",
@@ -1010,8 +917,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/issued",
-          "rdfs:comment": "Date of formal issuance of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/issued"
         },
         {
           "name": "accessed",
@@ -1022,8 +928,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/pav/sourceAccessedOn",
-          "rdfs:comment": "The resource is related to a source which was originally accessed or consulted on the given date as part of creating or authoring the resource. The source(s) should be specified using pav:sourceAccessedAt."
+          "dcterms:isVersionOf": "http://purl.org/pav/sourceAccessedOn"
         },
         {
           "name": "peerReviewStatus",
@@ -1034,8 +939,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "bibo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/status",
-          "rdfs:comment": "The publication status of (typically academic) content."
+          "dcterms:isVersionOf": "http://purl.org/ontology/bibo/status"
         },
         {
           "name": "referenceRemarks",
@@ -1046,9 +950,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dcterms:BibliographicResource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceRemarks"
         }
       ],
       "primaryKey": "reference_pk",
@@ -1123,7 +1025,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age.json",
       "name": "chronometric-age",
@@ -1133,8 +1035,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`An age range associated with a specimen derived from an AMS dating assay applied to an oyster shell in the same stratum`; `An age range associated with a specimen derived from a ceramics analysis based on other materials found in the same stratum`; `A maximum age associated with a specimen derived from K-Ar dating applied to a proximal volcanic tuff found stratigraphically below the specimen`; `An age range of a specimen based on its biostratigraphic context`; `An age of a specimen based on what is reported in legacy collections data.`",
       "namespace": "chrono",
       "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/ChronometricAge",
-      "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/ChronometricAge-2021-02-21",
-      "rdfs:comment": "An approximation of temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported by evidence.",
       "fields": [
         {
           "name": "chronometricAge_pk",
@@ -1146,8 +1046,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An identifier for the set of information associated with a chrono:ChronometricAge.",
           "constraints": {
             "required": true,
             "unique": true
@@ -1162,9 +1060,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An identifier for the set of information associated with a chrono:ChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID"
         },
         {
           "name": "event_fk",
@@ -1176,8 +1072,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -1192,9 +1086,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/verbatimChronometricAge",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/verbatimChronometricAge-2020-09-14",
-          "rdfs:comment": "The verbatim age for a specimen, whether reported by a dating assay, associated references, or legacy information."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/verbatimChronometricAge"
         },
         {
           "name": "chronometricAgeProtocol",
@@ -1205,9 +1097,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeProtocol",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeProtocol-2025-06-12",
-          "rdfs:comment": "A description of or reference to the methods used to determine the chrono:ChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeProtocol"
         },
         {
           "name": "chronometricAgeProtocol_fk",
@@ -1219,8 +1109,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1235,9 +1123,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/uncalibratedChronometricAge",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/uncalibratedChronometricAge-2020-09-14",
-          "rdfs:comment": "The output of a dating assay before it is calibrated into an age using a specific conversion protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/uncalibratedChronometricAge"
         },
         {
           "name": "chronometricAgeConversionProtocol",
@@ -1248,9 +1134,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeConversionProtocol",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeConversionProtocol-2025-06-12",
-          "rdfs:comment": "The method used for converting the chrono:uncalibratedChronometricAge into a chronometric age in years, as captured in the chrono:earliestChronometricAge, chrono:earliestChronometricAgeReferenceSystem, chrono:latestChronometricAge, and chrono:latestChronometricAgeReferenceSystem fields."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeConversionProtocol"
         },
         {
           "name": "chronometricAgeConversionProtocol_fk",
@@ -1262,8 +1146,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1278,9 +1160,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/earliestChronometricAge",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/earliestChronometricAge-2025-06-12",
-          "rdfs:comment": "The maximum/earliest/oldest possible age of a specimen as determined by a dating method."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/earliestChronometricAge"
         },
         {
           "name": "earliestChronometricAgeReferenceSystem",
@@ -1291,9 +1171,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/earliestChronometricAgeReferenceSystem",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/earliestChronometricAgeReferenceSystem-2025-06-12",
-          "rdfs:comment": "The reference system associated with the chrono:earliestChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/earliestChronometricAgeReferenceSystem"
         },
         {
           "name": "latestChronometricAge",
@@ -1304,9 +1182,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/latestChronometricAge",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/latestChronometricAge-2025-06-12",
-          "rdfs:comment": "The minimum/latest/youngest possible age of a specimen as determined by a dating method."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/latestChronometricAge"
         },
         {
           "name": "latestChronometricAgeReferenceSystem",
@@ -1317,9 +1193,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/latestChronometricAgeReferenceSystem",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/latestChronometricAgeReferenceSystem-2025-06-12",
-          "rdfs:comment": "The reference system associated with the chrono:latestChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/latestChronometricAgeReferenceSystem"
         },
         {
           "name": "chronometricAgeUncertaintyInYears",
@@ -1330,9 +1204,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyInYears",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeUncertaintyInYears-2026-05-26",
-          "rdfs:comment": "The temporal uncertainty of the chrono:earliestChronometricAge and chrono:latestChronometricAge in years."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyInYears"
         },
         {
           "name": "chronometricAgeUncertaintyMethod",
@@ -1343,9 +1215,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyMethod",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeUncertaintyMethod-2025-06-12",
-          "rdfs:comment": "The method used to generate the value of chrono:chronometricAgeUncertaintyInYears."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeUncertaintyMethod"
         },
         {
           "name": "materialDated",
@@ -1356,9 +1226,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDated",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/materialDated-2025-06-12",
-          "rdfs:comment": "A description of the material on which the chrono:chronometricAgeProtocol was actually performed, if known."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDated"
         },
         {
           "name": "materialDated_fk",
@@ -1370,8 +1238,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDatedID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/materialDatedID-2025-06-12",
-          "rdfs:comment": "An identifier for the dwc:MaterialEntity on which the chrono:chronometricAgeProtocol was performed, if applicable.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1387,8 +1253,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDatedID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/materialDatedID-2025-06-12",
-          "rdfs:comment": "An identifier for the dwc:MaterialEntity on which the chrono:chronometricAgeProtocol was performed, if applicable.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1403,9 +1267,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDatedRelationship",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/materialDatedRelationship-2025-06-12",
-          "rdfs:comment": "The relationship of the chrono:materialDated to the subject of the chrono:ChronometricAge record, from which the chrono:ChronometricAge of the subject is inferred."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/materialDatedRelationship"
         },
         {
           "name": "chronometricAgeDeterminedBy",
@@ -1416,9 +1278,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedBy",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeDeterminedBy-2025-06-12",
-          "rdfs:comment": "A list (concatenated and separated) of names of people, groups, or organizations who determined the chrono:ChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedBy"
         },
         {
           "name": "chronometricAgeDeterminedBy_fk",
@@ -1430,8 +1290,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1447,8 +1305,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1463,9 +1319,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedDate",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeDeterminedDate-2025-06-12",
-          "rdfs:comment": "The date on which the chrono:ChronometricAge was determined."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeDeterminedDate"
         },
         {
           "name": "chronometricAgeReferences",
@@ -1476,9 +1330,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeReferences",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeReferences-2025-06-12",
-          "rdfs:comment": "A list (concatenated and separated) of identifiers (publication, bibliographic reference, global unique identifier, URI) of literature associated with the chrono:ChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeReferences"
         },
         {
           "name": "chronometricAgeRemarks",
@@ -1489,9 +1341,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "chrono",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeRemarks",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeRemarks-2025-06-12",
-          "rdfs:comment": "Notes or comments about the chrono:ChronometricAge."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeRemarks"
         }
       ],
       "primaryKey": "chronometricAge_pk",
@@ -1558,7 +1408,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age-agent-role.json",
       "name": "chronometric-age-agent-role",
@@ -1579,8 +1429,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An approximation of a temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported via evidence.",
           "constraints": {
             "required": true,
             "unique": false
@@ -1596,8 +1444,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -1612,9 +1458,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -1625,9 +1469,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -1638,8 +1480,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -1651,8 +1492,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -1667,9 +1506,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -1692,7 +1529,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age-assertion.json",
       "name": "chronometric-age-assertion",
@@ -1702,8 +1539,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -1715,8 +1550,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -1732,8 +1565,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An approximation of a temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported via evidence.",
           "constraints": {
             "required": true,
             "unique": false
@@ -1748,9 +1579,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -1761,9 +1590,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -1774,9 +1601,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -1787,8 +1612,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -1799,9 +1623,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -1812,9 +1634,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -1825,9 +1645,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -1838,9 +1656,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -1851,8 +1667,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -1863,9 +1678,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -1876,9 +1689,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -1889,8 +1700,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -1901,9 +1711,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -1914,9 +1722,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -1928,8 +1734,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1945,8 +1749,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1961,9 +1763,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -1975,8 +1775,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -1991,9 +1789,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -2004,9 +1800,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -2048,7 +1842,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age-media.json",
       "name": "chronometric-age-media",
@@ -2069,7 +1863,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2085,8 +1878,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An approximation of a temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported via evidence.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2101,9 +1892,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -2114,9 +1903,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -2127,9 +1914,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -2140,9 +1925,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -2153,9 +1936,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -2166,9 +1947,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -2179,9 +1958,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -2192,9 +1969,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -2217,7 +1992,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age-protocol.json",
       "name": "chronometric-age-protocol",
@@ -2238,8 +2013,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2255,8 +2028,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An approximation of a temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported via evidence.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2283,7 +2054,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "chronometric-age-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/chronometric-age-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/chronometric-age-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/chronometric-age-reference.json",
       "name": "chronometric-age-reference",
@@ -2304,8 +2075,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2321,8 +2090,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "chrono",
           "dcterms:isVersionOf": "http://rs.tdwg.org/chrono/terms/chronometricAgeID",
-          "dcterms:references": "http://rs.tdwg.org/chrono/terms/version/chronometricAgeID-2025-06-12",
-          "rdfs:comment": "An approximation of a temporal position (in the sense conveyed by https://www.w3.org/TR/owl-time/#time:TemporalPosition) that is supported via evidence.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2337,9 +2104,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -2362,7 +2127,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event.json",
       "name": "event",
@@ -2372,8 +2137,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a material collecting event`; `a bird observation`; `a camera trap image capture`; `an organism occurrence`; `a biotic survey`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Event",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Event-2026-05-26",
-      "rdfs:comment": "An action, process, or set of circumstances occurring at a dcterms:Location during a period of time.",
       "fields": [
         {
           "name": "event_pk",
@@ -2385,8 +2148,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": true
@@ -2401,9 +2162,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID"
         },
         {
           "name": "parentEvent_fk",
@@ -2415,8 +2174,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/parentEventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/parentEventID-2026-05-26",
-          "rdfs:comment": "An identifier for a broader dwc:Event that contains this and potentially other dwc:Events.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2432,8 +2189,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2449,8 +2204,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2465,8 +2218,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-          "rdfs:comment": "A name given to the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
         },
         {
           "name": "eventCategory",
@@ -2478,8 +2230,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventCategory",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventCategory-2026-05-26",
-          "rdfs:comment": "A broad category that best matches the nature of a dwc:Event.",
           "constraints": {
             "required": true,
             "unique": false
@@ -2494,9 +2244,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventType-2026-05-26",
-          "rdfs:comment": "A narrow category that best matches the nature of a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventType"
         },
         {
           "name": "datasetName",
@@ -2507,9 +2255,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetName-2026-05-26",
-          "rdfs:comment": "A name of a source dataset."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetName"
         },
         {
           "name": "datasetID",
@@ -2520,9 +2266,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetID-2017-10-06",
-          "rdfs:comment": "An identifier for the set of data. May be a global unique identifier or an identifier specific to a collection or institution."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetID"
         },
         {
           "name": "fieldNumber",
@@ -2533,9 +2277,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNumber",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNumber-2026-05-26",
-          "rdfs:comment": "An identifier given to a dwc:Event in the field."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNumber"
         },
         {
           "name": "recordedBy",
@@ -2546,9 +2288,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy"
         },
         {
           "name": "recordedBy_fk",
@@ -2560,8 +2300,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2577,8 +2315,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2594,8 +2330,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/eventDurationValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/eventDurationValue-2024-02-28",
-          "rdfs:comment": "The numeric value for the duration of the dwc:Event.",
           "constraints": {
             "minimum": 0
           }
@@ -2609,9 +2343,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/eventDurationUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/eventDurationUnit-2025-07-10",
-          "rdfs:comment": "The units associated with the eco:eventDurationValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/eventDurationUnit"
         },
         {
           "name": "eventDate",
@@ -2622,9 +2354,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventDate-2026-05-26",
-          "rdfs:comment": "A date-time or time interval during which a dwc:Event occurred."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventDate"
         },
         {
           "name": "eventTime",
@@ -2635,9 +2365,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventTime",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventTime-2025-06-12",
-          "rdfs:comment": "The time or interval during which a dwc:Event occurred."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventTime"
         },
         {
           "name": "startDayOfYear",
@@ -2649,8 +2377,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/startDayOfYear",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/startDayOfYear-2026-05-26",
-          "rdfs:comment": "The earliest integer day of the year on which a dwc:Event occurred.",
           "constraints": {
             "minimum": 1,
             "maximum": 366
@@ -2666,8 +2392,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/endDayOfYear",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/endDayOfYear-2026-05-26",
-          "rdfs:comment": "The latest integer day of the year on which a dwc:Event occurred.",
           "constraints": {
             "minimum": 1,
             "maximum": 366
@@ -2682,9 +2406,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/year",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/year-2023-06-28",
-          "rdfs:comment": "The four-digit year in which the dwc:Event occurred, according to the Common Era Calendar."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/year"
         },
         {
           "name": "month",
@@ -2696,8 +2418,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/month",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/month-2026-05-26",
-          "rdfs:comment": "The integer month in which the dwc:Event occurred.",
           "constraints": {
             "minimum": 1,
             "maximum": 12
@@ -2713,8 +2433,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/day",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/day-2026-05-26",
-          "rdfs:comment": "The integer day of the month on which the dwc:Event occurred.",
           "constraints": {
             "minimum": 1,
             "maximum": 31
@@ -2729,9 +2447,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimEventDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimEventDate-2026-05-26",
-          "rdfs:comment": "The verbatim original representation of the date and time information for a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimEventDate"
         },
         {
           "name": "verbatimLocality",
@@ -2742,9 +2458,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLocality",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLocality-2026-05-26",
-          "rdfs:comment": "An original textual description of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLocality"
         },
         {
           "name": "verbatimElevation",
@@ -2755,9 +2469,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimElevation",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimElevation-2026-05-26",
-          "rdfs:comment": "An original description of the elevation of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimElevation"
         },
         {
           "name": "verbatimDepth",
@@ -2768,9 +2480,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimDepth",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimDepth-2017-10-06",
-          "rdfs:comment": "The original description of the depth below the local surface."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimDepth"
         },
         {
           "name": "verbatimCoordinates",
@@ -2781,9 +2491,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinates",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimCoordinates-2023-06-28",
-          "rdfs:comment": "Verbatim original spatial coordinates of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinates"
         },
         {
           "name": "verbatimLatitude",
@@ -2794,9 +2502,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLatitude",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLatitude-2026-05-26",
-          "rdfs:comment": "A verbatim original latitude of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLatitude"
         },
         {
           "name": "verbatimLongitude",
@@ -2807,9 +2513,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLongitude",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLongitude-2026-05-26",
-          "rdfs:comment": "A verbatim original longitude of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLongitude"
         },
         {
           "name": "verbatimCoordinateSystem",
@@ -2820,9 +2524,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinateSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimCoordinateSystem-2026-05-26",
-          "rdfs:comment": "A coordinate format for dwc:verbatimLatitude and dwc:verbatimLongitude or dwc:verbatimCoordinates."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimCoordinateSystem"
         },
         {
           "name": "verbatimSRS",
@@ -2833,9 +2535,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimSRS",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimSRS-2025-06-12",
-          "rdfs:comment": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which coordinates given in dwc:verbatimLatitude and dwc:verbatimLongitude, or dwc:verbatimCoordinates are based."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimSRS"
         },
         {
           "name": "georeferenceVerificationStatus",
@@ -2846,9 +2546,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceVerificationStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceVerificationStatus-2023-06-28",
-          "rdfs:comment": "A categorical description of the extent to which the georeference has been verified to represent the best possible spatial description for the dcterms:Location of the dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceVerificationStatus"
         },
         {
           "name": "habitat",
@@ -2859,9 +2557,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/habitat",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/habitat-2023-06-28",
-          "rdfs:comment": "A category or description of the habitat in which the dwc:Event occurred."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/habitat"
         },
         {
           "name": "isVegetationCoverReported",
@@ -2872,9 +2568,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isVegetationCoverReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isVegetationCoverReported-2024-02-28",
-          "rdfs:comment": "A vegetation cover metric was reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isVegetationCoverReported"
         },
         {
           "name": "sampledSubstrateCategory",
@@ -2885,9 +2579,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateCategory",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampledSubstrateCategory-2026-05-26",
-          "rdfs:comment": "A category or type of substrate sampled during a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateCategory"
         },
         {
           "name": "sampledSubstrateLayer",
@@ -2898,9 +2590,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateLayer",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/sampledSubstrateLayer-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of substrate layers sampled during a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledSubstrateLayer"
         },
         {
           "name": "fieldNotes",
@@ -2911,9 +2601,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNotes",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fieldNotes-2026-05-26",
-          "rdfs:comment": "One of a) an indicator of the existence of, b) a reference to (publication, URI), or c) the text of notes taken in the field about the dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fieldNotes"
         },
         {
           "name": "reportedExtremeConditions",
@@ -2924,9 +2612,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedExtremeConditions",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/reportedExtremeConditions-2024-02-28",
-          "rdfs:comment": "A description of any extreme weather or environmental conditions that may have affected the dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedExtremeConditions"
         },
         {
           "name": "reportedWeather",
@@ -2937,9 +2623,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedWeather",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/reportedWeather-2024-02-28",
-          "rdfs:comment": "A list of weather or climatic conditions present during the dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/reportedWeather"
         },
         {
           "name": "eventReferences",
@@ -2950,9 +2634,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of associated dcterms:BibliographicResources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences"
         },
         {
           "name": "eventRemarks",
@@ -2963,9 +2645,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventRemarks"
         },
         {
           "name": "geologicalContext_fk",
@@ -2977,8 +2657,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -2994,8 +2672,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -3010,9 +2686,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationID"
         },
         {
           "name": "siteNumber",
@@ -3023,9 +2697,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/siteNumber",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/siteNumber-2026-05-26",
-          "rdfs:comment": "An identifier for a named site."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/siteNumber"
         },
         {
           "name": "higherGeographyID",
@@ -3036,9 +2708,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/higherGeographyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/higherGeographyID-2023-06-28",
-          "rdfs:comment": "An identifier for the geographic region within which the dcterms:Location occurred."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/higherGeographyID"
         },
         {
           "name": "higherGeography",
@@ -3049,9 +2719,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/higherGeography",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/higherGeography-2023-06-28",
-          "rdfs:comment": "A list (concatenated and separated) of geographic names less specific than the information captured in the dwc:locality term."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/higherGeography"
         },
         {
           "name": "continent",
@@ -3062,9 +2730,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/continent",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/continent-2023-06-28",
-          "rdfs:comment": "The name of the continent in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/continent"
         },
         {
           "name": "waterBody",
@@ -3075,9 +2741,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/waterBody",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/waterBody-2023-06-28",
-          "rdfs:comment": "The name of the water body in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/waterBody"
         },
         {
           "name": "islandGroup",
@@ -3088,9 +2752,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/islandGroup",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/islandGroup-2023-06-28",
-          "rdfs:comment": "The name of the island group in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/islandGroup"
         },
         {
           "name": "island",
@@ -3101,9 +2763,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/island",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/island-2023-06-28",
-          "rdfs:comment": "The name of the island on or near which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/island"
         },
         {
           "name": "country",
@@ -3114,9 +2774,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/country",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/country-2023-06-28",
-          "rdfs:comment": "The name of the country or major administrative unit in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/country"
         },
         {
           "name": "countryCode",
@@ -3127,9 +2785,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/countryCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/countryCode-2026-05-26",
-          "rdfs:comment": "The standard code for the country in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/countryCode"
         },
         {
           "name": "stateProvince",
@@ -3140,9 +2796,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/stateProvince",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/stateProvince-2023-06-28",
-          "rdfs:comment": "The name of the next smaller administrative region than country (state, province, canton, department, region, etc.) in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/stateProvince"
         },
         {
           "name": "county",
@@ -3153,9 +2807,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/county",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/county-2023-06-28",
-          "rdfs:comment": "The full, unabbreviated name of the next smaller administrative region than stateProvince (county, shire, department, etc.) in which the dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/county"
         },
         {
           "name": "municipality",
@@ -3166,9 +2818,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/municipality",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/municipality-2023-06-28",
-          "rdfs:comment": "The full, unabbreviated name of the next smaller administrative region than county (city, municipality, etc.) in which the dcterms:Location occurs. Do not use this term for a nearby named place that does not contain the actual dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/municipality"
         },
         {
           "name": "locality",
@@ -3179,9 +2829,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locality",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locality-2023-06-28",
-          "rdfs:comment": "The specific description of the place."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locality"
         },
         {
           "name": "namedPlace",
@@ -3192,9 +2840,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namedPlace",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namedPlace-pending",
-          "rdfs:comment": "The full, unabbreviated name of a geographic location not otherwise categorized by a dcterms:Location property that is naturally occurring or anthropogenic in origin within a historical, administrative, or cultural context in which a dcterms:Location occurs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namedPlace"
         },
         {
           "name": "minimumElevationInMeters",
@@ -3205,9 +2851,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumElevationInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumElevationInMeters-2026-05-26",
-          "rdfs:comment": "The least elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumElevationInMeters"
         },
         {
           "name": "maximumElevationInMeters",
@@ -3218,9 +2862,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumElevationInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumElevationInMeters-2026-05-26",
-          "rdfs:comment": "The greatest elevation within a range of elevations, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumElevationInMeters"
         },
         {
           "name": "verticalDatum",
@@ -3231,9 +2873,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verticalDatum",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verticalDatum-2025-06-12",
-          "rdfs:comment": "The vertical datum used as the reference upon which the values in the elevation terms are based."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verticalDatum"
         },
         {
           "name": "minimumDepthInMeters",
@@ -3245,8 +2885,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumDepthInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumDepthInMeters-2026-05-26",
-          "rdfs:comment": "The least depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
           "constraints": {
             "minimum": 0,
             "maximum": 11000
@@ -3262,8 +2900,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumDepthInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumDepthInMeters-2026-05-26",
-          "rdfs:comment": "The greatest depth within a range of depths, measured relative to the vertical reference surface indicated by the value of dwc:verticalDatum.",
           "constraints": {
             "minimum": 0,
             "maximum": 11000
@@ -3278,9 +2914,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/minimumDistanceAboveSurfaceInMeters-2023-06-28",
-          "rdfs:comment": "The lesser distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/minimumDistanceAboveSurfaceInMeters"
         },
         {
           "name": "maximumDistanceAboveSurfaceInMeters",
@@ -3291,9 +2925,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/maximumDistanceAboveSurfaceInMeters-2023-06-28",
-          "rdfs:comment": "The greater distance in a range of distance from a reference surface in the vertical direction, in meters. Use positive values for locations above the surface, negative values for locations below. If depth measures are given, the reference surface is the location given by the depth, otherwise the reference surface is the location given by the elevation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/maximumDistanceAboveSurfaceInMeters"
         },
         {
           "name": "locationAccordingTo",
@@ -3304,9 +2936,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationAccordingTo",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationAccordingTo-2023-06-28",
-          "rdfs:comment": "Information about the source of this dcterms:Location information. Could be a publication (gazetteer), institution, or team of individuals."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationAccordingTo"
         },
         {
           "name": "locationRemarks",
@@ -3317,9 +2947,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/locationRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/locationRemarks"
         },
         {
           "name": "decimalLatitude",
@@ -3331,8 +2959,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/decimalLatitude",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLatitude-2026-05-26",
-          "rdfs:comment": "A geographic latitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of a dcterms:Location.",
           "constraints": {
             "minimum": -90,
             "maximum": 90
@@ -3348,8 +2974,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/decimalLongitude",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/decimalLongitude-2026-05-26",
-          "rdfs:comment": "A geographic longitude (in decimal degrees, using the spatial reference system given in dwc:geodeticDatum) of a dcterms:Location.",
           "constraints": {
             "minimum": -180,
             "maximum": 180
@@ -3364,9 +2988,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geodeticDatum",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geodeticDatum-2026-05-26",
-          "rdfs:comment": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geographic coordinates given in dwc:decimalLatitude and dwc:decimalLongitude are based."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geodeticDatum"
         },
         {
           "name": "coordinateUncertaintyInMeters",
@@ -3378,8 +3000,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/coordinateUncertaintyInMeters-2026-05-26",
-          "rdfs:comment": "A horizontal distance (in meters) from a given dwc:decimalLatitude and dwc:decimalLongitude describing the smallest circle containing the whole of the dcterms:Location. Zero is not a valid value for this term.",
           "constraints": {
             "minimum": 1,
             "maximum": 20037509
@@ -3394,9 +3014,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/coordinatePrecision",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/coordinatePrecision-2023-06-28",
-          "rdfs:comment": "A decimal representation of the precision of the coordinates given in the dwc:decimalLatitude and dwc:decimalLongitude."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/coordinatePrecision"
         },
         {
           "name": "pointRadiusSpatialFit",
@@ -3408,8 +3026,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/pointRadiusSpatialFit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/pointRadiusSpatialFit-2026-05-26",
-          "rdfs:comment": "A ratio of the area of a point-radius (dwc:decimalLatitude, dwc:decimalLongitude, dwc:coordinateUncertaintyInMeters) to the area of a true (original, or most specific) spatial representation of a dcterms:Location.",
           "constraints": {
             "minimum": 0
           }
@@ -3423,9 +3039,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintWKT",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintWKT-2026-05-26",
-          "rdfs:comment": "A Well-Known Text (WKT) representation of the shape (footprint, geometry) that defines a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintWKT"
         },
         {
           "name": "footprintSRS",
@@ -3436,9 +3050,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintSRS",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintSRS-2025-06-12",
-          "rdfs:comment": "The ellipsoid, geodetic datum, or spatial reference system (SRS) upon which the geometry given in dwc:footprintWKT is based."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintSRS"
         },
         {
           "name": "footprintSpatialFit",
@@ -3449,9 +3061,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintSpatialFit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/footprintSpatialFit-2026-05-26",
-          "rdfs:comment": "A ratio of the area of a footprint (dwc:footprintWKT) to the area of a true (original, or most specific) spatial representation of a dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/footprintSpatialFit"
         },
         {
           "name": "georeferencedBy",
@@ -3462,9 +3072,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for providing a georeference."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedBy"
         },
         {
           "name": "georeferencedBy_fk",
@@ -3476,8 +3084,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -3493,8 +3099,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -3509,9 +3113,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferencedDate-2026-05-26",
-          "rdfs:comment": "The date on which the dcterms:Location was georeferenced."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferencedDate"
         },
         {
           "name": "georeferenceProtocol",
@@ -3522,9 +3124,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceProtocol",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceProtocol-2026-05-26",
-          "rdfs:comment": "A description or reference to a dwc:Protocol used to determine a spatial footprint, coordinates, and uncertainties."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceProtocol"
         },
         {
           "name": "georeferenceProtocol_fk",
@@ -3536,8 +3136,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -3552,9 +3150,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceSources",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceSources-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of maps, gazetteers, or other resources used to georeference a dcterms:Location, described specifically enough to allow anyone in the future to use the same resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceSources"
         },
         {
           "name": "georeferenceRemarks",
@@ -3565,9 +3161,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/georeferenceRemarks-2025-06-12",
-          "rdfs:comment": "Comments or notes about the spatial description determination, explaining assumptions made in addition or opposition to the those formalized in the method referred to in dwc:georeferenceProtocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/georeferenceRemarks"
         },
         {
           "name": "preferredSpatialRepresentation",
@@ -3578,9 +3172,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/preferredSpatialRepresentation",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/preferredSpatialRepresentation-2026-05-26",
-          "rdfs:comment": "An indication of which spatial representation best represents the dcterms:Location."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/preferredSpatialRepresentation"
         },
         {
           "name": "informationWithheld",
@@ -3591,9 +3183,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
-          "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld"
         },
         {
           "name": "dataGeneralizations",
@@ -3604,9 +3194,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
-          "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations"
         },
         {
           "name": "feedbackURL",
@@ -3617,9 +3205,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "event_pk",
@@ -3710,7 +3296,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-agent-role.json",
       "name": "event-agent-role",
@@ -3731,8 +3317,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -3748,8 +3332,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -3764,9 +3346,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -3777,9 +3357,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -3790,8 +3368,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -3803,8 +3380,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -3819,9 +3394,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -3844,7 +3417,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-assertion.json",
       "name": "event-assertion",
@@ -3854,8 +3427,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -3867,8 +3438,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -3884,8 +3453,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -3900,9 +3467,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -3913,9 +3478,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -3926,9 +3489,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -3939,8 +3500,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -3951,9 +3511,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -3964,9 +3522,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -3977,9 +3533,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -3990,9 +3544,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -4003,8 +3555,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -4015,9 +3566,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -4028,9 +3577,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -4041,8 +3588,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -4053,9 +3599,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -4066,9 +3610,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -4080,8 +3622,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -4097,8 +3637,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -4113,9 +3651,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -4127,8 +3663,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -4143,9 +3677,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -4156,9 +3688,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -4200,7 +3730,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-identifier.json",
       "name": "event-identifier",
@@ -4210,7 +3740,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "event_fk",
@@ -4222,8 +3751,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4239,8 +3766,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4255,8 +3780,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -4267,8 +3791,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -4279,8 +3802,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -4291,8 +3813,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -4307,7 +3828,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-media.json",
       "name": "event-media",
@@ -4328,7 +3849,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4344,8 +3864,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4360,9 +3878,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -4373,9 +3889,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -4386,9 +3900,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -4399,9 +3911,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -4412,9 +3922,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -4425,9 +3933,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -4438,9 +3944,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -4451,9 +3955,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -4476,7 +3978,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-protocol.json",
       "name": "event-protocol",
@@ -4497,8 +3999,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4514,8 +4014,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4542,7 +4040,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-provenance": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-provenance",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-provenance",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-provenance.json",
       "name": "event-provenance",
@@ -4563,8 +4061,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4580,8 +4076,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4608,7 +4102,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-reference.json",
       "name": "event-reference",
@@ -4629,8 +4123,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -4646,8 +4138,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4662,9 +4152,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -4687,7 +4175,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "event-usage-policy": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/event-usage-policy",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/event-usage-policy",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/event-usage-policy.json",
       "name": "event-usage-policy",
@@ -4708,8 +4196,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -4725,8 +4211,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
           "constraints": {
             "required": false,
             "unique": false
@@ -4753,7 +4237,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "geological-context": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/geological-context",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/geological-context",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/geological-context.json",
       "name": "geological-context",
@@ -4763,8 +4247,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a particular lithostratigraphic layer`; `a specific chronostratigraphic unit`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/GeologicalContext",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/GeologicalContext-2026-05-26",
-      "rdfs:comment": "A set of geological designations, such as stratigraphy, that qualifies a dcterms:Location or source of a dwc:MaterialEntity.",
       "fields": [
         {
           "name": "geologicalContext_pk",
@@ -4776,8 +4258,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": true
@@ -4792,9 +4272,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID"
         },
         {
           "name": "earliestEonOrLowestEonothem",
@@ -4805,9 +4283,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEonOrLowestEonothem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestEonOrLowestEonothem-2026-05-26",
-          "rdfs:comment": "The full name of the earliest possible geochronologic eon or lowest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEonOrLowestEonothem"
         },
         {
           "name": "latestEonOrHighestEonothem",
@@ -4818,9 +4294,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEonOrHighestEonothem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestEonOrHighestEonothem-2026-05-26",
-          "rdfs:comment": "The full name of the latest possible geochronologic eon or highest chronostratigraphic eonothem or the informal name attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEonOrHighestEonothem"
         },
         {
           "name": "earliestEraOrLowestErathem",
@@ -4831,9 +4305,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEraOrLowestErathem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestEraOrLowestErathem-2023-09-13",
-          "rdfs:comment": "The full name of the earliest possible geochronologic era or lowest chronostratigraphic erathem attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEraOrLowestErathem"
         },
         {
           "name": "latestEraOrHighestErathem",
@@ -4844,9 +4316,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEraOrHighestErathem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestEraOrHighestErathem-2023-09-13",
-          "rdfs:comment": "The full name of the latest possible geochronologic era or highest chronostratigraphic erathem attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEraOrHighestErathem"
         },
         {
           "name": "earliestPeriodOrLowestSystem",
@@ -4857,9 +4327,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestPeriodOrLowestSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestPeriodOrLowestSystem-2023-09-13",
-          "rdfs:comment": "The full name of the earliest possible geochronologic period or lowest chronostratigraphic system attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestPeriodOrLowestSystem"
         },
         {
           "name": "latestPeriodOrHighestSystem",
@@ -4870,9 +4338,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestPeriodOrHighestSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestPeriodOrHighestSystem-2023-09-13",
-          "rdfs:comment": "The full name of the latest possible geochronologic period or highest chronostratigraphic system attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestPeriodOrHighestSystem"
         },
         {
           "name": "earliestEpochOrLowestSeries",
@@ -4883,9 +4349,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEpochOrLowestSeries",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestEpochOrLowestSeries-2023-09-13",
-          "rdfs:comment": "The full name of the earliest possible geochronologic epoch or lowest chronostratigraphic series attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestEpochOrLowestSeries"
         },
         {
           "name": "latestEpochOrHighestSeries",
@@ -4896,9 +4360,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEpochOrHighestSeries",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestEpochOrHighestSeries-2023-09-13",
-          "rdfs:comment": "The full name of the latest possible geochronologic epoch or highest chronostratigraphic series attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestEpochOrHighestSeries"
         },
         {
           "name": "earliestAgeOrLowestStage",
@@ -4909,9 +4371,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestAgeOrLowestStage",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/earliestAgeOrLowestStage-2023-09-13",
-          "rdfs:comment": "The full name of the earliest possible geochronologic age or lowest chronostratigraphic stage attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/earliestAgeOrLowestStage"
         },
         {
           "name": "latestAgeOrHighestStage",
@@ -4922,9 +4382,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestAgeOrHighestStage",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/latestAgeOrHighestStage-2023-09-13",
-          "rdfs:comment": "The full name of the latest possible geochronologic age or highest chronostratigraphic stage attributable to the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/latestAgeOrHighestStage"
         },
         {
           "name": "lowestBiostratigraphicZone",
@@ -4935,9 +4393,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lowestBiostratigraphicZone",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lowestBiostratigraphicZone-2023-09-13",
-          "rdfs:comment": "The full name of the lowest possible geological biostratigraphic zone of the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lowestBiostratigraphicZone"
         },
         {
           "name": "highestBiostratigraphicZone",
@@ -4948,9 +4404,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/highestBiostratigraphicZone",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/highestBiostratigraphicZone-2023-09-13",
-          "rdfs:comment": "The full name of the highest possible geological biostratigraphic zone of the stratigraphic horizon from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/highestBiostratigraphicZone"
         },
         {
           "name": "lithostratigraphicTerms",
@@ -4961,9 +4415,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lithostratigraphicTerms",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lithostratigraphicTerms-2025-06-12",
-          "rdfs:comment": "The combination of all lithostratigraphic names for the rock from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lithostratigraphicTerms"
         },
         {
           "name": "group",
@@ -4974,9 +4426,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/group",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/group-2023-09-13",
-          "rdfs:comment": "The full name of the lithostratigraphic group from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/group"
         },
         {
           "name": "formation",
@@ -4987,9 +4437,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/formation",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/formation-2023-09-13",
-          "rdfs:comment": "The full name of the lithostratigraphic formation from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/formation"
         },
         {
           "name": "member",
@@ -5000,9 +4448,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/member",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/member-2023-09-13",
-          "rdfs:comment": "The full name of the lithostratigraphic member from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/member"
         },
         {
           "name": "bed",
@@ -5013,9 +4459,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bed",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/bed-2023-09-13",
-          "rdfs:comment": "The full name of the lithostratigraphic bed from which the dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/bed"
         },
         {
           "name": "geologicEvent",
@@ -5026,9 +4470,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicEvent",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicEvent-pending",
-          "rdfs:comment": "A name of an identifiable event during which one or more geologic processes acted to create or modify one or more dwc:GeologicalMaterials."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicEvent"
         },
         {
           "name": "geologicProvince",
@@ -5039,9 +4481,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicProvince",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicProvince-pending",
-          "rdfs:comment": "An extensive named region with similar geologic history, structural, petrographic, or physiographic features throughout in which the GeologicalContext was located."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicProvince"
         },
         {
           "name": "lithodemicUnit",
@@ -5052,9 +4492,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lithodemicUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lithodemicUnit-pending",
-          "rdfs:comment": "A geologic unit that lacks stratification, is primarily comprised of intrusive, deformed, and/or metamorphosed rock, and is characterized by irregularly mixed lithology or highly complicated structural relations."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lithodemicUnit"
         },
         {
           "name": "tectonicUnits",
@@ -5065,16 +4503,14 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tectonicUnits",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/tectonicUnits-pending",
-          "rdfs:comment": "The combination of all tectonic unit names for the rock from which a dwc:MaterialEntity was collected."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tectonicUnits"
         }
       ],
       "primaryKey": "geologicalContext_pk",
       "weakPrimaryKey": "geologicalContextID"
     },
     "geological-context-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/geological-context-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/geological-context-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/geological-context-media.json",
       "name": "geological-context-media",
@@ -5095,7 +4531,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -5111,8 +4546,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -5127,9 +4560,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -5140,9 +4571,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -5153,9 +4582,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -5166,9 +4593,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -5179,9 +4604,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -5192,9 +4615,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -5205,9 +4626,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -5218,9 +4637,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -5243,7 +4660,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "geological-material": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/geological-material",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/geological-material",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/geological-material.json",
       "name": "geological-material",
@@ -5253,8 +4670,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a specific mineral`; `a specific rock`; `a specific ore`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/GeologicalMaterial",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/GeologicalMaterial-pending",
-      "rdfs:comment": "A dwc:MaterialEntity that is geological in nature.",
       "fields": [
         {
           "name": "materialEntity_fk",
@@ -5266,8 +4681,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": true
@@ -5282,9 +4695,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID"
         },
         {
           "name": "geologicalMaterialNames",
@@ -5295,9 +4706,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
-          "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames"
         },
         {
           "name": "geologicMaterialNameID",
@@ -5308,9 +4717,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicMaterialNameID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicMaterialNameID-pending",
-          "rdfs:comment": "An identifier for a mineral or lithotaxon name for a dwc:GeologicalMaterial. May be a global unique identifier or an identifier specific to the data set."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicMaterialNameID"
         },
         {
           "name": "geologicalMaterialNameTypes",
@@ -5321,9 +4728,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNameTypes",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNameTypes-pending",
-          "rdfs:comment": "A list (concatenated and separated) of the types of names provided in dwc:geologicalMaterialNames."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNameTypes"
         },
         {
           "name": "classificationCodes",
@@ -5334,9 +4739,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
-          "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes"
         },
         {
           "name": "mineralSequence",
@@ -5347,9 +4750,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/mineralSequence",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/mineralSequence-pending",
-          "rdfs:comment": "A list (concatenated and separated) of minerals in a dwc:GeologicalMaterial, ordered in a manner that illustrates the relative timing of mineral formation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/mineralSequence"
         },
         {
           "name": "measuredChemistry",
@@ -5360,9 +4761,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredChemistry",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/measuredChemistry-pending",
-          "rdfs:comment": "A concise expression of the chemical composition of a mineral that shows the number of atoms of each element in a molecule, their spatial arrangement, and their linkage to each other."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredChemistry"
         },
         {
           "name": "measuredChemistrySource",
@@ -5373,9 +4772,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredChemistrySource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/measuredChemistrySource-pending",
-          "rdfs:comment": "A list (concatenated and separated) of resources associated with the reported measured chemistry described specifically enough to allow anyone in the future to use the same resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredChemistrySource"
         },
         {
           "name": "mineralogicalAnalysisProtocol",
@@ -5386,9 +4783,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/mineralogicalAnalysisProtocol",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/mineralogicalAnalysisProtocol-pending",
-          "rdfs:comment": "A technique used to determine the chemical composition or crystallography of a mineral."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/mineralogicalAnalysisProtocol"
         },
         {
           "name": "mineralogicalAnalysisProtocol_fk",
@@ -5400,8 +4795,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -5416,9 +4809,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/chemistryRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/chemistryRemarks-pending",
-          "rdfs:comment": "General remarks about the chemical and isotopic composition of a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/chemistryRemarks"
         }
       ],
       "weakPrimaryKey": "materialEntityID",
@@ -5442,7 +4833,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "identification": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/identification",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/identification.json",
       "name": "identification",
@@ -5452,8 +4843,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a subspecies determination of an organism`; `a nomenclatural act designating a specimen as a holotype`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Identification",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Identification-2026-05-26",
-      "rdfs:comment": "A classification of a resource according to a classification scheme.",
       "fields": [
         {
           "name": "identification_pk",
@@ -5465,8 +4854,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Identification.",
           "constraints": {
             "required": true,
             "unique": true
@@ -5481,9 +4868,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID"
         },
         {
           "name": "identificationType",
@@ -5494,9 +4879,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationType"
         },
         {
           "name": "identificationProtocol_fk",
@@ -5508,8 +4891,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5525,8 +4906,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5542,7 +4921,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5558,7 +4936,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5574,7 +4951,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5590,8 +4966,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": false,
             "unique": false
@@ -5607,8 +4981,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5623,9 +4995,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimIdentification-2023-06-28",
-          "rdfs:comment": "A string representing the classification as it appeared in the original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification"
         },
         {
           "name": "isAcceptedIdentification",
@@ -5636,9 +5006,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification-2026-05-26",
-          "rdfs:comment": "An indicator that a dwc:Identification of a dwc:Organism is a currently an accepted or preferred one."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isAcceptedIdentification"
         },
         {
           "name": "taxonFormula",
@@ -5649,9 +5017,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonFormula",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonFormula-2026-05-26",
-          "rdfs:comment": "A string representing the pattern to use to construct a dwc:Identification from dwc:Taxon names and identification qualifiers."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonFormula"
         },
         {
           "name": "typeStatus",
@@ -5662,9 +5028,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/typeStatus-2023-06-28",
-          "rdfs:comment": "A list (concatenated and separated) of nomenclatural types (type status, typified scientific name, publication) applied to the subject."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus"
         },
         {
           "name": "typeDesignationType",
@@ -5675,9 +5039,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-          "dcterms:references": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-          "rdfs:comment": "The reason why this specimen or name is designated as a type."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType"
         },
         {
           "name": "identifiedBy",
@@ -5688,9 +5050,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
         },
         {
           "name": "identifiedBy_fk",
@@ -5702,8 +5062,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5719,8 +5077,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -5735,9 +5091,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dateIdentified-2025-06-12",
-          "rdfs:comment": "The date on which the dwc:Identification was made."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified"
         },
         {
           "name": "identificationReferences",
@@ -5748,9 +5102,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
         },
         {
           "name": "identificationVerificationStatus",
@@ -5761,9 +5113,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identificationVerificationStatus-2026-05-26",
-          "rdfs:comment": "A categorical indicator of the extent to which a dwc:Identification has been verified to be correct."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus"
         },
         {
           "name": "identificationRemarks",
@@ -5774,9 +5124,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks"
         },
         {
           "name": "taxonID",
@@ -5787,9 +5135,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID"
         },
         {
           "name": "scientificNameID",
@@ -5800,9 +5146,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
-          "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID"
         },
         {
           "name": "geologicalClassificationCodes",
@@ -5813,9 +5157,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
-          "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes"
         },
         {
           "name": "geologicalMaterialNames",
@@ -5826,9 +5168,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
-          "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames"
         },
         {
           "name": "scientificName",
@@ -5839,9 +5179,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
-          "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName"
         },
         {
           "name": "scientificNameAuthorship",
@@ -5852,9 +5190,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameAuthorship-2023-06-28",
-          "rdfs:comment": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship"
         },
         {
           "name": "vernacularName",
@@ -5865,9 +5201,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
-          "rdfs:comment": "A common or vernacular name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName"
         },
         {
           "name": "taxonRank",
@@ -5878,9 +5212,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
-          "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank"
         },
         {
           "name": "classificationSystem",
@@ -5891,9 +5223,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
-          "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem"
         },
         {
           "name": "kingdom",
@@ -5904,9 +5234,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/kingdom-2023-06-28",
-          "rdfs:comment": "The full scientific name of the kingdom in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom"
         },
         {
           "name": "phylum",
@@ -5917,9 +5245,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/phylum-2023-06-28",
-          "rdfs:comment": "The full scientific name of the phylum or division in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum"
         },
         {
           "name": "class",
@@ -5930,9 +5256,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/class-2023-06-28",
-          "rdfs:comment": "The full scientific name of the class in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class"
         },
         {
           "name": "order",
@@ -5943,9 +5267,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/order-2023-06-28",
-          "rdfs:comment": "The full scientific name of the order in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order"
         },
         {
           "name": "superfamily",
@@ -5956,9 +5278,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/superfamily",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/superfamily-2023-07-07",
-          "rdfs:comment": "The full scientific name of the superfamily in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/superfamily"
         },
         {
           "name": "family",
@@ -5969,9 +5289,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/family-2023-06-28",
-          "rdfs:comment": "The full scientific name of the family in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family"
         },
         {
           "name": "subfamily",
@@ -5982,9 +5300,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subfamily-2023-06-28",
-          "rdfs:comment": "The full scientific name of the subfamily in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily"
         },
         {
           "name": "tribe",
@@ -5995,9 +5311,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tribe",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/tribe-2023-06-28",
-          "rdfs:comment": "The full scientific name of the tribe in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/tribe"
         },
         {
           "name": "subtribe",
@@ -6008,9 +5322,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subtribe",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subtribe-2023-06-28",
-          "rdfs:comment": "The full scientific name of the subtribe in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subtribe"
         },
         {
           "name": "genus",
@@ -6021,9 +5333,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genus-2023-06-28",
-          "rdfs:comment": "The full scientific name of the genus in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus"
         },
         {
           "name": "genericName",
@@ -6034,9 +5344,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genericName-2023-06-28",
-          "rdfs:comment": "The genus part of the dwc:scientificName without authorship."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName"
         },
         {
           "name": "subgenus",
@@ -6047,9 +5355,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subgenus-2025-06-12",
-          "rdfs:comment": "The full scientific name of the subgenus in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus"
         },
         {
           "name": "infragenericEpithet",
@@ -6060,9 +5366,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infragenericEpithet-2023-06-28",
-          "rdfs:comment": "The infrageneric part of a binomial name at ranks above species but below genus."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet"
         },
         {
           "name": "specificEpithet",
@@ -6073,9 +5377,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/specificEpithet-2023-06-28",
-          "rdfs:comment": "The name of the first or species epithet of the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet"
         },
         {
           "name": "infraspecificEpithet",
@@ -6086,9 +5388,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infraspecificEpithet-2026-05-26",
-          "rdfs:comment": "The name of the lowest or terminal infraspecific of the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet"
         },
         {
           "name": "cultivarEpithet",
@@ -6099,9 +5399,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/cultivarEpithet-2026-05-26",
-          "rdfs:comment": "Part of the name of a cultivar, cultivar group or grex that follows the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet"
         },
         {
           "name": "nameAccordingTo",
@@ -6112,9 +5410,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nameAccordingTo-2026-05-26",
-          "rdfs:comment": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo"
         },
         {
           "name": "nomenclaturalCode",
@@ -6125,9 +5421,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalCode-2023-06-28",
-          "rdfs:comment": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the dwc:scientificName is constructed."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode"
         },
         {
           "name": "nomenclaturalStatus",
@@ -6138,9 +5432,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalStatus-2023-06-28",
-          "rdfs:comment": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus"
         },
         {
           "name": "namePublishedIn",
@@ -6151,9 +5443,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedIn-2023-06-28",
-          "rdfs:comment": "A reference for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn"
         },
         {
           "name": "namePublishedInYear",
@@ -6164,9 +5454,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedInYear-2023-06-28",
-          "rdfs:comment": "The four-digit year in which the dwc:scientificName was published."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear"
         },
         {
           "name": "taxonRemarks",
@@ -6177,9 +5465,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRemarks-2017-10-06",
-          "rdfs:comment": "Comments or notes about the taxon or name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRemarks"
         },
         {
           "name": "feedbackURL",
@@ -6190,9 +5476,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "identification_pk",
@@ -6275,7 +5559,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "identification-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/identification-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/identification-agent-role.json",
       "name": "identification-agent-role",
@@ -6296,8 +5580,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Identification.",
           "constraints": {
             "required": true,
             "unique": false
@@ -6313,8 +5595,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -6329,9 +5609,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -6342,9 +5620,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -6355,8 +5631,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -6368,8 +5643,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -6384,9 +5657,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -6409,7 +5680,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "identification-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/identification-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/identification-reference.json",
       "name": "identification-reference",
@@ -6430,8 +5701,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -6447,8 +5716,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Identification.",
           "constraints": {
             "required": true,
             "unique": false
@@ -6463,9 +5730,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -6488,7 +5753,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "identification-taxon": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/identification-taxon",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/identification-taxon",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/identification-taxon.json",
       "name": "identification-taxon",
@@ -6509,8 +5774,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Identification.",
           "constraints": {
             "required": true,
             "unique": false
@@ -6526,8 +5789,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonSortOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonSortOrder-pending",
-          "rdfs:comment": "A numerical position of a dwc:Taxon in a dwc:taxonFormula.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -6542,9 +5803,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID"
         },
         {
           "name": "scientificNameID",
@@ -6555,9 +5814,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
-          "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID"
         },
         {
           "name": "geologicalClassificationCodes",
@@ -6568,9 +5825,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationCodes-pending",
-          "rdfs:comment": "A list (concatenated and separated) of codes that each identifies a name from a classification system applied to a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationCodes"
         },
         {
           "name": "geologicalMaterialNames",
@@ -6581,9 +5836,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalMaterialNames-pending",
-          "rdfs:comment": "A list (concatenated and separated) of mineral or lithotaxon names for a dwc:GeologicalMaterial."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalMaterialNames"
         },
         {
           "name": "scientificName",
@@ -6594,9 +5847,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
-          "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName"
         },
         {
           "name": "scientificNameAuthorship",
@@ -6607,9 +5858,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameAuthorship-2023-06-28",
-          "rdfs:comment": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship"
         },
         {
           "name": "vernacularName",
@@ -6620,9 +5869,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
-          "rdfs:comment": "A common or vernacular name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName"
         },
         {
           "name": "taxonRank",
@@ -6633,9 +5880,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
-          "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank"
         },
         {
           "name": "classificationSystem",
@@ -6646,9 +5891,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
-          "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem"
         },
         {
           "name": "kingdom",
@@ -6659,9 +5902,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/kingdom-2023-06-28",
-          "rdfs:comment": "The full scientific name of the kingdom in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/kingdom"
         },
         {
           "name": "phylum",
@@ -6672,9 +5913,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/phylum-2023-06-28",
-          "rdfs:comment": "The full scientific name of the phylum or division in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/phylum"
         },
         {
           "name": "class",
@@ -6685,9 +5924,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/class-2023-06-28",
-          "rdfs:comment": "The full scientific name of the class in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/class"
         },
         {
           "name": "order",
@@ -6698,9 +5935,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/order-2023-06-28",
-          "rdfs:comment": "The full scientific name of the order in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/order"
         },
         {
           "name": "family",
@@ -6711,9 +5946,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/family-2023-06-28",
-          "rdfs:comment": "The full scientific name of the family in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/family"
         },
         {
           "name": "subfamily",
@@ -6724,9 +5957,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subfamily-2023-06-28",
-          "rdfs:comment": "The full scientific name of the subfamily in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subfamily"
         },
         {
           "name": "genus",
@@ -6737,9 +5968,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genus-2023-06-28",
-          "rdfs:comment": "The full scientific name of the genus in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genus"
         },
         {
           "name": "genericName",
@@ -6750,9 +5979,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/genericName-2023-06-28",
-          "rdfs:comment": "The genus part of the dwc:scientificName without authorship."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/genericName"
         },
         {
           "name": "subgenus",
@@ -6763,9 +5990,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/subgenus-2025-06-12",
-          "rdfs:comment": "The full scientific name of the subgenus in which the dwc:Taxon is classified."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/subgenus"
         },
         {
           "name": "infragenericEpithet",
@@ -6776,9 +6001,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infragenericEpithet-2023-06-28",
-          "rdfs:comment": "The infrageneric part of a binomial name at ranks above species but below genus."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infragenericEpithet"
         },
         {
           "name": "specificEpithet",
@@ -6789,9 +6012,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/specificEpithet-2023-06-28",
-          "rdfs:comment": "The name of the first or species epithet of the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/specificEpithet"
         },
         {
           "name": "infraspecificEpithet",
@@ -6802,9 +6023,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/infraspecificEpithet-2026-05-26",
-          "rdfs:comment": "The name of the lowest or terminal infraspecific of the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/infraspecificEpithet"
         },
         {
           "name": "cultivarEpithet",
@@ -6815,9 +6034,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/cultivarEpithet-2026-05-26",
-          "rdfs:comment": "Part of the name of a cultivar, cultivar group or grex that follows the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/cultivarEpithet"
         },
         {
           "name": "nameAccordingTo",
@@ -6828,9 +6045,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nameAccordingTo-2026-05-26",
-          "rdfs:comment": "The reference to the source in which the specific taxon concept circumscription is defined or implied - traditionally signified by the Latin \"sensu\" or \"sec.\" (from secundum, meaning \"according to\"). For taxa that result from identifications, a reference to the keys, monographs, experts and other sources should be given."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nameAccordingTo"
         },
         {
           "name": "nomenclaturalCode",
@@ -6841,9 +6056,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalCode-2023-06-28",
-          "rdfs:comment": "The nomenclatural code (or codes in the case of an ambiregnal name) under which the dwc:scientificName is constructed."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalCode"
         },
         {
           "name": "nomenclaturalStatus",
@@ -6854,9 +6067,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nomenclaturalStatus-2023-06-28",
-          "rdfs:comment": "The status related to the original publication of the name and its conformance to the relevant rules of nomenclature. It is based essentially on an algorithm according to the business rules of the code. It requires no taxonomic opinion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nomenclaturalStatus"
         },
         {
           "name": "namePublishedIn",
@@ -6867,9 +6078,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedIn-2023-06-28",
-          "rdfs:comment": "A reference for the publication in which the dwc:scientificName was originally established under the rules of the associated dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedIn"
         },
         {
           "name": "namePublishedInYear",
@@ -6880,9 +6089,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/namePublishedInYear-2023-06-28",
-          "rdfs:comment": "The four-digit year in which the dwc:scientificName was published."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/namePublishedInYear"
         }
       ],
       "foreignKeys": [
@@ -6897,7 +6104,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material.json",
       "name": "material",
@@ -6907,8 +6114,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`the entire contents of a trawl`; `a subset of the contents of a trawl`; `the body of a fish`; `the stomach contents of a fish`; `a rock containing fossils`; `a fossil within a rock`; `an herbarium sheet with its attached plant specimen`; `a flower on a plant specimen`; `a pollen grain`; `a specific water sample`; `an isolated molecule of DNA`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MaterialEntity",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MaterialEntity-2023-09-13",
-      "rdfs:comment": "An entity that can be identified, exists for some period of time, and consists in whole or in part of physical matter while it exists.",
       "fields": [
         {
           "name": "materialEntity_pk",
@@ -6920,8 +6125,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": true
@@ -6936,9 +6139,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID"
         },
         {
           "name": "digitalSpecimenID",
@@ -6949,9 +6150,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/digitalSpecimenID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/digitalSpecimenID-2026-05-26",
-          "rdfs:comment": "An identifier for a Digital Specimen resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/digitalSpecimenID"
         },
         {
           "name": "collectionEvent_fk",
@@ -6963,8 +6162,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -6980,8 +6177,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": false,
             "unique": false
@@ -6997,8 +6192,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7014,8 +6207,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7031,8 +6222,21 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
+          "constraints": {
+            "required": false,
+            "unique": false
+          }
+        },
+        {
+          "name": "derivationEventID",
+          "title": "Derivation Event ID",
+          "description": "An identifier for a dwc:Event during which a dwc:MaterialEntity was derived from another dwc:MaterialEntity.",
+          "notes": "The value in this field MUST be preserved in aggregation. Recommended best practice is to use a globally unique identifier.",
+          "examples": "",
+          "type": "string",
+          "format": "default",
+          "namespace": "dwc",
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
           "constraints": {
             "required": false,
             "unique": false
@@ -7048,8 +6252,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isPartOfMaterialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/isPartOfMaterialEntityID-pending",
-          "rdfs:comment": "An identifier for a dwc:MaterialEntity of which this dwc:MaterialEntity is a part.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7065,8 +6267,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/isPartOfMaterialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/isPartOfMaterialEntityID-pending",
-          "rdfs:comment": "An identifier for a dwc:MaterialEntity of which this dwc:MaterialEntity is a part.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7081,9 +6281,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialRole",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/materialRole-pending",
-          "rdfs:comment": "A category that best matches the nature of the relationship between a dwc:MaterialEntity and another dwc:MaterialEntity of which it is a part."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialRole"
         },
         {
           "name": "materialProportion",
@@ -7094,9 +6292,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialProportion",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/materialProportion-pending",
-          "rdfs:comment": "The qualitative or quantitative abundance of a dwc:MaterialEntity with respect to another dwc:MaterialEntity of which it is a part."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialProportion"
         },
         {
           "name": "materialEntityCategory",
@@ -7107,9 +6303,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityCategory",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/materialEntityCategory-2026-05-26",
-          "rdfs:comment": "A high-level, mutually exclusive classification describing the fundamental substance and origin of a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityCategory"
         },
         {
           "name": "materialEntityType",
@@ -7120,9 +6314,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityType-2026-05-26",
-          "rdfs:comment": "A more generic classification of a dwc:MaterialEntity than dwc:preparations but less broad than dwc:materialCategory."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityType"
         },
         {
           "name": "discipline",
@@ -7133,9 +6325,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/discipline",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/discipline-2026-05-26",
-          "rdfs:comment": "The primary branch or branches of knowledge represented by a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/discipline"
         },
         {
           "name": "sampledFeatureType",
@@ -7146,9 +6336,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledFeatureType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampledFeatureType-pending",
-          "rdfs:comment": "The type of naturally occurring or anthropogenic physical feature from which a dwc:MaterialEntity was sampled."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampledFeatureType"
         },
         {
           "name": "institutionCode",
@@ -7159,9 +6347,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/institutionCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/institutionCode-2026-05-26",
-          "rdfs:comment": "A name (or acronym) in use by an institution having custody of a resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/institutionCode"
         },
         {
           "name": "institutionID",
@@ -7173,8 +6359,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/institutionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/institutionID-2026-05-26",
-          "rdfs:comment": "An identifier for an organization.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7189,9 +6373,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ownerInstitutionCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ownerInstitutionCode-2026-05-29",
-          "rdfs:comment": "A name (or acronym) in use by an institution having ownership of a resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ownerInstitutionCode"
         },
         {
           "name": "ownerInstitutionID",
@@ -7203,8 +6385,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7219,9 +6399,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionCode-2026-05-26",
-          "rdfs:comment": "A name, acronym, coden, or initialism identifying a collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionCode"
         },
         {
           "name": "collectionID",
@@ -7232,9 +6410,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionID-2026-05-26",
-          "rdfs:comment": "An identifier for a collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionID"
         },
         {
           "name": "catalogNumber",
@@ -7245,9 +6421,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/catalogNumber",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/catalogNumber-2026-05-26",
-          "rdfs:comment": "An identifier (preferably unique) for a resource within a collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/catalogNumber"
         },
         {
           "name": "otherCatalogNumbers",
@@ -7258,9 +6432,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/otherCatalogNumbers-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of previous or alternate fully qualified catalog numbers or other human-used identifiers for the same dwc:MaterialEntity, whether in the current or any other data set or collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/otherCatalogNumbers"
         },
         {
           "name": "collectorNumber",
@@ -7271,9 +6443,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordNumber",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordNumber-2023-06-28",
-          "rdfs:comment": "An identifier given to the dwc:Occurrence at the time it was recorded. Often serves as a link between field notes and a dwc:Occurrence record, such as a specimen collector's number."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordNumber"
         },
         {
           "name": "collectedBy",
@@ -7284,9 +6454,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for recording a dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordedBy"
         },
         {
           "name": "collectedBy_fk",
@@ -7298,8 +6466,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7315,8 +6481,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/recordedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for recording a dwc:Occurrence.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7331,9 +6495,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/objectQuantity",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/objectQuantity-2026-05-26",
-          "rdfs:comment": "A number or enumeration value for the quantity of differentiable dwc:MaterialEntities comprising this dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/objectQuantity"
         },
         {
           "name": "objectQuantityType",
@@ -7344,9 +6506,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/objectQuantityType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/objectQuantityType-2026-05-26",
-          "rdfs:comment": "The type of quantification system used for the quantity of dwc:MaterialEntities."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/objectQuantityType"
         },
         {
           "name": "preparations",
@@ -7357,9 +6517,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/preparations",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/preparations-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of preparations and preservation methods for a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/preparations"
         },
         {
           "name": "disposition",
@@ -7370,9 +6528,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/disposition",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/disposition-2026-05-26",
-          "rdfs:comment": "A current state of a dwc:MaterialEntity with respect to where it can be found."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/disposition"
         },
         {
           "name": "measuredMassInGrams",
@@ -7383,9 +6539,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredMassInGrams",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/measuredMassInGrams-pending",
-          "rdfs:comment": "Mass of a dwc:MaterialEntity, measured in grams."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/measuredMassInGrams"
         },
         {
           "name": "verbatimMass",
@@ -7396,9 +6550,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimMass",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimMass-pending",
-          "rdfs:comment": "The verbatim original representation of the mass of a dwc:MaterialEntity, including original units of measurement."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimMass"
         },
         {
           "name": "verbatimLabel",
@@ -7409,9 +6561,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLabel",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimLabel-2026-05-26",
-          "rdfs:comment": "A verbatim original representation of the written information affixed or related to a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimLabel"
         },
         {
           "name": "associatedSequences",
@@ -7422,9 +6572,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedSequences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedSequences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources for dwc:NucleotideSequences associated with a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedSequences"
         },
         {
           "name": "materialReferences",
@@ -7435,9 +6583,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedReferences-2023-06-28",
-          "rdfs:comment": "A list (concatenated and separated) of associated dcterms:BibliographicResources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences"
         },
         {
           "name": "treatments",
@@ -7448,9 +6594,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/treatments",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/treatments-pending",
-          "rdfs:comment": "Description of any processes or curatorial actions taken specifically to mitigate damage to a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/treatments"
         },
         {
           "name": "handlingRequirements",
@@ -7461,9 +6605,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/handlingRequirements",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/handlingRequirements-pending",
-          "rdfs:comment": "A description of the procedures required to preserve and protect a dwc:MaterialEntity during handling."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/handlingRequirements"
         },
         {
           "name": "hazardType",
@@ -7474,9 +6616,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/hazardType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/hazardType-pending",
-          "rdfs:comment": "A term that belongs to a hazard classification scheme based on a set of unique characteristics and negative health outcomes."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/hazardType"
         },
         {
           "name": "hazardRemarks",
@@ -7487,9 +6627,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/hazardRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/hazardRemarks-pending",
-          "rdfs:comment": "Comments or notes about the type of hazards associated with a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/hazardRemarks"
         },
         {
           "name": "damageRemarks",
@@ -7500,9 +6638,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/damageRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/damageRemarks-pending",
-          "rdfs:comment": "A general description of any physical changes to a dwc:MaterialEntity that have negatively affected its value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/damageRemarks"
         },
         {
           "name": "materialDescription",
@@ -7513,9 +6649,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialDescription",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialDescription-pending",
-          "rdfs:comment": "Remarks on the physical characteristics of a dwc:MaterialEntity, particularly those that distinguish it from otherwise similar dwc:MaterialEntities."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialDescription"
         },
         {
           "name": "materialEntityRemarks",
@@ -7526,9 +6660,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityRemarks"
         },
         {
           "name": "verbatimIdentification",
@@ -7539,9 +6671,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimIdentification-2023-06-28",
-          "rdfs:comment": "A string representing the classification as it appeared in the original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification"
         },
         {
           "name": "typeStatus",
@@ -7552,9 +6682,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/typeStatus-2023-06-28",
-          "rdfs:comment": "A nomenclatural type (type status, typified scientific name, publication) applied to the subject."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeStatus"
         },
         {
           "name": "typeDesignationType",
@@ -7565,9 +6693,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-          "dcterms:references": "http://rs.gbif.org/terms/1.0/typeDesignationType",
-          "rdfs:comment": "The reason why this specimen or name is designated as a type."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/1.0/typeDesignationType"
         },
         {
           "name": "typeOfType",
@@ -7578,9 +6704,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeOfType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/typeOfType-2026-05-26",
-          "rdfs:comment": "A category of nomenclatural type of a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/typeOfType"
         },
         {
           "name": "typifiedName",
@@ -7591,9 +6715,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/typifiedName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/typifiedName-2026-05-26",
-          "rdfs:comment": "A scientific name for which a specimen or other name is the type."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/version/typifiedName"
         },
         {
           "name": "identifiedBy",
@@ -7604,9 +6726,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
         },
         {
           "name": "identifiedBy_fk",
@@ -7618,8 +6738,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7635,8 +6753,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7651,9 +6767,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dateIdentified-2025-06-12",
-          "rdfs:comment": "The date on which the subject was determined as representing the dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified"
         },
         {
           "name": "identificationReferences",
@@ -7664,9 +6778,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
         },
         {
           "name": "identificationVerificationStatus",
@@ -7677,9 +6789,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/identificationVerificationStatus-2026-05-26",
-          "rdfs:comment": "A categorical indicator of the extent to which a taxonomic determination has been verified to be correct."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus"
         },
         {
           "name": "identificationRemarks",
@@ -7690,9 +6800,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks"
         },
         {
           "name": "taxonID",
@@ -7703,9 +6811,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID"
         },
         {
           "name": "scientificNameID",
@@ -7716,9 +6822,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
-          "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID"
         },
         {
           "name": "scientificName",
@@ -7729,9 +6833,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
-          "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName"
         },
         {
           "name": "scientificNameAuthorship",
@@ -7742,9 +6844,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameAuthorship-2023-06-28",
-          "rdfs:comment": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship"
         },
         {
           "name": "vernacularName",
@@ -7755,9 +6855,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
-          "rdfs:comment": "A common or vernacular name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName"
         },
         {
           "name": "taxonRank",
@@ -7768,9 +6866,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
-          "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank"
         },
         {
           "name": "classificationSystem",
@@ -7781,9 +6877,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
-          "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem"
         },
         {
           "name": "modified",
@@ -7794,8 +6888,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/modified",
-          "rdfs:comment": "Date on which the resource was changed."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/modified"
         },
         {
           "name": "provenance_fk",
@@ -7807,8 +6900,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7824,8 +6915,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7840,8 +6929,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmprights",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner",
-          "rdfs:comment": "A list of legal owners of the resource."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner"
         },
         {
           "name": "owner_fk",
@@ -7853,8 +6941,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -7869,8 +6955,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/license",
-          "rdfs:comment": "A legal document giving official permission to do something with the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/license"
         },
         {
           "name": "informationWithheld",
@@ -7881,9 +6966,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
-          "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld"
         },
         {
           "name": "dataGeneralizations",
@@ -7894,9 +6977,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
-          "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations"
         },
         {
           "name": "feedbackURL",
@@ -7907,9 +6988,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "materialEntity_pk",
@@ -8006,6 +7085,14 @@ window.DWC_DP_DESIGNER_DATA = {
           }
         },
         {
+          "fields": "derivationEventID",
+          "predicate": "derived during",
+          "reference": {
+            "resource": "event",
+            "fields": "eventID"
+          }
+        },
+        {
           "fields": "isPartOfMaterialEntityID",
           "predicate": "part of",
           "reference": {
@@ -8048,7 +7135,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-agent-role.json",
       "name": "material-agent-role",
@@ -8069,8 +7156,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8086,8 +7171,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8102,9 +7185,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -8115,9 +7196,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -8128,8 +7207,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -8141,8 +7219,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -8157,9 +7233,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -8182,7 +7256,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-assertion.json",
       "name": "material-assertion",
@@ -8192,8 +7266,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -8205,8 +7277,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -8222,8 +7292,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8238,9 +7306,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -8251,9 +7317,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -8264,9 +7328,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -8277,8 +7339,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -8289,9 +7350,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -8302,9 +7361,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -8315,9 +7372,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -8328,9 +7383,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -8341,8 +7394,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -8353,9 +7405,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -8366,9 +7416,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -8379,8 +7427,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -8391,9 +7438,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -8404,9 +7449,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -8418,8 +7461,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -8435,8 +7476,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -8451,9 +7490,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -8465,8 +7502,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -8481,9 +7516,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -8494,9 +7527,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -8538,7 +7569,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-geological-context": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-geological-context",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-geological-context",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-geological-context.json",
       "name": "material-geological-context",
@@ -8559,8 +7590,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/geologicalContextID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/geologicalContextID-2023-06-28",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:GeologicalContext (the location within a geological context, such as stratigraphy). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8576,8 +7605,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8604,7 +7631,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-identifier.json",
       "name": "material-identifier",
@@ -8614,7 +7641,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "materialEntity_fk",
@@ -8626,8 +7652,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8643,8 +7667,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8659,8 +7681,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -8671,8 +7692,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -8683,8 +7703,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -8695,8 +7714,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -8711,7 +7729,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-media.json",
       "name": "material-media",
@@ -8732,7 +7750,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8748,8 +7765,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8764,9 +7779,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -8777,9 +7790,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -8790,9 +7801,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -8803,9 +7812,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -8816,9 +7823,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -8829,9 +7834,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -8842,9 +7845,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -8855,9 +7856,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -8880,7 +7879,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-protocol.json",
       "name": "material-protocol",
@@ -8901,8 +7900,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8918,8 +7915,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8946,7 +7941,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-provenance": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-provenance",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-provenance",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-provenance.json",
       "name": "material-provenance",
@@ -8967,8 +7962,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": true,
             "unique": false
@@ -8984,8 +7977,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -9012,7 +8003,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-reference.json",
       "name": "material-reference",
@@ -9033,8 +8024,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9050,8 +8039,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -9066,9 +8053,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -9091,7 +8076,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "material-usage-policy": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/material-usage-policy",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/material-usage-policy",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/material-usage-policy.json",
       "name": "material-usage-policy",
@@ -9112,8 +8097,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": true,
             "unique": false
@@ -9129,8 +8112,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
           "constraints": {
             "required": true,
             "unique": false
@@ -9157,7 +8138,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media.json",
       "name": "media",
@@ -9167,8 +8148,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`dcmi:Sound`; `dcmi:StillImage`; `dcmi:MovingImage`; `dcmi:InteractiveResource`; `ac:Digital3DResource`",
       "namespace": "ac",
       "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/Media",
-      "dcterms:references": "http://rs.tdwg.org/ac/terms/version/Media-2026-02-24",
-      "rdfs:comment": "A digital or physical media resource.",
       "fields": [
         {
           "name": "media_pk",
@@ -9180,7 +8159,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": true
@@ -9195,8 +8173,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
         },
         {
           "name": "derivedFromMedia_fk",
@@ -9208,7 +8185,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9224,7 +8200,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9240,8 +8215,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/isROIOf",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/isROIOf-2021-10-05",
-          "rdfs:comment": "The media item within which a region of interest is located.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9257,8 +8230,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/isROIOf",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/isROIOf-2021-10-05",
-          "rdfs:comment": "The media item within which a region of interest is located.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9273,8 +8244,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "title",
@@ -9285,8 +8255,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-          "rdfs:comment": "A name given to the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
         },
         {
           "name": "description",
@@ -9297,8 +8266,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/description",
-          "rdfs:comment": "An account of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/description"
         },
         {
           "name": "caption",
@@ -9309,9 +8277,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/caption",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/caption-2021-10-05",
-          "rdfs:comment": "As alternative or in addition to description, a caption is free-form text to be displayed together with (rather than instead of) a resource that is suitable for captions (especially images)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/caption"
         },
         {
           "name": "subtypeLiteral",
@@ -9322,9 +8288,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subtypeLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subtypeLiteral-2023-09-05",
-          "rdfs:comment": "A class, represented by a controlled value string, that provides for more specialization of the media item type than dc:type."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subtypeLiteral"
         },
         {
           "name": "subtypeIRI",
@@ -9335,9 +8299,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subtype",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subtype-2023-09-05",
-          "rdfs:comment": "A class, represented by an IRI, that provides for more specialization of the media item type than dcterms:type."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subtype"
         },
         {
           "name": "collectionCode",
@@ -9348,9 +8310,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionCode",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionCode-2026-05-26",
-          "rdfs:comment": "A name, acronym, coden, or initialism identifying a collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionCode"
         },
         {
           "name": "collectionID",
@@ -9361,9 +8321,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/collectionID-2026-05-26",
-          "rdfs:comment": "An identifier for a collection."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/collectionID"
         },
         {
           "name": "createDate",
@@ -9374,8 +8332,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmp",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/CreateDate",
-          "rdfs:comment": "The date and time the resource was created. For a digital file, this need not match a file-system creation time. For a freshly created resource, it should be close to that time, modulo the time taken to write the file. Later file transfer, copying, and so on, can make the file-system time arbitrarily different."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/CreateDate"
         },
         {
           "name": "timeOfDay",
@@ -9386,9 +8343,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/timeOfDay",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/timeOfDay-2020-01-27",
-          "rdfs:comment": "Free text information beyond exact clock times."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/timeOfDay"
         },
         {
           "name": "digitizationDate",
@@ -9399,9 +8354,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/digitizationDate",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/digitizationDate-2026-02-24",
-          "rdfs:comment": "Date the first digital version was created, if different from Original Date and Time found in the Temporal Coverage Vocabulary."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/digitizationDate"
         },
         {
           "name": "captureDevice",
@@ -9412,9 +8365,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/captureDevice",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/captureDevice-2020-01-27",
-          "rdfs:comment": "Free form text describing the device or devices used to create the resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/captureDevice"
         },
         {
           "name": "frameRate",
@@ -9425,9 +8376,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/frameRate",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/frameRate-2022-02-23",
-          "rdfs:comment": "The decimal fraction representing the frequency (rate) at which consecutive images (frames) were captured in real time for a moving image, expressed as the number of frames per second."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/frameRate"
         },
         {
           "name": "resourceCreationTechnique",
@@ -9438,9 +8387,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/resourceCreationTechnique",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/resourceCreationTechnique-2020-10-13",
-          "rdfs:comment": "Information about technical aspects of the creation and digitization process of the resource. This includes modification steps (\"retouching\") after the initial resource capture."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/resourceCreationTechnique"
         },
         {
           "name": "sample-rate",
@@ -9451,8 +8398,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "mo",
-          "dcterms:isVersionOf": "http://purl.org/ontology/mo/sample_rate",
-          "rdfs:comment": "Associates a digital signal to its sample rate. It might be easier to express it this way instead of defining a timeline map:-) Range is xsd:float."
+          "dcterms:isVersionOf": "http://purl.org/ontology/mo/sample_rate"
         },
         {
           "name": "modified",
@@ -9463,8 +8409,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/modified",
-          "rdfs:comment": "Date on which the resource was changed."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/modified"
         },
         {
           "name": "language",
@@ -9475,8 +8420,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         },
         {
           "name": "languageIRI",
@@ -9487,8 +8431,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/language"
         },
         {
           "name": "metadataDate",
@@ -9499,8 +8442,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmp",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/MetadataDate",
-          "rdfs:comment": "The date and time that any metadata for this resource was last changed. It should be the same as or more recent than xmp:ModifyDate."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/MetadataDate"
         },
         {
           "name": "metadataLanguageLiteral",
@@ -9511,9 +8453,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguageLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguageLiteral-2026-02-24",
-          "rdfs:comment": "Language of description and other metadata (but not necessarily of the image itself) represented as an ISO639-2 three letter language code."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguageLiteral"
         },
         {
           "name": "metadataLanguageIRI",
@@ -9524,9 +8464,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguage",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataLanguage-2026-02-24",
-          "rdfs:comment": "The URI of the language of description and other metadata (but not necessarily of the image itself) , from the ISO639-2 list of URIs for ISO 3-letter language codes, http://id.loc.gov/vocabulary/iso639-2."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataLanguage"
         },
         {
           "name": "providerManagedID",
@@ -9537,9 +8475,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/providerManagedID",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/providerManagedID-2020-01-27",
-          "rdfs:comment": "A free-form identifier (a simple number, an alphanumeric code, a URL, etc.) for the resource that is unique and meaningful primarily for the data provider."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/providerManagedID"
         },
         {
           "name": "available",
@@ -9550,8 +8486,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/available",
-          "rdfs:comment": "Date (often a range) that the resource became or will become available."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/available"
         },
         {
           "name": "hasServiceAccessPoint",
@@ -9562,9 +8497,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hasServiceAccessPoint",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/hasServiceAccessPoint-2023-09-05",
-          "rdfs:comment": "In a chosen serialization (RDF, XML Schema, etc.) the potentially multiple service access points (e.g., for different resolutions of an image) might be provided in a referenced or in a nested object. This property identifies one such access point. That is, each of potentially multiple values of hasServiceAccessPoint identifies a set of representation-dependent metadata using the properties defined under the Service Access Point Vocabulary section of the Audiovisual Core Term List document."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hasServiceAccessPoint"
         },
         {
           "name": "serviceExpectation",
@@ -9575,9 +8508,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/serviceExpectation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/serviceExpectation-2023-09-05",
-          "rdfs:comment": "A term that describes what service expectations users may have of the ac:accessURI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/serviceExpectation"
         },
         {
           "name": "accessURI",
@@ -9588,9 +8519,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/accessURI",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/accessURI-2020-01-27",
-          "rdfs:comment": "A URI that uniquely identifies a service that provides a representation of the underlying resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/accessURI"
         },
         {
           "name": "format",
@@ -9601,9 +8530,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/format",
-          "dcterms:references": "http://dublincore.org/usage/terms/history/#format-007",
-          "rdfs:comment": "The file format, physical medium, or dimensions of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/format"
         },
         {
           "name": "formatIRI",
@@ -9614,8 +8541,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/format",
-          "rdfs:comment": "The file format, physical medium, or dimensions of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/format"
         },
         {
           "name": "variantLiteral",
@@ -9626,9 +8552,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variantLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/variantLiteral-2023-09-05",
-          "rdfs:comment": "The category describing this Service Access Point variant, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variantLiteral"
         },
         {
           "name": "variantIRI",
@@ -9639,9 +8563,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variant",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/variant-2023-09-05",
-          "rdfs:comment": "The category describing this Service Access Point variant, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variant"
         },
         {
           "name": "variantDescription",
@@ -9652,9 +8574,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variantDescription",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/variantDescription-2020-01-27",
-          "rdfs:comment": "Text that describes this Service Access Point variant"
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/variantDescription"
         },
         {
           "name": "pixelXDimension",
@@ -9666,7 +8586,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "exif",
           "dcterms:isVersionOf": "http://ns.adobe.com/exif/1.0/PixelXDimension",
-          "rdfs:comment": "Information specific to compressed data. When a compressed file is recorded, the valid width of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
           "constraints": {
             "minimum": 1
           }
@@ -9681,7 +8600,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "exif",
           "dcterms:isVersionOf": "http://ns.adobe.com/exif/1.0/PixelYDimension",
-          "rdfs:comment": "Information specific to compressed data. When a compressed file is recorded, the valid height of the meaningful image shall be recorded in this tag, whether or not there is padding data or a restart marker. This tag shall not exist in an uncompressed file.",
           "constraints": {
             "minimum": 1
           }
@@ -9695,9 +8613,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hashFunction",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/hashFunction-2020-01-27",
-          "rdfs:comment": "The cryptographic hash function used to compute the value given in the Hash Value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hashFunction"
         },
         {
           "name": "hashValue",
@@ -9708,9 +8624,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hashValue",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/hashValue-2020-01-27",
-          "rdfs:comment": "The value computed by a hash function applied to the media that will be delivered at the access point."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/hashValue"
         },
         {
           "name": "furtherInformationURL",
@@ -9721,9 +8635,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/furtherInformationURL",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/furtherInformationURL-2020-01-27",
-          "rdfs:comment": "The URL of a Web site that provides additional information about the version of the media resource that is provided by the Service Access Point."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/furtherInformationURL"
         },
         {
           "name": "commenterLiteral",
@@ -9734,9 +8646,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/commenterLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/commenterLiteral-2023-09-05",
-          "rdfs:comment": "The name of a person who created a comment, or the literal \"anonymous\" (= anonymously commented)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/commenterLiteral"
         },
         {
           "name": "commenter_fk",
@@ -9748,8 +8658,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9765,8 +8673,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9781,9 +8687,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/comments",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/comments-2026-02-24",
-          "rdfs:comment": "Any comment provided on the media resource, as free-form text."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/comments"
         },
         {
           "name": "rating",
@@ -9794,8 +8698,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmp",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/Rating",
-          "rdfs:comment": "A user-assigned rating for this file. The value shall be -1 or in the range [0..5], where -1 indicates \"rejected\" and 0 indicates \"unrated\". If xmp:Rating is not present, a value of 0 should be assumed."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/Rating"
         },
         {
           "name": "reviewerLiteral",
@@ -9806,9 +8709,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewerLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/reviewerLiteral-2023-09-05",
-          "rdfs:comment": "String providing the name of a reviewer."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewerLiteral"
         },
         {
           "name": "reviewer_fk",
@@ -9820,8 +8721,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9837,8 +8736,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -9853,9 +8750,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewerComments",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/reviewerComments-2026-02-24",
-          "rdfs:comment": "Any comment provided by a reviewer with expertise in the subject, as free-form text."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/reviewerComments"
         },
         {
           "name": "physicalSetting",
@@ -9866,9 +8761,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         },
         {
           "name": "subjectCategory",
@@ -9879,9 +8772,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -9892,9 +8783,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -9905,9 +8794,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "tag",
@@ -9918,9 +8805,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/tag",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/tag-2020-01-27",
-          "rdfs:comment": "General keywords or tags."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/tag"
         },
         {
           "name": "subjectPartLiteral",
@@ -9931,9 +8816,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPartIRI",
@@ -9944,9 +8827,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -9957,9 +8838,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientationIRI",
@@ -9970,9 +8849,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "startTime",
@@ -9984,8 +8861,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/startTime",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/startTime-2021-10-05",
-          "rdfs:comment": "The beginning of a temporal region, specified as an absolute offset relative to the beginning of the media item (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
           "constraints": {
             "minimum": 0
           }
@@ -10000,8 +8875,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/endTime",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/endTime-2021-10-05",
-          "rdfs:comment": "The end of a temporal region, specified as an absolute offset relative to the beginning of the media item (this corresponds to Normal Play Time RFC 2326), specified as seconds, with an optional fractional part to indicate milliseconds or finer.",
           "constraints": {
             "minimum": 0
           }
@@ -10015,9 +8888,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/startTimestamp",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/startTimestamp-2021-10-05",
-          "rdfs:comment": "The beginning of a temporal region, specified as real-world clock time ISO 8601 timestamps, using UTC timezone, with an optional fractional part to indicate milliseconds or finer. There is no limit on the number of decimal places for the decimal fraction."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/startTimestamp"
         },
         {
           "name": "endTimestamp",
@@ -10028,9 +8899,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/endTimestamp",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/endTimestamp-2021-10-05",
-          "rdfs:comment": "The end of a temporal region, specified as real-world clock time ISO 8601 timestamps, using UTC timezone, with an optional fractional part to indicate milliseconds or finer. There is no limit on the number of decimal places for the decimal fraction."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/endTimestamp"
         },
         {
           "name": "mediaDuration",
@@ -10042,8 +8911,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/mediaDuration",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/mediaDuration-2021-10-05",
-          "rdfs:comment": "The playback duration of an audio or video file in seconds.",
           "constraints": {
             "minimum": 0
           }
@@ -10057,9 +8924,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/mediaSpeed",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/mediaSpeed-2021-10-05",
-          "rdfs:comment": "The decimal fraction representing the natural speed over the encoded speed."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/mediaSpeed"
         },
         {
           "name": "freqHigh",
@@ -10070,9 +8935,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/freqHigh",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/freqHigh-2021-10-05",
-          "rdfs:comment": "The highest frequency of the phenomena reflected in the multimedia item or Region of Interest."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/freqHigh"
         },
         {
           "name": "freqLow",
@@ -10083,9 +8946,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/freqLow",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/freqLow-2021-10-05",
-          "rdfs:comment": "The lowest frequency of the phenomena reflected in the multimedia item or Region of Interest."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/freqLow"
         },
         {
           "name": "xFrac",
@@ -10097,8 +8958,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/xFrac",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/xFrac-2021-10-05",
-          "rdfs:comment": "The horizontal position of a reference point, measured from the left side of an ac:Media resource and expressed as a decimal fraction of the width of an ac:Media resource.",
           "constraints": {
             "minimum": 0,
             "maximum": 1
@@ -10114,8 +8973,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/yFrac",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/yFrac-2021-10-05",
-          "rdfs:comment": "The vertical position of a reference point, measured from the top of the media item and expressed as a decimal fraction of the height of the media item.",
           "constraints": {
             "minimum": 0,
             "maximum": 1
@@ -10131,8 +8988,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/heightFrac",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/heightFrac-2021-10-05",
-          "rdfs:comment": "The height of the bounding rectangle, expressed as a decimal fraction of the height of the media item.",
           "constraints": {
             "minimum": 0,
             "maximum": 1
@@ -10148,8 +9003,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/widthFrac",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/widthFrac-2021-10-05",
-          "rdfs:comment": "The width of the bounding rectangle, expressed as a decimal fraction of the width of the media item.",
           "constraints": {
             "minimum": 0,
             "maximum": 1
@@ -10165,8 +9018,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "ac",
           "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/radius",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/radius-2021-10-05",
-          "rdfs:comment": "The radius of a bounding circle or arc, expressed as a fraction of the width of the media item.",
           "constraints": {
             "minimum": 0
           }
@@ -10181,8 +9032,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10198,8 +9047,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10214,8 +9061,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmprights",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner",
-          "rdfs:comment": "A list of legal owners of the resource."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner"
         },
         {
           "name": "owner_fk",
@@ -10227,8 +9073,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10243,8 +9087,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/license",
-          "rdfs:comment": "A legal document giving official permission to do something with the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/license"
         }
       ],
       "primaryKey": "media_pk",
@@ -10343,7 +9186,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media-agent-role.json",
       "name": "media-agent-role",
@@ -10364,7 +9207,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10380,8 +9222,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10396,9 +9236,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -10409,9 +9247,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -10422,8 +9258,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -10435,8 +9270,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -10451,9 +9284,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -10476,7 +9307,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media-assertion.json",
       "name": "media-assertion",
@@ -10486,8 +9317,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -10499,8 +9328,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -10516,7 +9343,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10531,9 +9357,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -10544,9 +9368,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -10557,9 +9379,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -10570,8 +9390,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -10582,9 +9401,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -10595,9 +9412,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -10608,9 +9423,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -10621,9 +9434,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -10634,8 +9445,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -10646,9 +9456,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -10659,9 +9467,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -10672,8 +9478,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -10684,9 +9489,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -10697,9 +9500,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -10711,8 +9512,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10728,8 +9527,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10744,9 +9541,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -10758,8 +9553,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -10774,9 +9567,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -10787,9 +9578,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -10831,7 +9620,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media-identifier.json",
       "name": "media-identifier",
@@ -10841,7 +9630,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "media_fk",
@@ -10853,7 +9641,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10869,8 +9656,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10885,8 +9670,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -10897,8 +9681,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -10909,8 +9692,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -10921,8 +9703,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -10937,7 +9718,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media-provenance": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media-provenance",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media-provenance",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media-provenance.json",
       "name": "media-provenance",
@@ -10958,8 +9739,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/provenanceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/provenanceID-pending",
-          "rdfs:comment": "An identifier for a dwc:Provenance.",
           "constraints": {
             "required": true,
             "unique": false
@@ -10975,7 +9754,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -11002,7 +9780,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "media-usage-policy": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/media-usage-policy",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/media-usage-policy",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/media-usage-policy.json",
       "name": "media-usage-policy",
@@ -11023,7 +9801,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -11039,8 +9816,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy.",
           "constraints": {
             "required": true,
             "unique": false
@@ -11067,7 +9842,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "molecular-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/molecular-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/molecular-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/molecular-protocol.json",
       "name": "molecular-protocol",
@@ -11077,8 +9852,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a standard DNA barcoding workflow using Sanger sequencing`; `a shotgun metagenomics pipeline for microbial community profiling`; `a high-throughput amplicon sequencing protocol targeting 16S rRNA`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MolecularProtocol",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/MolecularProtocol-2026-05-26",
-      "rdfs:comment": "A protocol used to derive and identify a nucleotide sequence from a dwc:MaterialEntity.",
       "fields": [
         {
           "name": "molecularProtocol_pk",
@@ -11090,8 +9863,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
           "constraints": {
             "required": true,
             "unique": true
@@ -11106,9 +9877,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID"
         },
         {
           "name": "assayType",
@@ -11119,9 +9888,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assayType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assayType-2026-05-26",
-          "rdfs:comment": "A type of method used in a study to detect taxon/taxa of interest in a dwc:MaterialEntity."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assayType"
         },
         {
           "name": "samp_name",
@@ -11132,8 +9899,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0001107",
-          "rdfs:comment": "Sample Name is a name that you choose for the sample. It can have any format, but we suggest that you make it concise, unique and consistent within your lab, and as informative as possible. Every Sample Name from a single Submitter must be unique."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0001107"
         },
         {
           "name": "project_name",
@@ -11144,8 +9910,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000092",
-          "rdfs:comment": "Name of the project within which the sequencing was organized."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000092"
         },
         {
           "name": "experimental_factor",
@@ -11156,8 +9921,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000008",
-          "rdfs:comment": "Experimental factors are essentially the variable aspects of an experiment design which can be used to describe an experiment, or set of experiments, in an increasingly detailed manner. This field accepts ontology terms from Experimental Factor Ontology (EFO) and/or Ontology for Biomedical Investigations (OBI). For a browser of EFO (v 2.95) terms, please see http://purl.bioontology.org/ontology/EFO; for a browser of OBI (v 2018-02-12) terms please see http://purl.bioontology.org/ontology/OBI."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000008"
         },
         {
           "name": "samp_taxon_id",
@@ -11168,8 +9932,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0001320",
-          "rdfs:comment": "NCBI taxon id of the sample. Maybe be a single taxon or mixed taxa sample. Use \"synthetic metagenome\" for mock community/positive controls, or \"blank sample\" for negative controls."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0001320"
         },
         {
           "name": "neg_cont_type",
@@ -11180,8 +9943,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0001321",
-          "rdfs:comment": "The substance or equipment used as a negative control in an investigation."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0001321"
         },
         {
           "name": "pos_cont_type",
@@ -11192,8 +9954,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0001322",
-          "rdfs:comment": "The substance, mixture, product, or apparatus used to verify that a process which is part of an investigation delivers a true positive."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0001322"
         },
         {
           "name": "env_broad_scale",
@@ -11204,8 +9965,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000012",
-          "rdfs:comment": "In this field, report which major environmental system your sample or specimen came from. The systems identified should have a coarse spatial grain, to provide the general environmental context of where the sampling was done (e.g. were you in the desert or a rainforest?). We recommend using subclasses of ENVO’s biome class: http://purl.obolibrary.org/obo/ENVO_00000428. Format (one term): termLabel [termID], Format (multiple terms): termLabel [termID]|termLabel [termID]|termLabel [termID]. Example: Annotating a water sample from the photic zone in middle of the Atlantic Ocean, consider: oceanic epipelagic zone biome [ENVO:01000033]. Example: Annotating a sample from the Amazon rainforest consider: tropical moist broadleaf forest biome [ENVO:01000228]. If needed, request new terms on the ENVO tracker, identified here: http://www.obofoundry.org/ontology/envo.html."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000012"
         },
         {
           "name": "env_local_scale",
@@ -11216,8 +9976,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000013",
-          "rdfs:comment": "In this field, report the entity or entities which are in your sample or specimen’s local vicinity and which you believe have significant causal influences on your sample or specimen. Please use terms that are present in ENVO and which are of smaller spatial grain than your entry for env_broad_scale. Format (one term): termLabel [termID]; Format (multiple terms): termLabel [termID]|termLabel [termID]|termLabel [termID]. Example: Annotating a pooled sample taken from various vegetation layers in a forest consider: canopy [ENVO:00000047]|herb and fern layer [ENVO:01000337]|litter layer [ENVO:01000338]|understory [01000335]|shrub layer [ENVO:01000336]. If needed, request new terms on the ENVO tracker, identified here: http://www.obofoundry.org/ontology/envo.html."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000013"
         },
         {
           "name": "env_medium",
@@ -11228,8 +9987,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000014",
-          "rdfs:comment": "In this field, report which environmental material or materials (pipe separated) immediately surrounded your sample or specimen prior to sampling, using one or more subclasses of ENVO’s environmental material class: http://purl.obolibrary.org/obo/ENVO_00010483. Format (one term): termLabel [termID]; Format (multiple terms): termLabel [termID]|termLabel [termID]|termLabel [termID]. Example: Annotating a fish swimming in the upper 100 m of the Atlantic Ocean, consider: ocean water [ENVO:00002151]. Example: Annotating a duck on a pond consider: pond water [ENVO:00002228]|air ENVO_00002005. If needed, request new terms on the ENVO tracker, identified here: http://www.obofoundry.org/ontology/envo.html."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000014"
         },
         {
           "name": "subspecf_gen_lin",
@@ -11240,8 +9998,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000020",
-          "rdfs:comment": "This should provide further information about the genetic distinctness of the sequenced organism by recording additional information e.g. serovar, serotype, biotype, ecotype, or any relevant genetic typing schemes like Group I plasmid. It can also contain alternative taxonomic information. It should contain both the lineage name, and the lineage rank, i.e. biovar:abc123."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000020"
         },
         {
           "name": "ploidy",
@@ -11252,8 +10009,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000021",
-          "rdfs:comment": "The ploidy level of the genome (e.g. allopolyploid, haploid, diploid, triploid, tetraploid). It has implications for the downstream study of duplicated gene and regions of the genomes (and perhaps for difficulties in assembly). For terms, please select terms listed under class ploidy (PATO:001374) of Phenotypic Quality Ontology (PATO), and for a browser of PATO (v 2018-03-27) please refer to http://purl.bioontology.org/ontology/PATO."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000021"
         },
         {
           "name": "num_replicons",
@@ -11264,8 +10020,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000022",
-          "rdfs:comment": "Reports the number of replicons in a nuclear genome of eukaryotes, in the genome of a bacterium or archaea or the number of segments in a segmented virus. Always applied to the haploid chromosome count of a eukaryote."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000022"
         },
         {
           "name": "extrachrom_elements",
@@ -11276,8 +10031,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000023",
-          "rdfs:comment": "Do plasmids exist of significant phenotypic consequence (e.g. ones that determine virulence or antibiotic resistance). Megaplasmids? Other plasmids (borrelia has 15+ plasmids)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000023"
         },
         {
           "name": "estimated_size",
@@ -11288,8 +10042,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000024",
-          "rdfs:comment": "The estimated size of the genome prior to sequencing. Of particular importance in the sequencing of (eukaryotic) genome which could remain in draft form for a long or unspecified period."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000024"
         },
         {
           "name": "ref_biomaterial",
@@ -11300,8 +10053,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000025",
-          "rdfs:comment": "Primary publication if isolated before genome publication; otherwise, primary genome report."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000025"
         },
         {
           "name": "source_mat_fk",
@@ -11313,8 +10065,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": false,
             "unique": false
@@ -11330,7 +10080,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "mixs",
           "dcterms:isVersionOf": "https://w3id.org/mixs/0000026",
-          "rdfs:comment": "A unique identifier assigned to a material sample (as defined by http://rs.tdwg.org/dwc/terms/materialSampleID, and as opposed to a particular digital record of a material sample) used for extracting nucleic acids, and subsequent sequencing. The identifier can refer either to the original material collected or to any derived sub-samples. The INSDC qualifiers /specimen_voucher, /bio_material, or /culture_collection may or may not share the same value as the source_mat_id field. For instance, the /specimen_voucher qualifier and source_mat_id may both contain ´UAM:Herps:14´ , referring to both the specimen voucher and sampled tissue with the same identifier. However, the /culture_collection qualifier may refer to a value from an initial culture (e.g. ATCC:11775) while source_mat_id would refer to an identifier from some derived culture from which the nucleic acids were extracted (e.g. xatc123 or ark:/2154/R2).",
           "constraints": {
             "required": false,
             "unique": false
@@ -11345,8 +10094,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000027",
-          "rdfs:comment": "To what is the entity pathogenic."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000027"
         },
         {
           "name": "biotic_relationship",
@@ -11357,8 +10105,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000028",
-          "rdfs:comment": "Description of relationship(s) between the subject organism and other organism(s) it is associated with. E.g., parasite on species X; mutualist with species Y. The target organism is the subject of the relationship, and the other organism(s) is the object."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000028"
         },
         {
           "name": "specific_host",
@@ -11369,8 +10116,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000029",
-          "rdfs:comment": "If there is a host involved, please provide its taxid (or environmental if not actually isolated from the dead or alive host - i.e. a pathogen could be isolated from a swipe of a bench etc) and report whether it is a laboratory or natural host)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000029"
         },
         {
           "name": "host_spec_range",
@@ -11381,8 +10127,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000030",
-          "rdfs:comment": "The NCBI taxonomy identifier of the specific host if it is known."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000030"
         },
         {
           "name": "host_disease_stat",
@@ -11393,8 +10138,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000031",
-          "rdfs:comment": "List of diseases with which the host has been diagnosed; can include multiple diagnoses. The value of the field depends on host; for humans the terms should be chosen from the DO (Human Disease Ontology) at https://www.disease-ontology.org, non-human host diseases are free text."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000031"
         },
         {
           "name": "trophic_level",
@@ -11405,8 +10149,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000032",
-          "rdfs:comment": "Trophic levels are the feeding position in a food chain. Microbes can be a range of producers (e.g. chemolithotroph)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000032"
         },
         {
           "name": "propagation",
@@ -11417,8 +10160,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000033",
-          "rdfs:comment": "This field is specific to different taxa. For phages: lytic/lysogenic, for plasmids: incompatibility group, for eukaryotes: sexual/asexual (Note: there is the strong opinion to name phage propagation obligately lytic or temperate, therefore we also give this choice."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000033"
         },
         {
           "name": "encoded_traits",
@@ -11429,8 +10171,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000034",
-          "rdfs:comment": "Should include key traits like antibiotic resistance or xenobiotic degradation phenotypes for plasmids, converting genes for phage."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000034"
         },
         {
           "name": "rel_to_oxygen",
@@ -11441,8 +10182,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000015",
-          "rdfs:comment": "Is this organism an aerobe, anaerobe? Please note that aerobic and anaerobic are valid descriptors for microbial environments."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000015"
         },
         {
           "name": "isol_growth_condt",
@@ -11453,8 +10193,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000003",
-          "rdfs:comment": "Publication reference in the form of pubmed ID (pmid), digital object identifier (doi) or url for isolation and growth condition specifications of the organism/material."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000003"
         },
         {
           "name": "samp_collect_device",
@@ -11465,8 +10204,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000002",
-          "rdfs:comment": "The device used to collect an environmental sample. This field accepts terms listed under environmental sampling device (http://purl.obolibrary.org/obo/ENVO). This field also accepts terms listed under specimen collection device (http://purl.obolibrary.org/obo/GENEPIO_0002094)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000002"
         },
         {
           "name": "samp_collect_method",
@@ -11477,8 +10215,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0001225",
-          "rdfs:comment": "The method employed for collecting the sample."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0001225"
         },
         {
           "name": "samp_mat_process",
@@ -11489,8 +10226,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000016",
-          "rdfs:comment": "Any processing applied to the sample during or after retrieving the sample from environment. This field accepts OBI, for a browser of OBI (v 2018-02-12) terms please see http://purl.bioontology.org/ontology/OBI."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000016"
         },
         {
           "name": "size_frac",
@@ -11501,8 +10237,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000017",
-          "rdfs:comment": "Filtering pore size used in sample preparation."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000017"
         },
         {
           "name": "samp_size",
@@ -11513,8 +10248,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000001",
-          "rdfs:comment": "Amount or size of sample (volume, mass or area) that was collected."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000001"
         },
         {
           "name": "samp_vol_we_dna_ext",
@@ -11525,8 +10259,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000111",
-          "rdfs:comment": "Volume (ml) or mass (g) of total collected sample processed for DNA extraction. Note: total sample collected should be entered under the term Sample Size (MIXS:0000001)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000111"
         },
         {
           "name": "source_uvig",
@@ -11537,8 +10270,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000035",
-          "rdfs:comment": "Type of dataset from which the UViG was obtained."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000035"
         },
         {
           "name": "virus_enrich_appr",
@@ -11549,8 +10281,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000036",
-          "rdfs:comment": "List of approaches used to enrich the sample for viruses, if any."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000036"
         },
         {
           "name": "nucl_acid_ext",
@@ -11561,8 +10292,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000037",
-          "rdfs:comment": "A link to a literature reference, electronic resource or a standard operating procedure (SOP), that describes the material separation to recover the nucleic acid fraction from a sample."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000037"
         },
         {
           "name": "nucl_acid_amp",
@@ -11573,8 +10303,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000038",
-          "rdfs:comment": "A link to a literature reference, electronic resource or a standard operating procedure (SOP), that describes the enzymatic amplification (PCR, TMA, NASBA) of specific nucleic acids."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000038"
         },
         {
           "name": "lib_size",
@@ -11585,8 +10314,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000039",
-          "rdfs:comment": "Total number of clones in the library prepared for the project."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000039"
         },
         {
           "name": "lib_reads_seqd",
@@ -11597,8 +10325,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000040",
-          "rdfs:comment": "Total number of clones sequenced from the library."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000040"
         },
         {
           "name": "lib_layout",
@@ -11609,8 +10336,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000041",
-          "rdfs:comment": "Specify whether to expect single, paired, or other configuration of reads."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000041"
         },
         {
           "name": "lib_vector",
@@ -11621,8 +10347,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000042",
-          "rdfs:comment": "Cloning vector type(s) used in construction of libraries."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000042"
         },
         {
           "name": "lib_screen",
@@ -11633,8 +10358,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000043",
-          "rdfs:comment": "Specific enrichment or screening methods applied before and/or after creating libraries."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000043"
         },
         {
           "name": "target_gene",
@@ -11645,8 +10369,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000044",
-          "rdfs:comment": "Targeted gene or locus name for marker gene studies."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000044"
         },
         {
           "name": "target_subfragment",
@@ -11657,8 +10380,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000045",
-          "rdfs:comment": "Name of subfragment of a gene or locus. Important to e.g. identify special regions on marker genes like V6 on 16S rRNA."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000045"
         },
         {
           "name": "pcr_primers",
@@ -11669,8 +10391,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000046",
-          "rdfs:comment": "PCR primers that were used to amplify the sequence of the targeted gene, locus or subfragment. This field should contain all the primers used for a single PCR reaction if multiple forward or reverse primers are present in a single PCR reaction. The primer sequence should be reported in uppercase letters."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000046"
         },
         {
           "name": "mid",
@@ -11681,8 +10402,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000047",
-          "rdfs:comment": "Molecular barcodes, called Multiplex Identifiers (MIDs), that are used to specifically tag unique samples in a sequencing run. Sequence should be reported in uppercase letters."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000047"
         },
         {
           "name": "adapters",
@@ -11693,8 +10413,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000048",
-          "rdfs:comment": "Adapters provide priming sequences for both amplification and sequencing of the sample-library fragments. Both adapters should be reported; in uppercase letters."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000048"
         },
         {
           "name": "pcr_cond",
@@ -11705,8 +10424,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000049",
-          "rdfs:comment": "Description of reaction conditions and components of PCR in the form of ´initial denaturation:94degC_1.5min; annealing=...´."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000049"
         },
         {
           "name": "seq_meth",
@@ -11717,8 +10435,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000050",
-          "rdfs:comment": "Sequencing method used; e.g. Sanger, ABI-solid."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000050"
         },
         {
           "name": "seq_quality_check",
@@ -11729,8 +10446,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000051",
-          "rdfs:comment": "Indicate if the sequence has been called by automatic systems (none) or undergone a manual editing procedure (e.g. by inspecting the raw data or chromatograms). Applied only for sequences that are not submitted to SRA,ENA or DRA."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000051"
         },
         {
           "name": "chimera_check",
@@ -11741,8 +10457,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000052",
-          "rdfs:comment": "A chimeric sequence, or chimera for short, is a sequence comprised of two or more phylogenetically distinct parent sequences. Chimeras are usually PCR artifacts thought to occur when a prematurely terminated amplicon reanneals to a foreign DNA strand and is copied to completion in the following PCR cycles. The point at which the chimeric sequence changes from one parent to the next is called the breakpoint or conversion point."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000052"
         },
         {
           "name": "tax_ident",
@@ -11753,8 +10468,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000053",
-          "rdfs:comment": "The phylogenetic marker(s) used to assign an organism name to the SAG or MAG."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000053"
         },
         {
           "name": "assembly_qual",
@@ -11765,8 +10479,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000056",
-          "rdfs:comment": "The assembly quality category is based on sets of criteria outlined for each assembly quality category. For MISAG/MIMAG; Finished: Single, validated, contiguous sequence per replicon without gaps or ambiguities with a consensus error rate equivalent to Q50 or better. High Quality Draft:Multiple fragments where gaps span repetitive regions. Presence of the 23S, 16S and 5S rRNA genes and at least 18 tRNAs. Medium Quality Draft:Many fragments with little to no review of assembly other than reporting of standard assembly statistics. Low Quality Draft:Many fragments with little to no review of assembly other than reporting of standard assembly statistics. Assembly statistics include, but are not limited to total assembly size, number of contigs, contig N50/L50, and maximum contig length. For MIUVIG; Finished: Single, validated, contiguous sequence per replicon without gaps or ambiguities, with extensive manual review and editing to annotate putative gene functions and transcriptional units. High-quality draft genome: One or multiple fragments, totaling ≥ 90% of the expected genome or replicon sequence or predicted complete. Genome fragment(s): One or multiple fragments, totalling < 90% of the expected genome or replicon sequence, or for which no genome size could be estimated."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000056"
         },
         {
           "name": "assembly_name",
@@ -11777,8 +10490,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000057",
-          "rdfs:comment": "Name/version of the assembly provided by the submitter that is used in the genome browsers and in the community."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000057"
         },
         {
           "name": "assembly_software",
@@ -11789,8 +10501,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000058",
-          "rdfs:comment": "Tool(s) used for assembly, including version number and parameters."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000058"
         },
         {
           "name": "annot",
@@ -11801,8 +10512,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000059",
-          "rdfs:comment": "Tool used for annotation, or for cases where annotation was provided by a community jamboree or model organism database rather than by a specific submitter."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000059"
         },
         {
           "name": "number_contig",
@@ -11813,8 +10523,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000060",
-          "rdfs:comment": "Total number of contigs in the cleaned/submitted assembly that makes up a given genome, SAG, MAG, or UViG."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000060"
         },
         {
           "name": "feat_pred",
@@ -11825,8 +10534,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000061",
-          "rdfs:comment": "Method used to predict UViGs features such as ORFs, integration site, etc."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000061"
         },
         {
           "name": "ref_db",
@@ -11837,8 +10545,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000062",
-          "rdfs:comment": "List of database(s) used for ORF annotation, along with version number and reference to website or publication."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000062"
         },
         {
           "name": "sim_search_meth",
@@ -11849,8 +10556,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000063",
-          "rdfs:comment": "Tool used to compare ORFs with database, along with version and cutoffs used."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000063"
         },
         {
           "name": "tax_class",
@@ -11861,8 +10567,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000064",
-          "rdfs:comment": "Method used for taxonomic classification, along with reference database used, classification rank, and thresholds used to classify new genomes."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000064"
         },
         {
           "name": "_16s_recover",
@@ -11873,8 +10578,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000065",
-          "rdfs:comment": "Can a 16S gene be recovered from the submitted SAG or MAG?."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000065"
         },
         {
           "name": "_16s_recover_software",
@@ -11885,8 +10589,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000066",
-          "rdfs:comment": "Tools used for 16S rRNA gene extraction."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000066"
         },
         {
           "name": "trnas",
@@ -11897,8 +10600,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000067",
-          "rdfs:comment": "The total number of tRNAs identified from the SAG or MAG."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000067"
         },
         {
           "name": "trna_ext_software",
@@ -11909,8 +10611,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000068",
-          "rdfs:comment": "Tools used for tRNA identification."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000068"
         },
         {
           "name": "compl_score",
@@ -11921,8 +10622,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000069",
-          "rdfs:comment": "Completeness score is typically based on either the fraction of markers found as compared to a database or the percent of a genome found as compared to a closely related reference genome. High Quality Draft: >90%, Medium Quality Draft: >50%, and Low Quality Draft: < 50% should have the indicated completeness scores."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000069"
         },
         {
           "name": "compl_software",
@@ -11933,8 +10633,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000070",
-          "rdfs:comment": "Tools used for completion estimate, i.e. checkm, anvi´o, busco."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000070"
         },
         {
           "name": "compl_appr",
@@ -11945,8 +10644,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000071",
-          "rdfs:comment": "The approach used to determine the completeness of a given SAG or MAG, which would typically make use of a set of conserved marker genes or a closely related reference genome. For UViG completeness, include reference genome or group used, and contig feature suggesting a complete genome."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000071"
         },
         {
           "name": "contam_score",
@@ -11957,8 +10655,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000072",
-          "rdfs:comment": "The contamination score is based on the fraction of single-copy genes that are observed more than once in a query genome. The following scores are acceptable for; High Quality Draft: < 5%, Medium Quality Draft: < 10%, Low Quality Draft: < 10%. Contamination must be below 5% for a SAG or MAG to be deposited into any of the public databases."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000072"
         },
         {
           "name": "contam_screen_input",
@@ -11969,8 +10666,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000005",
-          "rdfs:comment": "The type of sequence data used as input."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000005"
         },
         {
           "name": "contam_screen_param",
@@ -11981,8 +10677,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000073",
-          "rdfs:comment": "Specific parameters used in the decontamination sofware, such as reference database, coverage, and kmers. Combinations of these parameters may also be used, i.e. kmer and coverage, or reference database and kmer."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000073"
         },
         {
           "name": "decontam_software",
@@ -11993,8 +10688,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000074",
-          "rdfs:comment": "Tool(s) used in contamination screening."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000074"
         },
         {
           "name": "sort_tech",
@@ -12005,8 +10699,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000075",
-          "rdfs:comment": "Method used to sort/isolate cells or particles of interest."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000075"
         },
         {
           "name": "single_cell_lysis_appr",
@@ -12017,8 +10710,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000076",
-          "rdfs:comment": "Method used to free DNA from interior of the cell(s) or particle(s)."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000076"
         },
         {
           "name": "single_cell_lysis_prot",
@@ -12029,8 +10721,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000054",
-          "rdfs:comment": "Name of the kit or standard protocol used for cell(s) or particle(s) lysis."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000054"
         },
         {
           "name": "wga_amp_appr",
@@ -12041,8 +10732,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000055",
-          "rdfs:comment": "Method used to amplify genomic DNA in preparation for sequencing."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000055"
         },
         {
           "name": "wga_amp_kit",
@@ -12053,8 +10743,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000006",
-          "rdfs:comment": "Kit used to amplify genomic DNA in preparation for sequencing."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000006"
         },
         {
           "name": "bin_param",
@@ -12065,8 +10754,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000077",
-          "rdfs:comment": "The parameters that have been applied during the extraction of genomes from metagenomic datasets."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000077"
         },
         {
           "name": "bin_software",
@@ -12077,8 +10765,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000078",
-          "rdfs:comment": "Tool(s) used for the extraction of genomes from metagenomic datasets."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000078"
         },
         {
           "name": "reassembly_bin",
@@ -12089,8 +10776,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000079",
-          "rdfs:comment": "Has an assembly been performed on a genome bin extracted from a metagenomic assembly?."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000079"
         },
         {
           "name": "mag_cov_software",
@@ -12101,8 +10787,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000080",
-          "rdfs:comment": "Tool(s) used to determine the genome coverage if coverage is used as a binning parameter in the extraction of genomes from metagenomic datasets."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000080"
         },
         {
           "name": "vir_ident_software",
@@ -12113,8 +10798,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000081",
-          "rdfs:comment": "Tool(s) used for the identification of UViG as a viral genome, software or protocol name including version number, parameters, and cutoffs used."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000081"
         },
         {
           "name": "pred_genome_type",
@@ -12125,8 +10809,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000082",
-          "rdfs:comment": "Type of genome predicted for the UViG."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000082"
         },
         {
           "name": "pred_genome_struc",
@@ -12137,8 +10820,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000083",
-          "rdfs:comment": "Expected structure of the viral genome."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000083"
         },
         {
           "name": "detec_type",
@@ -12149,8 +10831,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000084",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000084"
         },
         {
           "name": "otu_class_appr",
@@ -12161,8 +10842,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000085",
-          "rdfs:comment": "Cutoffs and approach used when clustering new UViGs in \"species-level\" OTUs. Note that results from standard 95% ANI / 85% AF clustering should be provided alongside OTUS defined from another set of thresholds, even if the latter are the ones primarily used during the analysis."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000085"
         },
         {
           "name": "otu_seq_comp_appr",
@@ -12173,8 +10853,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000086",
-          "rdfs:comment": "Tool and thresholds used to compare sequences when computing \"species-level\" OTUs."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000086"
         },
         {
           "name": "otu_db",
@@ -12185,8 +10864,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000087",
-          "rdfs:comment": "Reference database (i.e. sequences not generated as part of the current study) used to cluster new genomes in \"species-level\" OTUs, if any."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000087"
         },
         {
           "name": "host_pred_appr",
@@ -12197,8 +10875,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000088",
-          "rdfs:comment": "Tool or approach used for host prediction."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000088"
         },
         {
           "name": "host_pred_est_acc",
@@ -12209,8 +10886,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000089",
-          "rdfs:comment": "For each tool or approach used for host prediction, estimated false discovery rates should be included, either computed de novo or from the literature."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000089"
         },
         {
           "name": "associated_resource",
@@ -12221,8 +10897,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000091",
-          "rdfs:comment": "A related resource that is referenced, cited, or otherwise associated to the sequence."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000091"
         },
         {
           "name": "sop",
@@ -12233,8 +10908,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "mixs",
-          "dcterms:isVersionOf": "https://w3id.org/mixs/0000090",
-          "rdfs:comment": "Standard operating procedures used in assembly and/or annotation of genomes, metagenomes or environmental sequences."
+          "dcterms:isVersionOf": "https://w3id.org/mixs/0000090"
         },
         {
           "name": "pcr_primer_forward",
@@ -12245,8 +10919,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_forward",
-          "rdfs:comment": "Forward PCR primer that were used to amplify the sequence of the targeted gene, locus or subfragment. If multiple multiple forward or reverse primers are present in a single PCR reaction, there should be a full row for each of these linked to the same dwc:Occurrence. The primer sequence should be reported in uppercase letters."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_forward"
         },
         {
           "name": "pcr_primer_reverse",
@@ -12257,8 +10930,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_reverse",
-          "rdfs:comment": "Reverse PCR primer that were used to amplify the sequence of the targeted gene, locus or subfragment. If multiple multiple forward or reverse primers are present in a single PCR reaction, there should be a full row for each of these linked to the same dwc:Occurrence. The primer sequence should be reported in uppercase letters."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_reverse"
         },
         {
           "name": "pcr_primer_name_forward",
@@ -12269,8 +10941,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_name_forward",
-          "rdfs:comment": "Name of the forward PCR primer that were used to amplify the sequence of the targeted gene, locus or subfragment. If multiple multiple forward or reverse primers are present in a single PCR reaction, there should be a full row for each of these linked to the same dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_name_forward"
         },
         {
           "name": "pcr_primer_name_reverse",
@@ -12281,8 +10952,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_name_reverse",
-          "rdfs:comment": "Name of the reverse PCR primer that were used to amplify the sequence of the targeted gene, locus or subfragment. If multiple multiple forward or reverse primers are present in a single PCR reaction, there should be a full row for each of these linked to the same dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_name_reverse"
         },
         {
           "name": "pcr_primer_reference",
@@ -12293,8 +10963,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "gbif",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_reference",
-          "rdfs:comment": "Reference for the PCR primers that were used to amplify the sequence of the targeted gene, locus or subfragment."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/pcr_primer_reference"
         },
         {
           "name": "sequence",
@@ -12305,9 +10974,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sequence",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sequence-2026-05-26",
-          "rdfs:comment": "A string representing nucleotide base pairs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sequence"
         },
         {
           "name": "concentration",
@@ -12318,8 +10985,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ggbn",
-          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/concentration",
-          "rdfs:comment": "Concentration of DNA (weight ng/volume µl)."
+          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/concentration"
         },
         {
           "name": "concentrationUnit",
@@ -12330,8 +10996,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ggbn",
-          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/concentrationUnit",
-          "rdfs:comment": "Unit used for concentration measurement (DNA)"
+          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/concentrationUnit"
         },
         {
           "name": "methodDeterminationConcentrationAndRatios",
@@ -12342,8 +11007,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ggbn",
-          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationConcentrationAndRatios",
-          "rdfs:comment": "Description of method used for concentration measurement (DNA)"
+          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/methodDeterminationConcentrationAndRatios"
         },
         {
           "name": "ratioOfAbsorbance260_230",
@@ -12354,8 +11018,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ggbn",
-          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_230",
-          "rdfs:comment": "Ratio of absorbance at 260 nm and 230 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only)"
+          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_230"
         },
         {
           "name": "ratioOfAbsorbance260_280",
@@ -12366,8 +11029,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "ggbn",
-          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_280",
-          "rdfs:comment": "Ratio of absorbance at 260 nm and 280 nm assessing DNA purity (mostly secondary measure, indicates mainly EDTA, carbohydrates, phenol), (DNA samples only)"
+          "dcterms:isVersionOf": "http://data.ggbn.org/schemas/ggbn/terms/ratioOfAbsorbance260_280"
         },
         {
           "name": "annealingTemp",
@@ -12378,9 +11040,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTemp",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/annealingTemp",
-          "rdfs:comment": "The reaction temperature during the annealing phase of PCR."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTemp"
         },
         {
           "name": "annealingTempUnit",
@@ -12391,9 +11051,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTempUnit",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/annealingTempUnit",
-          "rdfs:comment": "Measurement unit of the reaction temperature during the annealing phase of PCR."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/annealingTempUnit"
         },
         {
           "name": "probeReporter",
@@ -12404,9 +11062,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeReporter",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/probeReporter",
-          "rdfs:comment": "Type of fluorophore (reporter) used. Probe anneals within amplified target DNA. Polymerase activity degrades the probe that has annealed to the template, and the probe releases the fluorophore from it and breaks the proximity to the quencher, thus allowing fluorescence of the fluorophore."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeReporter"
         },
         {
           "name": "probeQuencher",
@@ -12417,9 +11073,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeQuencher",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/probeQuencher",
-          "rdfs:comment": "Type of quencher used. The quencher molecule quenches the fluorescence emitted by the fluorophore when excited by the cycler’s light source As long as fluorophore and the quencher are in proximity, quenching inhibits any fluorescence signals."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/probeQuencher"
         },
         {
           "name": "ampliconSize",
@@ -12430,9 +11084,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/ampliconSize",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/ampliconSize",
-          "rdfs:comment": "The length of the amplicon in basepairs."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/ampliconSize"
         },
         {
           "name": "thresholdQuantificationCycle",
@@ -12443,9 +11095,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/thresholdQuantificationCycle",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/thresholdQuantificationCycle",
-          "rdfs:comment": "Threshold for change in fluorescence signal between cycles."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/thresholdQuantificationCycle"
         },
         {
           "name": "baselineValue",
@@ -12456,9 +11106,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/baselineValue",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/baselineValue",
-          "rdfs:comment": "The number of cycles when fluorescence signal from the target amplification is below background fluorescence not originated from the real target amplification."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/baselineValue"
         },
         {
           "name": "quantificationCycle",
@@ -12469,9 +11117,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/quantificationCycle",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/quantificationCycle",
-          "rdfs:comment": "The number of cycles required for the fluorescent signal to cross a given value threshold above the baseline. Quantification cycle (Cq), threshold cycle (Ct), crossing point (Cp), and take-off point (TOP) refer to the same value from the real-time instrument. Use of quantification cycle (Cq), is preferable according to the RDML (Real-Time PCR Data Markup Language) data standard (http://www.rdml.org)."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/quantificationCycle"
         },
         {
           "name": "automaticThresholdQuantificationCycle",
@@ -12482,9 +11128,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticThresholdQuantificationCycle",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/automaticThresholdQuantificationCycle",
-          "rdfs:comment": "Whether the threshold was set by the instrument or manually."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticThresholdQuantificationCycle"
         },
         {
           "name": "automaticBaselineValue",
@@ -12495,9 +11139,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticBaselineValue",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/automaticBaselineValue",
-          "rdfs:comment": "Whether the baseline value was set by the instrument or manually."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/automaticBaselineValue"
         },
         {
           "name": "contaminationAssessment",
@@ -12508,9 +11150,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/contaminationAssessment",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/contaminationAssessment",
-          "rdfs:comment": "Whether DNA or RNA contamination assessment was done or not."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/contaminationAssessment"
         },
         {
           "name": "partitionVolume",
@@ -12521,9 +11161,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolume",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/partitionVolume",
-          "rdfs:comment": "An accurate estimation of partition volume. The sum of the partitions multiplied by the partition volume will enable the total volume of the reaction to be calculated."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolume"
         },
         {
           "name": "partitionVolumeUnit",
@@ -12534,9 +11172,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolumeUnit",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/partitionVolumeUnit",
-          "rdfs:comment": "Unit used for partition volume."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/partitionVolumeUnit"
         },
         {
           "name": "estimatedNumberOfCopies",
@@ -12547,9 +11183,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/estimatedNumberOfCopies",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/estimatedNumberOfCopies",
-          "rdfs:comment": "Number of target molecules per µl. Mean copies per partition (?) can be calculated using the number of partitions (n) and the estimated copy number in the total volume of all partitions (m) with a formula ?=m/n."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/estimatedNumberOfCopies"
         },
         {
           "name": "amplificationReactionVolume",
@@ -12560,9 +11194,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "number",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolume",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/amplificationReactionVolume",
-          "rdfs:comment": "PCR reaction volume."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolume"
         },
         {
           "name": "amplificationReactionVolumeUnit",
@@ -12573,9 +11205,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolumeUnit",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/amplificationReactionVolumeUnit",
-          "rdfs:comment": "Unit used for PCR reaction volume. Many of the instruments require preparation of a much larger initial sample volume than is actually analyzed."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/amplificationReactionVolumeUnit"
         },
         {
           "name": "pcr_analysis_software",
@@ -12586,9 +11216,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_analysis_software",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_analysis_software",
-          "rdfs:comment": "The program used to analyse the d(d)PCR runs."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_analysis_software"
         },
         {
           "name": "experimentalVariance",
@@ -12599,9 +11227,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/experimentalVariance",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/experimentalVariance",
-          "rdfs:comment": "Multiple biological replicates are encouraged to assess total experimental variation. When single dPCR experiments are performed, a minimal estimate of variance due to counting error alone must be calculated from the binomial (or suitable equivalent) distribution."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/experimentalVariance"
         },
         {
           "name": "pcr_primer_lod",
@@ -12612,9 +11238,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_lod",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_primer_lod",
-          "rdfs:comment": "The assay’s ability to detect the target at low levels."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_lod"
         },
         {
           "name": "pcr_primer_loq",
@@ -12625,9 +11249,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "miqe",
-          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_loq",
-          "dcterms:references": "http://rs.gbif.org/terms/miqe/pcr_primer_loq",
-          "rdfs:comment": "The assay’s ability to quantify copy number at low levels."
+          "dcterms:isVersionOf": "http://rs.gbif.org/terms/miqe/pcr_primer_loq"
         }
       ],
       "primaryKey": "molecularProtocol_pk",
@@ -12654,7 +11276,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "molecular-protocol-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/molecular-protocol-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/molecular-protocol-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/molecular-protocol-agent-role.json",
       "name": "molecular-protocol-agent-role",
@@ -12675,8 +11297,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -12692,8 +11312,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -12708,9 +11326,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -12721,9 +11337,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -12734,8 +11348,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -12747,8 +11360,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -12763,9 +11374,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -12788,7 +11397,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "molecular-protocol-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/molecular-protocol-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/molecular-protocol-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/molecular-protocol-assertion.json",
       "name": "molecular-protocol-assertion",
@@ -12798,8 +11407,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -12811,8 +11418,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -12828,8 +11433,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -12844,9 +11447,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -12857,9 +11458,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -12870,9 +11469,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -12883,8 +11480,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -12895,9 +11491,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -12908,9 +11502,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -12921,9 +11513,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -12934,9 +11524,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -12947,8 +11535,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -12959,9 +11546,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -12972,9 +11557,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -12985,8 +11568,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -12997,9 +11579,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -13010,9 +11590,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -13024,8 +11602,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13041,8 +11617,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13057,9 +11631,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -13071,8 +11643,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13087,9 +11657,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -13100,9 +11668,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -13144,7 +11710,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "molecular-protocol-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/molecular-protocol-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/molecular-protocol-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/molecular-protocol-reference.json",
       "name": "molecular-protocol-reference",
@@ -13165,8 +11731,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13182,8 +11746,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -13198,9 +11760,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -13223,7 +11783,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "nucleotide-analysis": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/nucleotide-analysis",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/nucleotide-analysis",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/nucleotide-analysis.json",
       "name": "nucleotide-analysis",
@@ -13233,8 +11793,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/NucleotideAnalysis-2026-05-26",
-      "rdfs:comment": "A link between a dwc:NucleotideSequence and a dwc:Event and a dwc:MaterialEntity from which it was derived, using a specified dwc:Protocol.",
       "fields": [
         {
           "name": "nucleotideAnalysis_pk",
@@ -13246,7 +11804,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": true
@@ -13261,8 +11818,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
         },
         {
           "name": "event_fk",
@@ -13274,8 +11830,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13291,8 +11845,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/molecularProtocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/molecularProtocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:MolecularProtocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -13308,7 +11860,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13324,8 +11875,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/materialEntityID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/materialEntityID-2023-09-13",
-          "rdfs:comment": "An identifier for a particular instance of a dwc:MaterialEntity.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13340,9 +11889,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/readCount",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/readCount-2026-05-26",
-          "rdfs:comment": "The number of reads obtained for a processed dwc:NucleotideSequence during a dwc:NucleotideAnalysis."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/readCount"
         },
         {
           "name": "processedTotalReadCount",
@@ -13353,9 +11900,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/processedTotalReadCount",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/processedTotalReadCount-2026-05-26",
-          "rdfs:comment": "The total number of reads obtained for a processed dwc:NucleotideSequence during a dwc:NucleotideAnalysis."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/processedTotalReadCount"
         },
         {
           "name": "rawTotalReadCount",
@@ -13366,9 +11911,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "integer",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/rawTotalReadCount",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/rawTotalReadCount-pending",
-          "rdfs:comment": "A total number of raw, unprocessed reads from a dwc:NucleotideAnalysis."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/rawTotalReadCount"
         }
       ],
       "primaryKey": "nucleotideAnalysis_pk",
@@ -13409,7 +11952,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "nucleotide-analysis-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/nucleotide-analysis-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/nucleotide-analysis-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/nucleotide-analysis-assertion.json",
       "name": "nucleotide-analysis-assertion",
@@ -13419,8 +11962,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -13432,8 +11973,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -13449,7 +11988,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -13464,9 +12002,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -13477,9 +12013,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -13490,9 +12024,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -13503,8 +12035,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -13515,9 +12046,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -13528,9 +12057,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -13541,9 +12068,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -13554,9 +12079,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -13567,8 +12090,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -13579,9 +12101,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -13592,9 +12112,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -13605,8 +12123,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -13617,9 +12134,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -13630,9 +12145,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -13644,8 +12157,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13661,8 +12172,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13677,9 +12186,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -13691,8 +12198,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13707,9 +12212,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -13720,9 +12223,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -13764,7 +12265,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "nucleotide-sequence": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/nucleotide-sequence",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/nucleotide-sequence",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/nucleotide-sequence.json",
       "name": "nucleotide-sequence",
@@ -13774,8 +12275,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/NucleotideSequence",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/NucleotideSequence-2026-05-26",
-      "rdfs:comment": "A digital representation of a nucleotide sequence.",
       "fields": [
         {
           "name": "nucleotideSequence_pk",
@@ -13787,7 +12286,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": true
@@ -13802,8 +12300,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
         },
         {
           "name": "sequence",
@@ -13814,9 +12311,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sequence",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sequence-2026-05-26",
-          "rdfs:comment": "A string representing nucleotide base pairs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sequence"
         },
         {
           "name": "nucleotideSequenceRemarks",
@@ -13827,16 +12322,14 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nucleotideSequenceRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/nucleotideSequenceRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:NucleotideSequence."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/nucleotideSequenceRemarks"
         }
       ],
       "primaryKey": "nucleotideSequence_pk",
       "weakPrimaryKey": "nucleotideSequenceID"
     },
     "occurrence": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence.json",
       "name": "occurrence",
@@ -13846,8 +12339,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a wolf pack on the shore of Kluane Lake in 1988`; `a virus in a plant leaf in the New York Botanical Garden at 15:29 on 2014-10-23`; `a fungus in Central Park in the summer of 1929`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Occurrence",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Occurrence-2026-05-26",
-      "rdfs:comment": "A dwc:Event that establishes the state of a dwc:Organism at a particular place and time.",
       "fields": [
         {
           "name": "occurrence_pk",
@@ -13859,8 +12350,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": true
@@ -13875,9 +12364,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID"
         },
         {
           "name": "event_fk",
@@ -13889,8 +12376,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -13906,8 +12391,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": false,
             "unique": false
@@ -13923,8 +12406,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13940,8 +12421,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:SurveyTarget.",
           "constraints": {
             "required": false,
             "unique": false
@@ -13956,9 +12435,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordNumber",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/recordNumber-2023-06-28",
-          "rdfs:comment": "An identifier given to the dwc:Occurrence at the time it was recorded. Often serves as a link between field notes and a dwc:MaterialEntity record, such as a specimen collector's number."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/recordNumber"
         },
         {
           "name": "organismQuantity",
@@ -13969,9 +12446,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantity",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantity-2023-06-28",
-          "rdfs:comment": "A number or enumeration value for the quantity of dwc:Organisms."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantity"
         },
         {
           "name": "organismQuantityType",
@@ -13982,9 +12457,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantityType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismQuantityType-2023-06-28",
-          "rdfs:comment": "The type of quantification system used for the quantity of dwc:Organisms."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismQuantityType"
         },
         {
           "name": "sex",
@@ -13995,9 +12468,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sex",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sex-2026-05-26",
-          "rdfs:comment": "A sex of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sex"
         },
         {
           "name": "lifeStage",
@@ -14008,9 +12479,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lifeStage",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/lifeStage-2026-05-26",
-          "rdfs:comment": "An age class or life stage of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/lifeStage"
         },
         {
           "name": "reproductiveCondition",
@@ -14021,9 +12490,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/reproductiveCondition",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/reproductiveCondition-2026-05-26",
-          "rdfs:comment": "A reproductive condition of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/reproductiveCondition"
         },
         {
           "name": "caste",
@@ -14034,9 +12501,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/caste",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/caste-2026-05-26",
-          "rdfs:comment": "A social caste of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/caste"
         },
         {
           "name": "behavior",
@@ -14047,9 +12512,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/behavior",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/behavior-2026-05-26",
-          "rdfs:comment": "A behavior shown by a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/behavior"
         },
         {
           "name": "vitality",
@@ -14060,9 +12523,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vitality",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vitality-2026-05-26",
-          "rdfs:comment": "An indication of whether a dwc:Organism was alive or dead at the time of collection or observation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vitality"
         },
         {
           "name": "establishmentMeans",
@@ -14073,9 +12534,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/establishmentMeans",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/establishmentMeans-2026-05-26",
-          "rdfs:comment": "Statement about whether a dwc:Organism has been introduced to a given place and time through the direct or indirect activity of modern humans."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/establishmentMeans"
         },
         {
           "name": "degreeOfEstablishment",
@@ -14086,9 +12545,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/degreeOfEstablishment",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/degreeOfEstablishment-2023-06-28",
-          "rdfs:comment": "The degree to which a dwc:Organism survives, reproduces, and expands its range at the given place and time."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/degreeOfEstablishment"
         },
         {
           "name": "pathway",
@@ -14099,9 +12556,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/pathway",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/pathway-2023-06-28",
-          "rdfs:comment": "The process by which a dwc:Organism came to be in a given place at a given time."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/pathway"
         },
         {
           "name": "substrate",
@@ -14112,9 +12567,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/substrate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/substrate-pending",
-          "rdfs:comment": "A type of biotic or abiotic material to which a dwc:Organism was attached during a dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/substrate"
         },
         {
           "name": "occurrenceStatus",
@@ -14126,8 +12579,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceStatus-2026-05-26",
-          "rdfs:comment": "A statement about the detection or non-detection of a dwc:Organism during a dwc:Event.",
           "constraints": {
             "required": true
           }
@@ -14141,9 +12592,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedReferences-2023-06-28",
-          "rdfs:comment": "A list (concatenated and separated) of associated dcterms:BibliographicResources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedReferences"
         },
         {
           "name": "occurrenceRemarks",
@@ -14154,9 +12603,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Occurrence."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceRemarks"
         },
         {
           "name": "organism_fk",
@@ -14168,8 +12615,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14185,8 +12630,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14201,9 +12644,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismScope",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismScope-2023-06-28",
-          "rdfs:comment": "A description of the kind of dwc:Organism instance. Can be used to indicate whether the dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismScope"
         },
         {
           "name": "organismName",
@@ -14214,9 +12655,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismName-2023-06-28",
-          "rdfs:comment": "A textual name or label assigned to a dwc:Organism instance."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismName"
         },
         {
           "name": "causeOfDeath",
@@ -14227,9 +12666,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/causeOfDeath",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/causeOfDeath-2025-06-12",
-          "rdfs:comment": "An indication of the known or suspected cause of death of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/causeOfDeath"
         },
         {
           "name": "organismRemarks",
@@ -14240,9 +12677,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Organism instance."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismRemarks"
         },
         {
           "name": "verbatimIdentification",
@@ -14253,9 +12688,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/verbatimIdentification-2023-06-28",
-          "rdfs:comment": "A string representing the classification as it appeared in the original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimIdentification"
         },
         {
           "name": "identifiedBy",
@@ -14266,9 +12699,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
         },
         {
           "name": "identifiedBy_fk",
@@ -14280,8 +12711,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14297,8 +12726,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14313,9 +12740,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dateIdentified-2025-06-12",
-          "rdfs:comment": "The date on which the subject was determined as representing the dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dateIdentified"
         },
         {
           "name": "identificationReferences",
@@ -14326,9 +12751,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
         },
         {
           "name": "identificationVerificationStatus",
@@ -14339,9 +12762,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationVerificationStatus-2026-05-26",
-          "rdfs:comment": "A categorical indicator of the extent to which a taxonomic determination has been verified to be correct."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationVerificationStatus"
         },
         {
           "name": "identificationRemarks",
@@ -14352,9 +12773,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationRemarks"
         },
         {
           "name": "taxonID",
@@ -14365,9 +12784,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonID"
         },
         {
           "name": "scientificNameID",
@@ -14378,9 +12795,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameID-2017-10-06",
-          "rdfs:comment": "An identifier for the nomenclatural (not taxonomic) details of a scientific name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameID"
         },
         {
           "name": "scientificName",
@@ -14391,9 +12806,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificName-2026-05-26",
-          "rdfs:comment": "The full scientific name, with authorship and date information if known. When forming part of a dwc:Identification, this should be the name in lowest level taxonomic rank that can be determined."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificName"
         },
         {
           "name": "scientificNameAuthorship",
@@ -14404,9 +12817,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/scientificNameAuthorship-2023-06-28",
-          "rdfs:comment": "The authorship information for the dwc:scientificName formatted according to the conventions of the applicable dwc:nomenclaturalCode."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/scientificNameAuthorship"
         },
         {
           "name": "vernacularName",
@@ -14417,9 +12828,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/vernacularName-2026-05-26",
-          "rdfs:comment": "A common or vernacular name."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/vernacularName"
         },
         {
           "name": "taxonRank",
@@ -14430,9 +12839,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/taxonRank-2026-05-26",
-          "rdfs:comment": "The taxonomic rank of the most specific name in the dwc:scientificName."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/taxonRank"
         },
         {
           "name": "classificationSystem",
@@ -14443,9 +12850,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/classificationSystem-pending",
-          "rdfs:comment": "A reference to the classification system in which an authoritative name or formal classification belongs."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/classificationSystem"
         },
         {
           "name": "informationWithheld",
@@ -14456,9 +12861,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
-          "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld"
         },
         {
           "name": "dataGeneralizations",
@@ -14469,9 +12872,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
-          "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations"
         },
         {
           "name": "feedbackURL",
@@ -14482,9 +12883,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "occurrence_pk",
@@ -14559,7 +12958,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-agent-role.json",
       "name": "occurrence-agent-role",
@@ -14580,8 +12979,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -14597,8 +12994,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -14613,9 +13008,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -14626,9 +13019,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -14639,8 +13030,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -14652,8 +13042,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -14668,9 +13056,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -14693,7 +13079,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-assertion.json",
       "name": "occurrence-assertion",
@@ -14703,8 +13089,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -14716,8 +13100,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -14733,8 +13115,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -14749,9 +13129,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -14762,9 +13140,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -14775,9 +13151,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -14788,8 +13162,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -14800,9 +13173,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -14813,9 +13184,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -14826,9 +13195,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -14839,9 +13206,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -14852,8 +13217,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -14864,9 +13228,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -14877,9 +13239,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -14890,8 +13250,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -14902,9 +13261,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -14915,9 +13272,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -14929,8 +13284,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14946,8 +13299,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14962,9 +13313,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -14976,8 +13325,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -14992,9 +13339,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -15005,9 +13350,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -15049,7 +13392,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-identifier.json",
       "name": "occurrence-identifier",
@@ -15059,7 +13402,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "occurrence_fk",
@@ -15071,8 +13413,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -15088,8 +13428,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15104,8 +13442,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -15116,8 +13453,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -15128,8 +13464,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -15140,8 +13475,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -15156,7 +13490,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-media.json",
       "name": "occurrence-media",
@@ -15177,7 +13511,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15193,8 +13526,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -15209,9 +13540,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -15222,9 +13551,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -15235,9 +13562,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -15248,9 +13573,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -15261,9 +13584,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -15274,9 +13595,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -15287,9 +13606,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -15300,9 +13617,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -15325,7 +13640,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-protocol.json",
       "name": "occurrence-protocol",
@@ -15346,8 +13661,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15363,8 +13676,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -15391,7 +13702,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "occurrence-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/occurrence-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/occurrence-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/occurrence-reference.json",
       "name": "occurrence-reference",
@@ -15412,8 +13723,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -15429,8 +13738,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -15445,9 +13752,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -15470,7 +13775,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism.json",
       "name": "organism",
@@ -15480,8 +13785,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a specific bird`; `a specific wolf pack`; `a specific instance of a bacterial culture`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Organism",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Organism-2023-09-18",
-      "rdfs:comment": "A particular organism or defined group of organisms considered to be taxonomically homogeneous.",
       "fields": [
         {
           "name": "organism_pk",
@@ -15493,8 +13796,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": true
@@ -15509,9 +13810,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID"
         },
         {
           "name": "organismScope",
@@ -15522,9 +13821,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismScope",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismScope-2023-06-28",
-          "rdfs:comment": "A description of the kind of dwc:Organism instance. Can be used to indicate whether the dwc:Organism instance represents a discrete organism or if it represents a particular type of aggregation."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismScope"
         },
         {
           "name": "organismName",
@@ -15535,9 +13832,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismName-2023-06-28",
-          "rdfs:comment": "A textual name or label assigned to a dwc:Organism instance."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismName"
         },
         {
           "name": "causeOfDeath",
@@ -15548,9 +13843,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/causeOfDeath",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/causeOfDeath-2025-06-12",
-          "rdfs:comment": "An indication of the known or suspected cause of death of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/causeOfDeath"
         },
         {
           "name": "associatedOrganisms",
@@ -15561,9 +13854,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedOrganisms",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/associatedOrganisms-2023-06-28",
-          "rdfs:comment": "A list (concatenated and separated) of identifiers of other dwc:Organisms and the associations of this dwc:Organism to each of them."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/associatedOrganisms"
         },
         {
           "name": "organismRemarks",
@@ -15574,16 +13865,14 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the dwc:Organism instance."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismRemarks"
         }
       ],
       "primaryKey": "organism_pk",
       "weakPrimaryKey": "organismID"
     },
     "organism-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-assertion.json",
       "name": "organism-assertion",
@@ -15593,8 +13882,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -15606,8 +13893,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -15623,8 +13908,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15639,9 +13922,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -15652,9 +13933,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -15665,9 +13944,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -15678,8 +13955,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -15690,9 +13966,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -15703,9 +13977,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -15716,9 +13988,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -15729,9 +13999,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -15742,8 +14010,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -15754,9 +14021,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -15767,9 +14032,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -15780,8 +14043,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -15792,9 +14054,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -15805,9 +14065,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -15819,8 +14077,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -15836,8 +14092,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -15852,9 +14106,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -15866,8 +14118,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -15882,9 +14132,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -15895,9 +14143,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -15939,7 +14185,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-identifier.json",
       "name": "organism-identifier",
@@ -15949,7 +14195,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "organism_fk",
@@ -15961,8 +14206,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15978,8 +14221,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -15994,8 +14235,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -16006,8 +14246,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -16018,8 +14257,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -16030,8 +14268,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -16046,7 +14283,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-interaction": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-interaction.json",
       "name": "organism-interaction",
@@ -16056,8 +14293,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a bee visiting a flower`; `a Mallophora ruficauda hunting an Apis mellifera in flight`; `a viral infection in a plant`; `a female spider mating with a male spider`; `a lion cub nursing from its mother`; `a mosquito sucking blood from a chimpanzee's arm`; `a slug eating a fungus growing on decomposing stump (2 interactions)`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/OrganismInteraction",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/OrganismInteraction-2026-05-26",
-      "rdfs:comment": "An interaction between two dwc:Organisms during a dwc:Event.",
       "fields": [
         {
           "name": "organismInteraction_pk",
@@ -16069,8 +14304,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
           "constraints": {
             "required": true,
             "unique": true
@@ -16085,9 +14318,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID"
         },
         {
           "name": "event_fk",
@@ -16099,8 +14330,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16115,9 +14344,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionDescription",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionDescription-2026-05-26",
-          "rdfs:comment": "A verbatim description of a dwc:OrganismInteraction."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionDescription"
         },
         {
           "name": "subjectOccurrence_fk",
@@ -16129,8 +14356,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": true,
             "unique": false
@@ -16145,9 +14370,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/organismPart-pending",
-          "rdfs:comment": "An anatomical part of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart"
         },
         {
           "name": "organismInteractionType",
@@ -16158,9 +14381,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:OrganismInteraction."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionType"
         },
         {
           "name": "relatedOccurrence_fk",
@@ -16172,8 +14393,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": false,
             "unique": false
@@ -16189,8 +14408,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence).",
           "constraints": {
             "required": false,
             "unique": false
@@ -16205,9 +14422,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/occurrenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Occurrence (as opposed to a particular digital record of a dwc:Occurrence)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/occurrenceID"
         },
         {
           "name": "externalRelatedOccurrenceSource",
@@ -16218,8 +14433,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relatedOrganismPart",
@@ -16230,9 +14444,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/organismPart-pending",
-          "rdfs:comment": "An anatomical part of a dwc:Organism."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismPart"
         },
         {
           "name": "feedbackURL",
@@ -16243,9 +14455,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "organismInteraction_pk",
@@ -16288,7 +14498,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-interaction-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-interaction-agent-role.json",
       "name": "organism-interaction-agent-role",
@@ -16309,8 +14519,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16326,8 +14534,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16342,9 +14548,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -16355,9 +14559,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -16368,8 +14570,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -16381,8 +14582,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -16397,9 +14596,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -16422,7 +14619,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-interaction-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-interaction-assertion.json",
       "name": "organism-interaction-assertion",
@@ -16432,8 +14629,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -16445,8 +14640,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -16462,8 +14655,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16478,9 +14669,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -16491,9 +14680,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -16504,9 +14691,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -16517,8 +14702,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -16529,9 +14713,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -16542,9 +14724,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -16555,9 +14735,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -16568,9 +14746,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -16581,8 +14757,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -16593,9 +14768,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -16606,9 +14779,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -16619,8 +14790,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -16631,9 +14801,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -16644,9 +14812,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -16658,8 +14824,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -16675,8 +14839,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -16691,9 +14853,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -16705,8 +14865,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -16721,9 +14879,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -16734,9 +14890,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -16778,7 +14932,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-interaction-media": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction-media",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction-media",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-interaction-media.json",
       "name": "organism-interaction-media",
@@ -16799,7 +14953,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16815,8 +14968,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
           "constraints": {
             "required": true,
             "unique": false
@@ -16831,9 +14982,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/CVtermLiteral-2026-01-23",
-          "rdfs:comment": "A term to describe the content of a image or a region of interest within an image using a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/CVtermLiteral"
         },
         {
           "name": "subjectCategoryIRI",
@@ -16844,9 +14993,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "Iptc4xmpExt",
-          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "dcterms:references": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm",
-          "rdfs:comment": "A term to describe the content of the image by a value from a Controlled Vocabulary."
+          "dcterms:isVersionOf": "http://iptc.org/std/Iptc4xmpExt/2008-02-29/CVterm"
         },
         {
           "name": "subjectCategoryVocabulary",
@@ -16857,9 +15004,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectCategoryVocabulary-2026-01-23",
-          "rdfs:comment": "Any controlled vocabulary from which values for ac:CVtermLiteral have been drawn."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectCategoryVocabulary"
         },
         {
           "name": "subjectPartLiteral",
@@ -16870,9 +15015,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPartLiteral-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPartLiteral"
         },
         {
           "name": "subjectPart",
@@ -16883,9 +15026,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectPart-2023-09-05",
-          "rdfs:comment": "The portion or product of organism morphology, behaviour, environment, etc. that is either predominantly shown or particularly well exemplified by the media resource, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectPart"
         },
         {
           "name": "subjectOrientationLiteral",
@@ -16896,9 +15037,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientationLiteral-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by a controlled value string."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientationLiteral"
         },
         {
           "name": "subjectOrientation",
@@ -16909,9 +15048,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/subjectOrientation-2023-09-05",
-          "rdfs:comment": "Specific orientation (= direction, view angle) of the subject represented in the media resource with respect to the acquisition device, denoted by an IRI."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/subjectOrientation"
         },
         {
           "name": "physicalSetting",
@@ -16922,9 +15059,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/physicalSetting-2026-02-24",
-          "rdfs:comment": "The setting of the content represented in media such as images, sounds, and movies if the provider deems them relevant."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/physicalSetting"
         }
       ],
       "foreignKeys": [
@@ -16947,7 +15082,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-interaction-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-interaction-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-interaction-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-interaction-reference.json",
       "name": "organism-interaction-reference",
@@ -16968,8 +15103,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -16985,8 +15118,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismInteractionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismInteractionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:OrganismInteraction.",
           "constraints": {
             "required": true,
             "unique": false
@@ -17001,9 +15132,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -17026,7 +15155,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-reference.json",
       "name": "organism-reference",
@@ -17047,8 +15176,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -17064,8 +15191,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17080,9 +15205,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -17105,7 +15228,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "organism-relationship": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/organism-relationship",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/organism-relationship",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/organism-relationship.json",
       "name": "organism-relationship",
@@ -17115,8 +15238,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
-      "rdfs:comment": "A relationship of one rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource) to another.",
       "fields": [
         {
           "name": "organismRelationshipID",
@@ -17127,9 +15248,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:ResourceRelationship."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID"
         },
         {
           "name": "subjectOrganism_fk",
@@ -17141,8 +15260,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -17157,9 +15274,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "relationshipTypeIRI",
@@ -17170,9 +15285,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "relationshipTypeSource",
@@ -17183,8 +15296,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relatedOrganism_fk",
@@ -17196,8 +15308,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17213,8 +15323,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17229,9 +15337,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/organismID-2023-06-28",
-          "rdfs:comment": "An identifier for the dwc:Organism instance (as opposed to a particular digital record of the dwc:Organism). May be a globally unique identifier or an identifier specific to the data set."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/organismID"
         },
         {
           "name": "externalRelatedOrganismSource",
@@ -17242,8 +15348,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relationshipAccordingTo",
@@ -17254,9 +15359,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipAccordingTo-2018-09-06",
-          "rdfs:comment": "The source (person, organization, publication, reference) establishing the relationship between the two resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo"
         },
         {
           "name": "relationshipAccordingTo_fk",
@@ -17268,8 +15371,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17285,8 +15386,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17301,9 +15400,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipEstablishedDate-2025-06-12",
-          "rdfs:comment": "The date-time on which the relationship between the two resources was established."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate"
         },
         {
           "name": "relationshipRemarks",
@@ -17314,9 +15411,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the relationship between the two resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks"
         }
       ],
       "weakPrimaryKey": "organismRelationshipID",
@@ -17366,7 +15461,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/protocol.json",
       "name": "protocol",
@@ -17376,8 +15471,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a pitfall trap method for sampling ground-dwelling arthropods`; `a point-radius georeferencing method`; `a linear regression model to estimate body mass from skeletal measurements`; `a Bayesian phylogenetic inference method`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Protocol",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/Protocol-2026-05-26",
-      "rdfs:comment": "A method used during an action.",
       "fields": [
         {
           "name": "protocol_pk",
@@ -17389,8 +15482,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": true
@@ -17405,9 +15496,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID"
         },
         {
           "name": "protocolType",
@@ -17418,9 +15507,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolType"
         },
         {
           "name": "protocolName",
@@ -17431,8 +15518,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/title",
-          "rdfs:comment": "A name given to the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/title"
         },
         {
           "name": "protocolDescription",
@@ -17443,9 +15529,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolDescription",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolDescription-2026-05-26",
-          "rdfs:comment": "A detailed description of a dwc:Protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolDescription"
         },
         {
           "name": "protocolReferences",
@@ -17456,9 +15540,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolReferences-2024-02-28",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences"
         },
         {
           "name": "protocolRemarks",
@@ -17469,16 +15551,14 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Protocol."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolRemarks"
         }
       ],
       "primaryKey": "protocol_pk",
       "weakPrimaryKey": "protocolID"
     },
     "protocol-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/protocol-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/protocol-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/protocol-reference.json",
       "name": "protocol-reference",
@@ -17499,8 +15579,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17516,8 +15594,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -17532,9 +15608,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -17557,7 +15631,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "provenance": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/provenance",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/provenance",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/provenance.json",
       "name": "provenance",
@@ -17567,8 +15641,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/Provenance",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/Provenance-2026-05-26",
-      "rdfs:comment": "Information about an entity’s origins.",
       "fields": [
         {
           "name": "provenance_pk",
@@ -17580,7 +15652,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": true
@@ -17595,8 +15666,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
         },
         {
           "name": "datasetName",
@@ -17607,9 +15677,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetName",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetName-2026-05-26",
-          "rdfs:comment": "A name of a source dataset."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetName"
         },
         {
           "name": "datasetID",
@@ -17620,9 +15688,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/datasetID-2017-10-06",
-          "rdfs:comment": "An identifier for the set of data. May be a global unique identifier or an identifier specific to a collection or institution."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/datasetID"
         },
         {
           "name": "fundingAttribution",
@@ -17633,9 +15699,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/fundingAttribution",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/fundingAttribution-2020-01-27",
-          "rdfs:comment": "Text description of organizations or individuals who funded the creation of the resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/fundingAttribution"
         },
         {
           "name": "fundingAttribution_fk",
@@ -17647,8 +15711,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fundingAttributionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fundingAttributionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent that financially supported a project.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17664,8 +15726,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/fundingAttributionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/fundingAttributionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent that financially supported a project.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17680,8 +15740,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "sourceIRI",
@@ -17692,8 +15751,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/source"
         },
         {
           "name": "creator",
@@ -17704,8 +15762,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator",
-          "rdfs:comment": "An entity primarily responsible for making the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/creator"
         },
         {
           "name": "creator_fk",
@@ -17717,8 +15774,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17734,8 +15789,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17750,9 +15803,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/providerLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/providerLiteral-2026-02-24",
-          "rdfs:comment": "Name of the person or organization responsible for presenting the media resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/providerLiteral"
         },
         {
           "name": "provider_fk",
@@ -17764,8 +15815,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17781,8 +15830,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17797,9 +15844,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataCreatorLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataCreatorLiteral-2023-09-05",
-          "rdfs:comment": "Name of the person or organization originally creating the resource metadata record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataCreatorLiteral"
         },
         {
           "name": "metadataCreator_fk",
@@ -17811,8 +15856,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17828,8 +15871,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17844,9 +15885,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataProviderLiteral",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/metadataProviderLiteral-2026-02-24",
-          "rdfs:comment": "Name of the person or organization originally responsible for providing the resource metadata record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/metadataProviderLiteral"
         },
         {
           "name": "metadataProvider_fk",
@@ -17858,8 +15897,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17875,8 +15912,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -17891,9 +15926,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/furtherInformationURL",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/furtherInformationURL-2020-01-27",
-          "rdfs:comment": "The URL of a Web site that provides additional information about the version of the media resource that is provided by the Service Access Point."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/furtherInformationURL"
         },
         {
           "name": "references",
@@ -17904,8 +15937,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/references",
-          "rdfs:comment": "A related resource that is referenced, cited, or otherwise pointed to by the described resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/references"
         },
         {
           "name": "bibliographicCitation",
@@ -17916,8 +15948,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation",
-          "rdfs:comment": "A bibliographic reference for the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/bibliographicCitation"
         },
         {
           "name": "projectTitle",
@@ -17928,9 +15959,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/projectTitle",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/projectTitle-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of titles or names for projects that contributed to a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/projectTitle"
         },
         {
           "name": "projectID",
@@ -17941,9 +15970,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/projectID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/projectID-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of identifiers for projects that contributed to a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/projectID"
         },
         {
           "name": "feedbackURL",
@@ -17954,9 +15981,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "provenance_pk",
@@ -18047,7 +16072,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "resource-relationship": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/resource-relationship",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/resource-relationship",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/resource-relationship.json",
       "name": "resource-relationship",
@@ -18057,8 +16082,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`an instance of a dwc:Organism is the mother of another instance of a dwc:Organism`; `a uniquely identified dwc:Occurrence represents the same dwc:Occurrence as another uniquely identified dwc:Occurrence`; `a dwc:MaterialEntity is a subsample of another dwc:MaterialEntity`",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/ResourceRelationship",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/ResourceRelationship-2023-09-13",
-      "rdfs:comment": "A relationship of one rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource) to another.",
       "fields": [
         {
           "name": "resourceRelationshipID",
@@ -18069,9 +16092,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceRelationshipID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:ResourceRelationship."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceRelationshipID"
         },
         {
           "name": "subjectResourceID",
@@ -18083,8 +16104,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/resourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/resourceID-2018-09-06",
-          "rdfs:comment": "An identifier for the subject of a dwc:ResourceRelationship.",
           "constraints": {
             "required": true,
             "unique": false
@@ -18099,8 +16118,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "subjectResourceTypeIRI",
@@ -18111,8 +16129,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "subjectResourceTypeSource",
@@ -18123,8 +16140,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relationshipType",
@@ -18135,9 +16151,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "relationshipTypeIRI",
@@ -18148,9 +16162,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "relationshipTypeSource",
@@ -18161,8 +16173,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relatedResourceID",
@@ -18173,9 +16184,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relatedResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relatedResourceID-2026-05-26",
-          "rdfs:comment": "An identifier for the related resource (the object) of a dwc:ResourceRelationship."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relatedResourceID"
         },
         {
           "name": "externalRelatedResourceID",
@@ -18186,8 +16195,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier"
         },
         {
           "name": "externalRelatedResourceSource",
@@ -18198,8 +16206,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relatedResourceType",
@@ -18210,8 +16217,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "relatedResourceTypeIRI",
@@ -18222,8 +16228,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "relatedResourceTypeSource",
@@ -18234,8 +16239,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "relationshipAccordingTo",
@@ -18246,9 +16250,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipAccordingTo-2018-09-06",
-          "rdfs:comment": "The source (person, organization, publication, reference) establishing the relationship between the two resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipAccordingTo"
         },
         {
           "name": "relationshipAccordingToID",
@@ -18259,9 +16261,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID"
         },
         {
           "name": "relationshipEstablishedDate",
@@ -18272,9 +16272,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipEstablishedDate-2025-06-12",
-          "rdfs:comment": "The date-time on which the relationship between the two resources was established."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipEstablishedDate"
         },
         {
           "name": "relationshipRemarks",
@@ -18285,15 +16283,13 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipRemarks-2023-06-28",
-          "rdfs:comment": "Comments or notes about the relationship between the two resources."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipRemarks"
         }
       ],
       "weakPrimaryKey": "resourceRelationshipID"
     },
     "survey": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey.json",
       "name": "survey",
@@ -18303,8 +16299,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`a botanical survey of a protected area to assess native and invasive plant species`; `a wetland vegetation mapping`; `a camera trap deployment in a rainforest to monitor large mammals`; `a frog call survey in wetlands across breeding seasons`; `a coverboard survey for reptiles in forested environments`; `a pollinator survey in an agricultural landscape`; `a macroinvertebrate sampling in a freshwater stream to assess water quality`; `a habitat- or ecosystem-level survey (e.g., coral reef health assessment, forest biodiversity assessment)`; `an environmental impact assessment (e.g., pre-construction biological baseline survey for a wind farm project)`",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/Survey",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/Survey-2026-05-26",
-      "rdfs:comment": "A dwc:Event intentionally designed to characterize a defined biotic target or domain in such a way that the resulting dwc:Occurrences can be interpreted collectively to support ecological and monitoring inference (such as detectability, abundance, species co-occurence, spatial distribution, or temporal trends), rather than merely documenting individual observations or gathered material.",
       "fields": [
         {
           "name": "survey_pk",
@@ -18316,8 +16310,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": true
@@ -18332,9 +16324,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID"
         },
         {
           "name": "event_fk",
@@ -18346,8 +16336,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/eventID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/eventID-2026-05-26",
-          "rdfs:comment": "An identifier for the set of information associated with a dwc:Event (something that occurs at a place and time). May be a global unique identifier or an identifier specific to the data set.",
           "constraints": {
             "required": true,
             "unique": false
@@ -18362,9 +16350,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteSurveyType",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteSurveyType-pending",
-          "rdfs:comment": "A spatial category of a sampling location for an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteSurveyType"
         },
         {
           "name": "siteCount",
@@ -18376,8 +16362,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteCount",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteCount-2024-02-28",
-          "rdfs:comment": "Total number of individual sites surveyed during an eco:Survey.",
           "constraints": {
             "minimum": 1
           }
@@ -18391,9 +16375,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteNestingDescription",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/siteNestingDescription-2024-02-28",
-          "rdfs:comment": "Textual description of the hierarchical sampling design."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/siteNestingDescription"
         },
         {
           "name": "verbatimSiteDescriptions",
@@ -18404,9 +16386,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteDescriptions",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimSiteDescriptions-2024-02-28",
-          "rdfs:comment": "Original textual description of the site(s)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteDescriptions"
         },
         {
           "name": "verbatimSiteNames",
@@ -18417,9 +16397,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteNames",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimSiteNames-2024-02-28",
-          "rdfs:comment": "A list (concatenated and separated) of original site names."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimSiteNames"
         },
         {
           "name": "geospatialScopeAreaValue",
@@ -18431,8 +16409,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/geospatialScopeAreaValue-2024-02-28",
-          "rdfs:comment": "The numeric value for the total area of the geospatial scope of an eco:Survey.",
           "constraints": {
             "minimum": 0
           }
@@ -18446,9 +16422,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/geospatialScopeAreaUnit-2025-07-10",
-          "rdfs:comment": "The units associated with eco:geospatialScopeAreaValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/geospatialScopeAreaUnit"
         },
         {
           "name": "totalAreaSampledUnit",
@@ -18459,9 +16433,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/totalAreaSampledUnit-2025-07-10",
-          "rdfs:comment": "The units associated with eco:totalAreaSampledValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledUnit"
         },
         {
           "name": "totalAreaSampledValue",
@@ -18473,8 +16445,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/totalAreaSampledValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/totalAreaSampledValue-2024-02-28",
-          "rdfs:comment": "A numeric value for the total area, volume or distance surveyed during the dwc:Survey.",
           "constraints": {
             "minimum": 0
           }
@@ -18488,9 +16458,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/taxonCompletenessReported-2025-07-10",
-          "rdfs:comment": "Statement about whether the taxonomic completeness of an eco:Survey was assessed."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessReported"
         },
         {
           "name": "taxonCompletenessProtocols",
@@ -18501,9 +16469,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessProtocols",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/taxonCompletenessProtocols-2025-07-10",
-          "rdfs:comment": "A description of or reference (publication, URL) to the methods used to determine eco:taxonCompletenessReported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/taxonCompletenessProtocols"
         },
         {
           "name": "isAbsenceReported",
@@ -18514,9 +16480,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbsenceReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbsenceReported-2024-02-28",
-          "rdfs:comment": "Taxonomic absences were reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbsenceReported"
         },
         {
           "name": "absentTaxa",
@@ -18527,9 +16491,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/absentTaxa",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/absentTaxa-2025-07-10",
-          "rdfs:comment": "A list (concatenated and separated) of taxa reported absent during an eco:Survey"
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/absentTaxa"
         },
         {
           "name": "hasNonTargetTaxa",
@@ -18540,9 +16502,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetTaxa",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasNonTargetTaxa-2024-02-28",
-          "rdfs:comment": "One or more dwc:Occurrences of taxa outside the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) were detected and reported for an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetTaxa"
         },
         {
           "name": "nonTargetTaxa",
@@ -18553,9 +16513,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/nonTargetTaxa",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/nonTargetTaxa-2025-07-10",
-          "rdfs:comment": "A list (concatenated and separated) of taxa reported during an eco:Survey that are outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/nonTargetTaxa"
         },
         {
           "name": "areNonTargetTaxaFullyReported",
@@ -18566,9 +16524,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/areNonTargetTaxaFullyReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/areNonTargetTaxaFullyReported-2025-06-12",
-          "rdfs:comment": "Every dwc:Occurrence that was outside of the target taxonomic scope (the combination of eco:targetTaxonomicScope and eco:excludedTaxonomicScope) and detected during an eco:Survey, and that was detectable using the given protocol (given in eco:protocolDescriptions and dwc:samplingProtocol), was reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/areNonTargetTaxaFullyReported"
         },
         {
           "name": "hasNonTargetOrganisms",
@@ -18579,9 +16535,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetOrganisms",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasNonTargetOrganisms-2024-02-28",
-          "rdfs:comment": "One or more dwc:Occurrences outside the target organismal scopes (eco:targetDegreeOfEstablishmentScope, eco:targetGrowthFormScope, and eco:targetLifeStageScope) were detected and reported for an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasNonTargetOrganisms"
         },
         {
           "name": "verbatimTargetScope",
@@ -18592,9 +16546,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimTargetScope",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/verbatimTargetScope-2024-02-28",
-          "rdfs:comment": "The verbatim original description of an eco:Survey scope."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/verbatimTargetScope"
         },
         {
           "name": "identifiedBy",
@@ -18605,9 +16557,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identifiedBy-2026-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedBy"
         },
         {
           "name": "identifiedBy_fk",
@@ -18619,8 +16569,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18636,8 +16584,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identifiedByID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/identifiedByID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent responsible for making a dwc:Identification.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18652,9 +16598,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/identificationReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources used in a dwc:Identification."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/identificationReferences"
         },
         {
           "name": "compilationTypes",
@@ -18665,9 +16609,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationTypes",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/compilationTypes-2025-07-10",
-          "rdfs:comment": "A statement specifying whether data reported are derived from sampling events, ancillary data compiled from other sources, or a combination of both."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationTypes"
         },
         {
           "name": "compilationSourceTypes",
@@ -18678,9 +16620,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationSourceTypes",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/compilationSourceTypes-2025-07-10",
-          "rdfs:comment": "The types of data sources contributing to the compilation reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/compilationSourceTypes"
         },
         {
           "name": "inventoryTypes",
@@ -18691,9 +16631,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/inventoryTypes",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/inventoryTypes-2025-07-10",
-          "rdfs:comment": "The types of search processes used to conduct an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/inventoryTypes"
         },
         {
           "name": "protocolNames",
@@ -18704,9 +16642,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolNames",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolNames-2025-07-10",
-          "rdfs:comment": "Categorical descriptive names for the methods used during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolNames"
         },
         {
           "name": "protocolDescriptions",
@@ -18717,9 +16653,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolDescriptions",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolDescriptions-2024-02-28",
-          "rdfs:comment": "A detailed description of the methods used during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolDescriptions"
         },
         {
           "name": "protocolReferences",
@@ -18730,9 +16664,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/protocolReferences-2024-02-28",
-          "rdfs:comment": "The references to the methods used during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/protocolReferences"
         },
         {
           "name": "isAbundanceReported",
@@ -18743,9 +16675,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbundanceReported-2024-02-28",
-          "rdfs:comment": "The number of dwc:Organisms collected or observed was reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceReported"
         },
         {
           "name": "isAbundanceCapReported",
@@ -18756,9 +16686,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceCapReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isAbundanceCapReported-2024-02-28",
-          "rdfs:comment": "A maximum number of dwc:Organisms was reported, as specified or restricted by the protocol used."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isAbundanceCapReported"
         },
         {
           "name": "isLeastSpecificTargetCategoryQuantityInclusive",
@@ -18769,9 +16697,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isLeastSpecificTargetCategoryQuantityInclusive",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isLeastSpecificTargetCategoryQuantityInclusive-2025-06-12",
-          "rdfs:comment": "The total detected quantity for a dwc:Taxon (including subcategories thereof) in an eco:Survey is given explicitly in a single record (dwc:organismQuantity value) for that dwc:Taxon."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isLeastSpecificTargetCategoryQuantityInclusive"
         },
         {
           "name": "hasVouchers",
@@ -18782,9 +16708,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasVouchers",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasVouchers-2024-02-28",
-          "rdfs:comment": "One or more specimen vouchers were collected during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasVouchers"
         },
         {
           "name": "voucherInstitutions",
@@ -18795,9 +16719,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/voucherInstitutions",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/voucherInstitutions-2024-02-28",
-          "rdfs:comment": "A list (concatenated and separated) of the names or acronyms of the institutions where vouchers collected during an eco:Survey were deposited."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/voucherInstitutions"
         },
         {
           "name": "hasMaterialSamples",
@@ -18808,9 +16730,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasMaterialSamples",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/hasMaterialSamples-2024-02-28",
-          "rdfs:comment": "One or more dwc:MaterialEntities were collected during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/hasMaterialSamples"
         },
         {
           "name": "materialSampleTypes",
@@ -18821,9 +16741,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/materialSampleTypes",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/materialSampleTypes-2025-07-10",
-          "rdfs:comment": "A list (concatenated and separated) of material sample types collected during an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/materialSampleTypes"
         },
         {
           "name": "samplingProtocol",
@@ -18834,9 +16752,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingProtocol",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/samplingProtocol-2026-05-26",
-          "rdfs:comment": "The names of, references to, or descriptions of the methods or protocols used during a dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/samplingProtocol"
         },
         {
           "name": "samplingProtocol_fk",
@@ -18848,8 +16764,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18864,9 +16778,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampleSizeValue-2023-06-28",
-          "rdfs:comment": "A numeric value for a measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeValue"
         },
         {
           "name": "sampleSizeUnit",
@@ -18877,9 +16789,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/sampleSizeUnit-2023-06-28",
-          "rdfs:comment": "The unit of measurement of the size (time duration, length, area, or volume) of a sample in a sampling dwc:Event."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/sampleSizeUnit"
         },
         {
           "name": "samplingPerformedBy",
@@ -18890,9 +16800,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingPerformedBy",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingPerformedBy-2025-07-10",
-          "rdfs:comment": "A person, group, or organization responsible for recording an eco:Survey."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingPerformedBy"
         },
         {
           "name": "samplingPerformedBy_fk",
@@ -18904,8 +16812,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18921,8 +16827,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18937,9 +16841,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "boolean",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSamplingEffortReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/isSamplingEffortReported-2024-02-28",
-          "rdfs:comment": "The sampling effort associated with an eco:Survey was reported."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSamplingEffortReported"
         },
         {
           "name": "samplingEffortProtocol",
@@ -18950,9 +16852,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortProtocol",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortProtocol-2025-07-10",
-          "rdfs:comment": "A description of or reference (publication or URL) to the methods used to determine the sampling effort."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortProtocol"
         },
         {
           "name": "samplingEffortProtocol_fk",
@@ -18964,8 +16864,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -18981,8 +16879,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortValue-2024-02-28",
-          "rdfs:comment": "The numeric value for the sampling effort expended during an eco:Survey.",
           "constraints": {
             "minimum": 0
           }
@@ -18996,9 +16892,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/samplingEffortUnit-2025-07-10",
-          "rdfs:comment": "The units associated with an eco:samplingEffortValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/samplingEffortUnit"
         },
         {
           "name": "informationWithheld",
@@ -19009,9 +16903,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/informationWithheld-2026-05-26",
-          "rdfs:comment": "Additional information that exists about a resource, but that is not shared publicly. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/informationWithheld"
         },
         {
           "name": "dataGeneralizations",
@@ -19022,9 +16914,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/dataGeneralizations-2023-06-28",
-          "rdfs:comment": "Actions taken to make the shared data less specific or complete than in its original form. Suggests that alternative data of higher quality may be available on request."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/dataGeneralizations"
         },
         {
           "name": "feedbackURL",
@@ -19035,9 +16925,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/feedbackURL-2025-06-12",
-          "rdfs:comment": "A uniform resource locator (URL) that points to a webpage on which a form may be submitted to gather feedback about the record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/feedbackURL"
         }
       ],
       "primaryKey": "survey_pk",
@@ -19104,7 +16992,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-agent-role": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-agent-role",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-agent-role",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-agent-role.json",
       "name": "survey-agent-role",
@@ -19125,8 +17013,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19142,8 +17028,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19158,9 +17042,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         },
         {
           "name": "agentRoleIRI",
@@ -19171,9 +17053,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResourceID-2023-06-28",
-          "rdfs:comment": "An identifier for the relationship type (predicate) that connects the subject identified by dwc:resourceID to its object identified by dwc:relatedResourceID."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResourceID"
         },
         {
           "name": "agentRoleSource",
@@ -19184,8 +17064,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "agentRoleOrder",
@@ -19197,8 +17076,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentRoleOrder",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/agentRoleOrder-2026-05-26",
-          "rdfs:comment": "A numerical position of an AgentRole in a set of AgentRoles.",
           "constraints": {
             "required": true,
             "minimum": 1
@@ -19213,9 +17090,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         }
       ],
       "foreignKeys": [
@@ -19238,7 +17113,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-assertion": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-assertion",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-assertion",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-assertion.json",
       "name": "survey-assertion",
@@ -19248,8 +17123,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/MeasurementOrFact",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/MeasurementOrFact-2023-09-13",
-      "rdfs:comment": "A measurement of or fact about an rdfs:Resource (http://www.w3.org/2000/01/rdf-schema#Resource).",
       "fields": [
         {
           "name": "assertionID",
@@ -19261,8 +17134,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Assertion.",
           "constraints": {
             "required": false,
             "unique": true
@@ -19278,8 +17149,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19294,9 +17163,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType-2026-05-26",
-          "rdfs:comment": "A string representing the type of dwc:Assertion as it appeared in an original record."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/verbatimAssertionType"
         },
         {
           "name": "assertionType",
@@ -19307,9 +17174,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionType"
         },
         {
           "name": "assertionTypeIRI",
@@ -19320,9 +17185,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementType-2025-07-10",
-          "rdfs:comment": "The nature of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementType"
         },
         {
           "name": "assertionTypeSource",
@@ -19333,8 +17196,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionMadeDate",
@@ -19345,9 +17207,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionMadeDate-2026-05-26",
-          "rdfs:comment": "A date on which a dwc:Assertion was created."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionMadeDate"
         },
         {
           "name": "assertionEffectiveDate",
@@ -19358,9 +17218,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionEffectiveDate-2026-05-26",
-          "rdfs:comment": "A date on which a state or measurement of a dwc:Assertion was deemed to first be in effect."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionEffectiveDate"
         },
         {
           "name": "assertionValue",
@@ -19371,9 +17229,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionValue-2026-05-26",
-          "rdfs:comment": "An asserted value."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionValue"
         },
         {
           "name": "assertionValueIRI",
@@ -19384,9 +17240,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/measurementValue-2025-07-10",
-          "rdfs:comment": "The value of the measurement, fact, characteristic, or assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/measurementValue"
         },
         {
           "name": "assertionValueSource",
@@ -19397,8 +17251,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionUnit",
@@ -19409,9 +17262,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionUnit-2026-05-26",
-          "rdfs:comment": "A unit associated with the value in dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionUnit"
         },
         {
           "name": "assertionUnitIRI",
@@ -19422,9 +17273,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwciri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit",
-          "dcterms:references": "http://rs.tdwg.org/dwc/iri/version/assertionUnit-2026-05-26",
-          "rdfs:comment": "An IRI of a controlled vocabulary value for the unit of a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/iri/assertionUnit"
         },
         {
           "name": "assertionUnitSource",
@@ -19435,8 +17284,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "assertionError",
@@ -19447,9 +17295,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionError-2026-05-26",
-          "rdfs:comment": "A description of the potential error associated with a dwc:assertionValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionError"
         },
         {
           "name": "assertionBy",
@@ -19460,9 +17306,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/assertionBy-2025-05-26",
-          "rdfs:comment": "A name for a dcterms:Agent responsible for making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionBy"
         },
         {
           "name": "assertionBy_fk",
@@ -19474,8 +17318,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -19491,8 +17333,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -19507,9 +17347,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionProtocols-2026-05-26",
-          "rdfs:comment": "Names of, references to, or descriptions of dwc:Protocols used in making a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionProtocols"
         },
         {
           "name": "assertionProtocol_fk",
@@ -19521,8 +17359,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": false,
             "unique": false
@@ -19537,9 +17373,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionReferences-2026-05-26",
-          "rdfs:comment": "A list (concatenated and separated) of dcterms:BibliographicResources associated with a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionReferences"
         },
         {
           "name": "assertionRemarks",
@@ -19550,9 +17384,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/assertionRemarks-2026-05-26",
-          "rdfs:comment": "Comments or notes about a dwc:Assertion."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/assertionRemarks"
         }
       ],
       "weakPrimaryKey": "assertionID",
@@ -19594,7 +17426,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-identifier": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-identifier",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-identifier",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-identifier.json",
       "name": "survey-identifier",
@@ -19604,7 +17436,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "adms",
       "dcterms:isVersionOf": "http://www.w3.org/ns/adms#Identifier",
-      "rdfs:comment": "In RDF this is expressed using the adms:Identifier class with the following properties: 1) the content string should be provided using skos:notation, datatyped with the identifier scheme (including the version number if appropriate); 2) use dcterms:creator to link to a class describing the agency that manages the identifier scheme or adms:schemaAgency to provide the name as a literal.",
       "fields": [
         {
           "name": "survey_fk",
@@ -19616,8 +17447,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19633,8 +17462,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "skos",
           "dcterms:isVersionOf": "http://www.w3.org/2004/02/skos/core#notation",
-          "dcterms:references": "https://www.w3.org/TR/2009/REC-skos-reference-20090818/#notation",
-          "rdfs:comment": "A notation is a string of characters such as \"T58.5\" or \"303.4833\" used to uniquely identify a concept within the scope of a given concept scheme.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19649,8 +17476,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/type"
         },
         {
           "name": "identifierTypeIRI",
@@ -19661,8 +17487,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "identifierTypeSource",
@@ -19673,8 +17498,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "identifierLanguage",
@@ -19685,8 +17509,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language",
-          "rdfs:comment": "A language of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/language"
         }
       ],
       "foreignKeys": [
@@ -19701,7 +17524,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-protocol": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-protocol",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-protocol",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-protocol.json",
       "name": "survey-protocol",
@@ -19722,8 +17545,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/protocolID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/protocolID-2026-05-26",
-          "rdfs:comment": "An identifier for a dwc:Protocol.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19739,8 +17560,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19767,7 +17586,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-reference": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-reference",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-reference",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-reference.json",
       "name": "survey-reference",
@@ -19788,8 +17607,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/referenceID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/referenceID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:BibliographicResource.",
           "constraints": {
             "required": false,
             "unique": false
@@ -19805,8 +17622,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19821,9 +17636,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dwc",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/relationshipOfResource-2023-06-28",
-          "rdfs:comment": "The relationship of the subject (identified by dwc:resourceID) to the object (identified by dwc:relatedResourceID)."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/relationshipOfResource"
         }
       ],
       "foreignKeys": [
@@ -19846,7 +17659,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-survey-target": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-survey-target",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-survey-target",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-survey-target.json",
       "name": "survey-survey-target",
@@ -19856,7 +17669,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "",
       "dcterms:isVersionOf": "http://example.com/term-pending//survey-survey-target",
-      "rdfs:comment": "An eco:SurveyTarget used for an eco:Survey.",
       "fields": [
         {
           "name": "survey_fk",
@@ -19868,8 +17680,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:Survey.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19885,8 +17695,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:SurveyTarget.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19913,7 +17721,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "survey-target": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-target",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-target",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-target.json",
       "name": "survey-target",
@@ -19923,8 +17731,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "`all bird species`; `all bird species except Larus gulls, fulmars and kittiwakes`; `reproductive female Ctenomys sociabilis (only)`; `Oncorhynchus mykiss and Oncorhynchus clarkii (only)`, `all total lengths except < 12 inches`",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/SurveyTarget",
-      "dcterms:references": "http://rs.tdwg.org/eco/terms/SurveyTarget-2026-05-26",
-      "rdfs:comment": "A specification of characteristics of dwc:Occurrences that were included or excluded in an eco:Survey.",
       "fields": [
         {
           "name": "surveyTarget_pk",
@@ -19936,8 +17742,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:SurveyTarget.",
           "constraints": {
             "required": true,
             "unique": true
@@ -19952,9 +17756,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:SurveyTarget."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID"
         },
         {
           "name": "surveyTargetDescription",
@@ -19965,9 +17767,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetDescription",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetDescription-pending",
-          "rdfs:comment": "A verbatim description of an eco:SurveyTarget."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetDescription"
         },
         {
           "name": "isSurveyTargetFullyReported",
@@ -19979,8 +17779,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/isSurveyTargetFullyReported",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/isSurveyTargetFullyReported-2026-05-26",
-          "rdfs:comment": "Whether an eco:SurveyTarget can be used to infer absence of detection because all counts of detected dwc:Occurrences matching an eco:SurveyTarget were fully reported.",
           "constraints": {
             "required": true,
             "unique": false
@@ -19996,8 +17794,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/abundanceCap",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/abundanceCap-2024-02-28",
-          "rdfs:comment": "The reported maximum number of dwc:Occurrences matching an eco:SurveyTarget.",
           "constraints": {
             "minimum": 0
           }
@@ -20011,26 +17807,23 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks-pending",
-          "rdfs:comment": "Comments or notes about an eco:SurveyTarget."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetRemarks"
         }
       ],
       "primaryKey": "surveyTarget_pk",
       "weakPrimaryKey": "surveyTargetID"
     },
     "survey-target-descriptor": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/survey-target-descriptor",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/survey-target-descriptor",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/survey-target-descriptor.json",
       "name": "survey-target-descriptor",
       "title": "Survey Target Descriptor",
-      "description": "A combination of a survey target value and a survey target type for given eco:SurveyTarget.",
+      "description": "A combination of a survey target value and a survey target type for a given eco:SurveyTarget.",
       "notes": "",
       "examples": "`taxon: Aves`; `pathway: transportContaminant`; `minimumTotalLength: 20 cm`",
       "namespace": "eco",
       "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/SurveyTargetDescriptor",
-      "rdfs:comment": "A combination of a survey target value and a survey target type for given eco:SurveyTarget.",
       "fields": [
         {
           "name": "surveyTarget_fk",
@@ -20042,8 +17835,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetID",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetID-2026-05-26",
-          "rdfs:comment": "An identifier for an eco:SurveyTarget.",
           "constraints": {
             "required": true,
             "unique": false
@@ -20058,9 +17849,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetType",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetType-2026-05-26",
-          "rdfs:comment": "A category that best matches the nature of a scope in an eco:SurveyTarget."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetType"
         },
         {
           "name": "surveyTargetTypeIRI",
@@ -20071,8 +17860,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/type",
-          "rdfs:comment": "The nature or genre of the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/type"
         },
         {
           "name": "surveyTargetTypeSource",
@@ -20083,8 +17871,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "surveyTargetValue",
@@ -20095,9 +17882,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetValue-2026-05-26",
-          "rdfs:comment": "A value to include or exclude in a scope categorized by eco:surveyTargetType."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetValue"
         },
         {
           "name": "surveyTargetValueIRI",
@@ -20108,9 +17893,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ecoiri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/iri/surveyTargetValue",
-          "dcterms:references": "http://rs.tdwg.org/eco/iri/version/surveyTargetValue-2026-05-26",
-          "rdfs:comment": "A value to include or exclude in a scope categorized by eco:surveyTargetType."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/iri/surveyTargetValue"
         },
         {
           "name": "surveyTargetValueSource",
@@ -20121,8 +17904,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "surveyTargetUnit",
@@ -20133,9 +17915,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "eco",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/version/surveyTargetUnit-2026-05-26",
-          "rdfs:comment": "Unit associated with a value in eco:surveyTargetValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/surveyTargetUnit"
         },
         {
           "name": "surveyTargetUnitIRI",
@@ -20146,9 +17926,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ecoiri",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/iri/surveyTargetUnit",
-          "dcterms:references": "http://rs.tdwg.org/eco/iri/version/surveyTargetUnit-2026-05-26",
-          "rdfs:comment": "Unit associated with a value in eco:surveyTargetValue."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/eco/iri/surveyTargetUnit"
         },
         {
           "name": "surveyTargetUnitSource",
@@ -20159,8 +17937,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source",
-          "rdfs:comment": "A related resource from which the described resource is derived."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/source"
         },
         {
           "name": "includeOrExclude",
@@ -20172,8 +17949,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "eco",
           "dcterms:isVersionOf": "http://rs.tdwg.org/eco/terms/includeOrExclude",
-          "dcterms:references": "http://rs.tdwg.org/eco/terms/includeOrExclude-2026-05-26",
-          "rdfs:comment": "Whether to include or exclude eco:surveyTargetValue in a scope categorized by eco:surveyTargetType.",
           "constraints": {
             "required": true,
             "unique": false
@@ -20192,7 +17967,7 @@ window.DWC_DP_DESIGNER_DATA = {
       ]
     },
     "usage-policy": {
-      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-RC.1/usage-policy",
+      "identifier": "http://rs.tdwg.org/dwc-dp/1.0-DEV/usage-policy",
       "dcterms:isPartOf": "http://www.tdwg.org/standards/450",
       "url": "table-schemas/usage-policy.json",
       "name": "usage-policy",
@@ -20202,8 +17977,6 @@ window.DWC_DP_DESIGNER_DATA = {
       "examples": "",
       "namespace": "dwc",
       "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/UsagePolicy",
-      "dcterms:references": "http://rs.tdwg.org/dwc/terms/UsagePolicy-2026-05-26",
-      "rdfs:comment": "Rights and attribution statements applicable to an entity.",
       "fields": [
         {
           "name": "usagePolicy_pk",
@@ -20215,7 +17988,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dcterms",
           "dcterms:isVersionOf": "http://purl.org/dc/terms/identifier",
-          "rdfs:comment": "An unambiguous reference to the resource within a given context.",
           "constraints": {
             "required": true,
             "unique": true
@@ -20230,9 +18002,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/usagePolicyID-pending",
-          "rdfs:comment": "An identifier for a dwc:UsagePolicy."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/usagePolicyID"
         },
         {
           "name": "rights",
@@ -20243,8 +18013,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dc",
-          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/rights",
-          "rdfs:comment": "Information about rights held in and over the resource. A full-text, readable copyright statement, as required by the national legislation of the copyright holder. On collections, this applies to all contained objects, unless the object itself has a different statement. Examples: “Copyright XY 2008, all rights reserved”, “© 2008 XY Museum” , `Public Domain.`; `Copyright unknown.` Do not place just the name of the copyright holder(s) here! That belongs in a list in the xmpRights:Owner field, which should be supplied if dc:rights is not 'Public Domain', which is appropriate only if the resource is known to be not under copyright. See also the entry for dcterms:rights in this document and see the DCMI FAQ on DC and DCTERMS Namespaces for discussion of the rationale for terms in two namespaces. Normal practice is to use the same Label if both are provided. Labels have no effect on information discovery and are only suggestions."
+          "dcterms:isVersionOf": "http://purl.org/dc/elements/1.1/rights"
         },
         {
           "name": "rightsIRI",
@@ -20255,8 +18024,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/rights",
-          "rdfs:comment": "A URI pointing to structured information about rights held in and over the resource. Examples include http://creativecommons.org/licenses/by/3.0/legalcode and http://creativecommons.org/publicdomain/zero/1.0/. At least one of dcterms:rights and dc:rights must be supplied but, when feasible, supplying both may make the metadata more widely useful. They must specify the same rights. In case of ambiguity, dcterms:rights prevails."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/rights"
         },
         {
           "name": "rightsHolder",
@@ -20267,8 +18035,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/rightsHolder",
-          "rdfs:comment": "A person or organization owning or managing rights over the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/rightsHolder"
         },
         {
           "name": "rightsHolder_fk",
@@ -20280,8 +18047,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -20297,8 +18062,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -20313,8 +18076,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmprights",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner",
-          "rdfs:comment": "A list of legal owners of the resource."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/Owner"
         },
         {
           "name": "owner_fk",
@@ -20326,8 +18088,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -20343,8 +18103,6 @@ window.DWC_DP_DESIGNER_DATA = {
           "format": "default",
           "namespace": "dwc",
           "dcterms:isVersionOf": "http://rs.tdwg.org/dwc/terms/agentID",
-          "dcterms:references": "http://rs.tdwg.org/dwc/terms/version/agentID-2026-05-26",
-          "rdfs:comment": "An identifier for a dcterms:Agent.",
           "constraints": {
             "required": false,
             "unique": false
@@ -20359,8 +18117,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmprights",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/UsageTerms",
-          "rdfs:comment": "A collection of text instructions on how a resource can be legally used, given in a variety of languages."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/UsageTerms"
         },
         {
           "name": "webStatement",
@@ -20371,8 +18128,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "xmprights",
-          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/WebStatement",
-          "rdfs:comment": "A Web URL for a statement of the ownership and usage rights for this resource."
+          "dcterms:isVersionOf": "http://ns.adobe.com/xap/1.0/rights/WebStatement"
         },
         {
           "name": "accessRights",
@@ -20383,8 +18139,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/accessRights",
-          "rdfs:comment": "Information about who can access the resource or an indication of its security status."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/accessRights"
         },
         {
           "name": "license",
@@ -20395,8 +18150,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "dcterms",
-          "dcterms:isVersionOf": "http://purl.org/dc/terms/license",
-          "rdfs:comment": "A legal document giving official permission to do something with the resource."
+          "dcterms:isVersionOf": "http://purl.org/dc/terms/license"
         },
         {
           "name": "licenseLogoURL",
@@ -20407,9 +18161,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/licenseLogoURL",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/licenseLogoURL-2020-01-27",
-          "rdfs:comment": "A URL providing access to a logo that symbolizes the License."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/licenseLogoURL"
         },
         {
           "name": "licensingException",
@@ -20420,9 +18172,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/licensingException",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/licensingException-2020-01-27",
-          "rdfs:comment": "The licensing statement for this variant of the media resource if different from that given in the License Statement property of the resource."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/licensingException"
         },
         {
           "name": "credit",
@@ -20433,8 +18183,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "photoshop",
-          "dcterms:isVersionOf": "http://ns.adobe.com/photoshop/1.0/Credit",
-          "rdfs:comment": "The credit to person(s) and/or organisation(s) required by the supplier of the item to be used when published. This is a free-text field."
+          "dcterms:isVersionOf": "http://ns.adobe.com/photoshop/1.0/Credit"
         },
         {
           "name": "attributionLogoURL",
@@ -20445,9 +18194,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/attributionLogoURL",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/attributionLogoURL-2020-01-27",
-          "rdfs:comment": "The URL of the icon or logo image to appear in source attribution."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/attributionLogoURL"
         },
         {
           "name": "attributionLinkURL",
@@ -20458,9 +18205,7 @@ window.DWC_DP_DESIGNER_DATA = {
           "type": "string",
           "format": "default",
           "namespace": "ac",
-          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/attributionLinkURL",
-          "dcterms:references": "http://rs.tdwg.org/ac/terms/version/attributionLinkURL-2026-02-24",
-          "rdfs:comment": "The URL where information about ownership, attribution, etc. of the resource may be found."
+          "dcterms:isVersionOf": "http://rs.tdwg.org/ac/terms/attributionLinkURL"
         }
       ],
       "primaryKey": "usagePolicy_pk",

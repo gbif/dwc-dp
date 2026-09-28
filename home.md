@@ -12,7 +12,7 @@ Darwin Core Data Package (“DwC-DP”) is a community-developed container forma
 
 The artifacts available in the [development repository](https://github.com/gbif/dwc-dp) are pre-release versions reflecting the latest developments in the TDWG Darwin Core Data Package repository. These versions have not been ratified, but are made available for testing and commentary. The latest production versions (currently 1.0 - pending ratification) of these artifacts can be found at the following locations:
 
-Darwin Core Data Package Quick Reference Guide https://dwc.tdwg.org/dp/qrg/) (pending)
+Darwin Core Data Package Quick Reference Guide https://dwc.tdwg.org/dp/qrg/ (pending)
   
 Darwin Core Data Package Mapping Guide https://dwc.tdwg.org/dp/mg/ (pending)
 
